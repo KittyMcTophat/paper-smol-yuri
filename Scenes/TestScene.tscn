@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Actors/YurisFloatingHead/YurisFloatingHead.tscn" type="PackedScene" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+use_collision = true
+collision_layer = 33
+collision_mask = 0
+width = 34.6339
+height = 0.002
+depth = 34.7708
+
+[node name="YurisFloatingHead" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425, 0 )
+allow_moonjump = true
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.370056, -4.12599 )
+use_collision = true
+collision_layer = 33
+collision_mask = 0
+
+[node name="CSGBox3" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260051, -5.73621 )
+use_collision = true
+collision_layer = 33
+collision_mask = 0
+
+[node name="CSGBox4" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8514, -7.74555 )
+use_collision = true
+collision_layer = 33
+collision_mask = 0
+
+[node name="CSGBox7" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89334, 0.8514, -5.02876 )
+use_collision = true
+collision_layer = 32
+collision_mask = 0
+
+[node name="CSGBox5" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5154, -11.2439 )
+use_collision = true
+collision_layer = 33
+collision_mask = 0
+
+[node name="CSGBox6" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.57216, -14.4027 )
+use_collision = true
+collision_layer = 33
+collision_mask = 0
