@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/YurisFloatingHeadStill.png-ea9eda9b3bf8ec46d4c01d30ca0ef7d3.stex"
+path="res://.import/Placeholder.png-ae20a6f5fd48f8f57910ae0fee26934b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/YurisFloatingHead/YurisFloatingHeadStill.png"
-dest_files=[ "res://.import/YurisFloatingHeadStill.png-ea9eda9b3bf8ec46d4c01d30ca0ef7d3.stex" ]
+source_file="res://Sprites/Placeholder.png"
+dest_files=[ "res://.import/Placeholder.png-ae20a6f5fd48f8f57910ae0fee26934b.stex" ]
 
 [params]
 
