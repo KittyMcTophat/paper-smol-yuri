@@ -11,8 +11,10 @@ enabled = true
 cast_to = Vector3( 0, -3, 0 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01 )
 cast_shadow = 0
 modulate = Color( 1, 1, 1, 0.5 )
 axis = 1
 double_sided = false
+alpha_cut = 2
 texture = ExtResource( 1 )

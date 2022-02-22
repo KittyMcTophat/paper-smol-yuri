@@ -1,9 +1,7 @@
 extends Control
 
 onready var _anim_player: AnimationPlayer = $AnimationPlayer;
-
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
+onready var _resume_button : Button = $ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton
 
 func _unhandled_input(event):
 	if (event.is_action_pressed("pause") && !get_tree().paused):
@@ -22,10 +20,17 @@ func pause() -> void:
 func _on_ResumeButton_pressed():
 	unpause();
 
+func _on_RestartLevelButton_pressed():
+	get_tree().paused = false;
+	get_tree().reload_current_scene();
+
 func _on_ToggleFullscreenButton_pressed():
-	OS.window_fullscreen = !OS.window_fullscreen
-	OS.window_borderless = !OS.window_borderless
-	pass
+	OS.window_fullscreen = !OS.window_fullscreen;
+	OS.window_borderless = !OS.window_borderless;
 	
 func _on_QuitButton_pressed():
 	get_tree().quit();
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if (anim_name == "Pause"):
+		_resume_button.grab_focus();

@@ -15,8 +15,8 @@ var _facing_back := false;
 var _midair_jumps_left : int = 0;
 
 onready var _spring_arm: SpringArm = $SpringArm;
-onready var _anim_player: AnimationPlayer = $AnimationPlayer;
-onready var _ground_detector_area: Area = $GroundDetector
+onready var _anim_player: AnimationPlayer = get_node("AnimationPlayer");
+onready var _ground_detector_area: Area = $GroundDetector;
 
 # gets the gravity from project settings
 onready var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity");
@@ -34,11 +34,10 @@ func _physics_process(delta) -> void:
 	
 	# changes the sprite to match movement
 	if (move_direction.z < -0.1):
-		_anim_player.play("Idle_Back");
 		_facing_back = true;
 	elif (move_direction.z > 0.1):
-		_anim_player.play("Idle");
 		_facing_back = false;
+	_play_anim("Walking");
 	
 	# applies the movement to velocity
 	if (_grounded):
@@ -49,6 +48,9 @@ func _physics_process(delta) -> void:
 			_velocity.x = lerp(_velocity.x, move_direction.x * movement_speed, delta * h_velocity_lerp_weight * midair_h_lerp_multiplier);
 		if (abs(move_direction.z) > 0.1):
 			_velocity.z = lerp(_velocity.z, move_direction.z * movement_speed, delta * h_velocity_lerp_weight * midair_h_lerp_multiplier);
+	
+	if (_velocity.length() < 0.1):
+		_play_anim("Idle");
 	
 	# applies gravity to velocity
 	_velocity.y -= _gravity * delta
@@ -66,7 +68,17 @@ func _physics_process(delta) -> void:
 
 # resets the animation when a non-looping animation finishes
 func _on_AnimationPlayer_animation_finished(_anim_name) -> void:
-	_anim_player.play("Idle");
+	_play_anim("Idle");
+
+# plays an animation, and uses the back version if needed
+func _play_anim(anim_name : String) -> void:
+	if (_anim_player == null):
+		return;
+	if (_facing_back):
+		anim_name = anim_name + "_Back";
+	if (_anim_player.current_animation == anim_name):
+		return;
+	_anim_player.play(anim_name);
 
 # updates the _grounded boolean
 func _update_grounded() -> void:
