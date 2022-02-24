@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Actors/Players/YurisFloatingHead.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Actors/BaseActors/Actor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/GUI/PauseMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/GUI/CoinCounter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Actors/Players/SmolYuri.tscn" type="PackedScene" id=5]
@@ -65,13 +64,10 @@ material/0 = null
 shape = SubResource( 2 )
 
 [node name="YurisFloatingHead" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="SmolYuri" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.44, 0 )
-
-[node name="Actor" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.901358, 0.420422, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0 )
 
 [node name="SmolCoin" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
@@ -79,6 +75,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 [node name="PauseMenu" parent="." instance=ExtResource( 3 )]
 
 [node name="CoinCounter" parent="." instance=ExtResource( 4 )]
-
-[editable path="YurisFloatingHead"]
-[editable path="SmolYuri"]
