@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Actors/BaseActors/Actor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Actors/Player.gd" type="Script" id=2]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.3
+height = 0.3
+
+[node name="Player" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="GroundDetector" type="Area" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="GroundDetector" index="0"]
+shape = SubResource( 1 )
+
+[node name="SpringArm" type="SpringArm" parent="." index="5"]
+collision_mask = 32
+spring_length = 3.0
+margin = 0.2
+
+[node name="Camera" type="Camera" parent="SpringArm" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
+current = true

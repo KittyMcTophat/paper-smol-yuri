@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scenes/Actors/YurisFloatingHead/YurisFloatingHead.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Actors/Actor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Actors/Players/YurisFloatingHead.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/BaseActors/Actor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/GUI/PauseMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/GUI/CoinCounter.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Actors/SmolYuri/SmolYuri.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Actors/Players/SmolYuri.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CubeMesh" id=1]
@@ -81,8 +81,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 [node name="CoinCounter" parent="." instance=ExtResource( 4 )]
 
 [editable path="YurisFloatingHead"]
-[editable path="YurisFloatingHead/Player"]
-[editable path="YurisFloatingHead/Player/Actor"]
 [editable path="SmolYuri"]
-[editable path="SmolYuri/Player"]
-[editable path="SmolYuri/Player/Actor"]
