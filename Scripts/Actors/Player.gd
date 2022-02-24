@@ -4,18 +4,15 @@ export var jump_strength : float = 5.0;
 export var movement_speed : float = 4.0;
 export var h_velocity_lerp_weight : float = 5.0;
 export var midair_h_lerp_multiplier : float = 0.5;
-
 export var midair_jumps : int = 0;
-
 export var allow_moonjump : bool = false;
+export var footstep_particle : PackedScene = null;
 
 var _velocity := Vector3.ZERO;
 var _grounded := false;
-var _facing_back := false;
 var _midair_jumps_left : int = 0;
 
 onready var _spring_arm: SpringArm = $SpringArm;
-onready var _anim_player: AnimationPlayer = get_node("AnimationPlayer");
 onready var _ground_detector_area: Area = $GroundDetector;
 
 # gets the gravity from project settings
@@ -37,7 +34,6 @@ func _physics_process(delta) -> void:
 		_facing_back = true;
 	elif (move_direction.z > 0.1):
 		_facing_back = false;
-	_play_anim("Walking");
 	
 	# applies the movement to velocity
 	if (_grounded):
@@ -48,9 +44,6 @@ func _physics_process(delta) -> void:
 			_velocity.x = lerp(_velocity.x, move_direction.x * movement_speed, delta * h_velocity_lerp_weight * midair_h_lerp_multiplier);
 		if (abs(move_direction.z) > 0.1):
 			_velocity.z = lerp(_velocity.z, move_direction.z * movement_speed, delta * h_velocity_lerp_weight * midair_h_lerp_multiplier);
-	
-	if (_velocity.length() < 0.1):
-		_play_anim("Idle");
 	
 	# applies gravity to velocity
 	_velocity.y -= _gravity * delta
@@ -65,20 +58,8 @@ func _physics_process(delta) -> void:
 	
 	# applies the velocity to the kinematic body
 	_velocity = move_and_slide(_velocity, Vector3.UP, true);
-
-# resets the animation when a non-looping animation finishes
-func _on_AnimationPlayer_animation_finished(_anim_name) -> void:
-	_play_anim("Idle");
-
-# plays an animation, and uses the back version if needed
-func _play_anim(anim_name : String) -> void:
-	if (_anim_player == null):
-		return;
-	if (_facing_back):
-		anim_name = anim_name + "_Back";
-	if (_anim_player.current_animation == anim_name):
-		return;
-	_anim_player.play(anim_name);
+	
+	_update_animation();
 
 # updates the _grounded boolean
 func _update_grounded() -> void:
@@ -99,3 +80,15 @@ func _get_movement_vector() -> Vector3:
 		move_direction = move_direction.normalized();
 	
 	return move_direction;
+
+func _update_animation() -> void:
+	if (_velocity.length() < 0.1):
+		_play_anim("Idle");
+		_anim_player.playback_speed = 1.0;
+	else:
+		_play_anim("Walking");
+		_anim_player.playback_speed = Vector2(_velocity.x, _velocity.z).length();
+
+func _make_footstep_particles() -> void:
+	var particle : Particles = footstep_particle.instance();
+	add_child(particle);

@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriStill_Back.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriStill.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Actors/BaseActors/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriWalking.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriWalking_Back.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Actors/BaseActors/FootstepParticle.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape" id=6]
 resource_local_to_scene = true
@@ -24,9 +27,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 2 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 72, 88 ) ]
+}
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle_Back"
+[sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite3D:texture")
@@ -40,8 +54,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 72, 88 ) ]
+}
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=9]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite3D:texture")
@@ -55,26 +81,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [ ExtResource( 2 ) ]
 }
-
-[sub_resource type="Animation" id=4]
-resource_name = "Walking"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 2 ) ]
+"update": 0,
+"values": [ Rect2( 0, 0, 72, 88 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Walking_Back"
-length = 0.001
+[sub_resource type="Animation" id=10]
+length = 0.5
+loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite3D:texture")
 tracks/0/interp = 1
@@ -85,10 +108,80 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 1 ) ]
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 72, 88 ), Rect2( 0, 88, 72, 88 ), Rect2( 0, 0, 72, 88 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_make_footstep_particles"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 72, 88 ), Rect2( 0, 88, 72, 88 ), Rect2( 0, 0, 72, 88 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_make_footstep_particles"
+} ]
 }
 
 [node name="SmolYuri" instance=ExtResource( 3 )]
+footstep_particle = ExtResource( 6 )
 
 [node name="CollisionShape" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.03, 0 )
@@ -96,11 +189,13 @@ shape = SubResource( 6 )
 
 [node name="Sprite3D" parent="." index="1"]
 texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 72, 88 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 autoplay = "Idle"
 anims/Idle = SubResource( 1 )
-anims/Idle_Back = SubResource( 2 )
-anims/RESET = SubResource( 3 )
-anims/Walking = SubResource( 4 )
-anims/Walking_Back = SubResource( 5 )
+anims/Idle_Back = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+anims/Walking = SubResource( 10 )
+anims/Walking_Back = SubResource( 11 )

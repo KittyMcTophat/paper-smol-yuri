@@ -4,6 +4,9 @@ export var full_turn_time : float = 0.5;
 
 onready var _sprite_3d: Sprite3D = $Sprite3D;
 onready var _tween_node: Tween = $Tween;
+onready var _anim_player: AnimationPlayer = get_node("AnimationPlayer");
+
+var _facing_back := false;
 
 # uses the Tween node to rotate the sprite smoothly
 func _turn(target_rotation: float, dead_zone: float = 5.0) -> void:
@@ -29,3 +32,19 @@ func _turn(target_rotation: float, dead_zone: float = 5.0) -> void:
 	null, target_rotation_vector, duration, Tween.TRANS_LINEAR);
 # warning-ignore:return_value_discarded
 	_tween_node.start();
+
+# plays an animation, and uses the back version if needed
+func _play_anim(anim_name : String) -> void:
+	if (_anim_player == null):
+		return;
+	if (_facing_back):
+		anim_name = anim_name + "_Back";
+	if (_anim_player.current_animation == anim_name):
+		return;
+	_anim_player.play(anim_name);
+
+# gets the current animation
+func _current_animation() -> String:
+	if (_anim_player == null):
+		return "";
+	return _anim_player.current_animation;

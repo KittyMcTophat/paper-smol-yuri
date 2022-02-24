@@ -1,7 +1,7 @@
 extends Control
 
 onready var _anim_player: AnimationPlayer = $AnimationPlayer;
-onready var _resume_button : Button = $ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton
+onready var _resume_button : Button = find_node("ResumeButton");
 
 func _unhandled_input(event):
 	if (event.is_action_pressed("pause") && !get_tree().paused):
@@ -10,12 +10,10 @@ func _unhandled_input(event):
 func unpause() -> void:
 	_anim_player.play("Unpause");
 	get_tree().paused = false;
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
 
 func pause() -> void:
 	_anim_player.play("Pause");
 	get_tree().paused = true;
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
 
 func _on_ResumeButton_pressed():
 	unpause();
