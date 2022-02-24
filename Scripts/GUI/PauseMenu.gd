@@ -21,7 +21,7 @@ func _on_ResumeButton_pressed():
 	unpause();
 
 func _on_RestartLevelButton_pressed():
-	get_tree().paused = false;
+	unpause();
 	get_tree().reload_current_scene();
 
 func _on_ToggleFullscreenButton_pressed():
