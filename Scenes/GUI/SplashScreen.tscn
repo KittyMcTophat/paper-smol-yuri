@@ -54,18 +54,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [ 0.5, 0.5, 0.66 ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("ColorRect/TextureRect:rect_rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.3, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "FadeOut"
@@ -170,18 +158,6 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.66 ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("ColorRect/TextureRect:rect_rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
 }
 
 [node name="SplashScreen" type="Control"]
