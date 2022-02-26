@@ -4,7 +4,7 @@ onready var _anim_player: AnimationPlayer = $AnimationPlayer;
 onready var _resume_button : Button = find_node("ResumeButton");
 
 func _unhandled_input(event):
-	if (event.is_action_pressed("pause") && !get_tree().paused):
+	if (event.is_action_pressed("pause") && !get_tree().paused && Global.allow_pause):
 		pause();
 
 func unpause() -> void:
@@ -32,3 +32,6 @@ func _on_QuitButton_pressed():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if (anim_name == "Pause"):
 		_resume_button.grab_focus();
+
+func _on_TextSpeedSlider_value_changed(value):
+	Global.text_speed = value;

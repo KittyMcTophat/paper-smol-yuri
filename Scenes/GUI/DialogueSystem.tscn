@@ -1,0 +1,197 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/GUI/DialogueBox.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/GUI/Textbox.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Hide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer/DialogueBox:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer/DialogueBox:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("MarginContainer/DialogueBox/MarginContainer/VBoxContainer/AdvanceTextButton")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "grab_focus"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MarginContainer/DialogueBox:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="DialogueSystem" type="Control"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -202.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 100
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogueBox" type="NinePatchRect" parent="MarginContainer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.784314 )
+margin_left = 100.0
+margin_right = 924.0
+margin_bottom = 192.0
+rect_min_size = Vector2( 768, 192 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/DialogueBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/DialogueBox/MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 808.0
+margin_bottom = 176.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextContainer" type="VBoxContainer" parent="MarginContainer/DialogueBox/MarginContainer/VBoxContainer"]
+margin_right = 792.0
+margin_bottom = 136.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Speaker" type="Label" parent="MarginContainer/DialogueBox/MarginContainer/VBoxContainer/TextContainer"]
+margin_right = 792.0
+margin_bottom = 14.0
+text = "Speaker Name"
+
+[node name="Dialogue" type="Label" parent="MarginContainer/DialogueBox/MarginContainer/VBoxContainer/TextContainer"]
+margin_top = 18.0
+margin_right = 792.0
+margin_bottom = 136.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "This is text"
+
+[node name="AdvanceTextButton" type="Button" parent="MarginContainer/DialogueBox/MarginContainer/VBoxContainer"]
+margin_left = 764.0
+margin_top = 140.0
+margin_right = 792.0
+margin_bottom = 160.0
+size_flags_horizontal = 12
+text = ">>"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Show"
+anims/Hide = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+anims/Show = SubResource( 3 )
