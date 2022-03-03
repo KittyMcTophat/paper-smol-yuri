@@ -1,7 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/GUI/DialogueBox.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/GUI/Textbox.png" type="Texture" id=2]
+[ext_resource path="res://ui_theme.tres" type="Theme" id=3]
+
+[sub_resource type="InputEventAction" id=4]
+action = "ui_accept"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hide"
@@ -73,27 +80,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("MarginContainer/DialogueBox/MarginContainer/VBoxContainer/AdvanceTextButton")
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer/DialogueBox:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "grab_focus"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("MarginContainer/DialogueBox:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -106,6 +99,7 @@ modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 0
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -141,6 +135,9 @@ patch_margin_right = 32
 patch_margin_bottom = 32
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/DialogueBox"]
 anchor_right = 1.0
@@ -155,7 +152,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/DialogueBox/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/DialogueBox/MarginContainer"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 808.0
@@ -163,35 +160,39 @@ margin_bottom = 176.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextContainer" type="VBoxContainer" parent="MarginContainer/DialogueBox/MarginContainer/VBoxContainer"]
-margin_right = 792.0
-margin_bottom = 136.0
+[node name="TextContainer" type="VBoxContainer" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer"]
+margin_right = 740.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Speaker" type="Label" parent="MarginContainer/DialogueBox/MarginContainer/VBoxContainer/TextContainer"]
-margin_right = 792.0
+[node name="Speaker" type="Label" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer"]
+margin_right = 740.0
 margin_bottom = 14.0
 text = "Speaker Name"
 
-[node name="Dialogue" type="Label" parent="MarginContainer/DialogueBox/MarginContainer/VBoxContainer/TextContainer"]
+[node name="Dialogue" type="Label" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer"]
 margin_top = 18.0
-margin_right = 792.0
-margin_bottom = 136.0
+margin_right = 740.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "This is text"
 
-[node name="AdvanceTextButton" type="Button" parent="MarginContainer/DialogueBox/MarginContainer/VBoxContainer"]
-margin_left = 764.0
-margin_top = 140.0
+[node name="AdvanceTextButton" type="Button" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer"]
+margin_left = 744.0
+margin_top = 114.0
 margin_right = 792.0
 margin_bottom = 160.0
 size_flags_horizontal = 12
+size_flags_vertical = 8
+shortcut = SubResource( 5 )
 text = ">>"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Show"
+autoplay = "RESET"
 anims/Hide = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 anims/Show = SubResource( 3 )
+
+[connection signal="pressed" from="MarginContainer/DialogueBox/MarginContainer/HBoxContainer/AdvanceTextButton" to="." method="_on_AdvanceTextButton_pressed"]

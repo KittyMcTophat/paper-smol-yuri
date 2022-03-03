@@ -21,7 +21,6 @@ rect_scale = Vector2( 3, 3 )
 text = "$0.00"
 align = 1
 valign = 1
-percent_visible = -0.2
 __meta__ = {
 "_edit_use_anchors_": false
 }

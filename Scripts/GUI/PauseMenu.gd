@@ -20,7 +20,7 @@ func _on_ResumeButton_pressed():
 
 func _on_RestartLevelButton_pressed():
 	unpause();
-	get_tree().reload_current_scene();
+	Global.reload_scene();
 
 func _on_ToggleFullscreenButton_pressed():
 	OS.window_fullscreen = !OS.window_fullscreen;
@@ -28,10 +28,6 @@ func _on_ToggleFullscreenButton_pressed():
 	
 func _on_QuitButton_pressed():
 	get_tree().quit();
-
-func _on_AnimationPlayer_animation_finished(anim_name):
-	if (anim_name == "Pause"):
-		_resume_button.grab_focus();
 
 func _on_TextSpeedSlider_value_changed(value):
 	Global.text_speed = value;

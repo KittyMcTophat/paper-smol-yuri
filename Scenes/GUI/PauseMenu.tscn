@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Shaders/blur.gdshader" type="Shader" id=2]
 [ext_resource path="res://Scripts/GUI/PauseMenu.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/GUI/Textbox.png" type="Texture" id=4]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
@@ -66,6 +67,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/ResumeButton")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "grab_focus"
+} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -198,115 +213,125 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="ColorRect/CenterContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="ColorRect/CenterContainer"]
 margin_left = 256.0
 margin_top = 140.0
 margin_right = 768.0
 margin_bottom = 460.0
 rect_min_size = Vector2( 512, 320 )
+texture = ExtResource( 4 )
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/CenterContainer/NinePatchRect"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 505.0
 margin_bottom = 313.0
 custom_constants/margin_right = 16
+custom_constants/margin_top = 4
 custom_constants/margin_left = 16
 custom_constants/margin_bottom = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer"]
 margin_left = 16.0
+margin_top = 4.0
 margin_right = 482.0
 margin_bottom = 290.0
 
-[node name="Paused" type="Label" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Paused" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
 margin_right = 466.0
 margin_bottom = 14.0
 text = "Paused"
 align = 1
 valign = 1
 
-[node name="HSeparator" type="HSeparator" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 18.0
 margin_right = 466.0
 margin_bottom = 22.0
 
-[node name="ResumeButton" type="Button" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
 margin_top = 26.0
 margin_right = 466.0
-margin_bottom = 77.0
+margin_bottom = 76.0
 focus_neighbour_top = NodePath("../HBoxContainer/TextSpeedSlider")
 focus_neighbour_bottom = NodePath("../RestartLevelButton")
 size_flags_vertical = 3
 shortcut = SubResource( 7 )
 text = "Resume"
 
-[node name="RestartLevelButton" type="Button" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 81.0
+[node name="RestartLevelButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 80.0
 margin_right = 466.0
-margin_bottom = 133.0
+margin_bottom = 131.0
 focus_neighbour_top = NodePath("../ResumeButton")
 focus_neighbour_bottom = NodePath("../ToggleFullscreenButton")
 size_flags_vertical = 3
 text = "Restart Level"
 
-[node name="ToggleFullscreenButton" type="Button" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 137.0
+[node name="ToggleFullscreenButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 135.0
 margin_right = 466.0
-margin_bottom = 188.0
+margin_bottom = 185.0
 focus_neighbour_top = NodePath("../RestartLevelButton")
 focus_neighbour_bottom = NodePath("../QuitButton")
 size_flags_vertical = 3
 text = "Toggle Fullscreen"
 
-[node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 192.0
+[node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 189.0
 margin_right = 466.0
-margin_bottom = 244.0
+margin_bottom = 240.0
 focus_neighbour_top = NodePath("../ToggleFullscreenButton")
 focus_neighbour_bottom = NodePath("../HBoxContainer/TextSpeedSlider")
 size_flags_vertical = 3
 text = "Quit Game"
 
-[node name="HSeparator2" type="HSeparator" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 248.0
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 244.0
 margin_right = 466.0
-margin_bottom = 252.0
+margin_bottom = 248.0
 
-[node name="TextSpeed" type="Label" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 256.0
+[node name="TextSpeed" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 252.0
 margin_right = 466.0
-margin_bottom = 270.0
+margin_bottom = 266.0
 text = "Text Speed"
 align = 1
 valign = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 274.0
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 270.0
 margin_right = 466.0
-margin_bottom = 290.0
+margin_bottom = 286.0
 
-[node name="Fast" type="Label" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Fast" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_top = 1.0
 margin_right = 26.0
 margin_bottom = 15.0
 text = "Fast"
 
-[node name="TextSpeedSlider" type="HSlider" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextSpeedSlider" type="HSlider" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 30.0
 margin_right = 433.0
 margin_bottom = 16.0
 focus_neighbour_top = NodePath("../../QuitButton")
 focus_neighbour_bottom = NodePath("../../ResumeButton")
 size_flags_horizontal = 3
-max_value = 0.3
-step = 0.1
-value = 0.1
+max_value = 0.1
+step = 0.033
+value = 0.033
 
-[node name="Slow" type="Label" parent="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Slow" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 437.0
 margin_top = 1.0
 margin_right = 466.0
@@ -320,9 +345,8 @@ anims/Pause = SubResource( 4 )
 anims/RESET = SubResource( 5 )
 anims/Unpause = SubResource( 3 )
 
-[connection signal="pressed" from="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/RestartLevelButton" to="." method="_on_RestartLevelButton_pressed"]
-[connection signal="pressed" from="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ToggleFullscreenButton" to="." method="_on_ToggleFullscreenButton_pressed"]
-[connection signal="pressed" from="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="value_changed" from="ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TextSpeedSlider" to="." method="_on_TextSpeedSlider_value_changed"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/RestartLevelButton" to="." method="_on_RestartLevelButton_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/ToggleFullscreenButton" to="." method="_on_ToggleFullscreenButton_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="value_changed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/TextSpeedSlider" to="." method="_on_TextSpeedSlider_value_changed"]
