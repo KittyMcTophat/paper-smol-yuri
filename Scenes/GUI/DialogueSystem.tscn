@@ -181,9 +181,10 @@ text = "This is text"
 
 [node name="AdvanceTextButton" type="Button" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer"]
 margin_left = 744.0
-margin_top = 114.0
+margin_top = 112.0
 margin_right = 792.0
 margin_bottom = 160.0
+rect_min_size = Vector2( 48, 48 )
 size_flags_horizontal = 12
 size_flags_vertical = 8
 shortcut = SubResource( 5 )
