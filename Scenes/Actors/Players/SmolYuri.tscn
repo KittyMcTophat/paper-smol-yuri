@@ -192,7 +192,7 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 72, 88 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" parent="." index="6"]
 autoplay = "Idle"
 anims/Idle = SubResource( 1 )
 anims/Idle_Back = SubResource( 8 )

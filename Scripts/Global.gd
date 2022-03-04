@@ -26,9 +26,11 @@ func _ready():
 	add_child(preload("res://Scenes/GUI/SplashScreen.tscn").instance());
 
 func load_scene(scene: PackedScene):
+#warning-ignore:RETURN_VALUE_DISCARDED
 	get_tree().change_scene_to(scene);
 	money = get_money.call_func();
 
 func reload_scene():
+#warning-ignore:RETURN_VALUE_DISCARDED
 	get_tree().reload_current_scene();
 	set_money.call_func(money);

@@ -12,6 +12,7 @@ var is_player_in_range: bool = false;
 
 func _ready():
 	var file_read : File = File.new();
+#warning-ignore:RETURN_VALUE_DISCARDED
 	file_read.open(dialogue_file, File.READ);
 	if (dialogue_file != null):
 		while file_read.get_position() < file_read.get_len():
@@ -25,7 +26,7 @@ func _ready():
 	if (interact_on_ready):
 		_interact();
 
-func _process(delta):
+func _process(_delta):
 	if (is_player_in_range && Input.is_action_just_pressed("ui_accept")):
 		_interact();
 
@@ -35,10 +36,10 @@ func _interact():
 func _dialogue_over():
 	emit_signal("dialogue_ended");
 
-func _on_InteractableArea_body_entered(body):
+func _on_InteractableArea_body_entered(_body):
 	is_player_in_range = true;
 	exclamation_mark.visible = true;
 
-func _on_InteractableArea_body_exited(body):
+func _on_InteractableArea_body_exited(_body):
 	is_player_in_range = false;
 	exclamation_mark.visible = false;
