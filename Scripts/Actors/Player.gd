@@ -71,15 +71,11 @@ func _update_grounded() -> void:
 
 # creates a movement vector from user inputs
 func _get_movement_vector() -> Vector3:
-	var move_direction := Vector3.ZERO;
-	move_direction.x = Input.get_axis("move_left","move_right");
-	move_direction.z = Input.get_axis("move_up","move_down");
+	var move_direction := Vector2.ZERO;
 	
-	# normalizes the movement vector if it is greater than 1
-	if (move_direction.length() > 1):
-		move_direction = move_direction.normalized();
+	move_direction = Input.get_vector("move_left","move_right","move_up","move_down");
 	
-	return move_direction;
+	return Vector3(move_direction.x, 0, move_direction.y);
 
 func _update_animation() -> void:
 	if (_velocity.length() < 0.1):
