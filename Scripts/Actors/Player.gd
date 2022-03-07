@@ -72,8 +72,8 @@ func _update_grounded() -> void:
 # creates a movement vector from user inputs
 func _get_movement_vector() -> Vector3:
 	var move_direction := Vector3.ZERO;
-	move_direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left");
-	move_direction.z = Input.get_action_strength("move_down") - Input.get_action_strength("move_up");
+	move_direction.x = Input.get_axis("move_left","move_right");
+	move_direction.z = Input.get_axis("move_up","move_down");
 	
 	# normalizes the movement vector if it is greater than 1
 	if (move_direction.length() > 1):
@@ -87,7 +87,7 @@ func _update_animation() -> void:
 		_anim_player.playback_speed = 1.0;
 	else:
 		_play_anim("Walking");
-		_anim_player.playback_speed = Vector2(_velocity.x, _velocity.z).length();
+		_anim_player.playback_speed = _velocity.length();
 
 func _make_footstep_particles() -> void:
 	var particle : Particles = footstep_particle.instance();
