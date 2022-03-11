@@ -31,7 +31,7 @@ func _process(_delta):
 		_interact();
 
 func _interact():
-	Global.start_dialogue.call_func(dialogue_array, funcref(self, "_dialogue_over"));
+	Global.dialogue_box.start_dialogue(dialogue_array, funcref(self, "_dialogue_over"));
 
 func _dialogue_over():
 	emit_signal("dialogue_ended");
@@ -39,7 +39,9 @@ func _dialogue_over():
 func _on_InteractableArea_body_entered(_body):
 	is_player_in_range = true;
 	exclamation_mark.visible = true;
+	Global.allow_jump = false;
 
 func _on_InteractableArea_body_exited(_body):
 	is_player_in_range = false;
 	exclamation_mark.visible = false;
+	Global.allow_jump = true;

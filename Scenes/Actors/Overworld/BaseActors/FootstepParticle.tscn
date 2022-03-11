@@ -45,7 +45,6 @@ color_ramp = SubResource( 3 )
 
 [node name="FootstepParticle" type="Particles"]
 pause_mode = 2
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 material_override = SubResource( 1 )
 cast_shadow = 0
 lifetime = 0.5

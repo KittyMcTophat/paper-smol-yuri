@@ -8,12 +8,11 @@ export var midair_jumps : int = 0;
 export var allow_moonjump : bool = false;
 export var footstep_particle : PackedScene = null;
 
-var _velocity := Vector3.ZERO;
-var _grounded := false;
+var _velocity : Vector3 = Vector3.ZERO;
+var _grounded : bool = false;
 var _midair_jumps_left : int = 0;
 
-onready var _spring_arm: SpringArm = $SpringArm;
-onready var _ground_detector_area: Area = $GroundDetector;
+onready var _ground_detector_area : Area = $GroundDetector;
 
 # gets the gravity from project settings
 onready var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity");
@@ -48,14 +47,15 @@ func _physics_process(delta) -> void:
 	# applies gravity to velocity
 	_velocity.y -= _gravity * delta
 	
-	# allows jumping
-	if Input.is_action_just_pressed("jump"):
-		if (_grounded || allow_moonjump):
-			_velocity.y = jump_strength;
-		elif(_midair_jumps_left > 0):
-			_midair_jumps_left -= 1;
-			_velocity.y = jump_strength;
-	
+	# jumping code
+	if Global.allow_jump:
+		if Input.is_action_just_pressed("jump"):
+			if (_grounded || allow_moonjump):
+				_velocity.y = jump_strength;
+			elif(_midair_jumps_left > 0):
+				_midair_jumps_left -= 1;
+				_velocity.y = jump_strength;
+		
 	# applies the velocity to the kinematic body
 	_velocity = move_and_slide(_velocity, Vector3.UP, true);
 	

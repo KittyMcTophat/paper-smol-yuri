@@ -14,9 +14,6 @@ var current_line : int = 0;
 var current_char : int = 0;
 var time_since_last_char : float = 0;
 
-func _ready():
-	Global.start_dialogue = funcref(self, "start_dialogue");
-
 func _process(delta):
 	if (!is_active):
 		return;

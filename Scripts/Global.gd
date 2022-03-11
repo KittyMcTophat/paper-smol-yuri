@@ -5,12 +5,7 @@ var money : int = 0;
 var text_speed : float = 0.033;
 
 var allow_pause : bool = true;
-
-var add_money : FuncRef = null;
-var get_money : FuncRef = null;
-var set_money : FuncRef = null;
-
-var start_dialogue : FuncRef = null;
+var allow_jump : bool = true;
 
 onready var coin_counter : Control = preload("res://Scenes/GUI/CoinCounter.tscn").instance();
 onready var dialogue_box : Control = preload("res://Scenes/GUI/DialogueSystem.tscn").instance();
@@ -28,9 +23,9 @@ func _ready():
 func load_scene(scene: PackedScene):
 #warning-ignore:RETURN_VALUE_DISCARDED
 	get_tree().change_scene_to(scene);
-	money = get_money.call_func();
+	money = coin_counter.get_money();
 
 func reload_scene():
 #warning-ignore:RETURN_VALUE_DISCARDED
 	get_tree().reload_current_scene();
-	set_money.call_func(money);
+	coin_counter.set_money(money);

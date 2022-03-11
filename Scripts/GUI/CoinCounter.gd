@@ -5,9 +5,6 @@ var money : int = 0;
 onready var _label : Label = $Label;
 
 func _ready():
-	Global.add_money = funcref(self, "add_money");
-	Global.set_money = funcref(self, "set_money");
-	Global.get_money = funcref(self, "get_money");
 	_update_label();
 
 func set_money(num_cents : int = 0) -> void:
