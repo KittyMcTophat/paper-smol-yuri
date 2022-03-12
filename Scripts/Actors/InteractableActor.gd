@@ -24,7 +24,11 @@ func _ready():
 			dialogue_array.push_back(next_array);
 	
 	if (interact_on_ready):
-		_interact();
+		if (Global.get_node("SplashScreen")):
+		#warning-ignore:RETURN_VALUE_DISCARDED
+			Global.get_node("SplashScreen").connect("splash_screen_over", self, "_interact");
+		else:
+			_interact();
 
 func _process(_delta):
 	if (is_player_in_range && Input.is_action_just_pressed("ui_accept")):

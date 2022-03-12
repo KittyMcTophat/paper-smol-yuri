@@ -36,3 +36,9 @@ margin = 0.2
 [node name="Camera" type="Camera" parent="SpringArm" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
 current = true
+
+[node name="Timer" type="Timer" parent="." index="7"]
+process_mode = 0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_update_last_safe_spot"]

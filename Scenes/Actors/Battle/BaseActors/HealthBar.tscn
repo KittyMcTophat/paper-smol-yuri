@@ -1,49 +1,46 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Under.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Progress.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Over.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/GUI/HealthBar.gd" type="Script" id=4]
-[ext_resource path="res://Sprites/GUI/Health_Bar.png" type="Texture" id=5]
+[ext_resource path="res://ui_theme.tres" type="Theme" id=5]
 
-[node name="HealthBar" type="Sprite3D"]
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[node name="HealthBar" type="Spatial"]
 pause_mode = 2
-billboard = 1
-texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 72, 24 )
+size = Vector2( 72, 42 )
 transparent_bg = true
-usage = 0
+disable_3d = true
+usage = 1
+render_target_v_flip = true
+gui_disable_input = true
 
 [node name="HealthBar" type="Control" parent="Viewport"]
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBarUnder" type="TextureProgress" parent="Viewport/HealthBar"]
-margin_right = 72.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 72, 24 )
-value = 50.0
-texture_under = ExtResource( 1 )
-texture_progress = ExtResource( 2 )
-nine_patch_stretch = true
-stretch_margin_left = 8
-stretch_margin_top = 8
-stretch_margin_right = 8
-stretch_margin_bottom = 8
+[node name="VBoxContainer" type="VBoxContainer" parent="Viewport/HealthBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBarOver" type="TextureProgress" parent="Viewport/HealthBar"]
+[node name="HealthBarOver" type="TextureProgress" parent="Viewport/HealthBar/VBoxContainer"]
 margin_right = 72.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 72, 24 )
+size_flags_vertical = 3
 value = 75.0
 texture_over = ExtResource( 3 )
 texture_progress = ExtResource( 2 )
@@ -57,10 +54,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HealthBarUnder" type="TextureProgress" parent="Viewport/HealthBar/VBoxContainer/HealthBarOver"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+value = 50.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 8
+stretch_margin_right = 8
+stretch_margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Viewport/HealthBar/VBoxContainer"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_top = 28.0
+margin_right = 72.0
+margin_bottom = 42.0
+size_flags_vertical = 8
+text = "75/100"
+align = 1
+valign = 1
+
 [node name="Tween" type="Tween" parent="Viewport/HealthBar"]
 
 [node name="Timer" type="Timer" parent="Viewport/HealthBar"]
 pause_mode = 1
 autostart = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+double_sided = false
+texture = SubResource( 1 )
 
 [connection signal="timeout" from="Viewport/HealthBar/Timer" to="." method="_on_Timer_timeout"]

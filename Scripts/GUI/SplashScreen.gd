@@ -1,5 +1,7 @@
 extends Control
 
+signal splash_screen_over;
+
 onready var anim_player : AnimationPlayer = $AnimationPlayer;
 
 func _ready():
@@ -12,4 +14,5 @@ func _on_Timer_timeout():
 func _kill():
 	Global.allow_pause = true;
 	get_tree().paused = false;
+	emit_signal("splash_screen_over");
 	queue_free();

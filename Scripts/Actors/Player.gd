@@ -4,11 +4,13 @@ export var jump_strength : float = 5.0;
 export var movement_speed : float = 4.0;
 export var h_velocity_lerp_weight : float = 5.0;
 export var midair_h_lerp_multiplier : float = 0.5;
+export var kill_y : float = -5.0;
 export var midair_jumps : int = 0;
 export var allow_moonjump : bool = false;
 export var footstep_particle : PackedScene = null;
 
 var _velocity : Vector3 = Vector3.ZERO;
+var _last_safe_location : Vector3 = Vector3.ZERO;
 var _grounded : bool = false;
 var _midair_jumps_left : int = 0;
 
@@ -59,6 +61,9 @@ func _physics_process(delta) -> void:
 	# applies the velocity to the kinematic body
 	_velocity = move_and_slide(_velocity, Vector3.UP, true);
 	
+	if (transform.origin.y < kill_y):
+		_go_to_last_safe_spot();
+	
 	_update_animation();
 
 # updates the _grounded boolean
@@ -88,3 +93,10 @@ func _update_animation() -> void:
 func _make_footstep_particles() -> void:
 	var particle : Particles = footstep_particle.instance();
 	add_child(particle);
+
+func _update_last_safe_spot():
+	if (is_on_floor()):
+		_last_safe_location = transform.origin;
+
+func _go_to_last_safe_spot():
+	transform.origin = _last_safe_location;
