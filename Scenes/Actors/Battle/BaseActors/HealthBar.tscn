@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Under.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Progress.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Over.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/GUI/HealthBar.gd" type="Script" id=4]
 [ext_resource path="res://ui_theme.tres" type="Theme" id=5]
+[ext_resource path="res://Fonts/FontResources/PressStart2P_Size16.tres" type="DynamicFont" id=6]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -14,7 +15,7 @@ pause_mode = 2
 script = ExtResource( 4 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 72, 42 )
+size = Vector2( 144, 32 )
 transparent_bg = true
 disable_3d = true
 usage = 1
@@ -37,8 +38,8 @@ __meta__ = {
 }
 
 [node name="HealthBarOver" type="TextureProgress" parent="Viewport/HealthBar/VBoxContainer"]
-margin_right = 72.0
-margin_bottom = 24.0
+margin_right = 144.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 72, 24 )
 size_flags_vertical = 3
 value = 75.0
@@ -70,15 +71,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Viewport/HealthBar/VBoxContainer"]
+[node name="Label" type="Label" parent="Viewport/HealthBar/VBoxContainer/HealthBarOver"]
 self_modulate = Color( 0, 0, 0, 1 )
-margin_top = 28.0
-margin_right = 72.0
-margin_bottom = 42.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_vertical = 8
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 6 )
 text = "75/100"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Tween" type="Tween" parent="Viewport/HealthBar"]
 
@@ -87,6 +92,7 @@ pause_mode = 1
 autostart = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.005
 billboard = 1
 double_sided = false
 texture = SubResource( 1 )

@@ -2,7 +2,7 @@ extends Control
 
 var money : int = 0;
 
-onready var _label : Label = $Label;
+onready var _label : Label = $CenterContainer/MarginContainer/PanelContainer/MarginContainer/Label;
 
 func _ready():
 	_update_label();

@@ -2,14 +2,14 @@ extends Spatial
 
 onready var health_bar_over : TextureProgress = $Viewport/HealthBar/VBoxContainer/HealthBarOver;
 onready var health_bar_under : TextureProgress = $Viewport/HealthBar/VBoxContainer/HealthBarOver/HealthBarUnder;
-onready var health_number_label : Label = $Viewport/HealthBar/VBoxContainer/Label;
+onready var health_number_label : Label = $Viewport/HealthBar/VBoxContainer/HealthBarOver/Label;
 onready var viewport : Viewport = $Viewport;
 onready var tween : Tween = $Viewport/HealthBar/Tween;
 
-export var max_health : int = 100;
-export var current_health : int = 100;
+export var max_health : int = 10;
+export var current_health : int = 10;
 export var display_number : bool = true;
-export var health_bar_size : Vector2 = Vector2(72, 24);
+export var health_bar_size : Vector2 = Vector2(144, 32);
 
 export (Color) var healthy_color : Color = Color.darkgreen;
 export (Color) var caution_color : Color = Color.darkgoldenrod;
@@ -27,9 +27,9 @@ func _ready():
 	
 	viewport.size = health_bar_size;
 	if (display_number):
-		viewport.size.y += health_number_label.rect_size.y + 4;
+		_show_number();
 	else:
-		health_number_label.queue_free();
+		_hide_number();
 
 func _update_health(new_health : int):
 	current_health = int(clamp(new_health, 0, max_health));
@@ -42,8 +42,7 @@ func _update_health(new_health : int):
 	
 	_assign_color();
 	
-	if display_number:
-		_update_label();
+	_update_label();
 
 func _assign_color():
 	if (current_health < max_health * danger_zone):
@@ -61,11 +60,18 @@ func _update_max_health(new_max_health : int):
 	health_bar_over.max_value = max_health;
 	health_bar_under.max_value = max_health;
 	
-	if display_number:
-		_update_label();
+	_update_label();
+
+func _show_number():
+	health_number_label.visible = true;
+	display_number = true;
+	
+func _hide_number():
+	health_number_label.visible = false;
+	display_number = false;
 
 func _update_label():
 	health_number_label.text = str(current_health) + "/" + str(max_health);
 
 func _on_Timer_timeout():
-	_update_health(current_health - 10);
+	_update_health(current_health - 1);

@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/GUI/CoinCounter.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/FontResources/PressStart2P_Size32.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
 
 [node name="CoinCounter" type="Control"]
 anchor_right = 1.0
@@ -10,28 +14,63 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -180.0
-margin_top = 30.0
-margin_right = -130.0
-margin_bottom = 44.0
-rect_scale = Vector2( 3, 3 )
-text = "$0.00"
-align = 1
-valign = 1
+margin_left = -94.0
+margin_bottom = 62.0
+grow_horizontal = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="Label"]
-modulate = Color( 1, 1, 1, 0.5 )
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+margin_right = 94.0
+margin_bottom = 62.0
+grow_horizontal = 0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer"]
+self_modulate = Color( 1, 1, 1, 0.25098 )
 show_behind_parent = true
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -50.0
-margin_bottom = 14.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 84.0
+margin_bottom = 52.0
+grow_horizontal = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer/PanelContainer"]
+margin_right = 74.0
+margin_bottom = 42.0
+grow_horizontal = 0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/PanelContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 69.0
+margin_bottom = 37.0
+grow_horizontal = 0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+text = "$0"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
