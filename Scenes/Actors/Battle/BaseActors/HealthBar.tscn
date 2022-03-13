@@ -5,7 +5,7 @@
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Over.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/GUI/HealthBar.gd" type="Script" id=4]
 [ext_resource path="res://ui_theme.tres" type="Theme" id=5]
-[ext_resource path="res://Fonts/FontResources/PressStart2P_Size16.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Fonts/FontResources/PressStart2P_Size8.tres" type="DynamicFont" id=6]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -15,9 +15,8 @@ pause_mode = 2
 script = ExtResource( 4 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 144, 32 )
+size = Vector2( 72, 24 )
 transparent_bg = true
-disable_3d = true
 usage = 1
 render_target_v_flip = true
 gui_disable_input = true
@@ -30,20 +29,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Viewport/HealthBar"]
+[node name="NinePatchRect" type="NinePatchRect" parent="Viewport/HealthBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 3 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBarOver" type="TextureProgress" parent="Viewport/HealthBar/VBoxContainer"]
-margin_right = 144.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 72, 24 )
+[node name="MarginContainer" type="MarginContainer" parent="Viewport/HealthBar/NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarOver" type="TextureProgress" parent="Viewport/HealthBar/NinePatchRect/MarginContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 68.0
+margin_bottom = 20.0
 size_flags_vertical = 3
 value = 75.0
-texture_over = ExtResource( 3 )
 texture_progress = ExtResource( 2 )
 tint_progress = Color( 0, 0.39, 0, 1 )
 nine_patch_stretch = true
@@ -55,12 +70,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBarUnder" type="TextureProgress" parent="Viewport/HealthBar/VBoxContainer/HealthBarOver"]
+[node name="HealthBarUnder" type="TextureProgress" parent="Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 value = 50.0
-texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 2 )
 nine_patch_stretch = true
 stretch_margin_left = 8
@@ -71,18 +85,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Viewport/HealthBar/VBoxContainer/HealthBarOver"]
+[node name="Label" type="Label" parent="Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver"]
 self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 6 )
-text = "75/100"
+text = "??/??"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Viewport/HealthBar/NinePatchRect"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="Tween" type="Tween" parent="Viewport/HealthBar"]
 
@@ -91,7 +115,6 @@ pause_mode = 1
 autostart = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-pixel_size = 0.005
 billboard = 1
 double_sided = false
 texture = SubResource( 1 )

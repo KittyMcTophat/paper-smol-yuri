@@ -1,15 +1,15 @@
 extends Spatial
 
-onready var health_bar_over : TextureProgress = $Viewport/HealthBar/VBoxContainer/HealthBarOver;
-onready var health_bar_under : TextureProgress = $Viewport/HealthBar/VBoxContainer/HealthBarOver/HealthBarUnder;
-onready var health_number_label : Label = $Viewport/HealthBar/VBoxContainer/HealthBarOver/Label;
+onready var health_bar_over : TextureProgress = $Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver;
+onready var health_bar_under : TextureProgress = $Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver/HealthBarUnder;
+onready var health_number_label : Label = $Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver/Label;
 onready var viewport : Viewport = $Viewport;
 onready var tween : Tween = $Viewport/HealthBar/Tween;
 
 export var max_health : int = 10;
 export var current_health : int = 10;
 export var display_number : bool = true;
-export var health_bar_size : Vector2 = Vector2(144, 32);
+export var health_bar_size : Vector2 = Vector2(72, 24);
 
 export (Color) var healthy_color : Color = Color.darkgreen;
 export (Color) var caution_color : Color = Color.darkgoldenrod;
