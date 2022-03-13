@@ -15,6 +15,7 @@ var _grounded : bool = false;
 var _midair_jumps_left : int = 0;
 
 onready var _ground_detector_area : Area = $GroundDetector;
+onready var _safe_ground_raycast : RayCast = $SafeGroundRaycast;
 
 # gets the gravity from project settings
 onready var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity");
@@ -65,6 +66,7 @@ func _physics_process(delta) -> void:
 		_go_to_last_safe_spot();
 	
 	_update_animation();
+	_update_last_safe_spot();
 
 # updates the _grounded boolean
 func _update_grounded() -> void:
@@ -95,8 +97,10 @@ func _make_footstep_particles() -> void:
 	add_child(particle);
 
 func _update_last_safe_spot():
-	if (is_on_floor()):
+	_safe_ground_raycast.force_raycast_update();
+	if (_safe_ground_raycast.is_colliding()):
 		_last_safe_location = transform.origin;
 
 func _go_to_last_safe_spot():
 	transform.origin = _last_safe_location;
+	_velocity = Vector3.ZERO;

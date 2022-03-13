@@ -15,6 +15,7 @@ export (Color) var healthy_color : Color = Color.darkgreen;
 export (Color) var caution_color : Color = Color.darkgoldenrod;
 export (Color) var danger_color : Color = Color.darkred;
 export (Color) var easing_color : Color = Color.red;
+export (Color) var text_color : Color = Color.black;
 
 export (float, 0, 1, 0.05) var caution_zone : float = 0.5;
 export (float, 0, 1, 0.05) var danger_zone : float = 0.2;
@@ -24,6 +25,7 @@ func _ready():
 	_update_health(current_health);
 	
 	health_bar_under.tint_progress = easing_color;
+	health_number_label.self_modulate = text_color;
 	
 	viewport.size = health_bar_size;
 	if (display_number):

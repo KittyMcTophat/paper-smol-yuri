@@ -25,6 +25,10 @@ func _on_RestartLevelButton_pressed():
 func _on_ToggleFullscreenButton_pressed():
 	OS.window_fullscreen = !OS.window_fullscreen;
 	OS.window_borderless = !OS.window_borderless;
+	if !OS.window_fullscreen:
+		OS.window_size = Vector2(ProjectSettings.get_setting("display/window/size/width"),\
+		ProjectSettings.get_setting("display/window/size/height"));
+		OS.center_window();
 	
 func _on_QuitButton_pressed():
 	get_tree().quit();

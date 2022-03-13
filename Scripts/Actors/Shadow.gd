@@ -8,7 +8,7 @@ func _physics_process(_delta):
 	
 	if (_raycast.is_colliding()):
 		_sprite3D.global_transform.origin = _raycast.get_collision_point();
-		_sprite3D.transform.origin.y += 0.01
+		_sprite3D.transform.origin.y += 0.001
 		
 		_sprite3D.visible = true;
 	else:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/Actor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Actors/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Actors/Battle/BaseActors/HealthBar.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=2]
 resource_local_to_scene = true
@@ -14,20 +15,26 @@ height = 0.3
 
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 2
-collision_mask = 65
+collision_mask = 193
 script = ExtResource( 2 )
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 2 )
 
-[node name="GroundDetector" type="Area" parent="." index="4"]
+[node name="SafeGroundRaycast" type="RayCast" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+enabled = true
+cast_to = Vector3( 0, -0.2, 0 )
+
+[node name="GroundDetector" type="Area" parent="." index="5"]
 collision_layer = 0
+collision_mask = 129
 monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="GroundDetector" index="0"]
 shape = SubResource( 1 )
 
-[node name="SpringArm" type="SpringArm" parent="." index="5"]
+[node name="SpringArm" type="SpringArm" parent="." index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 collision_mask = 32
 spring_length = 3.0
@@ -37,8 +44,5 @@ margin = 0.2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
 current = true
 
-[node name="Timer" type="Timer" parent="." index="7"]
-process_mode = 0
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_update_last_safe_spot"]
+[node name="HealthBar" parent="." index="8" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )

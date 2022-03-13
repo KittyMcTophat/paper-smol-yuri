@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Actors/Overworld/Players/YurisFloatingHead.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/SmolSmolYuri.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/SmolYuri.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=6]
 
@@ -74,6 +75,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
 
 [node name="SmolCoin" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+
+[node name="SmolCookie" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -2 )
+next_scene = "res://Scenes/TestScene.tscn"
 
 [node name="InteractableActor" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
