@@ -1,5 +1,6 @@
 extends "res://Scripts/Actors/Actor.gd"
 
+# Movement variables
 export var jump_strength : float = 5.0;
 export var movement_speed : float = 4.0;
 export var h_velocity_lerp_weight : float = 5.0;
@@ -9,6 +10,12 @@ export var midair_jumps : int = 0;
 export var allow_moonjump : bool = false;
 export var footstep_particle : PackedScene = null;
 
+# Health variables
+export var hazard_damage : int = 1;
+export var max_health : int = 10;
+export var cur_health : int = 10;
+
+
 var _velocity : Vector3 = Vector3.ZERO;
 var _last_safe_location : Vector3 = Vector3.ZERO;
 var _grounded : bool = false;
@@ -16,9 +23,14 @@ var _midair_jumps_left : int = 0;
 
 onready var _ground_detector_area : Area = $GroundDetector;
 onready var _safe_ground_raycast : RayCast = $SafeGroundRaycast;
+onready var _healthbar : Spatial = $HealthBar;
 
 # gets the gravity from project settings
 onready var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity");
+
+func _ready():
+	_healthbar._update_max_health(max_health);
+	_healthbar._update_health(cur_health);
 
 func _physics_process(delta) -> void:
 	_update_grounded();
@@ -102,5 +114,8 @@ func _update_last_safe_spot():
 		_last_safe_location = transform.origin;
 
 func _go_to_last_safe_spot():
+	cur_health -= hazard_damage;
+	_healthbar._update_health(cur_health);
+	
 	transform.origin = _last_safe_location;
 	_velocity = Vector3.ZERO;

@@ -110,13 +110,7 @@ patch_margin_bottom = 8
 
 [node name="Tween" type="Tween" parent="Viewport/HealthBar"]
 
-[node name="Timer" type="Timer" parent="Viewport/HealthBar"]
-pause_mode = 1
-autostart = true
-
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
 double_sided = false
 texture = SubResource( 1 )
-
-[connection signal="timeout" from="Viewport/HealthBar/Timer" to="." method="_on_Timer_timeout"]

@@ -215,10 +215,10 @@ __meta__ = {
 }
 
 [node name="NinePatchRect" type="NinePatchRect" parent="ColorRect/CenterContainer"]
-margin_left = 256.0
-margin_top = 140.0
-margin_right = 768.0
-margin_bottom = 460.0
+margin_left = 224.0
+margin_top = 110.0
+margin_right = 736.0
+margin_bottom = 430.0
 rect_min_size = Vector2( 512, 320 )
 texture = ExtResource( 4 )
 patch_margin_left = 32

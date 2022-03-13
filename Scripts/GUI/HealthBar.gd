@@ -74,6 +74,3 @@ func _hide_number():
 
 func _update_label():
 	health_number_label.text = str(current_health) + "/" + str(max_health);
-
-func _on_Timer_timeout():
-	_update_health(current_health - 1);
