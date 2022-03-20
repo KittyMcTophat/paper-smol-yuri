@@ -22,6 +22,7 @@ export (float, 0, 1, 0.05) var danger_zone : float = 0.2;
 
 func _ready():
 	_update_max_health(max_health);
+#warning-ignore:RETURN_VALUE_DISCARDED
 	_update_health(current_health);
 	
 	health_bar_under.tint_progress = easing_color;
@@ -33,7 +34,7 @@ func _ready():
 	else:
 		_hide_number();
 
-func _update_health(new_health : int):
+func _update_health(new_health : int) -> int:
 	current_health = int(clamp(new_health, 0, max_health));
 	
 	health_bar_over.value = current_health;
@@ -45,6 +46,8 @@ func _update_health(new_health : int):
 	_assign_color();
 	
 	_update_label();
+	
+	return current_health;
 
 func _assign_color():
 	if (current_health < max_health * danger_zone):

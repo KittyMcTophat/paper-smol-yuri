@@ -115,7 +115,13 @@ func _update_last_safe_spot():
 
 func _go_to_last_safe_spot():
 	cur_health -= hazard_damage;
-	_healthbar._update_health(cur_health);
+	cur_health = _healthbar._update_health(cur_health);
+	
+	if (cur_health == 0):
+		_kill();
 	
 	transform.origin = _last_safe_location;
 	_velocity = Vector3.ZERO;
+
+func _kill():
+	return;

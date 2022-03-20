@@ -175,6 +175,7 @@ custom_fonts/font = ExtResource( 4 )
 text = "Speaker Name"
 
 [node name="Dialogue" type="Label" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer"]
+self_modulate = Color( 0.901961, 0.901961, 0.901961, 1 )
 margin_top = 20.0
 margin_right = 684.0
 margin_bottom = 160.0

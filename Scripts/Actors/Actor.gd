@@ -4,7 +4,7 @@ export var full_turn_time : float = 0.5;
 
 onready var _sprite_3d: Sprite3D = $Sprite3D;
 onready var _tween_node: Tween = $Tween;
-onready var _anim_player: AnimationPlayer = get_node("AnimationPlayer");
+onready var _anim_player: AnimationPlayer = $AnimationPlayer;
 
 var _facing_back := false;
 
@@ -38,7 +38,9 @@ func _play_anim(anim_name : String) -> void:
 	if (_anim_player == null):
 		return;
 	if (_facing_back):
-		anim_name = anim_name + "_Back";
+		# only uses the back vesion of an nimation if one exists
+		if (_anim_player.get_animation(anim_name + "_Back") != null):
+			anim_name = anim_name + "_Back";
 	if (_anim_player.current_animation == anim_name):
 		return;
 	_anim_player.play(anim_name);
