@@ -100,6 +100,7 @@ pause_mode = 2
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 size_flags_vertical = 0
 theme = ExtResource( 3 )
 script = ExtResource( 1 )
@@ -112,6 +113,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -202.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 100
@@ -144,6 +146,7 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/DialogueBox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 16
@@ -159,12 +162,14 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 752.0
 margin_bottom = 176.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextContainer" type="VBoxContainer" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer"]
 margin_right = 684.0
 margin_bottom = 160.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -191,6 +196,7 @@ margin_top = 112.0
 margin_right = 736.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 size_flags_horizontal = 12
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 5 )

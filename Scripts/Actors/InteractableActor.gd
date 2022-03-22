@@ -3,25 +3,18 @@ extends "res://Scripts/Actors/Actor.gd"
 signal dialogue_ended;
 
 export var interact_on_ready: bool = false;
-export(String, FILE, "*.txt") var dialogue_file : String = "";
+export(String, FILE, "*.json") var dialogue_file : String = "";
 
 onready var exclamation_mark: Sprite3D = $ExclamationMark;
 
-var dialogue_array : Array = []
-var is_player_in_range: bool = false;
+var dialogue_json_parse = []
+var is_player_in_range : bool = false;
 
 func _ready():
 	var file_read : File = File.new();
 #warning-ignore:RETURN_VALUE_DISCARDED
 	file_read.open(dialogue_file, File.READ);
-	if (dialogue_file != null):
-		while file_read.get_position() < file_read.get_len():
-			var next_array : Array = ["",""];
-			
-			next_array[0] = file_read.get_line();
-			next_array[1] = file_read.get_line();
-			
-			dialogue_array.push_back(next_array);
+	dialogue_json_parse = parse_json(file_read.get_as_text());
 	
 	if (interact_on_ready):
 		if (Global.get_node("SplashScreen")):
@@ -35,7 +28,7 @@ func _process(_delta):
 		_interact();
 
 func _interact():
-	Global.dialogue_box.start_dialogue(dialogue_array, funcref(self, "_dialogue_over"));
+	Global.dialogue_box.start_dialogue(dialogue_json_parse, funcref(self, "_dialogue_over"));
 
 func _dialogue_over():
 	emit_signal("dialogue_ended");

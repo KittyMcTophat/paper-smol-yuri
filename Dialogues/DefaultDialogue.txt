@@ -1,8 +1,0 @@
-Speaker
-Default Interactable Actor
-Dialogue
-This is a cool dialogue that I made
-Speaker
-Smol Yuri
-Dialogue
-Wow that sure is some cool dialogue that you have blessed this world with!

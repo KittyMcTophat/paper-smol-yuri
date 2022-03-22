@@ -1,0 +1,5 @@
+[
+    {"speaker":"Error1", "text":"This is the default dialogue."},
+    {"speaker":"Error2", "text":"If you can read this, it means somebody messed up and forgot to assign a dialogue to this NPC."},
+    {"speaker":"Error3", "text":"Please report this error to someone.\n\n\nOr don't. I'm not your boss."}
+]

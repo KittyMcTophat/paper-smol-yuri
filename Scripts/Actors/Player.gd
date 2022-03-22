@@ -22,6 +22,7 @@ var _grounded : bool = false;
 var _midair_jumps_left : int = 0;
 
 onready var _ground_detector_area : Area = $GroundDetector;
+onready var _harm_detector_area : Area = $HarmDetector;
 onready var _safe_ground_raycast : RayCast = $SafeGroundRaycast;
 onready var _healthbar : Spatial = $HealthBar;
 
@@ -31,6 +32,8 @@ onready var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gr
 func _ready():
 	_healthbar._update_max_health(max_health);
 	_healthbar._update_health(cur_health);
+	
+	_last_safe_location = transform.origin;
 
 func _physics_process(delta) -> void:
 	_update_grounded();
@@ -77,6 +80,12 @@ func _physics_process(delta) -> void:
 	if (transform.origin.y < kill_y):
 		_go_to_last_safe_spot();
 	
+	# if the last collision was with an object on the harmful layer, returns to the last safe spot
+	var _kinem_collision : KinematicCollision = get_last_slide_collision();
+	if (_kinem_collision != null):
+		if (_kinem_collision.collider.get_collision_layer_bit(2)):
+			_go_to_last_safe_spot();
+	
 	_update_animation();
 	_update_last_safe_spot();
 
@@ -110,7 +119,7 @@ func _make_footstep_particles() -> void:
 
 func _update_last_safe_spot():
 	_safe_ground_raycast.force_raycast_update();
-	if (_safe_ground_raycast.is_colliding()):
+	if (_safe_ground_raycast.is_colliding() && !(_harm_detector_area.get_overlapping_bodies().size() > 0)):
 		_last_safe_location = transform.origin;
 
 func _go_to_last_safe_spot():

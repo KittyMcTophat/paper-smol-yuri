@@ -6,6 +6,7 @@
 
 [sub_resource type="CapsuleShape" id=2]
 resource_local_to_scene = true
+margin = 0.001
 radius = 0.32
 height = 0.01
 
@@ -21,24 +22,17 @@ current_health = 100
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.325, 0 )
 shape = SubResource( 2 )
 
-[node name="ProjectileTargetPoint" type="Spatial" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0 )
-
-[node name="MeshInstance" type="MeshInstance" parent="ProjectileTargetPoint" index="0"]
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="JumpTargetPoint" type="Spatial" parent="." index="6"]
+[node name="JumpTargetPoint" type="Spatial" parent="." index="5"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="JumpTargetPoint" index="0"]
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="HealthBar" parent="." index="7" instance=ExtResource( 3 )]
+[node name="HealthBar" parent="." index="6" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
-[node name="Timer" type="Timer" parent="." index="8"]
+[node name="Timer" type="Timer" parent="." index="7"]
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_hurt" binds= [ 5 ]]

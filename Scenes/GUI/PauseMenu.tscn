@@ -191,6 +191,7 @@ tracks/3/keys = {
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -202,6 +203,7 @@ visible = false
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -210,6 +212,7 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -231,6 +234,7 @@ axis_stretch_vertical = 2
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/CenterContainer/NinePatchRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 custom_constants/margin_right = 16
 custom_constants/margin_top = 8
 custom_constants/margin_left = 16
@@ -244,6 +248,7 @@ margin_left = 16.0
 margin_top = 8.0
 margin_right = 496.0
 margin_bottom = 304.0
+mouse_filter = 2
 custom_constants/separation = 6
 
 [node name="Paused" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
@@ -260,6 +265,7 @@ margin_right = 480.0
 margin_bottom = 78.0
 focus_neighbour_top = NodePath("../MarginContainer/HBoxContainer/TextSpeedSlider")
 focus_neighbour_bottom = NodePath("../RestartLevelButton")
+mouse_filter = 2
 size_flags_vertical = 3
 shortcut = SubResource( 7 )
 text = "Resume"
@@ -270,6 +276,7 @@ margin_right = 480.0
 margin_bottom = 133.0
 focus_neighbour_top = NodePath("../ResumeButton")
 focus_neighbour_bottom = NodePath("../ToggleFullscreenButton")
+mouse_filter = 2
 size_flags_vertical = 3
 text = "Restart Level"
 
@@ -279,6 +286,7 @@ margin_right = 480.0
 margin_bottom = 187.0
 focus_neighbour_top = NodePath("../RestartLevelButton")
 focus_neighbour_bottom = NodePath("../QuitButton")
+mouse_filter = 2
 size_flags_vertical = 3
 text = "Toggle Fullscreen"
 
@@ -288,6 +296,7 @@ margin_right = 480.0
 margin_bottom = 242.0
 focus_neighbour_top = NodePath("../ToggleFullscreenButton")
 focus_neighbour_bottom = NodePath("../MarginContainer/HBoxContainer/TextSpeedSlider")
+mouse_filter = 2
 size_flags_vertical = 3
 text = "Quit Game"
 
@@ -296,6 +305,7 @@ modulate = Color( 1, 1, 1, 0 )
 margin_top = 248.0
 margin_right = 480.0
 margin_bottom = 252.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -312,6 +322,7 @@ valign = 1
 margin_top = 280.0
 margin_right = 480.0
 margin_bottom = 296.0
+mouse_filter = 2
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
 

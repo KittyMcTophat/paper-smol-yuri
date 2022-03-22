@@ -6,15 +6,16 @@
 
 [sub_resource type="CapsuleShape" id=2]
 resource_local_to_scene = true
-radius = 0.3
-height = 0.22
+margin = 0.001
+radius = 0.32
+height = 0.01
 
 [sub_resource type="SphereShape" id=1]
 resource_local_to_scene = true
 
 [node name="InteractableActor" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-dialogue_file = "res://Dialogues/DefaultDialogue.txt"
+dialogue_file = "res://Dialogues/Deafult.json"
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 2 )

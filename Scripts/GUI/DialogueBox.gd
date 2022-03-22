@@ -3,7 +3,7 @@ extends Control
 var is_active : bool = false;
 var current_line_done : bool = false;
 
-onready var speaker : Label = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer/Speaker;
+onready var speaker_label : Label = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer/Speaker;
 onready var dialogue_label : Label = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer/Dialogue;
 onready var anim_player : AnimationPlayer = $AnimationPlayer;
 
@@ -17,22 +17,24 @@ var time_since_last_char : float = 0;
 func _process(delta):
 	if (!is_active):
 		return;
+	
 	time_since_last_char += delta;
 	while (time_since_last_char >= Global.text_speed && !current_line_done):
 		print_next_char();
 
-func start_dialogue(dialogue_array : Array, call_when_done : FuncRef):
+func start_dialogue(dialogue_json, call_when_done : FuncRef):
 	Global.allow_pause = false;
 	get_tree().paused = true;
 	is_active = true;
 	anim_player.play("Show");
 	
-	current_dialogue = dialogue_array;
+	current_dialogue = dialogue_json;
 	_call_when_done = call_when_done;
+	
 	current_line = -1;
 	current_char = 0;
 	
-	speaker.text = "";
+	speaker_label.text = "";
 	dialogue_label.text = "";
 	
 	advance_text();
@@ -54,16 +56,14 @@ func advance_text():
 	if (current_line >= current_dialogue.size()):
 		end_dialogue();
 	else:
-		if (current_dialogue[current_line][0] == "Speaker"):
-			speaker.text = current_dialogue[current_line][1];
-			advance_text();
+		speaker_label.text = current_dialogue[current_line]["speaker"];
 
 func print_next_char():
 	current_char += 1;
-	if (current_char >= current_dialogue[current_line][1].length()):
+	if (current_char >= current_dialogue[current_line]["text"].length()):
 		current_line_done = true;
 		return;
-	dialogue_label.text = current_dialogue[current_line][1].substr(0, current_char + 1);
+	dialogue_label.text = current_dialogue[current_line]["text"].substr(0, current_char + 1);
 	time_since_last_char -= Global.text_speed;
 
 func _on_AdvanceTextButton_pressed():
