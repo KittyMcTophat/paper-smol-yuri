@@ -3,14 +3,17 @@ extends Control
 signal credits_over;
 
 export var scroll_speed : float = 30.0;
-export var speedup_multiplier : float = 2.0;
-export var speedup_input : String = "";
+export var speedup_multiplier : float = 8.0;
+export var start_delay : float = 2.0;
+export var end_delay : float = 2.0;
+export var speedup_input : String = "ui_accept";
 export(float, 0.0, 1.0) var screen_position : float = 0.5;
 export(String, FILE, "*.json") var credits_json = null;
 export(Color) var background_color : Color = Color.black;
 export(AudioStreamSample) var music : AudioStreamSample = null;
 
 var _last_control : Control = null;
+var _is_credits_running : bool = false;
 
 onready var _color_rect : ColorRect = $ColorRect;
 onready var _audio_player : AudioStreamPlayer = $AudioStreamPlayer;
@@ -24,7 +27,7 @@ onready var _spacing : Label = $Node2D/VBoxContainer/Spacing;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_node2d.transform.origin.x = ProjectSettings.get_setting("display/window/size/width") * screen_position;
-	_node2d.transform.origin.y = ProjectSettings.get_setting("display/window/size/height");
+	_node2d.transform.origin.y = ProjectSettings.get_setting("display/window/size/height") + (scroll_speed * start_delay);
 	
 	_color_rect.color = background_color;
 	
@@ -70,17 +73,25 @@ func _ready():
 	_spacing.visible = false;
 
 func _process(delta):
-	if (speedup_input == ""):
-		_node2d.transform.origin.y -= scroll_speed * delta;
-	else:
-		if (Input.is_action_pressed(speedup_input)):
-			_node2d.transform.origin.y -= scroll_speed * delta * speedup_multiplier;
-		else:
+	if (_is_credits_running):
+		if (speedup_input == ""):
 			_node2d.transform.origin.y -= scroll_speed * delta;
-	
-	if (_last_control.get_global_transform().origin.y < -_last_control.rect_size.y):
-		emit_signal("credits_over");
+		else:
+			if (Input.is_action_pressed(speedup_input)):
+				_node2d.transform.origin.y -= scroll_speed * delta * speedup_multiplier;
+			else:
+				_node2d.transform.origin.y -= scroll_speed * delta;
+		
+		if (_last_control.get_global_transform().origin.y < -_last_control.rect_size.y - (scroll_speed * end_delay)):
+			emit_signal("credits_over");
 
+func _roll_credits():
+	_is_credits_running = true;
+	
+	get_tree().paused = true;
+	Global.allow_pause = false;
+	
+	$AnimationPlayer.play("FadeIn");
 
 func _on_AudioStreamPlayer_finished():
 	_audio_player.play(0.0);

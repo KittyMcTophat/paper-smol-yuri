@@ -24,8 +24,16 @@ func load_scene(scene: String):
 #warning-ignore:RETURN_VALUE_DISCARDED
 	get_tree().change_scene_to(load(scene));
 	money = coin_counter.get_money();
+	
+	allow_pause = true;
+	allow_jump = true;
+	get_tree().paused = false;
 
 func reload_scene():
 #warning-ignore:RETURN_VALUE_DISCARDED
 	get_tree().reload_current_scene();
 	coin_counter.set_money(money);
+	
+	allow_pause = true;
+	allow_jump = true;
+	get_tree().paused = false;
