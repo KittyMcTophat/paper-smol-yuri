@@ -1,3 +1,5 @@
+**The following license only applies to original assets created for use in this game (art, code, level design, etc.) The characters and universe created by Team Salvato are still their intellectual property and are subject to the Team Salvato IP Guidelines, which can be found [here](http://teamsalvato.com/ip-guidelines)**
+
 BSD 3-Clause License
 
 Copyright (c) 2022, Kitty McTophat
