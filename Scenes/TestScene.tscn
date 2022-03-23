@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Actors/Overworld/Players/YurisFloatingHead.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/SmolSmolYuri.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BattleActor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Objects/MovingPlatform.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/Actors/Player.gd" type="Script" id=9]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -89,9 +88,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.1, 0 )
 
 [node name="SmolSmolYuri" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.5, 0.1, 0 )
-collision_layer = 2
-collision_mask = 197
-script = ExtResource( 9 )
 
 [node name="SmolYuri" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )

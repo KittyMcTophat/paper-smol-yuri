@@ -22,7 +22,7 @@ func _process(delta):
 	while (time_since_last_char >= Global.text_speed && !current_line_done):
 		print_next_char();
 
-func start_dialogue(dialogue_json, call_when_done : FuncRef):
+func start_dialogue(dialogue_json : Array, call_when_done : FuncRef):
 	Global.allow_pause = false;
 	get_tree().paused = true;
 	is_active = true;

@@ -1,0 +1,42 @@
+[
+    {"type":"Image", "path":"res://Sprites/GUI/Splash Screen.png", "scale":4},
+
+    {"type":"Spacing", "amount":5},
+
+    {"type":"Title", "text":"Lead Programmer"},
+    {"type":"Default", "text":"Kitty_McTophat"},
+    
+    {"type":"Spacing", "amount":2},
+
+    {"type":"Title", "text":"Lead 2D Artist"},
+    {"type":"Default", "text":"Kitty_McTophat"},
+    
+    {"type":"Spacing", "amount":2},
+
+    {"type":"Title", "text":"Lead 3D Artist"},
+    {"type":"Default", "text":"Kitty_McTophat"},
+    
+    {"type":"Spacing", "amount":2},
+
+    {"type":"Title", "text":"Head of Level Design"},
+    {"type":"Default", "text":"Kitty_McTophat"},
+    
+    {"type":"Spacing", "amount":2},
+
+    {"type":"Title", "text":"Head Writer"},
+    {"type":"Default", "text":"Kitty_McTophat"},
+    
+    {"type":"Spacing", "amount":2},
+
+    {"type":"Title", "text":"Based on Characters By"},
+    {"type":"Default", "text":"Team Salvato"},
+    
+    {"type":"Spacing", "amount":2},
+    
+    {"type":"Default", "text":"This game uses the font \"Press Start 2P\"\n which is licensed under the SIL Open Font License,\navailable at scripts.sil.org/OFL"},
+    
+    {"type":"Spacing", "amount":2},
+
+    {"type":"Title", "text":"Made with the Godot Engine"},
+    {"type":"Default", "text":"godotengine.org/license"}
+]

@@ -7,7 +7,7 @@ export(String, FILE, "*.json") var dialogue_file : String = "";
 
 onready var exclamation_mark: Sprite3D = $ExclamationMark;
 
-var dialogue_json_parse = []
+var dialogue_json_parse : Array = []
 var is_player_in_range : bool = false;
 
 func _ready():
