@@ -26,8 +26,11 @@ onready var _spacing : Label = $Node2D/VBoxContainer/Spacing;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_node2d.transform.origin.x = ProjectSettings.get_setting("display/window/size/width") * screen_position;
-	_node2d.transform.origin.y = ProjectSettings.get_setting("display/window/size/height") + (scroll_speed * start_delay);
+	_update_x();
+	_node2d.transform.origin.y = get_viewport_rect().size.y + (scroll_speed * start_delay);
+	
+#warning-ignore:RETURN_VALUE_DISCARDED
+	get_viewport().connect("size_changed", self, "_update_x");
 	
 	_color_rect.color = background_color;
 	
@@ -73,17 +76,19 @@ func _ready():
 	_spacing.visible = false;
 
 func _process(delta):
-	if (_is_credits_running):
-		if (speedup_input == ""):
-			_node2d.transform.origin.y -= scroll_speed * delta;
+	if (!_is_credits_running):
+		return;
+	
+	if (speedup_input == ""):
+		_node2d.transform.origin.y -= scroll_speed * delta;
+	else:
+		if (Input.is_action_pressed(speedup_input)):
+			_node2d.transform.origin.y -= scroll_speed * delta * speedup_multiplier;
 		else:
-			if (Input.is_action_pressed(speedup_input)):
-				_node2d.transform.origin.y -= scroll_speed * delta * speedup_multiplier;
-			else:
-				_node2d.transform.origin.y -= scroll_speed * delta;
-		
-		if (_last_control.get_global_transform().origin.y < -_last_control.rect_size.y - (scroll_speed * end_delay)):
-			emit_signal("credits_over");
+			_node2d.transform.origin.y -= scroll_speed * delta;
+	
+	if (_last_control.get_global_transform().origin.y < -_last_control.rect_size.y - (scroll_speed * end_delay)):
+		emit_signal("credits_over");
 
 func _roll_credits():
 	_is_credits_running = true;
@@ -92,6 +97,9 @@ func _roll_credits():
 	Global.allow_pause = false;
 	
 	$AnimationPlayer.play("FadeIn");
+
+func _update_x():
+	_node2d.transform.origin.x = get_viewport_rect().size.x * screen_position;
 
 func _on_AudioStreamPlayer_finished():
 	_audio_player.play(0.0);

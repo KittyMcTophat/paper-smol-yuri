@@ -22,7 +22,6 @@ collision_mask = 197
 script = ExtResource( 2 )
 
 [node name="CollisionShape" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.325, 0 )
 shape = SubResource( 2 )
 
 [node name="SafeGroundRaycast" type="RayCast" parent="." index="4"]

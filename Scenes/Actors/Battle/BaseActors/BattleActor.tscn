@@ -19,7 +19,6 @@ max_health = 100
 current_health = 100
 
 [node name="CollisionShape" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.325, 0 )
 shape = SubResource( 2 )
 
 [node name="JumpTargetPoint" type="Spatial" parent="." index="5"]
