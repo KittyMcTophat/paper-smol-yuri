@@ -37,12 +37,15 @@ func _turn(target_rotation: float, dead_zone: float = 5.0) -> void:
 func _play_anim(anim_name : String) -> void:
 	if (_anim_player == null):
 		return;
+	if (_anim_player.get_animation(anim_name) == null):
+		return;
 	if (_facing_back):
 		# only uses the back vesion of an nimation if one exists
 		if (_anim_player.get_animation(anim_name + "_Back") != null):
 			anim_name = anim_name + "_Back";
 	if (_anim_player.current_animation == anim_name):
 		return;
+
 	_anim_player.play(anim_name);
 
 # gets the current animation

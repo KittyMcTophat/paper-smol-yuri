@@ -109,9 +109,12 @@ func _update_animation() -> void:
 	if (_velocity.length() < 0.1):
 		_play_anim("Idle");
 		_anim_player.playback_speed = 1.0;
-	else:
+	elif (is_on_floor()):
 		_play_anim("Walking");
 		_anim_player.playback_speed = _velocity.length();
+	else:
+		_play_anim("Jumping");
+		_anim_player.playback_speed = 1.0;
 
 func _make_footstep_particles() -> void:
 	var particle : Particles = footstep_particle.instance();
