@@ -80,10 +80,9 @@ func _physics_process(delta) -> void:
 	if (transform.origin.y < kill_y):
 		_go_to_last_safe_spot();
 	
-	# if the last collision was with an object on the harmful layer, returns to the last safe spot
-	var _kinem_collision : KinematicCollision = get_last_slide_collision();
-	if (_kinem_collision != null):
-		if (_kinem_collision.collider.get_collision_layer_bit(2)):
+	# if it collided with a harmful object, returns to the last safe spot
+	for i in get_slide_count():
+		if (get_slide_collision(i).collider.get_collision_layer_bit(2)):
 			_go_to_last_safe_spot();
 	
 	_update_animation();
