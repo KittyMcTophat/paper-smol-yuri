@@ -13,6 +13,9 @@ func _ready():
 	_timer.wait_time = wait_time;
 
 func _physics_process(_delta):
+	if (!is_visible_in_tree()):
+		return;
+	
 	if (_stopped):
 		return;
 	

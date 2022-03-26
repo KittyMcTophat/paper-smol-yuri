@@ -7,6 +7,8 @@ var text_speed : float = 0.033;
 var allow_pause : bool = true;
 var allow_jump : bool = true;
 
+var current_level_controller : Spatial = null;
+
 onready var coin_counter : Control = preload("res://Scenes/GUI/CoinCounter.tscn").instance();
 onready var dialogue_box : Control = preload("res://Scenes/GUI/DialogueSystem.tscn").instance();
 onready var pause_menu : Control = preload("res://Scenes/GUI/PauseMenu.tscn").instance();

@@ -36,6 +36,9 @@ func _ready():
 	_last_safe_location = transform.origin;
 
 func _physics_process(delta) -> void:
+	if (!is_visible_in_tree()):
+		return;
+	
 	_update_grounded();
 	
 	var move_direction := _get_movement_vector();

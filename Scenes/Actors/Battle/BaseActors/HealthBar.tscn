@@ -15,7 +15,7 @@ pause_mode = 2
 script = ExtResource( 4 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 72, 24 )
+size = Vector2( 80, 24 )
 transparent_bg = true
 usage = 1
 render_target_v_flip = true
@@ -55,7 +55,7 @@ __meta__ = {
 [node name="HealthBarOver" type="TextureProgress" parent="Viewport/HealthBar/NinePatchRect/MarginContainer"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 68.0
+margin_right = 76.0
 margin_bottom = 20.0
 size_flags_vertical = 3
 value = 75.0
@@ -91,7 +91,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 6 )
-text = "??/??"
+text = "HP:??/??"
 align = 1
 valign = 1
 __meta__ = {

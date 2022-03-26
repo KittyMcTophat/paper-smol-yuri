@@ -9,7 +9,7 @@ onready var tween : Tween = $Viewport/HealthBar/Tween;
 export var max_health : int = 10;
 export var current_health : int = 10;
 export var display_number : bool = true;
-export var health_bar_size : Vector2 = Vector2(72, 24);
+export var health_bar_size : Vector2 = Vector2(80, 24);
 
 export (Color) var healthy_color : Color = Color.darkgreen;
 export (Color) var caution_color : Color = Color.darkgoldenrod;
@@ -76,4 +76,4 @@ func _hide_number():
 	display_number = false;
 
 func _update_label():
-	health_number_label.text = str(current_health) + "/" + str(max_health);
+	health_number_label.text = "HP:" + str(current_health) + "/" + str(max_health);

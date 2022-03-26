@@ -23,12 +23,17 @@
     
     {"type":"Spacing", "amount":2},
 
-    {"type":"Title", "text":"Head of Level Design"},
+    {"type":"Title", "text":"Head Level Designer"},
     {"type":"Default", "text":"Kitty_McTophat"},
     
     {"type":"Spacing", "amount":2},
 
     {"type":"Title", "text":"Head Writer"},
+    {"type":"Default", "text":"Kitty_McTophat"},
+    
+    {"type":"Spacing", "amount":2},
+
+    {"type":"Title", "text":"QA Tester"},
     {"type":"Default", "text":"Kitty_McTophat"},
     
     {"type":"Spacing", "amount":2},
