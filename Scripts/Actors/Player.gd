@@ -14,7 +14,7 @@ export var footstep_particle : PackedScene = null;
 export var hazard_damage : int = 1;
 export var max_health : int = 10;
 export var cur_health : int = 10;
-
+export var reload_on_death : bool = true;
 
 var _velocity : Vector3 = Vector3.ZERO;
 var _last_safe_location : Vector3 = Vector3.ZERO;
@@ -133,9 +133,11 @@ func _go_to_last_safe_spot():
 	
 	if (cur_health == 0):
 		_kill();
+		return;
 	
 	transform.origin = _last_safe_location;
 	_velocity = Vector3.ZERO;
 
 func _kill():
-	return;
+	if (reload_on_death):
+		Global.reload_scene();

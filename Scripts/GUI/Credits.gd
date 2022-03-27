@@ -88,6 +88,11 @@ func _process(delta):
 			_node2d.transform.origin.y -= scroll_speed * delta;
 	
 	if (_last_control.get_global_transform().origin.y < -_last_control.rect_size.y - (scroll_speed * end_delay)):
+		_is_credits_running = false;
+		
+		get_tree().paused = false;
+		Global.allow_pause = true;
+		
 		emit_signal("credits_over");
 
 func _roll_credits():

@@ -15,8 +15,8 @@ size = Vector3( 0.02, 0.02, 0.02 )
 
 [node name="BattleActor" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-max_health = 100
-current_health = 100
+max_health = 99
+current_health = 99
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 2 )

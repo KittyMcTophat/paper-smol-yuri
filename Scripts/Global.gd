@@ -24,7 +24,16 @@ func _ready():
 
 func load_scene(scene: String):
 #warning-ignore:RETURN_VALUE_DISCARDED
-	get_tree().change_scene_to(load(scene));
+	var next_scene : PackedScene = load(scene);
+	
+	allow_pause = false;
+	allow_jump = false;
+	get_tree().paused = true;
+	
+	current_level_controller.fade_rect_anim_player.play("Fade_In");
+	yield(current_level_controller.fade_rect_anim_player, "animation_finished");
+	
+	get_tree().change_scene_to(next_scene);
 	money = coin_counter.get_money();
 	
 	allow_pause = true;
@@ -32,6 +41,13 @@ func load_scene(scene: String):
 	get_tree().paused = false;
 
 func reload_scene():
+	allow_pause = false;
+	allow_jump = false;
+	get_tree().paused = true;
+	
+	current_level_controller.fade_rect_anim_player.play("Fade_In");
+	yield(current_level_controller.fade_rect_anim_player, "animation_finished");
+	
 #warning-ignore:RETURN_VALUE_DISCARDED
 	get_tree().reload_current_scene();
 	coin_counter.set_money(money);
