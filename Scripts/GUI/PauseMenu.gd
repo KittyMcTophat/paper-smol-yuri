@@ -6,6 +6,8 @@ onready var _resume_button : Button = find_node("ResumeButton");
 func _unhandled_input(event):
 	if (event.is_action_pressed("pause") && !get_tree().paused && Global.allow_pause):
 		pause();
+	if (event.is_action_pressed("toggle_fullscreen")):
+		_toggle_fullscreen();
 
 func unpause() -> void:
 	_anim_player.play("Unpause");
@@ -23,15 +25,18 @@ func _on_RestartLevelButton_pressed():
 	Global.reload_scene();
 
 func _on_ToggleFullscreenButton_pressed():
-	OS.window_fullscreen = !OS.window_fullscreen;
-	OS.window_borderless = !OS.window_borderless;
-	if !OS.window_fullscreen:
-		OS.window_size = Vector2(ProjectSettings.get_setting("display/window/size/width"),\
-		ProjectSettings.get_setting("display/window/size/height"));
-		OS.center_window();
+	_toggle_fullscreen();
 	
 func _on_QuitButton_pressed():
 	get_tree().quit();
 
 func _on_TextSpeedSlider_value_changed(value):
 	Global.text_speed = value;
+
+func _toggle_fullscreen():
+	OS.window_fullscreen = !OS.window_fullscreen;
+	OS.window_borderless = !OS.window_borderless;
+	if !OS.window_fullscreen:
+		OS.window_size = Vector2(ProjectSettings.get_setting("display/window/size/width"),\
+		ProjectSettings.get_setting("display/window/size/height"));
+		OS.center_window();

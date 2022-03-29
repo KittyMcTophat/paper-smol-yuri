@@ -17,17 +17,17 @@ var _is_credits_running : bool = false;
 
 onready var _color_rect : ColorRect = $ColorRect;
 onready var _audio_player : AudioStreamPlayer = $AudioStreamPlayer;
-onready var _node2d : Node2D = $Node2D;
-onready var _vbox : VBoxContainer = $Node2D/VBoxContainer;
-onready var _image : TextureRect = $Node2D/VBoxContainer/Image;
-onready var _title : Label = $Node2D/VBoxContainer/Title;
-onready var _default : Label = $Node2D/VBoxContainer/Default;
-onready var _spacing : Label = $Node2D/VBoxContainer/Spacing;
+onready var _control : Control = $Control;
+onready var _vbox : VBoxContainer = $Control/VBoxContainer;
+onready var _image : TextureRect = $Control/VBoxContainer/Image;
+onready var _title : Label = $Control/VBoxContainer/Title;
+onready var _default : Label = $Control/VBoxContainer/Default;
+onready var _spacing : Label = $Control/VBoxContainer/Spacing;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_update_x();
-	_node2d.transform.origin.y = get_viewport_rect().size.y + (scroll_speed * start_delay);
+	_control.rect_position.y = self.rect_size.y + (scroll_speed * start_delay);
 	
 #warning-ignore:RETURN_VALUE_DISCARDED
 	get_viewport().connect("size_changed", self, "_update_x");
@@ -80,12 +80,12 @@ func _process(delta):
 		return;
 	
 	if (speedup_input == ""):
-		_node2d.transform.origin.y -= scroll_speed * delta;
+		_control.rect_position.y -= scroll_speed * delta;
 	else:
 		if (Input.is_action_pressed(speedup_input)):
-			_node2d.transform.origin.y -= scroll_speed * delta * speedup_multiplier;
+			_control.rect_position.y -= scroll_speed * delta * speedup_multiplier;
 		else:
-			_node2d.transform.origin.y -= scroll_speed * delta;
+			_control.rect_position.y -= scroll_speed * delta;
 	
 	if (_last_control.get_global_transform().origin.y < -_last_control.rect_size.y - (scroll_speed * end_delay)):
 		_is_credits_running = false;
@@ -104,7 +104,7 @@ func _roll_credits():
 	$AnimationPlayer.play("FadeIn");
 
 func _update_x():
-	_node2d.transform.origin.x = get_viewport_rect().size.x * screen_position;
+	_control.rect_position.x = self.rect_size.x * screen_position;
 
 func _on_AudioStreamPlayer_finished():
 	_audio_player.play(0.0);
