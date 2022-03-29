@@ -1,20 +1,22 @@
 extends "res://Scripts/Actors/Actor.gd"
 
-signal attack_over;
+signal turn_over;
 
 export var max_health : int = 10;
 export var current_health : int = 10;
-export(Array, PackedScene) var attacks : Array = [];
+export var attack : int = 1;
+export var projectile : PackedScene = null;
 
-onready var _jump_target_point : Spatial = $JumpTargetPoint;
+onready var _projectile_target_point : Spatial = $ProjectileTargetPoint;
+onready var _projectile_spawn_point : Spatial = $ProjectileSpawnPoint;
 onready var _healthbar : Spatial = $HealthBar;
 
 func _ready():
 	_healthbar._update_max_health(max_health);
 	_healthbar._update_health(current_health);
 
-func _do_an_attack() -> void:
-	emit_signal("attack_over");
+func _do_your_turn() -> void:
+	emit_signal("turn_over");
 	return;
 
 func _hurt(damage : int = 1) -> void:
@@ -26,4 +28,4 @@ func _hurt(damage : int = 1) -> void:
 		_kill();
 
 func _kill() -> void:
-	return;
+	print("No health, gromit!");

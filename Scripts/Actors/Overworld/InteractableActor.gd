@@ -17,7 +17,7 @@ func _ready():
 	dialogue_json_parse = parse_json(file_read.get_as_text());
 	
 	if (interact_on_ready):
-		if (Global.get_node("SplashScreen")):
+		if (Global.get_node_or_null("SplashScreen")):
 		#warning-ignore:RETURN_VALUE_DISCARDED
 			Global.get_node("SplashScreen").connect("splash_screen_over", self, "_interact");
 		else:

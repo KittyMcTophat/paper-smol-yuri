@@ -3,9 +3,10 @@
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Under.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Progress.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Over.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/GUI/HealthBar.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Actors/HealthBar.gd" type="Script" id=4]
 [ext_resource path="res://ui_theme.tres" type="Theme" id=5]
 [ext_resource path="res://Fonts/FontResources/PressStart2P_Size8.tres" type="DynamicFont" id=6]
+
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
