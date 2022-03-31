@@ -10,6 +10,7 @@ radius = 0.32
 height = 0.01
 
 [node name="BaseEnemy" instance=ExtResource( 2 )]
+collision_layer = 104
 script = ExtResource( 1 )
 max_health = 10
 current_health = 10

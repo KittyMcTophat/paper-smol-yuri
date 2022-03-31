@@ -3,6 +3,8 @@ extends Area
 export var speed : float = 2.0;
 export var damage : int = 1;
 export var direction : Vector3 = Vector3.LEFT;
+export var spin : bool = false;
+export var spin_velocity : float = 30.0;
 
 onready var _sprite3d : Sprite3D = $Sprite3D;
 onready var _visibility_notifier : VisibilityNotifier = $VisibilityNotifier;
@@ -17,6 +19,9 @@ func _physics_process(delta):
 		return;
 	
 	transform.origin += direction * speed * delta;
+	
+	if (spin):
+		_sprite3d.transform = _sprite3d.transform.rotated(Vector3.FORWARD, deg2rad(spin_velocity) * delta);
 	
 	#visibility notifier needs one frame before being called
 	if (_is_first_frame_alive):
