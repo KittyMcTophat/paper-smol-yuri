@@ -4,7 +4,6 @@
 [ext_resource path="res://Scenes/Actors/Shadow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Actors/Actor.gd" type="Script" id=3]
 
-
 [sub_resource type="CapsuleShape" id=1]
 resource_local_to_scene = true
 margin = 0.001
