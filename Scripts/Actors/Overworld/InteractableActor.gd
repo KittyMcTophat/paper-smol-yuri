@@ -24,6 +24,9 @@ func _ready():
 			_interact();
 
 func _process(_delta):
+	if (!is_visible_in_tree()):
+		return;
+	
 	if (is_player_in_range && Input.is_action_just_pressed("ui_accept")):
 		_interact();
 

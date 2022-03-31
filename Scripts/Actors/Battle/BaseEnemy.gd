@@ -9,6 +9,3 @@ func _do_your_turn() -> void:
 
 func _kill() -> void:
 	return;
-
-func _fire_projectile(_direction : Vector3 = Vector3.LEFT):
-	return;

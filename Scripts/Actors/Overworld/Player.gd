@@ -128,15 +128,18 @@ func _update_last_safe_spot():
 		_last_safe_location = transform.origin;
 
 func _go_to_last_safe_spot():
-	cur_health -= hazard_damage;
+	hurt(hazard_damage);
+	
+	transform.origin = _last_safe_location;
+	_velocity = Vector3.ZERO;
+
+func hurt(damage : int = 1):
+	#TODO: add particle with damage number
+	cur_health -= damage;
 	cur_health = _healthbar._update_health(cur_health);
 	
 	if (cur_health == 0):
 		_kill();
-		return;
-	
-	transform.origin = _last_safe_location;
-	_velocity = Vector3.ZERO;
 
 func _kill():
 	if (reload_on_death):

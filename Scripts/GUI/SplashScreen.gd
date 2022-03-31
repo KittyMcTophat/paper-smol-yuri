@@ -10,9 +10,9 @@ func _ready():
 
 func _on_Timer_timeout():
 	anim_player.play("FadeOut");
-
-func _kill():
 	Global.allow_pause = true;
 	get_tree().paused = false;
 	emit_signal("splash_screen_over");
+
+func _kill():
 	queue_free();
