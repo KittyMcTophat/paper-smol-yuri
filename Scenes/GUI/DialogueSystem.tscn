@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/GUI/DialogueBox.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/GUI/Textbox.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Fonts/FontResources/PressStart2P_Size16.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Fonts/FontResources/PressStart2P_Size8.tres" type="DynamicFont" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/GUI/DialoguePortraitBorder.png" type="Texture" id=7]
 
 [sub_resource type="InputEventAction" id=4]
 action = "ui_accept"
@@ -167,12 +168,37 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Portrait" type="TextureRect" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer"]
+[node name="PortraitBorder" type="NinePatchRect" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer"]
 margin_right = 160.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 160, 0 )
+texture = ExtResource( 7 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer/PortraitBorder"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Portrait" type="TextureRect" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer/PortraitBorder/MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 158.0
+margin_bottom = 158.0
 texture = ExtResource( 6 )
 stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextContainer" type="VBoxContainer" parent="MarginContainer/DialogueBox/MarginContainer/HBoxContainer"]
 margin_left = 164.0

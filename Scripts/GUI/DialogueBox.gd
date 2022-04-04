@@ -5,7 +5,8 @@ class_name DialogueBox
 var is_active : bool = false;
 var current_line_done : bool = false;
 
-onready var portrait : TextureRect = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/Portrait;
+onready var portrait : TextureRect = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/PortraitBorder/MarginContainer/Portrait;
+onready var portrait_border : NinePatchRect = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/PortraitBorder;
 onready var speaker_label : Label = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer/Speaker;
 onready var dialogue_label : Label = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer/Dialogue;
 onready var anim_player : AnimationPlayer = $AnimationPlayer;
@@ -61,10 +62,10 @@ func advance_text():
 	else:
 		speaker_label.text = current_dialogue[current_line]["speaker"];
 		if (current_dialogue[current_line].has("portrait")):
-			portrait.visible = true;
+			portrait_border.visible = true;
 			portrait.texture = load(current_dialogue[current_line]["portrait"]);
 		else:
-			portrait.visible = false;
+			portrait_border.visible = false;
 
 func print_next_char():
 	current_char += 1;
