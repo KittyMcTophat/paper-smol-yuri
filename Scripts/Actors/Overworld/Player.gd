@@ -2,14 +2,8 @@ extends Actor
 
 class_name Player
 
-# Movement variables
-export var jump_strength : float = 5.0;
-export var movement_speed : float = 4.0;
-export var h_velocity_lerp_weight : float = 5.0;
-export var midair_h_lerp_multiplier : float = 0.5;
-export var kill_y : float = -5.0;
-export var midair_jumps : int = 0;
-export var allow_moonjump : bool = false;
+export(Resource) var movement_params = null;
+
 export var footstep_particle : PackedScene = null;
 
 # Health variables
@@ -17,11 +11,14 @@ export var hazard_damage : int = 1;
 export var max_health : int = 10;
 export var cur_health : int = 10;
 export var reload_on_death : bool = true;
+export(Array, PackedScene) var party_scenes : Array = [];
 
 var _velocity : Vector3 = Vector3.ZERO;
 var _last_safe_location : Vector3 = Vector3.ZERO;
 var _grounded : bool = false;
 var _midair_jumps_left : int = 0;
+
+var party : Array = [];
 
 onready var _ground_detector_area : Area = $GroundDetector;
 onready var _harm_detector_area : Area = $HarmDetector;
@@ -36,6 +33,8 @@ func _ready():
 	_healthbar._update_health(cur_health);
 	
 	_last_safe_location = transform.origin;
+	
+	Global.current_player = self;
 
 func _physics_process(delta) -> void:
 	_update_grounded();
@@ -56,13 +55,18 @@ func _physics_process(delta) -> void:
 	
 	# applies the movement to velocity
 	if (_grounded):
-		_velocity.x = lerp(_velocity.x, move_direction.x * movement_speed, delta * h_velocity_lerp_weight);
-		_velocity.z = lerp(_velocity.z, move_direction.z * movement_speed, delta * h_velocity_lerp_weight);
+		_velocity.x = lerp(_velocity.x, move_direction.x * movement_params.movement_speed,\
+		delta * movement_params.h_velocity_lerp_weight);
+		
+		_velocity.z = lerp(_velocity.z, move_direction.z * movement_params.movement_speed,\
+		delta * movement_params.h_velocity_lerp_weight);
 	else:
 		if (abs(move_direction.x) > 0.1):
-			_velocity.x = lerp(_velocity.x, move_direction.x * movement_speed, delta * h_velocity_lerp_weight * midair_h_lerp_multiplier);
+			_velocity.x = lerp(_velocity.x, move_direction.x * movement_params.movement_speed,\
+			delta * movement_params.h_velocity_lerp_weight * movement_params.midair_h_lerp_multiplier);
 		if (abs(move_direction.z) > 0.1):
-			_velocity.z = lerp(_velocity.z, move_direction.z * movement_speed, delta * h_velocity_lerp_weight * midair_h_lerp_multiplier);
+			_velocity.z = lerp(_velocity.z, move_direction.z * movement_params.movement_speed,\
+			delta * movement_params.h_velocity_lerp_weight * movement_params.midair_h_lerp_multiplier);
 	
 	# applies gravity to velocity
 	_velocity.y -= _gravity * delta
@@ -70,16 +74,20 @@ func _physics_process(delta) -> void:
 	# jumping code
 	if Global.allow_jump:
 		if Input.is_action_just_pressed("jump"):
-			if (_grounded || allow_moonjump):
-				_velocity.y = jump_strength;
+			if (_grounded || movement_params.allow_moonjump):
+				_velocity.y = movement_params.jump_strength;
 			elif(_midair_jumps_left > 0):
 				_midair_jumps_left -= 1;
-				_velocity.y = jump_strength;
-		
+				_velocity.y = movement_params.jump_strength;
+	
+	if (!Input.is_action_pressed("jump") && !_grounded):
+		if (_velocity.y > 0):
+			_velocity.y = lerp(_velocity.y, 0, movement_params.vertical_lerp_weight * delta);
+	
 	# applies the velocity to the kinematic body
 	_velocity = move_and_slide(_velocity, Vector3.UP, true);
 	
-	if (transform.origin.y < kill_y):
+	if (transform.origin.y < movement_params.kill_y):
 		_go_to_last_safe_spot();
 	
 	# if it collided with a harmful object, returns to the last safe spot
@@ -94,7 +102,7 @@ func _physics_process(delta) -> void:
 func _update_grounded() -> void:
 	if (_ground_detector_area.get_overlapping_bodies().size() > 0):
 		_grounded = true;
-		_midair_jumps_left = midair_jumps;
+		_midair_jumps_left = movement_params.midair_jumps;
 	else:
 		_grounded = false;
 

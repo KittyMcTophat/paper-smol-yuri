@@ -11,6 +11,7 @@ var allow_pause : bool = true;
 var allow_jump : bool = true;
 
 var current_level_controller : Spatial = null;
+var current_player : Player = null;
 
 onready var coin_counter : CoinCounter = preload("res://Scenes/GUI/CoinCounter.tscn").instance();
 onready var dialogue_box : DialogueBox = preload("res://Scenes/GUI/DialogueSystem.tscn").instance();

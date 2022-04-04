@@ -7,7 +7,7 @@ signal turn_over;
 export var max_health : int = 10;
 export var current_health : int = 10;
 export var attack : int = 1;
-export var target_collision_layer : int = 2;
+export(int, LAYERS_3D_PHYSICS) var target_collision_layers : int = 2;
 export var projectile : PackedScene = null;
 
 onready var _projectile_target_point : Spatial = $ProjectileTargetPoint;
@@ -48,5 +48,4 @@ func _fire_projectile(direction : Vector3 = Vector3.LEFT, damage : int = attack)
 	new_projectile.direction = direction;
 	new_projectile.damage = damage;
 	
-	if (!new_projectile.get_collision_mask_bit(target_collision_layer)):
-		new_projectile.collision_mask += pow(2, target_collision_layer - 1);
+	new_projectile.collision_mask = target_collision_layers;

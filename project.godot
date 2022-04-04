@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/LevelController.gd"
 }, {
+"base": "Resource",
+"class": "MovementParams",
+"language": "GDScript",
+"path": "res://Scripts/Resources/MovementParams.gd"
+}, {
 "base": "KinematicBody",
 "class": "MovingPlatform",
 "language": "GDScript",
@@ -98,6 +103,7 @@ _global_script_class_icons={
 "Enemy": "",
 "InteractableActor": "",
 "LevelController": "",
+"MovementParams": "",
 "MovingPlatform": "",
 "PauseMenu": "",
 "Player": "",
@@ -240,6 +246,7 @@ toggle_fullscreen={
 3d_physics/layer_6="Camera Springarm"
 3d_physics/layer_7="Actors"
 3d_physics/layer_8="Ground (Not safe for respawn)"
+3d_physics/layer_9="Projectile Area"
 
 [physics]
 
