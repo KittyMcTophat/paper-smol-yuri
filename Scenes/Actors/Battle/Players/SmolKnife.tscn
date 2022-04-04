@@ -8,6 +8,7 @@ extents = Vector3( 0.185, 0.065, 0.065 )
 
 [node name="SmolKnife" instance=ExtResource( 2 )]
 direction = Vector3( 1, 0, 0 )
+pierces_targets = true
 spin = true
 spin_velocity = 360.0
 

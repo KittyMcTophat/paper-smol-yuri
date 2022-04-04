@@ -1,4 +1,6 @@
-extends "res://Scripts/Actors/Overworld/InteractableActor.gd"
+extends InteractableActor
+
+class_name SmolYurisSmolCat
 
 var _was_found : bool = false;
 

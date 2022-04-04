@@ -1,5 +1,7 @@
 extends Control
 
+class_name SplashScreen
+
 signal splash_screen_over;
 
 onready var anim_player : AnimationPlayer = $AnimationPlayer;

@@ -1,5 +1,7 @@
 extends KinematicBody
 
+class_name MovingPlatform
+
 export var velocity : float = 1.5;
 export var wait_time : float = 1.0;
 export(Array, Vector3) var target_points : Array = [Vector3.ZERO];
@@ -13,9 +15,6 @@ func _ready():
 	_timer.wait_time = wait_time;
 
 func _physics_process(_delta):
-	if (!is_visible_in_tree()):
-		return;
-	
 	if (_stopped):
 		return;
 	

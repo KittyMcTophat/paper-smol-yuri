@@ -1,5 +1,7 @@
 extends Control
 
+class_name PauseMenu
+
 onready var _anim_player: AnimationPlayer = $AnimationPlayer;
 onready var _resume_button : Button = find_node("ResumeButton");
 

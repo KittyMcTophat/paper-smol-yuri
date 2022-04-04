@@ -1,5 +1,6 @@
-extends "res://Scripts/Actors/Battle/BattleActor.gd"
+extends BattleActor
 
+class_name Enemy
 
 export(Array, Array, String) var attack_animations : Array = [];
 

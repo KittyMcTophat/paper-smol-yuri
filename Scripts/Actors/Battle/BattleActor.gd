@@ -1,4 +1,6 @@
-extends "res://Scripts/Actors/Actor.gd"
+extends Actor
+
+class_name BattleActor
 
 signal turn_over;
 

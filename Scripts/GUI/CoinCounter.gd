@@ -1,5 +1,7 @@
 extends Control
 
+class_name CoinCounter
+
 var money : int = 0;
 
 onready var _label : Label = $CenterContainer/MarginContainer/PanelContainer/MarginContainer/Label;

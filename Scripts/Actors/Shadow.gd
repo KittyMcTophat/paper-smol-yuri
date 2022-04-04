@@ -1,5 +1,7 @@
 extends Spatial
 
+class_name Shadow
+
 onready var _raycast : RayCast = $RayCast;
 onready var _sprite3D : Sprite3D = $Sprite3D;
 

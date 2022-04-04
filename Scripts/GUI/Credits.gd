@@ -1,5 +1,7 @@
 extends Control
 
+class_name Credits
+
 signal credits_over;
 
 export var scroll_speed : float = 30.0;

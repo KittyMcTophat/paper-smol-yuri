@@ -1,8 +1,12 @@
 extends Spatial
 
+class_name LevelController
+
 enum{NONE, OVERWORLD, BATTLE}
 
-onready var active : int = OVERWORLD;
+export(int, "None", "Overworld", "Battle") var default_active : int = OVERWORLD;
+
+var active : int = -1;
 
 onready var overworld : Spatial = $Overworld;
 onready var battle : Spatial = $Battle;
@@ -10,21 +14,43 @@ onready var fade_rect_anim_player : AnimationPlayer = $ColorRect/AnimationPlayer
 
 func _ready():
 	Global.current_level_controller = self;
+	
+	match default_active:
+		NONE:
+			enable_none();
+		OVERWORLD:
+			enable_overworld();
+		BATTLE:
+			enable_battle();
 
-func _show_none():
+func _exit_tree():
+	overworld.queue_free();
+	battle.queue_free();
+
+func enable_none():
 	if (active != NONE):
-		overworld.visible = false;
-		battle.visible = false;
+		_disable(overworld);
+		_disable(battle);
 		active = NONE;
 
-func _show_overworld():
+func enable_overworld():
 	if (active != OVERWORLD):
-		overworld.visible = true;
-		battle.visible = false;
+		enable_none();
+		_enable(overworld);
 		active = OVERWORLD;
 
-func _show_battle():
+func enable_battle():
 	if (active != BATTLE):
-		overworld.visible = false;
-		battle.visible = true;
+		enable_none();
+		_enable(battle);
 		active = BATTLE;
+
+func _enable(node : Node):
+	if (is_a_parent_of(node)):
+		return;
+	add_child(node);
+
+func _disable(node : Node):
+	if (is_a_parent_of(node)):
+		remove_child(node);
+	return;

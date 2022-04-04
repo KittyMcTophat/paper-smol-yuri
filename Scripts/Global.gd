@@ -12,9 +12,9 @@ var allow_jump : bool = true;
 
 var current_level_controller : Spatial = null;
 
-onready var coin_counter : Control = preload("res://Scenes/GUI/CoinCounter.tscn").instance();
-onready var dialogue_box : Control = preload("res://Scenes/GUI/DialogueSystem.tscn").instance();
-onready var pause_menu : Control = preload("res://Scenes/GUI/PauseMenu.tscn").instance();
+onready var coin_counter : CoinCounter = preload("res://Scenes/GUI/CoinCounter.tscn").instance();
+onready var dialogue_box : DialogueBox = preload("res://Scenes/GUI/DialogueSystem.tscn").instance();
+onready var pause_menu : PauseMenu = preload("res://Scenes/GUI/PauseMenu.tscn").instance();
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);

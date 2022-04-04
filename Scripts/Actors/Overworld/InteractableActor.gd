@@ -1,4 +1,6 @@
-extends "res://Scripts/Actors/Actor.gd"
+extends Actor
+
+class_name InteractableActor
 
 signal dialogue_ended;
 
@@ -16,7 +18,7 @@ func _ready():
 	file_read.open(dialogue_file, File.READ);
 	dialogue_json_parse = parse_json(file_read.get_as_text());
 	
-	if (interact_on_ready):
+	if (interact_on_ready):		
 		if (Global.get_node_or_null("SplashScreen")):
 		#warning-ignore:RETURN_VALUE_DISCARDED
 			Global.get_node("SplashScreen").connect("splash_screen_over", self, "_interact");
@@ -24,14 +26,15 @@ func _ready():
 			_interact();
 
 func _process(_delta):
-	if (!is_visible_in_tree()):
-		return;
-	
 	if (is_player_in_range && Input.is_action_just_pressed("ui_accept")):
 		_interact();
 
 func _interact():
-	Global.dialogue_box.start_dialogue(dialogue_json_parse, funcref(self, "_dialogue_over"));
+	# wait three frames to prevent graphical errors when interact_on_ready is enabled
+	for _i in range(3):
+		yield(get_tree(), "idle_frame");
+	
+	Global.dialogue_box.start_dialogue(dialogue_json_parse, self);
 
 func _dialogue_over():
 	emit_signal("dialogue_ended");

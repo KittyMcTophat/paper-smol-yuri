@@ -1,5 +1,7 @@
 extends KinematicBody
 
+class_name Actor
+
 export var full_turn_time : float = 0.5;
 
 onready var _sprite_3d: Sprite3D = $Sprite3D;

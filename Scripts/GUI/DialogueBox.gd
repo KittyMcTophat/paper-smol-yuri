@@ -1,14 +1,17 @@
 extends Control
 
+class_name DialogueBox
+
 var is_active : bool = false;
 var current_line_done : bool = false;
 
+onready var portrait : TextureRect = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/Portrait;
 onready var speaker_label : Label = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer/Speaker;
 onready var dialogue_label : Label = $MarginContainer/DialogueBox/MarginContainer/HBoxContainer/TextContainer/Dialogue;
 onready var anim_player : AnimationPlayer = $AnimationPlayer;
 
 var current_dialogue : Array = [];
-var _call_when_done : FuncRef = null;
+var _actor : InteractableActor = null;
 
 var current_line : int = 0;
 var current_char : int = 0;
@@ -22,14 +25,14 @@ func _process(delta):
 	while (time_since_last_char >= Global.text_speed && !current_line_done):
 		print_next_char();
 
-func start_dialogue(dialogue_json : Array, call_when_done : FuncRef):
+func start_dialogue(dialogue_json : Array, actor : InteractableActor):
 	Global.allow_pause = false;
 	get_tree().paused = true;
 	is_active = true;
 	anim_player.play("Show");
 	
 	current_dialogue = dialogue_json;
-	_call_when_done = call_when_done;
+	_actor = actor;
 	
 	current_line = -1;
 	current_char = 0;
@@ -44,7 +47,7 @@ func end_dialogue():
 	get_tree().paused = false;
 	is_active = false;
 	anim_player.play("Hide");
-	_call_when_done.call_func();
+	_actor._dialogue_over();
 
 func advance_text():
 	current_line += 1;
@@ -57,6 +60,11 @@ func advance_text():
 		end_dialogue();
 	else:
 		speaker_label.text = current_dialogue[current_line]["speaker"];
+		if (current_dialogue[current_line].has("portrait")):
+			portrait.visible = true;
+			portrait.texture = load(current_dialogue[current_line]["portrait"]);
+		else:
+			portrait.visible = false;
 
 func print_next_char():
 	current_char += 1;
