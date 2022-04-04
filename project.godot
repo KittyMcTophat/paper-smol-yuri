@@ -84,11 +84,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Objects/SmolCookie.gd"
 }, {
-"base": "InteractableActor",
-"class": "SmolYurisSmolCat",
-"language": "GDScript",
-"path": "res://Scripts/Actors/Overworld/SmolYurisSmolCat.gd"
-}, {
 "base": "Control",
 "class": "SplashScreen",
 "language": "GDScript",
@@ -110,7 +105,6 @@ _global_script_class_icons={
 "Shadow": "",
 "SmolCoin": "",
 "SmolCookie": "",
-"SmolYurisSmolCat": "",
 "SplashScreen": ""
 }
 

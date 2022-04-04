@@ -1,7 +1,5 @@
 extends InteractableActor
 
-class_name SmolYurisSmolCat
-
 var _was_found : bool = false;
 
 func _interact():

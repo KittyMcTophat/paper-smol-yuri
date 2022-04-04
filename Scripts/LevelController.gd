@@ -2,7 +2,7 @@ extends Spatial
 
 class_name LevelController
 
-enum{NONE, OVERWORLD, BATTLE}
+enum {NONE, OVERWORLD, BATTLE}
 
 export(int, "None", "Overworld", "Battle") var default_active : int = OVERWORLD;
 
