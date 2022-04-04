@@ -13,10 +13,13 @@ export var projectile : PackedScene = null;
 onready var _projectile_target_point : Spatial = $ProjectileTargetPoint;
 onready var _projectile_spawn_point : Spatial = $ProjectileSpawnPoint;
 onready var _healthbar : Spatial = $HealthBar;
+onready var _selector_arrow : Sprite3D = $SelectorArrow;
 
 func _ready():
 	_healthbar._update_max_health(max_health);
 	_healthbar._update_health(current_health);
+	
+	_selector_arrow.visible = false;
 
 func _do_your_turn() -> void:
 	emit_signal("turn_over");
