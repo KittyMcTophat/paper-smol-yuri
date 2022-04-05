@@ -38,6 +38,7 @@ func _kill() -> void:
 
 func _fire_projectile(direction : Vector3 = Vector3.LEFT, damage : int = attack):
 	if (projectile == null):
+		print("No projectile, gromit!");
 		return;
 	
 	var new_projectile = projectile.instance();

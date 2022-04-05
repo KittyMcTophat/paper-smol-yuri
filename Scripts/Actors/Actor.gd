@@ -38,6 +38,7 @@ func _turn(target_rotation: float, dead_zone: float = 5.0) -> void:
 # plays an animation, and uses the back version if needed
 func _play_anim(anim_name : String) -> void:
 	if (_anim_player == null):
+		print("No animation player, gromit!");
 		return;
 	if (_anim_player.get_animation(anim_name) == null):
 		return;
@@ -53,5 +54,6 @@ func _play_anim(anim_name : String) -> void:
 # gets the current animation
 func _current_animation() -> String:
 	if (_anim_player == null):
+		print("No animation player, gromit!");
 		return "";
 	return _anim_player.current_animation;
