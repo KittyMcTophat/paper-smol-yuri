@@ -1,7 +1,8 @@
-extends Control
+extends CanvasLayer
 
 class_name Credits
 
+signal credits_start;
 signal credits_over;
 
 export var scroll_speed : float = 30.0;
@@ -13,23 +14,18 @@ export(float, 0.0, 1.0) var screen_position : float = 0.5;
 export(String, FILE, "*.json") var credits_json = null;
 export(Color) var background_color : Color = Color.black;
 export(AudioStreamSample) var music : AudioStreamSample = null;
+export var fade_out_when_done : bool = false;
 
-var _last_control : Control = null;
 var _is_credits_running : bool = false;
 
-onready var _color_rect : ColorRect = $ColorRect;
+onready var _color_rect : ColorRect = $Control/ColorRect;
 onready var _audio_player : AudioStreamPlayer = $AudioStreamPlayer;
-onready var _control : Control = $Control;
 onready var _vbox : VBoxContainer = $Control/VBoxContainer;
-onready var _image : TextureRect = $Control/VBoxContainer/Image;
-onready var _title : Label = $Control/VBoxContainer/Title;
-onready var _default : Label = $Control/VBoxContainer/Default;
-onready var _spacing : Label = $Control/VBoxContainer/Spacing;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_update_x();
-	_control.rect_position.y = self.rect_size.y + (scroll_speed * start_delay);
+	_vbox.rect_position.y = $Control.rect_size.y + (scroll_speed * start_delay);
 	
 #warning-ignore:RETURN_VALUE_DISCARDED
 	get_viewport().connect("size_changed", self, "_update_x");
@@ -44,6 +40,12 @@ func _ready():
 #warning-ignore:RETURN_VALUE_DISCARDED
 	file_read.open(credits_json, File.READ)
 	var json_parse : Array = parse_json(file_read.get_as_text());
+	
+	var _image : TextureRect = $Control/VBoxContainer/Image;
+	var _title : Label = $Control/VBoxContainer/Title;
+	var _default : Label = $Control/VBoxContainer/Default;
+	var _spacing : Label = $Control/VBoxContainer/Spacing;
+	
 	for i in json_parse:
 		match i["type"]:
 			"Title":
@@ -51,24 +53,20 @@ func _ready():
 				new_label = _title.duplicate();
 				new_label.text = i["text"];
 				_vbox.add_child(new_label);
-				_last_control = new_label;
 			"Default":
 				var new_label : Label;
 				new_label = _default.duplicate();
 				new_label.text = i["text"];
 				_vbox.add_child(new_label);
-				_last_control = new_label;
 			"Spacing":
 				for _j in range(i["amount"]):
-					_last_control = _spacing.duplicate();
-					_vbox.add_child(_last_control);
+					_vbox.add_child(_spacing.duplicate());
 			"Image":
 				var new_texture : Texture = ResourceLoader.load(i["path"]);
 				var new_texture_rect : TextureRect = _image.duplicate();
 				new_texture_rect.texture = new_texture;
 				new_texture_rect.rect_min_size.x = new_texture.get_width() * i["scale"];
 				new_texture_rect.rect_min_size.y = new_texture.get_height() * i["scale"];
-				_last_control = new_texture_rect;
 				_vbox.add_child(new_texture_rect);
 			_:
 				pass;
@@ -82,20 +80,23 @@ func _process(delta):
 		return;
 	
 	if (speedup_input == ""):
-		_control.rect_position.y -= scroll_speed * delta;
+		_vbox.rect_position.y -= scroll_speed * delta;
 	else:
 		if (Input.is_action_pressed(speedup_input)):
-			_control.rect_position.y -= scroll_speed * delta * speedup_multiplier;
+			_vbox.rect_position.y -= scroll_speed * delta * speedup_multiplier;
 		else:
-			_control.rect_position.y -= scroll_speed * delta;
+			_vbox.rect_position.y -= scroll_speed * delta;
 	
-	if (_last_control.get_global_transform().origin.y < -_last_control.rect_size.y - (scroll_speed * end_delay)):
+	if (_vbox.get_global_transform().origin.y < -_vbox.rect_size.y - (scroll_speed * end_delay)):
 		_is_credits_running = false;
 		
 		get_tree().paused = false;
 		Global.allow_pause = true;
 		
 		emit_signal("credits_over");
+		
+		if (fade_out_when_done):
+			$AnimationPlayer.play("FadeOut");
 
 func _roll_credits():
 	_is_credits_running = true;
@@ -103,10 +104,13 @@ func _roll_credits():
 	get_tree().paused = true;
 	Global.allow_pause = false;
 	
+	emit_signal("credits_start");
+	
 	$AnimationPlayer.play("FadeIn");
 
 func _update_x():
-	_control.rect_position.x = self.rect_size.x * screen_position;
+	_vbox.anchor_left = screen_position;
+	_vbox.anchor_right = screen_position;
 
 func _on_AudioStreamPlayer_finished():
 	_audio_player.play(0.0);

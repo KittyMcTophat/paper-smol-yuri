@@ -14,7 +14,6 @@ var current_level_controller : LevelController = null;
 var current_player : Player = null;
 
 var coin_counter : CoinCounter = null;
-var credits : Credits = null;
 var dialogue_box : DialogueBox = null;
 var pause_menu : PauseMenu = null;
 
@@ -24,7 +23,6 @@ func _ready():
 	add_child(preload("res://Scenes/GUI/AllGUI.tscn").instance());
 	
 	coin_counter = $AllGUI/CoinCounter;
-	credits = $AllGUI/Credits;
 	dialogue_box = $AllGUI/DialogueSystem;
 	pause_menu = $AllGUI/PauseMenu;
 
@@ -47,6 +45,7 @@ func load_scene(scene: String):
 	allow_pause = true;
 	allow_jump = true;
 	get_tree().paused = false;
+	
 
 func reload_scene():
 	allow_pause = false;
