@@ -19,9 +19,9 @@ func _ready():
 	dialogue_json_parse = parse_json(file_read.get_as_text());
 	
 	if (interact_on_ready):		
-		if (Global.get_node_or_null("SplashScreen")):
+		if (Global.get_node_or_null("AllGUI/SplashScreen")):
 		#warning-ignore:RETURN_VALUE_DISCARDED
-			Global.get_node("SplashScreen").connect("splash_screen_over", self, "_interact");
+			Global.get_node("AllGUI/SplashScreen").connect("splash_screen_over", self, "_interact");
 		else:
 			_interact();
 
@@ -30,10 +30,6 @@ func _process(_delta):
 		_interact();
 
 func _interact():
-	# wait three frames to prevent graphical errors when interact_on_ready is enabled
-	for _i in range(3):
-		yield(get_tree(), "idle_frame");
-	
 	Global.dialogue_box.start_dialogue(dialogue_json_parse, self);
 
 func _dialogue_over():

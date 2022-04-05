@@ -44,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Actors/Overworld/InteractableActor.gd"
 }, {
-"base": "Spatial",
+"base": "WorldEnvironment",
 "class": "LevelController",
 "language": "GDScript",
 "path": "res://Scripts/LevelController.gd"
@@ -144,7 +144,7 @@ texture={
 "flags/filter": false,
 "flags/mipmaps": false,
 "flags/repeat": 0,
-"flags/srgb": 2,
+"flags/srgb": 1,
 "process/HDR_as_SRGB": false,
 "process/fix_alpha_border": true,
 "process/invert_color": false,
@@ -153,6 +153,13 @@ texture={
 "size_limit": 0,
 "stream": false,
 "svg/scale": 1.0
+}
+wavefront_obj={
+"generate_tangents": true,
+"octahedral_compression": true,
+"offset_mesh": Vector3( 0, 0, 0 ),
+"optimize_mesh_flags": 4286,
+"scale_mesh": Vector3( 0.1, 0.1, 0.1 )
 }
 
 [input]
@@ -254,5 +261,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+misc/lossless_compression/force_png=true
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false

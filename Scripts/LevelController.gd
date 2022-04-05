@@ -1,19 +1,25 @@
-extends Spatial
+extends WorldEnvironment
 
 class_name LevelController
 
 enum {NONE, OVERWORLD, BATTLE}
 
 export(int, "None", "Overworld", "Battle") var default_active : int = OVERWORLD;
+export var background_texture : Texture = null;
 
 var active : int = -1;
 
 onready var overworld : Spatial = $Overworld;
 onready var battle : Spatial = $Battle;
-onready var fade_rect_anim_player : AnimationPlayer = $ColorRect/AnimationPlayer;
+onready var fade_rect_anim_player : AnimationPlayer = $CanvasLayer2/ColorRect/AnimationPlayer;
 
 func _ready():
 	Global.current_level_controller = self;
+	
+	if (background_texture != null):
+		$CanvasLayer/TextureRect.texture = background_texture;
+	
+	environment = preload("res://level_env.tres");
 	
 	match default_active:
 		NONE:

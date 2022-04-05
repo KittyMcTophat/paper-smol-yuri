@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
+[ext_resource path="res://Scripts/Resources/MovementParams.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Objects/Spikes.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/SmolYuri.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BattleActor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Objects/MovingPlatform.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/GUI/Credits.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Objects/CreditsPlayer.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BaseEnemy.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Actors/Overworld/SmolYurisSmolCat.tscn" type="PackedScene" id=12]
@@ -18,10 +20,17 @@
 
 [sub_resource type="BoxShape" id=2]
 
-[sub_resource type="CubeMesh" id=3]
-
-[sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 1, 0, 0, 1 )
+[sub_resource type="Resource" id=7]
+resource_local_to_scene = true
+script = ExtResource( 1 )
+jump_strength = 5.0
+movement_speed = 4.0
+h_velocity_lerp_weight = 5.0
+midair_h_lerp_multiplier = 0.5
+vertical_lerp_weight = 3.0
+kill_y = -5.0
+midair_jumps = 0
+allow_moonjump = false
 
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 2.63265, 1, 1 )
@@ -29,7 +38,7 @@ extents = Vector3( 2.63265, 1, 1 )
 [node name="LevelController" instance=ExtResource( 10 )]
 
 [node name="MeshInstance" type="MeshInstance" parent="Overworld" index="0"]
-transform = Transform( 34, 0, 0, 0, 0.02, 0, 0, 0, 34, 0, 0, 0 )
+transform = Transform( 34, 0, 0, 0, 0.02, 0, 0, 0, 34, 0, -0.04, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -79,19 +88,11 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="Overworld/MeshInstance5/StaticBody" index="0"]
 shape = SubResource( 2 )
 
-[node name="MeshInstance6" type="MeshInstance" parent="Overworld" index="5"]
-transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 0.5, 3, 0, -5 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
-
-[node name="StaticBody" type="StaticBody" parent="Overworld/MeshInstance6" index="0"]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="Overworld/MeshInstance6/StaticBody" index="0"]
-shape = SubResource( 2 )
+[node name="Spikes" parent="Overworld" index="5" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62689, 0, -4.52464 )
 
 [node name="SmolYuri" parent="Overworld" index="6" instance=ExtResource( 5 )]
+movement_params = SubResource( 7 )
 
 [node name="SmolCoin" parent="Overworld" index="7" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
@@ -128,15 +129,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
 
 [node name="MovingPlatform" parent="Overworld" index="16" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -9 )
-target_points = [ Vector3( 2, 2, -9 ), Vector3( 2, 2, 0 ), Vector3( 7, 2, -4.5 ) ]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 2, -9 )
+target_points = [ Vector3( 1.75, 2, -9 ), Vector3( 1.75, 2, 0 ), Vector3( 7, 2, -4.5 ) ]
 
-[node name="Credits" parent="Overworld" index="17" instance=ExtResource( 9 )]
+[node name="Spikes" parent="Overworld/MovingPlatform" index="0" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.15, 0.45 )
 
-[node name="SmolCoin2" parent="Overworld" index="18" instance=ExtResource( 6 )]
+[node name="SmolCoin2" parent="Overworld" index="17" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, -4.5 )
 
-[node name="ProjectileArea" type="Area" parent="Overworld" index="19"]
+[node name="CreditsPlayer" parent="Overworld/SmolCoin2" index="4" instance=ExtResource( 9 )]
+
+[node name="ProjectileArea" type="Area" parent="Overworld" index="18"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4502, 0, 0 )
 collision_layer = 256
 collision_mask = 16
@@ -144,5 +148,5 @@ collision_mask = 16
 [node name="CollisionShape" type="CollisionShape" parent="Overworld/ProjectileArea" index="0"]
 shape = SubResource( 6 )
 
-[connection signal="credits_over" from="Overworld/Credits" to="Overworld/SmolCookie" method="collect"]
-[connection signal="coin_collected" from="Overworld/SmolCoin2" to="Overworld/Credits" method="_roll_credits"]
+[connection signal="coin_collected" from="Overworld/SmolCoin2" to="Overworld/SmolCoin2/CreditsPlayer" method="_roll_credits"]
+[connection signal="credits_are_over" from="Overworld/SmolCoin2/CreditsPlayer" to="Overworld/SmolCookie" method="collect"]

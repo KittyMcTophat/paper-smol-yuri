@@ -94,6 +94,7 @@ func _physics_process(delta) -> void:
 	for i in get_slide_count():
 		if (get_slide_collision(i).collider.get_collision_layer_bit(2)):
 			_go_to_last_safe_spot();
+			break;
 	
 	_update_animation();
 	_update_last_safe_spot();

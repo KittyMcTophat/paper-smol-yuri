@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 0, 0, 64, 48 ) ]
+"values": [ Rect2( 0, 0, 56, 48 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -57,7 +57,7 @@ shape = SubResource( 1 )
 offset = Vector2( 0, 26 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 64, 48 )
+region_rect = Rect2( 0, 0, 56, 48 )
 
 [node name="AnimationPlayer" parent="." index="3"]
 pause_mode = 2

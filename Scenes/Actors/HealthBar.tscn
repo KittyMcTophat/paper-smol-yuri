@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Under.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/GUI/Texture_Progress_Progress.png" type="Texture" id=2]
@@ -6,7 +6,10 @@
 [ext_resource path="res://Scripts/Actors/HealthBar.gd" type="Script" id=4]
 [ext_resource path="res://ui_theme.tres" type="Theme" id=5]
 [ext_resource path="res://Fonts/FontResources/PressStart2P_Size8.tres" type="DynamicFont" id=6]
+[ext_resource path="res://default_env.tres" type="Environment" id=7]
 
+[sub_resource type="World" id=2]
+environment = ExtResource( 7 )
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -17,6 +20,8 @@ script = ExtResource( 4 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 80, 24 )
+own_world = true
+world = SubResource( 2 )
 transparent_bg = true
 usage = 1
 render_target_v_flip = true

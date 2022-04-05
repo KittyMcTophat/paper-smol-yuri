@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Health_Bar.png-9b1b71c61ad645b755c312dc012a0c87.stex"
+path="res://.import/Spikes.png-6ee6c9f2546e91cf8c1d4bffc593035b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUI/Health_Bar.png"
-dest_files=[ "res://.import/Health_Bar.png-9b1b71c61ad645b755c312dc012a0c87.stex" ]
+source_file="res://Meshes/Spikes.png"
+dest_files=[ "res://.import/Spikes.png-6ee6c9f2546e91cf8c1d4bffc593035b.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
