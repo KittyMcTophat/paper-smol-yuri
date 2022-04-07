@@ -63,7 +63,8 @@ func advance_text():
 		speaker_label.text = current_dialogue[current_line]["speaker"];
 		if (current_dialogue[current_line].has("portrait")):
 			portrait_border.visible = true;
-			portrait.texture = load(current_dialogue[current_line]["portrait"]);
+			if (current_dialogue[current_line]["portrait"] != ""):
+				portrait.texture = load(current_dialogue[current_line]["portrait"]);
 		else:
 			portrait_border.visible = false;
 
