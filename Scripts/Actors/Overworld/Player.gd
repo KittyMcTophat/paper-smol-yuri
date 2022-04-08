@@ -33,8 +33,6 @@ func _ready():
 	_healthbar._update_health(cur_health);
 	
 	_last_safe_location = transform.origin;
-	
-	Global.current_player = self;
 
 func _physics_process(delta) -> void:
 	_update_grounded();

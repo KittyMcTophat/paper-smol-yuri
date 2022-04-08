@@ -11,7 +11,6 @@ var allow_pause : bool = true;
 var allow_jump : bool = true;
 
 var current_level_controller : LevelController = null;
-var current_player : Player = null;
 
 var coin_counter : CoinCounter = null;
 var dialogue_box : DialogueBox = null;
