@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Resources/MovementParams.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Objects/Spikes.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/Actors/Battle/Players/SmolKnife.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BaseProjectile.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Actors/Battle/Players/SmolSunshineAttack.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=16]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -36,6 +37,7 @@ allow_moonjump = false
 extents = Vector3( 2.63265, 1, 1 )
 
 [node name="LevelController" instance=ExtResource( 10 )]
+background_texture = ExtResource( 16 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Overworld" index="0"]
 transform = Transform( 34, 0, 0, 0, 0.02, 0, 0, 0, 34, 0, -0.04, 0 )

@@ -17,6 +17,10 @@ func _ready():
 	Global.current_level_controller = self;
 	
 	if (background_texture != null):
+		# converts to linear color to prevent a graphical error
+		if (background_texture.flags & Texture.FLAG_CONVERT_TO_LINEAR):
+			background_texture.flags += Texture.FLAG_CONVERT_TO_LINEAR;
+		
 		$CanvasLayer/TextureRect.texture = background_texture;
 	
 	environment = preload("res://level_env.tres");
