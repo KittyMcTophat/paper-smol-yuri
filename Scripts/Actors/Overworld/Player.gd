@@ -76,7 +76,7 @@ func _physics_process(delta) -> void:
 				_midair_jumps_left -= 1;
 				_jump();
 	
-	if (!Input.is_action_pressed("jump") && !_grounded):
+	if (!Input.is_action_pressed("jump") && !is_on_floor()):
 		if (_velocity.y > 0):
 			_velocity.y = lerp(_velocity.y, 0, movement_params.vertical_lerp_weight * delta);
 	

@@ -25,10 +25,10 @@ background_texture = ExtResource( 16 )
 [node name="YurisFloatingHead" parent="Overworld" index="0" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0 )
 
-[node name="SmolYuri" parent="Overworld" index="1" instance=ExtResource( 5 )]
-
-[node name="SmolSmolYuri" parent="Overworld" index="2" instance=ExtResource( 17 )]
+[node name="SmolSmolYuri" parent="Overworld" index="1" instance=ExtResource( 17 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 0 )
+
+[node name="SmolYuri" parent="Overworld" index="2" instance=ExtResource( 5 )]
 
 [node name="SmolCoin" parent="Overworld" index="3" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
