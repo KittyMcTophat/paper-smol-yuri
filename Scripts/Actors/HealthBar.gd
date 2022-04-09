@@ -50,10 +50,10 @@ func _update_health(new_health : int) -> int:
 	return current_health;
 
 func _assign_color():
-	if (current_health < max_health * danger_zone):
+	if (current_health <= max_health * danger_zone):
 		health_bar_over.tint_progress = danger_color;
 		return;
-	if (current_health < max_health * caution_zone):
+	if (current_health <= max_health * caution_zone):
 		health_bar_over.tint_progress = caution_color;
 		return
 	health_bar_over.tint_progress = healthy_color;
