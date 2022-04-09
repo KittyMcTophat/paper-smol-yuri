@@ -54,7 +54,6 @@ shape = SubResource( 3 )
 [node name="GroundDetector" type="Area" parent="." index="6"]
 collision_layer = 0
 collision_mask = 129
-monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="GroundDetector" index="0"]
 shape = SubResource( 1 )

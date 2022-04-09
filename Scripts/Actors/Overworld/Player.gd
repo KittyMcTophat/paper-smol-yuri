@@ -130,6 +130,7 @@ func _make_footstep_particles() -> void:
 
 func _update_last_safe_spot():
 	_safe_ground_raycast.force_raycast_update();
+	
 	if (_safe_ground_raycast.is_colliding() && !(_harm_detector_area.get_overlapping_bodies().size() > 0)):
 		_last_safe_location = transform.origin;
 
