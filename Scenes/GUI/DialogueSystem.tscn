@@ -127,7 +127,7 @@ __meta__ = {
 
 [node name="DialogueBox" type="NinePatchRect" parent="MarginContainer"]
 visible = false
-self_modulate = Color( 1, 1, 1, 0.784314 )
+self_modulate = Color( 1, 1, 1, 0.941176 )
 margin_left = 100.0
 margin_right = 868.0
 margin_bottom = 192.0

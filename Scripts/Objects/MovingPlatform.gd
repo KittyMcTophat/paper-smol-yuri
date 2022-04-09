@@ -22,16 +22,13 @@ func _physics_process(_delta):
 	
 	if (vector_to_next_point.length() < 0.05):
 		_next_point += 1;
-		
-		if (_next_point >= target_points.size()):
-			_next_point = 0;
+		_next_point = _next_point % target_points.size();
 		
 		_timer.start();
 		_stopped = true;
 	
-	vector_to_next_point = vector_to_next_point.normalized();
 #warning-ignore:RETURN_VALUE_DISCARDED
-	move_and_slide(vector_to_next_point * velocity);
+	move_and_slide(vector_to_next_point.normalized() * velocity);
 
 func calc_vector_to_next_point() -> Vector3:
 	return target_points[_next_point] - transform.origin;
