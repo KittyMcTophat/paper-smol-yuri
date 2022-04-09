@@ -4,7 +4,7 @@ class_name Player
 
 export(Resource) var movement_params = null;
 
-export var footstep_particle : PackedScene = null;
+export var dust_particles : PackedScene = null;
 
 # Health variables
 export var hazard_damage : int = 1;
@@ -17,6 +17,7 @@ var _velocity : Vector3 = Vector3.ZERO;
 var _last_safe_location : Vector3 = Vector3.ZERO;
 var _grounded : bool = false;
 var _midair_jumps_left : int = 0;
+var _was_on_floor_last_frame : bool = true;
 
 var party : Array = [];
 
@@ -24,9 +25,6 @@ onready var _ground_detector_area : Area = $GroundDetector;
 onready var _harm_detector_area : Area = $HarmDetector;
 onready var _safe_ground_raycast : RayCast = $SafeGroundRaycast;
 onready var _healthbar : Spatial = $HealthBar;
-
-# gets the gravity from project settings
-onready var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity");
 
 func _ready():
 	_healthbar._update_max_health(max_health);
@@ -67,16 +65,16 @@ func _physics_process(delta) -> void:
 			delta * movement_params.h_velocity_lerp_weight * movement_params.midair_h_lerp_multiplier);
 	
 	# applies gravity to velocity
-	_velocity.y -= _gravity * delta
+	_velocity += movement_params.gravity * delta;
 	
 	# jumping code
 	if Global.allow_jump:
 		if Input.is_action_just_pressed("jump"):
 			if (_grounded || movement_params.allow_moonjump):
-				_velocity.y = movement_params.jump_strength;
+				_jump();
 			elif(_midair_jumps_left > 0):
 				_midair_jumps_left -= 1;
-				_velocity.y = movement_params.jump_strength;
+				_jump();
 	
 	if (!Input.is_action_pressed("jump") && !_grounded):
 		if (_velocity.y > 0):
@@ -84,6 +82,12 @@ func _physics_process(delta) -> void:
 	
 	# applies the velocity to the kinematic body
 	_velocity = move_and_slide(_velocity, Vector3.UP, true);
+	
+	if (is_on_floor() && !_was_on_floor_last_frame):
+		_squash(Vector3(1.1, 0.9, 1.1));
+		_make_dust_particles();
+	
+	_was_on_floor_last_frame = is_on_floor();
 	
 	if (transform.origin.y < movement_params.kill_y):
 		_go_to_last_safe_spot();
@@ -96,6 +100,11 @@ func _physics_process(delta) -> void:
 	
 	_update_animation();
 	_update_last_safe_spot();
+
+func _jump() -> void:
+	_velocity.y = movement_params.jump_strength;
+	_squash(Vector3(0.9, 1.1, 0.9));
+	_make_dust_particles();
 
 # updates the _grounded boolean
 func _update_grounded() -> void:
@@ -124,8 +133,10 @@ func _update_animation() -> void:
 		_play_anim("Jumping");
 		_anim_player.playback_speed = 1.0;
 
-func _make_footstep_particles() -> void:
-	var particle : Particles = footstep_particle.instance();
+func _make_dust_particles() -> void:
+	if (dust_particles == null):
+		return;
+	var particle : Particles = dust_particles.instance();
 	add_child(particle);
 
 func _update_last_safe_spot():

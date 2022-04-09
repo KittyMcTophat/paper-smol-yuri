@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Resources/MovementParams.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+jump_strength = 3.0
+movement_speed = 4.0
+h_velocity_lerp_weight = 5.0
+midair_h_lerp_multiplier = 0.5
+vertical_lerp_weight = 3.0
+kill_y = -5.0
+midair_jumps = 0
+allow_moonjump = false
+gravity = Vector3( 0, -7, 0 )

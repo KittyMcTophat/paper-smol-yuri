@@ -57,3 +57,11 @@ func _current_animation() -> String:
 		print("No animation player, gromit!");
 		return "";
 	return _anim_player.current_animation;
+
+# squashes the sprite, then tweens it back to its original scale
+func _squash(squash_size : Vector3 = Vector3(1.0, 1.0, 1.0), time : float = 0.3):
+	_sprite_3d.scale = squash_size;
+# warning-ignore:return_value_discarded
+	_tween_node.interpolate_property(_sprite_3d, "scale", squash_size, Vector3(1.0, 1.0, 1.0), time, Tween.TRANS_LINEAR, Tween.EASE_IN);
+# warning-ignore:return_value_discarded
+	_tween_node.start();

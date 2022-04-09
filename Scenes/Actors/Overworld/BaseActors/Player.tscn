@@ -1,22 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Actors/Actor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Actors/Overworld/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Actors/HealthBar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Resources/MovementParams.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Actors/CameraController.gd" type="Script" id=5]
-
-[sub_resource type="Resource" id=4]
-resource_local_to_scene = true
-script = ExtResource( 4 )
-jump_strength = 5.0
-movement_speed = 4.0
-h_velocity_lerp_weight = 5.0
-midair_h_lerp_multiplier = 0.5
-vertical_lerp_weight = 3.0
-kill_y = -5.0
-midair_jumps = 0
-allow_moonjump = false
 
 [sub_resource type="CapsuleShape" id=2]
 resource_local_to_scene = true
@@ -34,7 +21,6 @@ height = 0.3
 collision_layer = 2
 collision_mask = 197
 script = ExtResource( 2 )
-movement_params = SubResource( 4 )
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 2 )
