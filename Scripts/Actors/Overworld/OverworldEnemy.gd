@@ -6,6 +6,7 @@ signal battle_end
 signal battle_start
 
 export var move_speed : float = 2.0;
+export var jump_strength : float = 5.0;
 export var move_lerp : float = 5.0;
 export var gravity : Vector3 = Vector3(0.0, -9.8, 0.0);
 export(Array, PackedScene) var enemies : Array = [];
@@ -38,6 +39,9 @@ func _physics_process(delta):
 		
 		velocity.x = lerp(velocity.x, vector_to_target.x, delta * move_lerp);
 		velocity.z = lerp(velocity.z, vector_to_target.z, delta * move_lerp);
+	
+	if (is_on_wall() && is_on_floor()):
+		velocity.y = jump_strength
 	
 	velocity = move_and_slide(velocity, Vector3.UP);
 
