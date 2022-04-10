@@ -10,11 +10,14 @@ export var background_texture : Texture = null;
 var active : int = -1;
 
 onready var overworld : Spatial = $Overworld;
-onready var battle : Spatial = $Battle;
+onready var battle : BattleController = $Battle;
 onready var fade_rect_anim_player : AnimationPlayer = $CanvasLayer2/ColorRect/AnimationPlayer;
 
 func _ready():
 	Global.current_level_controller = self;
+	
+	overworld.visible = true;
+	battle.visible = true;
 	
 	if (background_texture != null):
 		# converts to linear color to prevent a graphical error

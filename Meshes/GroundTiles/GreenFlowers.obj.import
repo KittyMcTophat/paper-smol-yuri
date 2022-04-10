@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/GreenFlowers.obj-34bbbc3f4c094da906fdba4be2da4302.mesh"
+
+[deps]
+
+files=[ "res://.import/GreenFlowers.obj-34bbbc3f4c094da906fdba4be2da4302.mesh" ]
+
+source_file="res://Meshes/GroundTiles/GreenFlowers.obj"
+dest_files=[ "res://.import/GreenFlowers.obj-34bbbc3f4c094da906fdba4be2da4302.mesh", "res://.import/GreenFlowers.obj-34bbbc3f4c094da906fdba4be2da4302.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 0.1, 0.1, 0.1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

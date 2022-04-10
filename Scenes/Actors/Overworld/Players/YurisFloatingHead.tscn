@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Sprites/Actors/YurisFloatingHead/YurisFloatingHeadStill.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Actors/YurisFloatingHead/YurisFloatingHeadStill_Back.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/YurisFloatingHead MovementParams.tres" type="Resource" id=4]
+[ext_resource path="res://Scenes/Actors/DustParticles.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape" id=6]
 resource_local_to_scene = true
@@ -124,6 +125,7 @@ tracks/0/keys = {
 
 [node name="YurisFloatingHead" instance=ExtResource( 3 )]
 movement_params = ExtResource( 4 )
+dust_particles = ExtResource( 5 )
 
 [node name="CollisionShape" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.4, 0 )

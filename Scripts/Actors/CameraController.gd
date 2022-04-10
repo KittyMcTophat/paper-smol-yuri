@@ -20,8 +20,12 @@ func _ready():
 	
 	_update_fov();
 
+func _enter_tree():
+	yield(get_tree(), "idle_frame");
+	_update_fov();
+
 func _update_fov():
-	var viewport_size : Vector2 = get_viewport().size;
+	var viewport_size : Vector2 = Global.get_viewport().size;
 	
 	if (float(viewport_size.x) / float(viewport_size.y) >= width_over_height):
 		_keep_height();

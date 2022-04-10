@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriWalking.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriWalking_Back.png" type="Texture" id=5]
-[ext_resource path="res://Scenes/Actors/Overworld/BaseActors/DustParticles.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Actors/DustParticles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/SmolYuri MovementParams.tres" type="Resource" id=7]
 
 [sub_resource type="CapsuleShape" id=6]
