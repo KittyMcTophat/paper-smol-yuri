@@ -10,12 +10,16 @@ export var jump_strength : float = 5.0;
 export var move_lerp : float = 5.0;
 export var gravity : Vector3 = Vector3(0.0, -9.8, 0.0);
 export(Array, PackedScene) var enemies : Array = [];
+export var dust_particles : PackedScene = null;
 export var reward_money : int = 25;
 
 var enemies_instanced : Array = []
 
 var target : Spatial = null;
 var velocity : Vector3 = Vector3.ZERO;
+var was_on_floor_last_frame : bool = true;
+
+onready var ground_raycast : RayCast = $GroundRayCast;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,10 +44,32 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, vector_to_target.x, delta * move_lerp);
 		velocity.z = lerp(velocity.z, vector_to_target.z, delta * move_lerp);
 	
-	if (is_on_wall() && is_on_floor()):
-		velocity.y = jump_strength
-	
 	velocity = move_and_slide(velocity, Vector3.UP);
+	
+	if (is_on_floor() && !was_on_floor_last_frame):
+		_squash(Vector3(1.1, 0.9, 1.1));
+		_make_dust_particles();
+	
+	if (is_on_wall() && is_on_floor()):
+		_jump();
+	else:
+		if (is_on_floor()):
+			ground_raycast.force_raycast_update()
+			if (!ground_raycast.is_colliding()):
+				_jump();
+	
+	was_on_floor_last_frame = is_on_floor();
+
+func _jump():
+	velocity.y = jump_strength;
+	_squash(Vector3(0.9, 1.1, 0.9));
+	_make_dust_particles();
+
+func _make_dust_particles() -> void:
+	if (dust_particles == null):
+		return;
+	var particle : Particles = dust_particles.instance();
+	add_child(particle);
 
 func _on_AggroArea_body_entered(body):
 	if (body is Player):

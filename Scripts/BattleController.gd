@@ -7,11 +7,11 @@ signal battle_end_early
 
 class_name BattleController
 
-export var player_separation : float = -1.0;
-export var enemy_separation : float = 1.0;
+export var player_separation : float = 1.0;
+export var enemy_separation : float = -1.0;
 
-export var first_player_position : Vector3 = Vector3(-1.5, 0.0, 0.0);
-export var first_enemy_position : Vector3 = Vector3(1.5, 0.0, 0.0);
+export var first_player_position : Vector3 = Vector3(-4.5, 0.0, 0.0);
+export var first_enemy_position : Vector3 = Vector3(4.5, 0.0, 0.0);
 
 onready var _camera : Camera = $Camera;
 onready var _level_controller : WorldEnvironment = get_parent();
