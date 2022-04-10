@@ -24,4 +24,4 @@ display_number = false
 wait_time = 1.4
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_jump_and_fire_projectile"]
+[connection signal="timeout" from="Timer" to="." method="_fire_projectile"]

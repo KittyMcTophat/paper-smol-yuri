@@ -34,14 +34,17 @@ func _ready():
 	else:
 		_hide_number();
 
-func _update_health(new_health : int) -> int:
+func _update_health(new_health : int, do_tween : bool = true) -> int:
 	current_health = int(clamp(new_health, 0, max_health));
 	
 	health_bar_over.value = current_health;
-#warning-ignore:RETURN_VALUE_DISCARDED
-	tween.interpolate_property(health_bar_under, "value", null, current_health, 0.4, Tween.TRANS_LINEAR, Tween.EASE_OUT);
-#warning-ignore:RETURN_VALUE_DISCARDED
-	tween.start();
+	if (do_tween):
+	#warning-ignore:RETURN_VALUE_DISCARDED
+		tween.interpolate_property(health_bar_under, "value", null, current_health, 0.4, Tween.TRANS_LINEAR, Tween.EASE_OUT);
+	#warning-ignore:RETURN_VALUE_DISCARDED
+		tween.start();
+	else:
+		health_bar_under.value = current_health;
 	
 	_assign_color();
 	

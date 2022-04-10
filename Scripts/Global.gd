@@ -1,6 +1,7 @@
 extends Node
 
 signal scene_is_changing;
+signal scene_is_reloading;
 
 var money : int = 0;
 var cats_found : int = 0;
@@ -53,6 +54,8 @@ func reload_scene():
 	
 	current_level_controller.fade_rect_anim_player.play("Fade_In");
 	yield(current_level_controller.fade_rect_anim_player, "animation_finished");
+	
+	emit_signal("scene_is_reloading");
 	
 #warning-ignore:RETURN_VALUE_DISCARDED
 	get_tree().reload_current_scene();

@@ -31,6 +31,20 @@ func _ready():
 	_healthbar._update_health(cur_health);
 	
 	_last_safe_location = transform.origin;
+	
+	for i in range(party_scenes.size()):
+		party.push_back(party_scenes[i].instance());
+		add_child(party[i]);
+		remove_child(party[i]);
+	
+# warning-ignore:return_value_discarded
+	Global.connect("scene_is_changing", self, "_kill_party");
+# warning-ignore:return_value_discarded
+	Global.connect("scene_is_reloading", self, "_kill_party");
+	
+	yield(get_tree(), "idle_frame");
+# warning-ignore:return_value_discarded
+	Global.current_level_controller.battle.connect("battle_end_early", self, "_after_battle");
 
 func _physics_process(delta) -> void:
 	_update_grounded();
@@ -155,10 +169,22 @@ func hurt(damage : int = 1):
 	#TODO: add particle with damage number
 	cur_health -= damage;
 	cur_health = _healthbar._update_health(cur_health);
+	party[0].hurt(damage, false);
 	
 	if (cur_health == 0):
 		_kill();
 
+func _after_battle():
+	cur_health = party[0].current_health;
+	_healthbar._update_health(cur_health, false);
+
 func _kill():
 	if (reload_on_death):
 		Global.reload_scene();
+	else:
+		_kill_party();
+		queue_free();
+
+func _kill_party():
+	for i in party:
+		i.queue_free();

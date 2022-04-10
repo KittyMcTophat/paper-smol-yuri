@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Placeholder.png" type="Texture" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://Scenes/Tiles/HarmfulTiles.meshlib" type="MeshLibrary" id=5]
 [ext_resource path="res://Scripts/BattleController.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Actors/CameraController.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Actors/Battle/BaseActors/BattlePlayer.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Actors/Battle/BaseActors/BaseEnemy.tscn" type="PackedScene" id=9]
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 4, 2, 0.5 )
@@ -98,15 +96,9 @@ __meta__ = {
 pause_mode = 1
 script = ExtResource( 6 )
 
-[node name="Players" type="Spatial" parent="Battle"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0 )
+[node name="PlayersContainer" type="Spatial" parent="Battle"]
 
-[node name="BattlePlayer" parent="Battle/Players" instance=ExtResource( 8 )]
-
-[node name="Enemies" type="Spatial" parent="Battle"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0 )
-
-[node name="BaseEnemy" parent="Battle/Enemies" instance=ExtResource( 9 )]
+[node name="EnemiesContainer" type="Spatial" parent="Battle"]
 
 [node name="GridMap" type="GridMap" parent="Battle"]
 mesh_library = ExtResource( 4 )
@@ -131,6 +123,10 @@ collision_mask = 16
 [node name="CollisionShape" type="CollisionShape" parent="Battle/ProjectileArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="Battle"]
+wait_time = 5.0
+autostart = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.409576, 0.866025, 0.286788, -0.573576, -2.50718e-08, 0.819152, 0.709406, -0.5, 0.496732, 0, 0, 0 )
@@ -165,3 +161,5 @@ autoplay = "Fade_Out"
 anims/Fade_In = SubResource( 1 )
 anims/Fade_Out = SubResource( 2 )
 anims/RESET = SubResource( 3 )
+
+[connection signal="timeout" from="Battle/Timer" to="Battle" method="end_battle"]

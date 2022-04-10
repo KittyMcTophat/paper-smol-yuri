@@ -18,9 +18,3 @@ projectile = ExtResource( 3 )
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
-
-[node name="Timer" type="Timer" parent="." index="9"]
-wait_time = 1.4
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_jump_and_fire_projectile" binds= [ 5, Vector3( 1, 0, 0 ) ]]

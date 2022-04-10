@@ -19,7 +19,7 @@ onready var _healthbar : Spatial = $HealthBar;
 onready var _selector_arrow : Sprite3D = $SelectorArrow;
 
 var velocity : Vector3 = Vector3.ZERO;
-var was_on_floor_last_frame : bool = false;
+var was_on_floor_last_frame : bool = true;
 
 func _ready():
 	_healthbar._update_max_health(max_health);
@@ -42,11 +42,10 @@ func _do_your_turn() -> void:
 	emit_signal("turn_over");
 	return;
 
-func hurt(damage : int = 1) -> void:
+func hurt(damage : int = 1, do_tween : bool = true) -> void:
 	#TODO: add particle showing damage amount
 	current_health -= damage;
-	current_health = _healthbar._update_health(current_health);
-	print("taken " + str(damage) + " damage");
+	current_health = _healthbar._update_health(current_health, do_tween);
 	
 	if (current_health == 0):
 		_kill();
@@ -60,10 +59,15 @@ func _fire_projectile(direction : Vector3 = Vector3.LEFT, damage : int = attack)
 		# https://www.youtube.com/watch?v=iVGVXPuO3xQ
 		print("No projectile, gromit!");
 		return;
+	if (get_parent() == null):
+		# https://www.youtube.com/watch?v=iVGVXPuO3xQ
+		print("No parent, gromit!");
+		return;
 	
 	var new_projectile = projectile.instance();
 	
 	get_parent().add_child(new_projectile);
+	
 	new_projectile.global_transform.origin = _projectile_spawn_point.global_transform.origin;
 	
 	new_projectile.set_direction(direction);
