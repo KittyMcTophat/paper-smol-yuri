@@ -28,6 +28,11 @@
     
     {"type":"Spacing", "amount":2},
 
+    {"type":"Title", "text":"Head Battle Designer"},
+    {"type":"Default", "text":"Kitty_McTophat"},
+
+    {"type":"Spacing", "amount":2},
+
     {"type":"Title", "text":"Head Writer"},
     {"type":"Default", "text":"Kitty_McTophat"},
     
