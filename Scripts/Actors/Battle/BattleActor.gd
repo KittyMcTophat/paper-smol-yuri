@@ -10,8 +10,8 @@ export var attack : int = 1;
 export(int, LAYERS_3D_PHYSICS) var target_collision_layers : int = 2;
 export var projectile : PackedScene = null;
 
-onready var _projectile_target_point : Spatial = $ProjectileTargetPoint;
-onready var _projectile_spawn_point : Spatial = $ProjectileSpawnPoint;
+onready var _projectile_target_point : Position3D = $ProjectileTargetPoint;
+onready var _projectile_spawn_point : Position3D = $ProjectileSpawnPoint;
 onready var _healthbar : Spatial = $HealthBar;
 onready var _selector_arrow : Sprite3D = $SelectorArrow;
 
@@ -34,10 +34,12 @@ func hurt(damage : int = 1) -> void:
 		_kill();
 
 func _kill() -> void:
+	# https://www.youtube.com/watch?v=iVGVXPuO3xQ
 	print("No health, gromit!");
 
 func _fire_projectile(direction : Vector3 = Vector3.LEFT, damage : int = attack):
 	if (projectile == null):
+		# https://www.youtube.com/watch?v=iVGVXPuO3xQ
 		print("No projectile, gromit!");
 		return;
 	

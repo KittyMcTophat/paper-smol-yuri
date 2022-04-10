@@ -12,7 +12,8 @@ func _on_Area_body_entered(_body):
 func collect():
 	emit_signal("coin_collected");
 	if (Global.coin_counter == null):
-		print("Coin counter not found!!!")
+		# https://www.youtube.com/watch?v=iVGVXPuO3xQ
+		print("No coin counter, gromit!!!")
 		return;
 	Global.coin_counter.add_money(_value);
 	self.queue_free();

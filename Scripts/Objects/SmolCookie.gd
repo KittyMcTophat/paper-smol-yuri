@@ -14,4 +14,5 @@ func collect():
 	if (next_scene != ""):
 		Global.load_scene(next_scene);
 	else:
+		# https://www.youtube.com/watch?v=iVGVXPuO3xQ
 		print("No scene, gromit!");
