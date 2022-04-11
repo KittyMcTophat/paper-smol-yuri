@@ -93,5 +93,6 @@ func _battle_end():
 
 func _kill():
 	for enemy in enemies_instanced:
-		enemy.queue_free();
+		if (is_instance_valid(enemy)):
+			enemy.queue_free();
 	queue_free();

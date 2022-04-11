@@ -21,9 +21,20 @@ func _physics_process(delta):
 				velocity.y = lerp(velocity.y, 0.0, delta * vertical_lerp_weight);
 
 func _do_your_turn():
-	yield(get_tree().create_timer(0.5), "timeout");
+	_shoot();
 	
+	var projectiles_gone : bool = false;
+	while (!projectiles_gone):
+		yield(get_tree().create_timer(0.1), "timeout");
+		projectiles_gone = Global.current_level_controller.battle.are_projectiles_gone();
+
 	_end_turn();
 
 func _end_turn():
 	emit_signal("turn_over");
+
+func _shoot():
+	_fire_projectile(target_direction, attack);
+
+func _jump_shoot():
+	_jump_and_fire_projectile(jump_strength, target_direction, attack);

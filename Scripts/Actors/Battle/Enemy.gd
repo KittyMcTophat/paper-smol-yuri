@@ -31,8 +31,7 @@ func _end_turn():
 	emit_signal("turn_over");
 
 func _kill() -> void:
-	# https://www.youtube.com/watch?v=iVGVXPuO3xQ
-	print("No health, gromit!");
+	queue_free();
 
 func _shoot():
 	_fire_projectile(target_direction, attack);

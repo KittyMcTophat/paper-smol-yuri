@@ -63,8 +63,10 @@ func main_battle_loop():
 	
 	while (!is_battle_over):
 		for enemy in _enemies:
-			enemy._do_your_turn();
-			yield(enemy, "turn_over");
+			if (is_instance_valid(enemy)):
+				enemy._do_your_turn();
+				yield(enemy, "turn_over");
+			
 			is_battle_over = check_if_battle_over();
 			if (is_battle_over):
 				break;
@@ -80,10 +82,18 @@ func main_battle_loop():
 	end_battle();
 
 func check_if_battle_over() -> bool:
-	return false;
+	for enemy in _enemies:
+		if (is_instance_valid(enemy)):
+			return false;
+	
+	return true;
 
 func are_projectiles_gone() -> bool:
 	for child in _enemies_container.get_children():
+		if child is Projectile:
+			return false;
+
+	for child in _players_container.get_children():
 		if child is Projectile:
 			return false;
 	

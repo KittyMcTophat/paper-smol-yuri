@@ -5,7 +5,10 @@ class_name Shadow
 onready var _raycast : RayCast = $RayCast;
 onready var _sprite3D : Sprite3D = $Sprite3D;
 
-func _physics_process(_delta):
+func _ready():
+	_sprite3D.visible = false;
+
+func _process(_delta):
 	_raycast.force_raycast_update();
 	
 	if (_raycast.is_colliding()):
