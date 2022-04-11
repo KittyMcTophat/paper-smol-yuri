@@ -18,6 +18,10 @@ onready var _level_controller : WorldEnvironment = get_parent();
 onready var _players_container : Spatial = $PlayersContainer;
 onready var _enemies_container : Spatial = $EnemiesContainer;
 
+var _players : Array = [];
+var _enemies : Array = [];
+
+
 func start_battle(players : Array = [], enemies : Array = []):
 	Global.allow_pause = false;
 	Global.allow_jump = false;
@@ -38,6 +42,9 @@ func start_battle(players : Array = [], enemies : Array = []):
 		enemies[i].transform.origin = first_enemy_position;
 		enemies[i].transform.origin.x += enemy_separation * i;
 	
+	_players = players;
+	_enemies = enemies;
+	
 	emit_signal("battle_start_early");
 	
 	_level_controller.fade_rect_anim_player.play("Fade_Out");
@@ -48,6 +55,39 @@ func start_battle(players : Array = [], enemies : Array = []):
 	Global.get_tree().paused = false;
 	
 	emit_signal("battle_start");
+	
+	main_battle_loop();
+
+func main_battle_loop():
+	var is_battle_over : bool = false;
+	
+	while (!is_battle_over):
+		for enemy in _enemies:
+			enemy._do_your_turn();
+			yield(enemy, "turn_over");
+			is_battle_over = check_if_battle_over();
+			if (is_battle_over):
+				break;
+		
+		if (!is_battle_over):
+			for player in _players:
+				player._do_your_turn();
+				yield(player, "turn_over");
+				is_battle_over = check_if_battle_over();
+				if (is_battle_over):
+					break;
+	
+	end_battle();
+
+func check_if_battle_over() -> bool:
+	return false;
+
+func are_projectiles_gone() -> bool:
+	for child in _enemies_container.get_children():
+		if child is Projectile:
+			return false;
+	
+	return true;
 
 func end_battle():
 	Global.allow_pause = false;

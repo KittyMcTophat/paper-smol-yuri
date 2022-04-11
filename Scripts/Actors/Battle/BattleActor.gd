@@ -11,6 +11,7 @@ export var jump_strength : float = 5.0;
 export var gravity : Vector3 = Vector3(0.0, -9.8, 0.0);
 export var dust_particles : PackedScene = null;
 export(int, LAYERS_3D_PHYSICS) var target_collision_layers : int = 0;
+export var target_direction : Vector3 = Vector3(-1.0, 0.0, 0.0);
 export var projectile : PackedScene = null;
 
 onready var _projectile_target_point : Position3D = $ProjectileTargetPoint;
@@ -23,7 +24,7 @@ var was_on_floor_last_frame : bool = true;
 
 func _ready():
 	_healthbar._update_max_health(max_health);
-	_healthbar._update_health(current_health);
+	_healthbar._update_health(current_health, false);
 	
 	_selector_arrow.visible = false;
 
@@ -39,8 +40,10 @@ func _physics_process(delta):
 	was_on_floor_last_frame = is_on_floor();
 
 func _do_your_turn() -> void:
+	_end_turn();
+
+func _end_turn():
 	emit_signal("turn_over");
-	return;
 
 func hurt(damage : int = 1, do_tween : bool = true) -> void:
 	#TODO: add particle showing damage amount

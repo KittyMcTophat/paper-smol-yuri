@@ -28,7 +28,7 @@ onready var _healthbar : Spatial = $HealthBar;
 
 func _ready():
 	_healthbar._update_max_health(max_health);
-	_healthbar._update_health(cur_health);
+	_healthbar._update_health(cur_health, false);
 	
 	_last_safe_location = transform.origin;
 	
@@ -36,6 +36,7 @@ func _ready():
 		party.push_back(party_scenes[i].instance());
 		add_child(party[i]);
 		remove_child(party[i]);
+		party[i].personal_jump_input = "jump_" + str(i + 1);
 	
 # warning-ignore:return_value_discarded
 	Global.connect("scene_is_changing", self, "_kill_party");

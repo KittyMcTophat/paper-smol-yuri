@@ -2,7 +2,7 @@ extends Area
 
 class_name Projectile
 
-export var speed : float = 2.0;
+export var speed : float = 3.0;
 export var damage : int = 1;
 export var direction : Vector3 = Vector3.LEFT;
 export var pierces_targets : bool = false;

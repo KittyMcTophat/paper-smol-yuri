@@ -124,10 +124,6 @@ collision_mask = 16
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 4 )
 
-[node name="Timer" type="Timer" parent="Battle"]
-wait_time = 5.0
-autostart = true
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.409576, 0.866025, 0.286788, -0.573576, -2.50718e-08, 0.819152, 0.709406, -0.5, 0.496732, 0, 0, 0 )
 light_energy = 0.5
@@ -161,5 +157,3 @@ autoplay = "Fade_Out"
 anims/Fade_In = SubResource( 1 )
 anims/Fade_Out = SubResource( 2 )
 anims/RESET = SubResource( 3 )
-
-[connection signal="timeout" from="Battle/Timer" to="Battle" method="end_battle"]

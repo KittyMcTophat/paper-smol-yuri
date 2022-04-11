@@ -25,6 +25,8 @@ func _ready():
 	coin_counter = $AllGUI/CoinCounter;
 	dialogue_box = $AllGUI/DialogueSystem;
 	pause_menu = $AllGUI/PauseMenu;
+	
+	randomize();
 
 func load_scene(scene: String):
 #warning-ignore:RETURN_VALUE_DISCARDED
