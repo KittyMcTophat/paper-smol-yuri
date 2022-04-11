@@ -67,6 +67,8 @@ func main_battle_loop():
 				break;
 			
 			if (is_instance_valid(enemy)):
+				if (enemy.current_health == 0):
+					continue;
 				enemy._do_your_turn();
 				yield(enemy, "turn_over");
 		
