@@ -44,7 +44,8 @@ func start_dialogue(dialogue_json : Array, actor : InteractableActor):
 	advance_text();
 
 func end_dialogue():
-	Global.allow_pause = true;
+	if (Global.current_level_controller.active != 2):
+		Global.allow_pause = true;
 	get_tree().paused = false;
 	is_active = false;
 	anim_player.play("Hide");

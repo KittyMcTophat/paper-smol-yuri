@@ -25,12 +25,15 @@ func _do_your_turn() -> void:
 		yield(get_tree().create_timer(0.1), "timeout");
 		projectiles_gone = Global.current_level_controller.battle.are_projectiles_gone();
 	
+	yield(get_tree().create_timer(0.5), "timeout");
+	
 	_end_turn();
 
 func _end_turn():
 	emit_signal("turn_over");
 
 func _kill() -> void:
+	yield(get_tree().create_timer(0.4), "timeout");
 	queue_free();
 
 func _shoot():

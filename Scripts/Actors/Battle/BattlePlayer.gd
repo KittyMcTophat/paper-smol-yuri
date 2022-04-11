@@ -27,7 +27,9 @@ func _do_your_turn():
 	while (!projectiles_gone):
 		yield(get_tree().create_timer(0.1), "timeout");
 		projectiles_gone = Global.current_level_controller.battle.are_projectiles_gone();
-
+	
+	yield(get_tree().create_timer(0.5), "timeout");
+	
 	_end_turn();
 
 func _end_turn():

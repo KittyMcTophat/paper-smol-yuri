@@ -50,7 +50,6 @@ func start_battle(players : Array = [], enemies : Array = []):
 	_level_controller.fade_rect_anim_player.play("Fade_Out");
 	yield(_level_controller.fade_rect_anim_player, "animation_finished");	
 	
-	Global.allow_pause = true;
 	Global.allow_jump = true;
 	Global.get_tree().paused = false;
 	
@@ -63,21 +62,20 @@ func main_battle_loop():
 	
 	while (!is_battle_over):
 		for enemy in _enemies:
-			if (is_instance_valid(enemy)):
-				enemy._do_your_turn();
-				yield(enemy, "turn_over");
-			
 			is_battle_over = check_if_battle_over();
 			if (is_battle_over):
 				break;
+			
+			if (is_instance_valid(enemy)):
+				enemy._do_your_turn();
+				yield(enemy, "turn_over");
 		
-		if (!is_battle_over):
-			for player in _players:
-				player._do_your_turn();
-				yield(player, "turn_over");
-				is_battle_over = check_if_battle_over();
-				if (is_battle_over):
-					break;
+		for player in _players:
+			is_battle_over = check_if_battle_over();
+			if (is_battle_over):
+				break;
+			player._do_your_turn();
+			yield(player, "turn_over");
 	
 	end_battle();
 
@@ -100,7 +98,6 @@ func are_projectiles_gone() -> bool:
 	return true;
 
 func end_battle():
-	Global.allow_pause = false;
 	Global.allow_jump = false;
 	Global.get_tree().paused = true;
 	

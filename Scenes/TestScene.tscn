@@ -71,5 +71,6 @@ data = {
 [node name="Camera" parent="Battle" index="3"]
 current = true
 
+[connection signal="battle_start" from="Overworld/OverworldEnemy" to="Overworld/InteractableActor" method="_interact"]
 [connection signal="coin_collected" from="Overworld/SmolCoin2" to="Overworld/Credits" method="_roll_credits"]
 [connection signal="credits_over" from="Overworld/Credits" to="Overworld/SmolCookie" method="collect"]
