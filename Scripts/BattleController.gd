@@ -10,8 +10,8 @@ class_name BattleController
 export var player_separation : float = 1.0;
 export var enemy_separation : float = -1.0;
 
-export var first_player_position : Vector3 = Vector3(-4.5, 0.0, 0.0);
-export var first_enemy_position : Vector3 = Vector3(4.5, 0.0, 0.0);
+export var first_player_position : Vector3 = Vector3(-4.0, 0.0, 0.0);
+export var first_enemy_position : Vector3 = Vector3(4.0, 0.0, 0.0);
 
 onready var _camera : Camera = $Camera;
 onready var _level_controller : WorldEnvironment = get_parent();
@@ -73,12 +73,18 @@ func main_battle_loop():
 				yield(enemy, "turn_over");
 		
 		for player in _players:
+			player.enable_jump = false;
+		
+		for player in _players:
 			is_battle_over = check_if_battle_over();
 			if (is_battle_over):
 				break;
 			player._do_your_turn();
 			yield(player, "turn_over");
-	
+		
+		for player in _players:
+			player.enable_jump = true;
+		
 	end_battle();
 
 func check_if_battle_over() -> bool:

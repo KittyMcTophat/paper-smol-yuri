@@ -6,13 +6,16 @@ export var personal_jump_input : String = "jump";
 export var vertical_lerp_weight : float = 3.0;
 
 onready var ground_detector : Area = $GroundDetector;
+onready var action_selector : Spatial = $PlayerActionSelector;
+
+var enable_jump : bool = true;
 
 func _physics_process(delta):
 	var grounded : bool = false;
 	if (ground_detector.get_overlapping_bodies().size() > 0):
 		grounded = true;
 	
-	if ((Input.is_action_just_pressed("jump") || Input.is_action_just_pressed(personal_jump_input)) && grounded):
+	if ((Input.is_action_just_pressed("jump") || Input.is_action_just_pressed(personal_jump_input)) && grounded && enable_jump):
 		_jump();
 	
 	if (!is_on_floor()):
@@ -21,14 +24,13 @@ func _physics_process(delta):
 				velocity.y = lerp(velocity.y, 0.0, delta * vertical_lerp_weight);
 
 func _do_your_turn():
-	_shoot();
+	action_selector._pick_action();
+	yield(action_selector, "turn_over");
 	
 	var projectiles_gone : bool = false;
 	while (!projectiles_gone):
 		yield(get_tree().create_timer(0.1), "timeout");
 		projectiles_gone = Global.current_level_controller.battle.are_projectiles_gone();
-	
-	yield(get_tree().create_timer(0.5), "timeout");
 	
 	_end_turn();
 

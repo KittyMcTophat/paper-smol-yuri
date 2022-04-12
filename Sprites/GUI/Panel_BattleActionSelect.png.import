@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Selector Arrow.png-aad68e5ce7bfbdf882aeaad2fba62a25.stex"
+path="res://.import/Panel_BattleActionSelect.png-852603eeee5aa94e88c2a7587cdeb5bf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Actors/Selector Arrow.png"
-dest_files=[ "res://.import/Selector Arrow.png-aad68e5ce7bfbdf882aeaad2fba62a25.stex" ]
+source_file="res://Sprites/GUI/Panel_BattleActionSelect.png"
+dest_files=[ "res://.import/Panel_BattleActionSelect.png-852603eeee5aa94e88c2a7587cdeb5bf.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=0
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
