@@ -61,17 +61,7 @@ func main_battle_loop():
 	var is_battle_over : bool = false;
 	
 	while (!is_battle_over):
-		for enemy in _enemies:
-			is_battle_over = check_if_battle_over();
-			if (is_battle_over):
-				break;
-			
-			if (is_instance_valid(enemy)):
-				if (enemy.current_health == 0):
-					continue;
-				enemy._do_your_turn();
-				yield(enemy, "turn_over");
-		
+		#player turns
 		for player in _players:
 			player.enable_jump = false;
 		
@@ -85,12 +75,26 @@ func main_battle_loop():
 		for player in _players:
 			player.enable_jump = true;
 		
+		# enemy turns
+		for enemy in _enemies:
+			is_battle_over = check_if_battle_over();
+			if (is_battle_over):
+				break;
+			
+			if (is_instance_valid(enemy)):
+				if (enemy.current_health == 0):
+					continue;
+				enemy._do_your_turn();
+				yield(enemy, "turn_over");
+	
+	
 	end_battle();
 
 func check_if_battle_over() -> bool:
 	for enemy in _enemies:
 		if (is_instance_valid(enemy)):
-			return false;
+			if (enemy.current_health > 0):
+				return false;
 	
 	return true;
 

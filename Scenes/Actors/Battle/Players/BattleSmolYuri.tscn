@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BattlePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriStill.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BasePlayerAction.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Actors/Battle/Players/BattleActions/SmolKnife.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Actors/Battle/Players/Projectiles/SmolKnife.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Actors/Battle/Players/BattleActions/BigKnife.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 resource_local_to_scene = true
@@ -14,6 +16,7 @@ height = 0.22
 [node name="BattleSmolYuri" instance=ExtResource( 1 )]
 max_health = 12
 current_health = 12
+default_projectile = ExtResource( 5 )
 
 [node name="CollisionShape" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.41, 0 )
@@ -23,5 +26,8 @@ shape = SubResource( 1 )
 offset = Vector2( 0, 44 )
 texture = ExtResource( 2 )
 
+[node name="Tween" parent="." index="3"]
+pause_mode = 0
+
 [node name="PlayerActionSelector" parent="." index="9"]
-action_scenes = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 3 ) ]
+action_scenes = [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 3 ) ]

@@ -15,11 +15,11 @@ func _physics_process(delta):
 	if (ground_detector.get_overlapping_bodies().size() > 0):
 		grounded = true;
 	
-	if ((Input.is_action_just_pressed("jump") || Input.is_action_just_pressed(personal_jump_input)) && grounded && enable_jump):
+	if (Input.is_action_just_pressed(personal_jump_input) && grounded && enable_jump):
 		_jump();
 	
 	if (!is_on_floor()):
-		if (!(Input.is_action_pressed("jump") || Input.is_action_pressed(personal_jump_input))):
+		if (!Input.is_action_pressed(personal_jump_input)):
 			if (velocity.y > 0.0):
 				velocity.y = lerp(velocity.y, 0.0, delta * vertical_lerp_weight);
 
@@ -38,7 +38,7 @@ func _end_turn():
 	emit_signal("turn_over");
 
 func _shoot():
-	_fire_projectile(target_direction, attack);
+	_fire_projectile(default_projectile, target_direction, attack);
 
 func _jump_shoot():
-	_jump_and_fire_projectile(jump_strength, target_direction, attack);
+	_jump_and_fire_projectile(jump_strength, default_projectile, target_direction, attack);

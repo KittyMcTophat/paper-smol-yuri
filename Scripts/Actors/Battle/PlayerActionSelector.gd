@@ -21,7 +21,6 @@ func _add_actions(new_actions : Array) -> void:
 	if (new_actions.size() == 0):
 		print("No actions, Gromit!");
 		return;
-	print("adding actions")
 	
 	var vbox : VBoxContainer = $Viewport/Control/NinePatchRect/MarginContainer/VBoxContainer;
 	for action in new_actions:

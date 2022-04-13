@@ -37,7 +37,7 @@ func _kill() -> void:
 	queue_free();
 
 func _shoot():
-	_fire_projectile(target_direction, attack);
+	_fire_projectile(default_projectile, target_direction, attack);
 
 func _jump_shoot():
-	_jump_and_fire_projectile(jump_strength, target_direction, attack);
+	_jump_and_fire_projectile(jump_strength, default_projectile, target_direction, attack);

@@ -43,6 +43,11 @@ func _physics_process(delta):
 		
 		velocity.x = lerp(velocity.x, vector_to_target.x, delta * move_lerp);
 		velocity.z = lerp(velocity.z, vector_to_target.z, delta * move_lerp);
+		
+		if (vector_to_target.x > 0.1):
+			_turn(0);
+		if (vector_to_target.x < -0.1):
+			_turn(180);
 	
 	velocity = move_and_slide(velocity, Vector3.UP);
 	

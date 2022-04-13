@@ -12,6 +12,7 @@ export var max_health : int = 10;
 export var cur_health : int = 10;
 export var reload_on_death : bool = true;
 export(Array, PackedScene) var party_scenes : Array = [];
+export var party_leader : int = 0;
 
 var _velocity : Vector3 = Vector3.ZERO;
 var _last_safe_location : Vector3 = Vector3.ZERO;
@@ -36,7 +37,7 @@ func _ready():
 		party.push_back(party_scenes[i].instance());
 		add_child(party[i]);
 		remove_child(party[i]);
-		party[i].personal_jump_input = "jump_" + str(i + 1);
+		party[i].personal_jump_input = "jump_" + str(party_scenes.size() - i);
 	
 # warning-ignore:return_value_discarded
 	Global.connect("scene_is_changing", self, "_kill_party");
@@ -170,14 +171,16 @@ func hurt(damage : int = 1):
 	#TODO: add particle with damage number
 	cur_health -= damage;
 	cur_health = _healthbar._update_health(cur_health);
-	party[0].hurt(damage, false);
+	party[party_leader].hurt(damage, false);
 	
 	if (cur_health == 0):
 		_kill();
 
 func _after_battle():
-	cur_health = party[0].current_health;
+	cur_health = party[party_leader].current_health;
 	_healthbar._update_health(cur_health, false);
+# warning-ignore:return_value_discarded
+	_tween_node.start();
 
 func _kill():
 	if (reload_on_death):

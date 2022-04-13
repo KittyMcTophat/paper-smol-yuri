@@ -1,17 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BasePlayerAction.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/Battle/BaseActors/BaseProjectile.tscn" type="PackedScene" id=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends PlayerAction
 
+export var projectile : PackedScene = null;
+export var damage : int = 1;
+export var pierces_targets : bool = false;
+
 func _execute_action(_player : Node, _targets : Array):
-	_player._shoot();
-	emit_signal(\"action_over\");
+	if (projectile == null):
+		_player._shoot();
+		emit_signal(\"action_over\");
+	else:
+		_player._fire_projectile(projectile, _player.target_direction, damage, pierces_targets);
+		emit_signal(\"action_over\");
 "
 
 [node name="BasePlayerAction" instance=ExtResource( 1 )]
 script = SubResource( 1 )
+projectile = ExtResource( 2 )
 
 [node name="Name" parent="HBoxContainer" index="2"]
 margin_top = 0.0

@@ -12,7 +12,7 @@ export var gravity : Vector3 = Vector3(0.0, -9.8, 0.0);
 export var dust_particles : PackedScene = null;
 export(int, LAYERS_3D_PHYSICS) var target_collision_layers : int = 0;
 export var target_direction : Vector3 = Vector3(-1.0, 0.0, 0.0);
-export var projectile : PackedScene = null;
+export var default_projectile : PackedScene = null;
 
 onready var _projectile_target_point : Position3D = $ProjectileTargetPoint;
 onready var _projectile_spawn_point : Position3D = $ProjectileSpawnPoint;
@@ -27,6 +27,9 @@ func _ready():
 	_healthbar._update_health(current_health, false);
 	
 	_selector_arrow.visible = false;
+	
+	if (target_direction.x < 0.0):
+		_sprite_3d.rotation_degrees.y = 180.0;
 
 func _physics_process(delta):
 	velocity += gravity * delta;
@@ -53,11 +56,16 @@ func hurt(damage : int = 1, do_tween : bool = true) -> void:
 	if (current_health == 0):
 		_kill();
 
+func heal(amount : int = 1) -> void:
+	#TODO: add particle showing heal amount
+	current_health += amount;
+	current_health = _healthbar._update_health(current_health, false);
+
 func _kill() -> void:
 	# https://www.youtube.com/watch?v=iVGVXPuO3xQ
 	print("No health, gromit!");
 
-func _fire_projectile(direction : Vector3 = Vector3.LEFT, damage : int = attack):
+func _fire_projectile(projectile : PackedScene = default_projectile, direction : Vector3 = target_direction, damage : int = attack, piereces_targets : bool = false):
 	if (projectile == null):
 		# https://www.youtube.com/watch?v=iVGVXPuO3xQ
 		print("No projectile, gromit!");
@@ -75,6 +83,7 @@ func _fire_projectile(direction : Vector3 = Vector3.LEFT, damage : int = attack)
 	
 	new_projectile.set_direction(direction);
 	new_projectile.damage = damage;
+	new_projectile.pierces_targets = piereces_targets;
 	
 	new_projectile.collision_mask = target_collision_layers;
 
@@ -89,7 +98,7 @@ func _make_dust_particles() -> void:
 	var particle : Particles = dust_particles.instance();
 	add_child(particle);
 
-func _jump_and_fire_projectile(strength : float = jump_strength, direction : Vector3 = Vector3.LEFT, damage : int = attack):
+func _jump_and_fire_projectile(strength : float = jump_strength, projectile : PackedScene = default_projectile, direction : Vector3 = Vector3.LEFT, damage : int = attack, piereces_targets : bool = false):
 	_jump(strength);
 	
 	# calculates the time until velocity is zero
@@ -97,4 +106,4 @@ func _jump_and_fire_projectile(strength : float = jump_strength, direction : Vec
 	var yield_time : float = abs(strength/gravity.y);
 	yield(get_tree().create_timer(yield_time), "timeout");
 	
-	_fire_projectile(direction, damage);
+	_fire_projectile(projectile, direction, damage, piereces_targets);
