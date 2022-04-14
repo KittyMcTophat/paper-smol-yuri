@@ -27,11 +27,6 @@ func _do_your_turn():
 	action_selector._pick_action();
 	yield(action_selector, "turn_over");
 	
-	var projectiles_gone : bool = false;
-	while (!projectiles_gone):
-		yield(get_tree().create_timer(0.1), "timeout");
-		projectiles_gone = Global.current_level_controller.battle.are_projectiles_gone();
-	
 	_end_turn();
 
 func _end_turn():

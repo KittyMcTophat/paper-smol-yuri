@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Resources/MovementParams.gd"
 }, {
-"base": "KinematicBody",
+"base": "StaticBody",
 "class": "MovingPlatform",
 "language": "GDScript",
 "path": "res://Scripts/Objects/MovingPlatform.gd"

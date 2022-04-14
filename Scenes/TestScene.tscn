@@ -47,7 +47,7 @@ reward_money = 50
 
 [node name="MovingPlatform" parent="Overworld" index="7" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 2, -9 )
-target_points = [ Vector3( 1.75, 2, -9 ), Vector3( 1.75, 2, 0 ), Vector3( 7, 2, -4.5 ) ]
+target_points = [ Vector3( 1.75, 2, -9 ), Vector3( 1.75, 2, 0 ), Vector3( 7, 2, -4.5 ), Vector3( 1.75, 2, -9 ), Vector3( 1.75, 5, -9 ) ]
 
 [node name="SmolCoin2" parent="Overworld" index="8" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, -4.5 )

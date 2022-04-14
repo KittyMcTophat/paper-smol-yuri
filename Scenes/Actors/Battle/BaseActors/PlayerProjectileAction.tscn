@@ -18,12 +18,16 @@ func _execute_action(_player : Node, _target : Node):
 	
 	if (projectile == null):
 		_player._fire_projectile(_player.default_projectile, target_direction, damage, pierces_targets);
-		yield(get_tree().create_timer(0.1), \"timeout\");
-		emit_signal(\"action_over\");
 	else:
 		_player._fire_projectile(projectile, target_direction, damage, pierces_targets);
+		
+	
+	var projectiles_gone : bool = false;
+	while (!projectiles_gone):
 		yield(get_tree().create_timer(0.1), \"timeout\");
-		emit_signal(\"action_over\");
+		projectiles_gone = Global.current_level_controller.battle.are_projectiles_gone();
+	
+	emit_signal(\"action_over\");
 "
 
 [node name="BasePlayerAction" instance=ExtResource( 1 )]
