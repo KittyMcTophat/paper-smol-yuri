@@ -3,15 +3,21 @@ extends Spatial
 signal action_over
 signal turn_over
 
+# target types for actions
+enum{SELF, PLAYER, ENEMY}
+enum{INACTIVE, ACTION_SELECT, TARGET_SELECT}
+
 onready var _anim_player : AnimationPlayer = $AnimationPlayer;
 onready var _sprite3d : Sprite3D = $Sprite3D;
 onready var _player : Node = get_parent();
 
 export(Array, PackedScene) var action_scenes : Array = [];
 
-var enabled : bool = false;
 var selected_action : int = 0;
+var selected_target : int = 0;
+var state : int = INACTIVE;
 var actions : Array = [];
+var potential_targets : Array = [];
 
 func _enter_tree() -> void:
 	if (actions.size() == 0):
@@ -41,39 +47,85 @@ func _pick_action() -> void:
 	
 	yield(_anim_player, "animation_finished");
 	
-	enabled = true;
+	state = ACTION_SELECT;
 	
 	yield(self, "action_over");
 	
-	enabled = false;
-	
-	_anim_player.play("Hide");
-	
-	yield(_anim_player, "animation_finished");
+	state = INACTIVE;
 	
 	emit_signal("turn_over");
 
 func _process(_delta) -> void:
-	if (!enabled):
+	if (state == INACTIVE):
 		return;
 	
-	if (Input.is_action_just_pressed("ui_up")):
-		actions[selected_action].selector_arrow.visible = false;
-		
-		selected_action -= 1;
-		if (selected_action < 0):
-			selected_action = actions.size() - 1;
-		
-		actions[selected_action].selector_arrow.visible = true;
-	else:
-		if (Input.is_action_just_pressed("ui_down")):
+	if (state == ACTION_SELECT):
+		if (Input.is_action_just_pressed("ui_up")):
 			actions[selected_action].selector_arrow.visible = false;
 			
-			selected_action += 1;
-			selected_action = selected_action % actions.size();
+			selected_action -= 1;
+			if (selected_action < 0):
+				selected_action = actions.size() - 1;
 			
 			actions[selected_action].selector_arrow.visible = true;
 		else:
-			if (Input.is_action_just_pressed("ui_accept")):
-				actions[selected_action]._execute_action(_player, []);
-				emit_signal("action_over");
+			if (Input.is_action_just_pressed("ui_down")):
+				actions[selected_action].selector_arrow.visible = false;
+				
+				selected_action += 1;
+				selected_action = selected_action % actions.size();
+				
+				actions[selected_action].selector_arrow.visible = true;
+			else:
+				if (Input.is_action_just_pressed("ui_accept")):
+					potential_targets = [];
+					
+					match actions[selected_action].target_type:
+						SELF:
+							potential_targets.push_back(_player);
+						ENEMY:
+							for e in Global.current_level_controller.battle._enemies:
+								if (is_instance_valid(e) && e.current_health > 0):
+									potential_targets.push_back(e);
+						PLAYER:
+							for p in Global.current_level_controller.battle._players:
+								if (is_instance_valid(p) && p.current_health > 0):
+									potential_targets.push_back(p)
+					
+					_anim_player.play("Hide");
+					state = TARGET_SELECT;
+					selected_target = 0;
+					potential_targets[selected_target].selector_arrow.visible = true;
+					return;
+	
+	if (state == TARGET_SELECT):
+		if (Input.is_action_just_pressed("ui_left")):
+			potential_targets[selected_target].selector_arrow.visible = false;
+			
+			selected_target -= 1;
+			if (selected_target < 0):
+				selected_target = potential_targets.size() - 1;
+			
+			potential_targets[selected_target].selector_arrow.visible = true;
+		else:
+			if (Input.is_action_just_pressed("ui_right")):
+				potential_targets[selected_target].selector_arrow.visible = false;
+				
+				selected_target += 1;
+				selected_target = selected_target % potential_targets.size();
+				
+				potential_targets[selected_target].selector_arrow.visible = true;
+			else:
+				if (Input.is_action_just_pressed("ui_accept")):
+					potential_targets[selected_target].selector_arrow.visible = false;
+					
+					actions[selected_action]._execute_action(_player, potential_targets[selected_target]);
+					yield(actions[selected_action], "action_over");
+					emit_signal("action_over");
+				else:
+					if (Input.is_action_just_pressed("ui_cancel")):
+						potential_targets[selected_target].selector_arrow.visible = false;
+						
+						_anim_player.play("Show");
+						
+						state = ACTION_SELECT;

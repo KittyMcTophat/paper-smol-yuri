@@ -37,6 +37,8 @@ func start_battle(players : Array = [], enemies : Array = []):
 		players[i].transform.origin = first_player_position;
 		players[i].transform.origin.x += player_separation * i;
 	
+	enemies.invert();
+	
 	for i in range(enemies.size()):
 		_enemies_container.add_child(enemies[i]);
 		enemies[i].transform.origin = first_enemy_position;
@@ -44,6 +46,7 @@ func start_battle(players : Array = [], enemies : Array = []):
 	
 	_players = players;
 	_enemies = enemies;
+	_enemies.invert();
 	
 	emit_signal("battle_start_early");
 	

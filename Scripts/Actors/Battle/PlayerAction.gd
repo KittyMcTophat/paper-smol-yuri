@@ -6,9 +6,9 @@ signal action_over
 
 onready var selector_arrow : TextureRect = $HBoxContainer/SelectorArrow;
 
-enum{SELF, PLAYER, ENEMY, ALL_PLAYERS, ALL_ENEMIES}
-export(int, "SELF", "PLAYER", "ENEMY", "ALL PLAYERS", "ALL ENEMIES") var target_type : int = ENEMY;
+enum{SELF, PLAYER, ENEMY}
+export(int, "SELF", "PLAYER", "ENEMY") var target_type : int = ENEMY;
 
-func _execute_action(_player : Node, _targets : Array):
+func _execute_action(_player : Node, _target : Node):
 	yield(get_tree().create_timer(0.1), "timeout");
 	emit_signal("action_over");

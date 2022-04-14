@@ -17,19 +17,23 @@ export var default_projectile : PackedScene = null;
 onready var _projectile_target_point : Position3D = $ProjectileTargetPoint;
 onready var _projectile_spawn_point : Position3D = $ProjectileSpawnPoint;
 onready var _healthbar : Spatial = $HealthBar;
-onready var _selector_arrow : Sprite3D = $SelectorArrow;
+onready var selector_arrow : Sprite3D = $SelectorArrow;
 
 var velocity : Vector3 = Vector3.ZERO;
 var was_on_floor_last_frame : bool = true;
+var attack_boosts : int = 0;
 
 func _ready():
 	_healthbar._update_max_health(max_health);
 	_healthbar._update_health(current_health, false);
 	
-	_selector_arrow.visible = false;
+	selector_arrow.visible = false;
 	
 	if (target_direction.x < 0.0):
 		_sprite_3d.rotation_degrees.y = 180.0;
+
+func _enter_tree():
+	attack_boosts = 0;
 
 func _physics_process(delta):
 	velocity += gravity * delta;
@@ -82,7 +86,7 @@ func _fire_projectile(projectile : PackedScene = default_projectile, direction :
 	new_projectile.global_transform.origin = _projectile_spawn_point.global_transform.origin;
 	
 	new_projectile.set_direction(direction);
-	new_projectile.damage = damage;
+	new_projectile.damage = damage + attack_boosts;
 	new_projectile.pierces_targets = piereces_targets;
 	
 	new_projectile.collision_mask = target_collision_layers;

@@ -37,7 +37,7 @@ func _ready():
 		party.push_back(party_scenes[i].instance());
 		add_child(party[i]);
 		remove_child(party[i]);
-		party[i].personal_jump_input = "jump_" + str(party_scenes.size() - i);
+		party[i].personal_jump_input = "jump_" + str(i + 1);
 	
 # warning-ignore:return_value_discarded
 	Global.connect("scene_is_changing", self, "_kill_party");

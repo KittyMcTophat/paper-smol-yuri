@@ -10,17 +10,25 @@ export var projectile : PackedScene = null;
 export var damage : int = 1;
 export var pierces_targets : bool = false;
 
-func _execute_action(_player : Node, _targets : Array):
+func _execute_action(_player : Node, _target : Node):
+	var target_direction : Vector3 = Vector3.ZERO;
+	
+	target_direction = _target._projectile_target_point.global_transform.origin - _player._projectile_spawn_point.global_transform.origin;
+	target_direction = target_direction.normalized();
+	
 	if (projectile == null):
-		_player._shoot();
+		_player._fire_projectile(_player.default_projectile, target_direction, damage, pierces_targets);
+		yield(get_tree().create_timer(0.1), \"timeout\");
 		emit_signal(\"action_over\");
 	else:
-		_player._fire_projectile(projectile, _player.target_direction, damage, pierces_targets);
+		_player._fire_projectile(projectile, target_direction, damage, pierces_targets);
+		yield(get_tree().create_timer(0.1), \"timeout\");
 		emit_signal(\"action_over\");
 "
 
 [node name="BasePlayerAction" instance=ExtResource( 1 )]
 script = SubResource( 1 )
+target_type = 2
 projectile = ExtResource( 2 )
 
 [node name="Name" parent="HBoxContainer" index="2"]

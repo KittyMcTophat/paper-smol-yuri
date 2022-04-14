@@ -12,6 +12,7 @@ rect_min_size = Vector2( 150, 34 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 4 )
+target_type = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
