@@ -56,9 +56,6 @@ attack_animations = [ "Attack1", "Attack2" ]
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
 
-[node name="HealthBar" parent="." index="8"]
-display_number = false
-
 [node name="Attacks" type="AnimationPlayer" parent="." index="9"]
 anims/Attack1 = SubResource( 2 )
 anims/Attack2 = SubResource( 3 )

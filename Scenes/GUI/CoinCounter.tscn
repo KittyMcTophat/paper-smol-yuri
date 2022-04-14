@@ -10,61 +10,55 @@ bg_color = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -94.0
-margin_bottom = 62.0
+margin_left = -76.0
+margin_bottom = 44.0
 grow_horizontal = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
-margin_right = 94.0
-margin_bottom = 62.0
+margin_right = 76.0
+margin_bottom = 44.0
 grow_horizontal = 0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer"]
-self_modulate = Color( 1, 1, 1, 0.25098 )
+self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 84.0
-margin_bottom = 52.0
+margin_top = 8.0
+margin_right = 68.0
+margin_bottom = 44.0
 grow_horizontal = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 custom_styles/panel = SubResource( 1 )
 
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/MarginContainer/PanelContainer"]
+margin_right = 68.0
+margin_bottom = 36.0
+color = Color( 0, 0, 0, 0.25 )
+
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer/PanelContainer"]
-margin_right = 74.0
-margin_bottom = 42.0
+margin_right = 68.0
+margin_bottom = 36.0
 grow_horizontal = 0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/PanelContainer/MarginContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 69.0
-margin_bottom = 37.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 68.0
+margin_bottom = 36.0
 grow_horizontal = 0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 2 )
