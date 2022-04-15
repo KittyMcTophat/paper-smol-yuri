@@ -9,6 +9,7 @@
 environment = ExtResource( 1 )
 
 [sub_resource type="ViewportTexture" id=2]
+flags = 16
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="Animation" id=3]

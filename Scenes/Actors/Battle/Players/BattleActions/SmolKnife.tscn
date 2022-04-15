@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Sprites/Actors/SmolYuri/SmolKnife.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Actors/SmolYuri/SmolKnifeIcon.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/PlayerProjectileAction.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Actors/Battle/Players/Projectiles/SmolKnife.tscn" type="PackedScene" id=3]
 

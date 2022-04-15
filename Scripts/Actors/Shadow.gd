@@ -3,18 +3,18 @@ extends Spatial
 class_name Shadow
 
 onready var _raycast : RayCast = $RayCast;
-onready var _sprite3D : Sprite3D = $Sprite3D;
+onready var _mesh : MeshInstance = $MeshInstance;
 
 func _ready():
-	_sprite3D.visible = false;
+	_mesh.visible = false;
 
 func _process(_delta):
 	_raycast.force_raycast_update();
 	
 	if (_raycast.is_colliding()):
-		_sprite3D.global_transform.origin = _raycast.get_collision_point();
-		_sprite3D.transform.origin.y += 0.001
+		_mesh.global_transform.origin = _raycast.get_collision_point();
+		_mesh.transform.origin.y += 0.001
 		
-		_sprite3D.visible = true;
+		_mesh.visible = true;
 	else:
-		_sprite3D.visible = false;
+		_mesh.visible = false;

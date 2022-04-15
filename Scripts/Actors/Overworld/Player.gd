@@ -2,6 +2,8 @@ extends Actor
 
 class_name Player
 
+signal landed;
+
 export(Resource) var movement_params = null;
 
 export var dust_particles : PackedScene = null;
@@ -102,6 +104,7 @@ func _physics_process(delta) -> void:
 	if (is_on_floor() && !_was_on_floor_last_frame):
 		_squash(Vector3(1.1, 0.9, 1.1));
 		_make_dust_particles();
+		emit_signal("landed");
 	
 	_was_on_floor_last_frame = is_on_floor();
 	

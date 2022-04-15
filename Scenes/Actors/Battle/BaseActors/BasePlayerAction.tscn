@@ -20,8 +20,9 @@ anchor_bottom = 1.0
 
 [node name="SelectorArrow" type="TextureRect" parent="HBoxContainer"]
 visible = false
-margin_right = 18.0
+margin_right = 14.0
 margin_bottom = 540.0
+size_flags_vertical = 3
 texture = ExtResource( 3 )
 stretch_mode = 4
 
