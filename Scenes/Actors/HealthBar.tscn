@@ -117,6 +117,8 @@ patch_margin_bottom = 8
 [node name="Tween" type="Tween" parent="Viewport/HealthBar"]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-billboard = 1
+billboard = 2
+transparent = false
 double_sided = false
+alpha_cut = 1
 texture = SubResource( 1 )

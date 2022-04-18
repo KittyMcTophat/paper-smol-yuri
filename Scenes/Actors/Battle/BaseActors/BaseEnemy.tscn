@@ -49,6 +49,7 @@ tracks/0/keys = {
 [node name="BaseEnemy" instance=ExtResource( 2 )]
 collision_layer = 8
 script = ExtResource( 1 )
+actor_name = "Enemy"
 target_collision_layers = 2
 default_projectile = ExtResource( 3 )
 attack_animations = [ "Attack1", "Attack2" ]

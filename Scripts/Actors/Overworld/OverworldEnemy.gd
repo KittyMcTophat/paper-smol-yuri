@@ -46,8 +46,13 @@ func _physics_process(delta):
 		
 		if (vector_to_target.x > 0.1):
 			_turn(0);
-		if (vector_to_target.x < -0.1):
+		elif (vector_to_target.x < -0.1):
 			_turn(180);
+		
+		if (vector_to_target.z < -0.1):
+			_facing_back = true;
+		elif (vector_to_target.z > 0.1):
+			_facing_back = false;
 	
 	velocity = move_and_slide(velocity, Vector3.UP);
 	

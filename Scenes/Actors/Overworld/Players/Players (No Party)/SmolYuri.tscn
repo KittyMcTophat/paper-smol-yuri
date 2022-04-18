@@ -6,7 +6,7 @@
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriWalking.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriWalking_Back.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Actors/DustParticles.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Actors/Overworld/Players/SmolYuri MovementParams.tres" type="Resource" id=7]
+[ext_resource path="res://Scenes/Actors/Overworld/Players/Players (No Party)/SmolYuri MovementParams.tres" type="Resource" id=7]
 [ext_resource path="res://Scenes/Actors/Battle/Players/BattleSmolYuri.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape" id=6]
@@ -181,20 +181,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [ Rect2( 0, 0, 72, 88 ), Rect2( 0, 88, 72, 88 ), Rect2( 0, 0, 72, 88 ) ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.25 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_make_dust_particles"
-} ]
-}
 
 [sub_resource type="Animation" id=11]
 length = 0.5
@@ -223,20 +209,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 0, 0, 72, 88 ), Rect2( 0, 88, 72, 88 ), Rect2( 0, 0, 72, 88 ) ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.25 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_make_dust_particles"
-} ]
 }
 
 [node name="SmolYuri" instance=ExtResource( 3 )]

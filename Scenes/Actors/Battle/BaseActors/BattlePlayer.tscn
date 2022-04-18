@@ -17,6 +17,7 @@ height = 0.3
 [node name="BattlePlayer" instance=ExtResource( 1 )]
 collision_layer = 2
 script = ExtResource( 2 )
+actor_name = "Player"
 target_collision_layers = 8
 target_direction = Vector3( 1, 0, 0 )
 

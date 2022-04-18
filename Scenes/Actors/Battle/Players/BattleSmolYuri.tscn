@@ -14,6 +14,7 @@ radius = 0.3
 height = 0.22
 
 [node name="BattleSmolYuri" instance=ExtResource( 1 )]
+actor_name = "Smol Yuri"
 max_health = 12
 current_health = 12
 default_projectile = ExtResource( 5 )

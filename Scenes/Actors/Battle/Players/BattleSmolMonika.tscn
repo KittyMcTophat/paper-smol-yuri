@@ -13,6 +13,7 @@ radius = 0.32
 height = 0.01
 
 [node name="BattlePlayer" instance=ExtResource( 2 )]
+actor_name = "Smol Monika"
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )

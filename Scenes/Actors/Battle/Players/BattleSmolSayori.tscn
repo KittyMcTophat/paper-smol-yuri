@@ -14,6 +14,7 @@ radius = 0.25
 height = 0.27
 
 [node name="BattleSmolSayori" instance=ExtResource( 1 )]
+actor_name = "Smol Sayori"
 max_health = 8
 current_health = 8
 attack = 3
