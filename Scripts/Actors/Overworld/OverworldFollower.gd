@@ -34,12 +34,12 @@ func _physics_process(delta):
 	if (vector_to_target.length() > teleport_distance):
 		global_transform.origin = follow_target.global_transform.origin;
 		vector_to_target = Vector3.ZERO;
+		velocity = Vector3.ZERO;
 	
 	if (vector_to_target.y > 0.5 && is_on_floor()):
 		_jump();
 	
 	vector_to_target.y = 0.0;
-	
 	vector_to_target = vector_to_target.normalized();
 	
 	if (vector_to_target.x > 0.2):
@@ -67,6 +67,8 @@ func _physics_process(delta):
 		_jump();
 	
 	was_on_floor_last_frame = is_on_floor();
+	
+	_update_animation();
 
 func _update_animation():
 	if (velocity.length() < 0.1):

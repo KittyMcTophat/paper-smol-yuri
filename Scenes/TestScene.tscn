@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_FullParty.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Actors/Overworld/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=6]
@@ -18,6 +19,9 @@
 background_texture = ExtResource( 16 )
 
 [node name="SmolYuri_FullParty" parent="Overworld" index="0" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 197
+script = ExtResource( 2 )
 
 [node name="SmolCoin" parent="Overworld" index="1" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
@@ -70,12 +74,12 @@ data = {
 [node name="Battle" parent="." index="1"]
 visible = false
 
-[node name="GridMap" parent="Battle" index="2"]
+[node name="GridMap" parent="Battle" index="3"]
 data = {
 "cells": PoolIntArray( 6, 0, 2, 65528, 0, 4, 65532, 0, 5, -196608, 0, 1, -196607, 0, 1, -196606, 0, 1, -196605, 0, 1, -196604, 0, 1, -196603, 0, 1, -196602, 0, 1, -196601, 0, 1, -196600, 0, 1, -196599, 0, 1, -131082, 0, 1, -131081, 0, 1, -131080, 0, 1, -131079, 0, 1, -131078, 0, 1, -131077, 0, 1, -131076, 0, 1, -131075, 0, 1, -131074, 0, 1, -131073, 0, 1, -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 1, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -131063, 0, 1, -65546, 0, 1, -65545, 0, 1, -65544, 0, 1, -65543, 0, 1, -65542, 0, 1, -65541, 0, 1, -65540, 0, 1, -65539, 0, 1, -65538, 0, 1, -65537, 0, 1, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -10, 0, 0, -9, 0, 0, -8, 0, 0, -7, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, 0, 65535, 5, 4, 65535, 5, 65529, 65535, 2, -196608, 65535, 1, -196607, 65535, 1, -196606, 65535, 1, -196605, 65535, 1, -196604, 65535, 1, -196603, 65535, 1, -196602, 65535, 1, -196601, 65535, 1, -196600, 65535, 1, -196599, 65535, 1, -131082, 65535, 1, -131081, 65535, 1, -131080, 65535, 1, -131079, 65535, 1, -131078, 65535, 1, -131077, 65535, 1, -131076, 65535, 1, -131075, 65535, 1, -131074, 65535, 1, -131073, 65535, 1, -131072, 65535, 1, -131071, 65535, 1, -131070, 65535, 1, -131069, 65535, 1, -131068, 65535, 1, -131067, 65535, 1, -131066, 65535, 1, -131065, 65535, 1, -131064, 65535, 1, -131063, 65535, 1, -65546, 65535, 1, -65545, 65535, 1, -65544, 65535, 1, -65543, 65535, 1, -65542, 65535, 1, -65541, 65535, 1, -65540, 65535, 1, -65539, 65535, 1, -65538, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -65535, 65535, 0, -65534, 65535, 0, -65533, 65535, 0, -65532, 65535, 0, -65531, 65535, 0, -65530, 65535, 0, -65529, 65535, 0, -65528, 65535, 0, -65527, 65535, 0, -10, 65535, 0, -9, 65535, 0, -8, 65535, 0, -7, 65535, 0, -6, 65535, 0, -5, 65535, 0, -4, 65535, 0, -3, 65535, 0, -2, 65535, 0, -1, 65535, 0 )
 }
 
-[node name="Camera" parent="Battle" index="3"]
+[node name="Camera" parent="Battle" index="4"]
 current = true
 
 [connection signal="coin_collected" from="Overworld/SmolCoin2" to="Overworld/Credits" method="_roll_credits"]
