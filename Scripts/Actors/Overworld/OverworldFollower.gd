@@ -42,14 +42,14 @@ func _physics_process(delta):
 	vector_to_target.y = 0.0;
 	vector_to_target = vector_to_target.normalized();
 	
-	if (vector_to_target.x > 0.2):
+	if (vector_to_target.x > 0.3):
 		_turn(0);
-	elif (vector_to_target.x < -0.2):
+	elif (vector_to_target.x < -0.3):
 		_turn(180);
 	
-	if (vector_to_target.z < -0.2):
+	if (vector_to_target.z < -0.3):
 		_facing_back = true;
-	elif (vector_to_target.z > 0.2):
+	elif (vector_to_target.z > 0.3):
 		_facing_back = false;
 	
 	vector_to_target *= move_speed;
