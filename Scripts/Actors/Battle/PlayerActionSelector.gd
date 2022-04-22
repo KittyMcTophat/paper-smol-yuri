@@ -4,8 +4,7 @@ signal action_over
 signal turn_over
 
 # target types for actions
-enum{SELF, PLAYER, ENEMY}
-enum{INACTIVE, ACTION_SELECT, TARGET_SELECT}
+enum State {INACTIVE, ACTION_SELECT, TARGET_SELECT}
 
 onready var _anim_player : AnimationPlayer = $AnimationPlayer;
 onready var _sprite3d : Sprite3D = $Sprite3D;
@@ -15,7 +14,7 @@ export(Array, PackedScene) var action_scenes : Array = [];
 
 var selected_action : int = 0;
 var selected_target : int = 0;
-var state : int = INACTIVE;
+var state : int = State.INACTIVE;
 var actions : Array = [];
 var potential_targets : Array = [];
 
@@ -47,19 +46,19 @@ func _pick_action() -> void:
 	
 	yield(_anim_player, "animation_finished");
 	
-	state = ACTION_SELECT;
+	state = State.ACTION_SELECT;
 	
 	yield(self, "action_over");
 	
-	state = INACTIVE;
+	state = State.INACTIVE;
 	
 	emit_signal("turn_over");
 
 func _process(_delta) -> void:
-	if (state == INACTIVE):
+	if (state == State.INACTIVE):
 		return;
 	
-	if (state == ACTION_SELECT):
+	if (state == State.ACTION_SELECT):
 		if (Input.is_action_just_pressed("ui_up")):
 			actions[selected_action].selector_arrow.visible = false;
 			
@@ -81,24 +80,24 @@ func _process(_delta) -> void:
 					potential_targets = [];
 					
 					match actions[selected_action].target_type:
-						SELF:
+						PlayerAction.TargetType.SELF:
 							potential_targets.push_back(_player);
-						ENEMY:
+						PlayerAction.TargetType.ENEMY:
 							for e in Global.current_level_controller.battle._enemies:
 								if (is_instance_valid(e) && e.current_health > 0):
 									potential_targets.push_back(e);
-						PLAYER:
+						PlayerAction.TargetType.PLAYER:
 							for p in Global.current_level_controller.battle._players:
 								if (is_instance_valid(p) && p.current_health > 0):
 									potential_targets.push_back(p)
 					
 					_anim_player.play("Hide");
-					state = TARGET_SELECT;
+					state = State.TARGET_SELECT;
 					selected_target = 0;
 					potential_targets[selected_target].selector_arrow.visible = true;
 					return;
 	
-	if (state == TARGET_SELECT):
+	if (state == State.TARGET_SELECT):
 		if (Input.is_action_just_pressed("ui_left")):
 			potential_targets[selected_target].selector_arrow.visible = false;
 			
@@ -128,4 +127,4 @@ func _process(_delta) -> void:
 						
 						_anim_player.play("Show");
 						
-						state = ACTION_SELECT;
+						state = State.ACTION_SELECT;
