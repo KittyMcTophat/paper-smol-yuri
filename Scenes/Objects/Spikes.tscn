@@ -1,18 +1,66 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Meshes/Objects/Spikes.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Meshes/Objects/Spikes.png" type="Texture" id=2]
+
+[sub_resource type="PointMesh" id=16]
+
+[sub_resource type="CubeMesh" id=13]
+size = Vector3( 0.5, 0.1, 0.5 )
 
 [sub_resource type="SpatialMaterial" id=11]
 albedo_texture = ExtResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.490196, 0.490196, 0.490196, 1 )
 
 [sub_resource type="BoxShape" id=12]
 extents = Vector3( 0.25, 0.25, 0.25 )
 
 [node name="Spikes" type="MeshInstance"]
-mesh = ExtResource( 1 )
+mesh = SubResource( 16 )
+material/0 = null
+
+[node name="Base" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )
+mesh = SubResource( 13 )
 skeleton = NodePath("")
 material/0 = SubResource( 11 )
+
+[node name="Spike" type="CSGCylinder" parent="."]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.125, 0.3, -0.125 )
+radius = 0.148
+height = 0.4
+sides = 4
+cone = true
+smooth_faces = false
+material = SubResource( 15 )
+
+[node name="Spike2" type="CSGCylinder" parent="."]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.125, 0.3, -0.125 )
+radius = 0.148
+height = 0.4
+sides = 4
+cone = true
+smooth_faces = false
+material = SubResource( 15 )
+
+[node name="Spike3" type="CSGCylinder" parent="."]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.125, 0.3, 0.125 )
+radius = 0.148
+height = 0.4
+sides = 4
+cone = true
+smooth_faces = false
+material = SubResource( 15 )
+
+[node name="Spike4" type="CSGCylinder" parent="."]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.125, 0.3, 0.125 )
+radius = 0.148
+height = 0.4
+sides = 4
+cone = true
+smooth_faces = false
+material = SubResource( 15 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 collision_layer = 4
