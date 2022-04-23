@@ -14,7 +14,8 @@ export var health_bar_size : Vector2 = Vector2(80, 24);
 export (Color) var healthy_color : Color = Color.darkgreen;
 export (Color) var caution_color : Color = Color.darkgoldenrod;
 export (Color) var danger_color : Color = Color.darkred;
-export (Color) var easing_color : Color = Color.red;
+export (Color) var easing_color_damage : Color = Color.red;
+export (Color) var easing_color_heal : Color = Color.green;
 export (Color) var text_color : Color = Color.black;
 
 export (float, 0, 1, 0.05) var caution_zone : float = 0.5;
@@ -23,9 +24,9 @@ export (float, 0, 1, 0.05) var danger_zone : float = 0.2;
 func _ready():
 	_update_max_health(max_health);
 #warning-ignore:RETURN_VALUE_DISCARDED
-	_update_health(current_health);
+	_update_health(current_health, false);
 	
-	health_bar_under.tint_progress = easing_color;
+	health_bar_under.tint_progress = easing_color_damage;
 	health_number_label.self_modulate = text_color;
 	
 	viewport.size = health_bar_size;
@@ -35,16 +36,30 @@ func _ready():
 		_hide_number();
 
 func _update_health(new_health : int, do_tween : bool = true) -> int:
+	var old_health : int = current_health;
 	current_health = int(clamp(new_health, 0, max_health));
 	
-	health_bar_over.value = current_health;
-	if (do_tween):
-	#warning-ignore:RETURN_VALUE_DISCARDED
-		tween.interpolate_property(health_bar_under, "value", null, current_health, 0.4, Tween.TRANS_LINEAR, Tween.EASE_OUT);
-	#warning-ignore:RETURN_VALUE_DISCARDED
-		tween.start();
-	else:
+	if (old_health > new_health):
+		health_bar_under.tint_progress = easing_color_damage;
+		health_bar_over.value = current_health;
+		if (do_tween):
+		#warning-ignore:RETURN_VALUE_DISCARDED
+			tween.interpolate_property(health_bar_under, "value", null, current_health, 0.4, Tween.TRANS_LINEAR, Tween.EASE_OUT);
+		#warning-ignore:RETURN_VALUE_DISCARDED
+			tween.start();
+		else:
+			health_bar_under.value = current_health;
+	
+	elif (new_health > old_health):
+		health_bar_under.tint_progress = easing_color_heal
 		health_bar_under.value = current_health;
+		if (do_tween):
+		#warning-ignore:RETURN_VALUE_DISCARDED
+			tween.interpolate_property(health_bar_over, "value", null, current_health, 0.4, Tween.TRANS_LINEAR, Tween.EASE_OUT);
+		#warning-ignore:RETURN_VALUE_DISCARDED
+			tween.start();
+		else:
+			health_bar_over.value = current_health;
 	
 	_assign_color();
 	

@@ -19,7 +19,7 @@ height = 0.3
 
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 2
-collision_mask = 197
+collision_mask = 133
 script = ExtResource( 2 )
 
 [node name="CollisionShape" parent="." index="0"]

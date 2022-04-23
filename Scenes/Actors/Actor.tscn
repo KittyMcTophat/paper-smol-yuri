@@ -11,7 +11,7 @@ radius = 0.32
 height = 0.01
 
 [node name="Actor" type="KinematicBody"]
-collision_layer = 96
+collision_layer = 64
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

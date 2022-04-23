@@ -20,12 +20,14 @@ onready var _enemies_container : Spatial = $EnemiesContainer;
 
 var _players : Array = [];
 var _enemies : Array = [];
-
+var _battle_is_active : bool = false;
 
 func start_battle(players : Array = [], enemies : Array = []):
 	Global.allow_pause = false;
 	Global.allow_jump = false;
 	Global.get_tree().paused = true;
+	
+	_battle_is_active = true;
 	
 	_level_controller.fade_rect_anim_player.play("Fade_In");
 	yield(_level_controller.fade_rect_anim_player, "animation_finished");
@@ -119,6 +121,8 @@ func are_projectiles_gone() -> bool:
 func end_battle():
 	Global.allow_jump = false;
 	Global.get_tree().paused = true;
+	
+	_battle_is_active = false;
 	
 	_level_controller.fade_rect_anim_player.play("Fade_In");
 	yield(_level_controller.fade_rect_anim_player, "animation_finished");

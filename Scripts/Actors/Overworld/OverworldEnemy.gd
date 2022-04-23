@@ -86,7 +86,7 @@ func _on_AggroArea_body_entered(body):
 		target = body;
 
 func _on_PlayerDetectorArea_body_entered(body):
-	if (body is Player):
+	if (body is Player && !Global.current_level_controller.battle._battle_is_active):
 		Global.current_level_controller.battle.start_battle(body.party, enemies_instanced);
 	# warning-ignore:return_value_discarded
 		Global.current_level_controller.battle.connect("battle_start", self, "_battle_start");

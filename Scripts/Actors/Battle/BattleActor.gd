@@ -71,10 +71,10 @@ func hurt(damage : int = 1, do_tween : bool = true) -> void:
 	if (current_health == 0):
 		_kill();
 
-func heal(amount : int = 1) -> void:
+func heal(amount : int = 1, do_tween : bool = true) -> void:
 	#TODO: add particle showing heal amount
 	current_health += amount;
-	current_health = _healthbar._update_health(current_health, false);
+	current_health = _healthbar._update_health(current_health, do_tween);
 
 func _kill() -> void:
 	# https://www.youtube.com/watch?v=iVGVXPuO3xQ

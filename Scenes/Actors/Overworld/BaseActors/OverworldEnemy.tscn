@@ -19,7 +19,7 @@ height = 0.01
 
 [node name="OverworldEnemy" instance=ExtResource( 2 )]
 collision_layer = 8
-collision_mask = 201
+collision_mask = 129
 script = ExtResource( 1 )
 dust_particles = ExtResource( 3 )
 
