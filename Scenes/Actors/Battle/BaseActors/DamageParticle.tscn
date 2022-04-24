@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://default_env.tres" type="Environment" id=1]
+[ext_resource path="res://Fonts/FontResources/PressStart2P_Size16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Sprites/Battle/DamageParticle.png" type="Texture" id=3]
+
+[sub_resource type="World" id=1]
+environment = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.161491, 0.826087, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, -2, 0 )
+initial_velocity = 4.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 7 )
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="SpatialMaterial" id=4]
+resource_local_to_scene = true
+render_priority = 4
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=5]
+resource_local_to_scene = true
+material = SubResource( 4 )
+size = Vector2( 0.32, 0.32 )
+
+[node name="DamageParticle" type="Spatial"]
+pause_mode = 2
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 32, 32 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="TextureRect" type="TextureRect" parent="Viewport"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 2 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Particles" type="Particles" parent="."]
+emitting = false
+amount = 1
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB( -4, -4, -0.5, 8, 8, 1 )
+local_coords = false
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

@@ -2,8 +2,9 @@
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Sprites/GUI/Panel_BattleActionSelect.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Actors/Battle/BaseActors/BasePlayerAction.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Actors/Battle/BaseActors/Actions/BasePlayerAction.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Actors/Battle/PlayerActionSelector.gd" type="Script" id=4]
+
 
 [sub_resource type="World" id=1]
 environment = ExtResource( 1 )

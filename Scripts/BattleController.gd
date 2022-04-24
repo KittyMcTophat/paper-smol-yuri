@@ -101,7 +101,7 @@ func main_battle_loop():
 
 func check_if_battle_over() -> bool:
 	for enemy in _enemies:
-		if (is_instance_valid(enemy)):
+		if (is_instance_valid(enemy) && enemy is BattleActor):
 			if (enemy.current_health > 0):
 				return false;
 	

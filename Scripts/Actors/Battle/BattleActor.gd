@@ -64,7 +64,13 @@ func _end_turn():
 	emit_signal("turn_over");
 
 func hurt(damage : int = 1, do_tween : bool = true) -> void:
-	#TODO: add particle showing damage amount
+	if (get_parent() != null):
+		var new_particle : Spatial = Global.damage_particle.instance();
+		get_parent().add_child(new_particle);
+		new_particle.get_node("Viewport/Label").text = str(damage);
+		new_particle.global_transform = _projectile_target_point.global_transform;
+		new_particle.get_node("Particles").set_emitting(true);
+	
 	current_health -= damage;
 	current_health = _healthbar._update_health(current_health, do_tween);
 	
@@ -72,7 +78,13 @@ func hurt(damage : int = 1, do_tween : bool = true) -> void:
 		_kill();
 
 func heal(amount : int = 1, do_tween : bool = true) -> void:
-	#TODO: add particle showing heal amount
+	if (get_parent() != null):
+		var new_particle : Spatial = Global.heal_particle.instance();
+		get_parent().add_child(new_particle);
+		new_particle.get_node("Viewport/Label").text = str(amount);
+		new_particle.global_transform = _projectile_target_point.global_transform;
+		new_particle.get_node("Particles").set_emitting(true);
+	
 	current_health += amount;
 	current_health = _healthbar._update_health(current_health, do_tween);
 

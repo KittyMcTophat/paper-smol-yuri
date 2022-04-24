@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BattlePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/SmolSayori/SmolSayoriStill.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Actors/Battle/Players/Projectiles/SmolSunshineAttack.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Actors/Battle/BaseActors/BasePlayerAction.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Actors/Battle/BaseActors/Actions/BasePlayerAction.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Actors/Battle/Players/BattleActions/BundleSunshine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Battle/Players/BattleActions/SnackBreak.tscn" type="PackedScene" id=6]
 

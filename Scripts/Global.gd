@@ -3,6 +3,10 @@ extends Node
 signal scene_is_changing;
 signal scene_is_reloading;
 
+onready var damage_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/DamageParticle.tscn");
+onready var heal_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/HealParticle.tscn");
+onready var charge_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/ChargeParticle.tscn");
+
 var money : int = 0;
 var cats_found : int = 0;
 

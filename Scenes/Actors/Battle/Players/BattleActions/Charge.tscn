@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Actors/Battle/BaseActors/BasePlayerAction.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/Battle/BaseActors/Actions/BasePlayerAction.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/SmolMonika/Charge.png" type="Texture" id=2]
 
 [sub_resource type="GDScript" id=1]
@@ -9,6 +9,12 @@ script/source = "extends PlayerAction
 export var boost_amount : int = 1;
 
 func _execute_action(_player : Node, _target : Node):
+	var new_particle : Spatial = Global.charge_particle.instance();
+	_target.get_parent().add_child(new_particle);
+	new_particle.get_node(\"Viewport/Label\").text = str(boost_amount);
+	new_particle.global_transform = _target._projectile_target_point.global_transform;
+	new_particle.get_node(\"Particles\").set_emitting(true);
+	
 	yield(get_tree().create_timer(0.1), \"timeout\");
 	# TODO: add attack up visual effect
 	_player.attack_boosts += boost_amount;
