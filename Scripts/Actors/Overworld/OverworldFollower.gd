@@ -32,9 +32,8 @@ func _physics_process(delta):
 		vector_to_target = Vector3.ZERO;
 	
 	if (vector_to_target.length() > teleport_distance):
-		global_transform.origin = follow_target.global_transform.origin;
+		_teleport_to_target();
 		vector_to_target = Vector3.ZERO;
-		velocity = Vector3.ZERO;
 	
 	if (vector_to_target.y > 0.5 && is_on_floor()):
 		_jump();
@@ -59,6 +58,12 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, Vector3.UP, true);
 	
+	# if it collided with a harmful object, returns to the last safe spot
+	for i in get_slide_count():
+		if (get_slide_collision(i).collider.get_collision_layer_bit(2)): # HARMFUL
+			_teleport_to_target();
+			break;
+	
 	if (is_on_floor() && !was_on_floor_last_frame):
 		_squash(Vector3(1.1, 0.9, 1.1));
 		_make_dust_particles();
@@ -69,6 +74,10 @@ func _physics_process(delta):
 	was_on_floor_last_frame = is_on_floor();
 	
 	_update_animation();
+
+func _teleport_to_target():
+	global_transform.origin = follow_target.global_transform.origin;
+	velocity = Vector3.ZERO;
 
 func _update_animation():
 	if (velocity.length() < 0.1):
