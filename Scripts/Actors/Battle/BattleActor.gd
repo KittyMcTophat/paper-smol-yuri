@@ -36,6 +36,7 @@ func _ready():
 func _enter_tree():
 	update_name_display();
 	
+	$AttackBoosts.visible = false;
 	attack_boosts = 0;
 
 func update_name_display():
@@ -87,6 +88,24 @@ func heal(amount : int = 1, do_tween : bool = true) -> void:
 	
 	current_health += amount;
 	current_health = _healthbar._update_health(current_health, do_tween);
+
+func boost_attack(amount : int = 1):
+	var new_particle : Spatial = Global.charge_particle.instance();
+	get_parent().add_child(new_particle);
+	new_particle.get_node("Viewport/Label").text = str(amount);
+	new_particle.global_transform = _projectile_target_point.global_transform;
+	new_particle.get_node("Particles").set_emitting(true);
+	
+	attack_boosts += amount;
+	var attack_boost_display = $AttackBoosts;
+	if (!attack_boost_display.visible):
+		attack_boost_display.visible = true;
+# warning-ignore:return_value_discarded
+		_tween_node.interpolate_property(attack_boost_display, "modulate", Color.transparent, Color.white, 0.4, Tween.TRANS_LINEAR);
+# warning-ignore:return_value_discarded
+		_tween_node.start();
+	
+	$Viewport/Label.text = "+" + str(attack_boosts);
 
 func _kill() -> void:
 	# https://www.youtube.com/watch?v=iVGVXPuO3xQ

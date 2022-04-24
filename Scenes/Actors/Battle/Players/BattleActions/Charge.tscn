@@ -9,15 +9,10 @@ script/source = "extends PlayerAction
 export var boost_amount : int = 1;
 
 func _execute_action(_player : Node, _target : Node):
-	var new_particle : Spatial = Global.charge_particle.instance();
-	_target.get_parent().add_child(new_particle);
-	new_particle.get_node(\"Viewport/Label\").text = str(boost_amount);
-	new_particle.global_transform = _target._projectile_target_point.global_transform;
-	new_particle.get_node(\"Particles\").set_emitting(true);
+	_target.boost_attack(boost_amount);
 	
 	yield(get_tree().create_timer(0.1), \"timeout\");
 	# TODO: add attack up visual effect
-	_player.attack_boosts += boost_amount;
 	emit_signal(\"action_over\");
 "
 
