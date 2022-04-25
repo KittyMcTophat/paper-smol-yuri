@@ -28,6 +28,9 @@ func _notification(what : int):
 
 func _on_ExitButton_pressed():
 	get_tree().quit();
+
+func _on_InteractableActor_dialogue_ended():
+	Global.allow_pause = false;
 "
 
 [node name="LevelController" instance=ExtResource( 1 )]
@@ -222,6 +225,7 @@ size_flags_horizontal = 3
 texture = ExtResource( 10 )
 stretch_mode = 6
 
+[connection signal="dialogue_ended" from="Overworld/InteractableActor" to="Menu" method="_on_InteractableActor_dialogue_ended"]
 [connection signal="dialogue_ended" from="Overworld/InteractableActor" to="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/StartButton" method="grab_focus"]
 [connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/StartButton" to="Overworld/SmolCookie" method="collect"]
 [connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/ExitButton" to="Menu" method="_on_ExitButton_pressed"]
