@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3 Key.png-ccc12bf22b63498504103ae909ba3c18.stex"
+path="res://.import/DirectionalButtons.png-6a4c9038bed166ed9b5344ee9e2bff43.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Buttons/3 Key.png"
-dest_files=[ "res://.import/3 Key.png-ccc12bf22b63498504103ae909ba3c18.stex" ]
+source_file="res://Sprites/Buttons/DirectionalButtons.png"
+dest_files=[ "res://.import/DirectionalButtons.png-6a4c9038bed166ed9b5344ee9e2bff43.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3 Key.png-ccc12bf22b63498504103ae909ba3c18.stex"
+path="res://.import/Happy.png-dbadd1efa7dd5a6f3cb4b84b5531f3ee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Buttons/3 Key.png"
-dest_files=[ "res://.import/3 Key.png-ccc12bf22b63498504103ae909ba3c18.stex" ]
+source_file="res://Sprites/DialoguePortraits/SmolNatsuki/Happy.png"
+dest_files=[ "res://.import/Happy.png-dbadd1efa7dd5a6f3cb4b84b5531f3ee.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3 Key.png-ccc12bf22b63498504103ae909ba3c18.stex"
+path="res://.import/Logo.png-6a2a15504137b9270e646426f016576c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Buttons/3 Key.png"
-dest_files=[ "res://.import/3 Key.png-ccc12bf22b63498504103ae909ba3c18.stex" ]
+source_file="res://Sprites/GUI/Logo.png"
+dest_files=[ "res://.import/Logo.png-6a2a15504137b9270e646426f016576c.stex" ]
 
 [params]
 

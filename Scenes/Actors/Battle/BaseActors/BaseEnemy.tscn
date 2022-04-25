@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Actors/Battle/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BattleActor.tscn" type="PackedScene" id=2]
@@ -11,7 +11,7 @@ radius = 0.32
 height = 0.01
 
 [sub_resource type="Animation" id=2]
-resource_name = "Attack1"
+resource_name = "BaseEnemyAttack1"
 length = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -29,7 +29,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "Attack2"
+resource_name = "BaseEnemyAttack2"
 length = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -46,17 +46,23 @@ tracks/0/keys = {
 } ]
 }
 
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("Viewport")
+
 [node name="BaseEnemy" instance=ExtResource( 2 )]
 collision_layer = 8
 script = ExtResource( 1 )
 actor_name = "Enemy"
 target_collision_layers = 2
 default_projectile = ExtResource( 3 )
-attack_animations = [ "Attack1", "Attack2" ]
+attack_animations = [ "BaseEnemyAttack1", "BaseEnemyAttack2" ]
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
 
 [node name="Attacks" type="AnimationPlayer" parent="." index="9"]
-anims/Attack1 = SubResource( 2 )
-anims/Attack2 = SubResource( 3 )
+anims/BaseEnemyAttack1 = SubResource( 2 )
+anims/BaseEnemyAttack2 = SubResource( 3 )
+
+[node name="AttackBoosts" parent="." index="11"]
+texture = SubResource( 4 )

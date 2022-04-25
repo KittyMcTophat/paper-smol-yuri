@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3 Key.png-ccc12bf22b63498504103ae909ba3c18.stex"
+path="res://.import/WASD.png-b7ed444b61d4c4ddb22010f3f4137b4c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Buttons/3 Key.png"
-dest_files=[ "res://.import/3 Key.png-ccc12bf22b63498504103ae909ba3c18.stex" ]
+source_file="res://Sprites/Buttons/WASD.png"
+dest_files=[ "res://.import/WASD.png-b7ed444b61d4c4ddb22010f3f4137b4c.stex" ]
 
 [params]
 
