@@ -4,7 +4,7 @@ class_name BattleActor
 
 signal turn_over;
 
-export var actor_name : String = "BattleActor";
+export(String, MULTILINE) var actor_name : String = "BattleActor";
 export var max_health : int = 10;
 export var current_health : int = 10;
 export var attack : int = 1;
@@ -36,8 +36,10 @@ func _ready():
 func _enter_tree():
 	update_name_display();
 	
-	$AttackBoosts.visible = false;
 	attack_boosts = 0;
+	$Viewport/Label.text = "+0";
+	$AttackBoosts.visible = false;
+	$AttackBoosts.modulate = Color.transparent;
 
 func update_name_display():
 	yield(get_tree(), "idle_frame");
@@ -98,14 +100,13 @@ func boost_attack(amount : int = 1):
 	
 	attack_boosts += amount;
 	var attack_boost_display = $AttackBoosts;
+	$Viewport/Label.text = "+" + str(attack_boosts);
 	if (!attack_boost_display.visible):
 		attack_boost_display.visible = true;
 # warning-ignore:return_value_discarded
 		_tween_node.interpolate_property(attack_boost_display, "modulate", Color.transparent, Color.white, 0.4, Tween.TRANS_LINEAR);
 # warning-ignore:return_value_discarded
 		_tween_node.start();
-	
-	$Viewport/Label.text = "+" + str(attack_boosts);
 
 func _kill() -> void:
 	# https://www.youtube.com/watch?v=iVGVXPuO3xQ

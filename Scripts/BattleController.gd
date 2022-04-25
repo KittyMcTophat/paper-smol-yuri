@@ -130,13 +130,13 @@ func end_battle():
 	_level_controller.enable_overworld();
 	
 	for child in _players_container.get_children():
-		if (child is Projectile):
+		if (!child is BattleActor):
 			child.queue_free();
 		else:
 			_players_container.remove_child(child);
 	
 	for child in _enemies_container.get_children():
-		if (child is Projectile):
+		if (!child is BattleActor):
 			child.queue_free();
 		else:
 			_enemies_container.remove_child(child);

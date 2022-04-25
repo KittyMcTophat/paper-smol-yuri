@@ -3,7 +3,6 @@ extends Spatial
 signal action_over
 signal turn_over
 
-# target types for actions
 enum State {INACTIVE, ACTION_SELECT, TARGET_SELECT}
 
 onready var _anim_player : AnimationPlayer = $AnimationPlayer;

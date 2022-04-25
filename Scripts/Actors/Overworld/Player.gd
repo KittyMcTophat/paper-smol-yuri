@@ -41,11 +41,6 @@ func _ready():
 		remove_child(party[i]);
 		party[i].personal_jump_input = "jump_" + str(i + 1);
 	
-# warning-ignore:return_value_discarded
-	Global.connect("scene_is_changing", self, "_kill_party");
-# warning-ignore:return_value_discarded
-	Global.connect("scene_is_reloading", self, "_kill_party");
-	
 	yield(get_tree(), "idle_frame");
 # warning-ignore:return_value_discarded
 	Global.current_level_controller.battle.connect("battle_end_early", self, "_after_battle");
@@ -189,9 +184,10 @@ func _kill():
 	if (reload_on_death):
 		Global.reload_scene();
 	else:
-		_kill_party();
 		queue_free();
 
-func _kill_party():
-	for i in party:
-		i.queue_free();
+func _notification(what : int):
+	if (what == NOTIFICATION_PREDELETE):
+		for i in party:
+			if (is_instance_valid(i)):
+				i.queue_free();

@@ -25,11 +25,6 @@ onready var ground_raycast : RayCast = $GroundRayCast;
 func _ready():
 	for enemy in enemies:
 		enemies_instanced.push_back(enemy.instance());
-	
-# warning-ignore:return_value_discarded
-	Global.connect("scene_is_changing", self, "_kill");
-# warning-ignore:return_value_discarded
-	Global.connect("scene_is_reloading", self, "_kill");
 
 func _physics_process(delta):
 	velocity += gravity * delta;
@@ -102,7 +97,10 @@ func _battle_end():
 	_kill();
 
 func _kill():
-	for enemy in enemies_instanced:
-		if (is_instance_valid(enemy)):
-			enemy.queue_free();
 	queue_free();
+
+func _notification(what : int):
+	if (what == NOTIFICATION_PREDELETE):
+		for enemy in enemies_instanced:
+			if (is_instance_valid(enemy)):
+				enemy.queue_free();

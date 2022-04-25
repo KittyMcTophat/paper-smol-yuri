@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/Enemies/PurpleSmolBowlingBall/PurpleSmolBowlingBall.png" type="Texture" id=2]
@@ -9,8 +9,12 @@ margin = 0.001
 radius = 0.32
 height = 0.01
 
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Viewport")
+
 [node name="BaseEnemy" instance=ExtResource( 1 )]
-actor_name = "SmowlingBall"
+actor_name = "Purple Smol
+Bowling Ball"
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
@@ -23,3 +27,6 @@ pause_mode = 0
 
 [node name="ProjectileSpawnPoint" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0 )
+
+[node name="AttackBoosts" parent="." index="11"]
+texture = SubResource( 2 )

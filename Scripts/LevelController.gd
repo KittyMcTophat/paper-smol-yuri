@@ -38,9 +38,12 @@ func _ready():
 		BATTLE:
 			enable_battle();
 
-func _exit_tree():
-	overworld.queue_free();
-	battle.queue_free();
+func _notification(what : int):
+	if (what == NOTIFICATION_PREDELETE):
+		if (is_instance_valid(overworld)):
+			overworld.queue_free();
+		if (is_instance_valid(battle)):
+			battle.queue_free();
 
 func enable_none():
 	if (active != NONE):
