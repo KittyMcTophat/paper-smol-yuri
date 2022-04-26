@@ -1,0 +1,380 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://default_env.tres" type="Environment" id=1]
+[ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Sprites/Buttons/Leftstick.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Buttons/WASD.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Buttons/ArrowKeys.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_Alone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Buttons/Space.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Buttons/AButton.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolYurisSmolCat.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolSmolYuri.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Sprites/Buttons/XButton.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Buttons/StartButton.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Buttons/EscapeKey.png" type="Texture" id=15]
+[ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=17]
+
+[sub_resource type="World" id=1]
+environment = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("Overworld/WalkTutorial/Viewport")
+
+[sub_resource type="DynamicFont" id=4]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("Overworld/JumpTutorial/Viewport")
+
+[sub_resource type="ViewportTexture" id=9]
+viewport_path = NodePath("Overworld/CoinTutorial/Viewport")
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Overworld/TalkTutorial/Viewport")
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("Overworld/PauseTutorial/Viewport")
+
+[sub_resource type="ViewportTexture" id=8]
+viewport_path = NodePath("Overworld/CookieTutorial/Viewport")
+
+[node name="LevelController" instance=ExtResource( 6 )]
+background_texture = ExtResource( 8 )
+
+[node name="SmolYuri_Alone" parent="Overworld" index="0" instance=ExtResource( 7 )]
+
+[node name="SmolYurisSmolCat" parent="Overworld" index="1" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -10.5 )
+
+[node name="SmolSmolYuri" parent="Overworld" index="2" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, -10.5 )
+dialogue_file = "res://Dialogues/SmolSmolYuri_Level0.json"
+
+[node name="SmolCookie" parent="Overworld" index="3" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -21 )
+
+[node name="SmolCoins" type="Spatial" parent="Overworld" index="4"]
+
+[node name="SmolCoin" parent="Overworld/SmolCoins" index="0" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 2, -5.25 )
+
+[node name="SmolCoin2" parent="Overworld/SmolCoins" index="1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 2, -15.75 )
+
+[node name="GridMap Ground" parent="Overworld" index="5"]
+data = {
+"cells": PoolIntArray( -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 1, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -131063, 0, 1, -131062, 0, 1, -131061, 0, 1, -131060, 0, 1, -131059, 0, 1, -131058, 0, 1, -131057, 0, 1, -131056, 0, 1, -131055, 0, 1, -131054, 0, 1, -131053, 0, 1, -65539, 0, 1, -65538, 0, 1, -65537, 0, 1, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -131072, 1, 1, -131071, 1, 1, -131070, 1, 1, -131069, 1, 1, -131068, 1, 1, -131067, 1, 1, -131066, 1, 1, -131065, 1, 1, -131064, 1, 1, -131063, 1, 1, -131062, 1, 1, -131061, 1, 1, -131060, 1, 1, -131059, 1, 1, -131058, 1, 1, -131057, 1, 1, -131056, 1, 1, -131055, 1, 1, -131054, 1, 1, -131053, 1, 1, -65539, 1, 1, -65538, 1, 1, -65537, 1, 1, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0, -65525, 1, 0, -65524, 1, 0, -65523, 1, 0, -65522, 1, 0, -65521, 1, 0, -65520, 1, 0, -65519, 1, 0, -65518, 1, 0, -65517, 1, 0, -3, 1, 0, -2, 1, 0, -1, 1, 0, -131072, 2, 1, -131071, 2, 1, -131057, 2, 1, -131056, 2, 1, -131055, 2, 1, -131054, 2, 1, -65538, 2, 1, -65537, 2, 1, -65536, 2, 0, -65535, 2, 0, -65521, 2, 0, -65520, 2, 0, -65519, 2, 0, -65518, 2, 0, -2, 2, 0, -1, 2, 0, 65468, 164, 1, -131072, 65491, 1, -131071, 65491, 1, -131057, 65491, 1, -131056, 65491, 1, -131055, 65491, 1, -131054, 65491, 1, -65538, 65491, 1, -65537, 65491, 1, -65536, 65491, 0, -65535, 65491, 0, -65521, 65491, 0, -65520, 65491, 0, -65519, 65491, 0, -65518, 65491, 0, -2, 65491, 0, -1, 65491, 0, -131072, 65492, 1, -131071, 65492, 1, -131070, 65492, 1, -131069, 65492, 1, -131068, 65492, 1, -131067, 65492, 1, -131066, 65492, 1, -131065, 65492, 1, -131064, 65492, 1, -131063, 65492, 1, -131062, 65492, 1, -131061, 65492, 1, -131060, 65492, 1, -131059, 65492, 1, -131058, 65492, 1, -131057, 65492, 1, -131056, 65492, 1, -131055, 65492, 1, -131054, 65492, 1, -131053, 65492, 1, -65539, 65492, 1, -65538, 65492, 1, -65537, 65492, 1, -65536, 65492, 0, -65535, 65492, 0, -65534, 65492, 0, -65533, 65492, 0, -65532, 65492, 0, -65531, 65492, 0, -65530, 65492, 0, -65529, 65492, 0, -65528, 65492, 0, -65527, 65492, 0, -65526, 65492, 0, -65525, 65492, 0, -65524, 65492, 0, -65523, 65492, 0, -65522, 65492, 0, -65521, 65492, 0, -65520, 65492, 0, -65519, 65492, 0, -65518, 65492, 0, -65517, 65492, 0, -3, 65492, 0, -2, 65492, 0, -1, 65492, 0, -131072, 65493, 1, -131071, 65493, 1, -131070, 65493, 1, -131069, 65493, 1, -131068, 65493, 1, -131067, 65493, 1, -131066, 65493, 1, -131065, 65493, 1, -131064, 65493, 1, -131063, 65493, 1, -131062, 65493, 1, -131061, 65493, 1, -131060, 65493, 1, -131059, 65493, 1, -131058, 65493, 1, -131057, 65493, 1, -131056, 65493, 1, -131055, 65493, 1, -131054, 65493, 1, -131053, 65493, 1, -65539, 65493, 1, -65538, 65493, 1, -65537, 65493, 1, -65536, 65493, 0, -65535, 65493, 0, -65534, 65493, 0, -65533, 65493, 0, -65532, 65493, 0, -65531, 65493, 0, -65530, 65493, 0, -65529, 65493, 0, -65528, 65493, 0, -65527, 65493, 0, -65526, 65493, 0, -65525, 65493, 0, -65524, 65493, 0, -65523, 65493, 0, -65522, 65493, 0, -65521, 65493, 0, -65520, 65493, 0, -65519, 65493, 0, -65518, 65493, 0, -65517, 65493, 0, -3, 65493, 0, -2, 65493, 0, -1, 65493, 0, -131072, 65494, 1, -131071, 65494, 1, -131070, 65494, 1, -131069, 65494, 1, -131068, 65494, 1, -131067, 65494, 1, -131066, 65494, 1, -131065, 65494, 1, -131064, 65494, 1, -131063, 65494, 1, -131062, 65494, 1, -131061, 65494, 1, -131060, 65494, 1, -131059, 65494, 1, -131058, 65494, 1, -131057, 65494, 1, -131056, 65494, 1, -131055, 65494, 1, -131054, 65494, 1, -131053, 65494, 1, -65539, 65494, 1, -65538, 65494, 1, -65537, 65494, 1, -65536, 65494, 0, -65535, 65494, 0, -65534, 65494, 0, -65533, 65494, 0, -65532, 65494, 0, -65531, 65494, 0, -65530, 65494, 0, -65529, 65494, 0, -65528, 65494, 0, -65527, 65494, 0, -65526, 65494, 0, -65525, 65494, 0, -65524, 65494, 0, -65523, 65494, 0, -65522, 65494, 0, -65521, 65494, 0, -65520, 65494, 0, -65519, 65494, 0, -65518, 65494, 0, -65517, 65494, 0, -3, 65494, 0, -2, 65494, 0, -1, 65494, 0, -131072, 65495, 1, -131071, 65495, 1, -131070, 65495, 1, -131069, 65495, 1, -131068, 65495, 1, -131067, 65495, 1, -131066, 65495, 1, -131065, 65495, 1, -131064, 65495, 1, -131063, 65495, 1, -131062, 65495, 1, -131061, 65495, 1, -131060, 65495, 1, -131059, 65495, 1, -131058, 65495, 1, -131057, 65495, 1, -131056, 65495, 1, -131055, 65495, 1, -131054, 65495, 1, -131053, 65495, 1, -65539, 65495, 1, -65538, 65495, 1, -65537, 65495, 1, -65536, 65495, 0, -65535, 65495, 0, -65534, 65495, 0, -65533, 65495, 0, -65532, 65495, 0, -65531, 65495, 0, -65530, 65495, 0, -65529, 65495, 0, -65528, 65495, 0, -65527, 65495, 0, -65526, 65495, 0, -65525, 65495, 0, -65524, 65495, 0, -65523, 65495, 0, -65522, 65495, 0, -65521, 65495, 0, -65520, 65495, 0, -65519, 65495, 0, -65518, 65495, 0, -65517, 65495, 0, -3, 65495, 0, -2, 65495, 0, -1, 65495, 0, -131072, 65496, 1, -131071, 65496, 1, -131057, 65496, 1, -131056, 65496, 1, -131055, 65496, 1, -131054, 65496, 1, -65538, 65496, 1, -65537, 65496, 1, -65536, 65496, 0, -65535, 65496, 0, -65521, 65496, 0, -65520, 65496, 0, -65519, 65496, 0, -65518, 65496, 0, -2, 65496, 0, -1, 65496, 0, -131057, 65497, 1, -131056, 65497, 1, -131055, 65497, 1, -131054, 65497, 1, -65521, 65497, 0, -65520, 65497, 0, -65519, 65497, 0, -65518, 65497, 0, -131057, 65498, 1, -131056, 65498, 1, -131055, 65498, 1, -131054, 65498, 1, -65521, 65498, 0, -65520, 65498, 0, -65519, 65498, 0, -65518, 65498, 0, -131057, 65499, 1, -131056, 65499, 1, -131055, 65499, 1, -131054, 65499, 1, -65521, 65499, 0, -65520, 65499, 0, -65519, 65499, 0, -65518, 65499, 0, -131057, 65500, 1, -131056, 65500, 1, -131055, 65500, 1, -131054, 65500, 1, -65521, 65500, 0, -65520, 65500, 0, -65519, 65500, 0, -65518, 65500, 0, -131057, 65501, 1, -131056, 65501, 1, -131055, 65501, 1, -131054, 65501, 1, -65521, 65501, 0, -65520, 65501, 0, -65519, 65501, 0, -65518, 65501, 0, -131057, 65502, 1, -131056, 65502, 1, -131055, 65502, 1, -131054, 65502, 1, -65521, 65502, 0, -65520, 65502, 0, -65519, 65502, 0, -65518, 65502, 0, -131057, 65503, 1, -131056, 65503, 1, -131055, 65503, 1, -131054, 65503, 1, -65521, 65503, 0, -65520, 65503, 0, -65519, 65503, 0, -65518, 65503, 0, -131057, 65504, 1, -131056, 65504, 1, -131055, 65504, 1, -131054, 65504, 1, -65521, 65504, 0, -65520, 65504, 0, -65519, 65504, 0, -65518, 65504, 0, -131057, 65505, 1, -131056, 65505, 1, -131055, 65505, 1, -131054, 65505, 1, -65521, 65505, 0, -65520, 65505, 0, -65519, 65505, 0, -65518, 65505, 0, -131057, 65506, 1, -131056, 65506, 1, -131055, 65506, 1, -131054, 65506, 1, -65521, 65506, 0, -65520, 65506, 0, -65519, 65506, 0, -65518, 65506, 0, -131057, 65507, 1, -131056, 65507, 1, -131055, 65507, 1, -131054, 65507, 1, -65521, 65507, 0, -65520, 65507, 0, -65519, 65507, 0, -65518, 65507, 0, -131057, 65508, 1, -131056, 65508, 1, -131055, 65508, 1, -131054, 65508, 1, -65521, 65508, 0, -65520, 65508, 0, -65519, 65508, 0, -65518, 65508, 0, -131057, 65509, 1, -131056, 65509, 1, -131055, 65509, 1, -131054, 65509, 1, -65521, 65509, 0, -65520, 65509, 0, -65519, 65509, 0, -65518, 65509, 0, -131057, 65510, 1, -131056, 65510, 1, -131055, 65510, 1, -131054, 65510, 1, -65521, 65510, 0, -65520, 65510, 0, -65519, 65510, 0, -65518, 65510, 0, -131057, 65511, 1, -131056, 65511, 1, -131055, 65511, 1, -131054, 65511, 1, -65521, 65511, 0, -65520, 65511, 0, -65519, 65511, 0, -65518, 65511, 0, -131068, 65512, 1, -131067, 65512, 1, -131066, 65512, 1, -131065, 65512, 1, -131057, 65512, 1, -131056, 65512, 1, -131055, 65512, 1, -131054, 65512, 1, -65532, 65512, 0, -65531, 65512, 0, -65530, 65512, 0, -65529, 65512, 0, -65521, 65512, 0, -65520, 65512, 0, -65519, 65512, 0, -65518, 65512, 0, -131069, 65513, 1, -131068, 65513, 1, -131067, 65513, 1, -131066, 65513, 1, -131065, 65513, 1, -131064, 65513, 1, -131058, 65513, 1, -131057, 65513, 1, -131056, 65513, 1, -131055, 65513, 1, -131054, 65513, 1, -131053, 65513, 1, -65533, 65513, 0, -65532, 65513, 0, -65531, 65513, 0, -65530, 65513, 0, -65529, 65513, 0, -65528, 65513, 0, -65522, 65513, 0, -65521, 65513, 0, -65520, 65513, 0, -65519, 65513, 0, -65518, 65513, 0, -65517, 65513, 0, -131069, 65514, 1, -131068, 65514, 1, -131067, 65514, 1, -131066, 65514, 1, -131065, 65514, 1, -131064, 65514, 1, -131058, 65514, 1, -131057, 65514, 1, -131056, 65514, 1, -131055, 65514, 1, -131054, 65514, 1, -131053, 65514, 1, -65533, 65514, 0, -65532, 65514, 0, -65531, 65514, 0, -65530, 65514, 0, -65529, 65514, 0, -65528, 65514, 0, -65522, 65514, 0, -65521, 65514, 0, -65520, 65514, 0, -65519, 65514, 0, -65518, 65514, 0, -65517, 65514, 0, -131069, 65515, 1, -131068, 65515, 1, -131067, 65515, 1, -131066, 65515, 1, -131065, 65515, 1, -131064, 65515, 1, -131058, 65515, 1, -131057, 65515, 1, -131056, 65515, 1, -131055, 65515, 1, -131054, 65515, 1, -131053, 65515, 1, -65533, 65515, 0, -65532, 65515, 0, -65531, 65515, 0, -65530, 65515, 0, -65529, 65515, 0, -65528, 65515, 0, -65522, 65515, 0, -65521, 65515, 0, -65520, 65515, 0, -65519, 65515, 0, -65518, 65515, 0, -65517, 65515, 0, -131069, 65516, 1, -131068, 65516, 1, -131067, 65516, 1, -131066, 65516, 1, -131065, 65516, 1, -131064, 65516, 1, -131058, 65516, 1, -131057, 65516, 1, -131056, 65516, 1, -131055, 65516, 1, -131054, 65516, 1, -131053, 65516, 1, -65533, 65516, 0, -65532, 65516, 0, -65531, 65516, 0, -65530, 65516, 0, -65529, 65516, 0, -65528, 65516, 0, -65522, 65516, 0, -65521, 65516, 0, -65520, 65516, 0, -65519, 65516, 0, -65518, 65516, 0, -65517, 65516, 0, -131068, 65517, 1, -131067, 65517, 1, -131066, 65517, 1, -131065, 65517, 1, -131057, 65517, 1, -131056, 65517, 1, -131055, 65517, 1, -131054, 65517, 1, -65532, 65517, 0, -65531, 65517, 0, -65530, 65517, 0, -65529, 65517, 0, -65521, 65517, 0, -65520, 65517, 0, -65519, 65517, 0, -65518, 65517, 0, -131057, 65518, 1, -131056, 65518, 1, -131055, 65518, 1, -131054, 65518, 1, -65521, 65518, 0, -65520, 65518, 0, -65519, 65518, 0, -65518, 65518, 0, -131057, 65519, 1, -131056, 65519, 1, -131055, 65519, 1, -131054, 65519, 1, -131057, 65520, 1, -131056, 65520, 1, -131055, 65520, 1, -131054, 65520, 1, -131057, 65521, 1, -131056, 65521, 1, -131055, 65521, 1, -131054, 65521, 1, -65521, 65521, 0, -65520, 65521, 0, -65519, 65521, 0, -65518, 65521, 0, -131057, 65522, 1, -131056, 65522, 1, -131055, 65522, 1, -131054, 65522, 1, -65521, 65522, 0, -65520, 65522, 0, -65519, 65522, 0, -65518, 65522, 0, -131057, 65523, 1, -131056, 65523, 1, -131055, 65523, 1, -131054, 65523, 1, -65521, 65523, 0, -65520, 65523, 0, -65519, 65523, 0, -65518, 65523, 0, -131057, 65524, 1, -131056, 65524, 1, -131055, 65524, 1, -131054, 65524, 1, -65521, 65524, 0, -65520, 65524, 0, -65519, 65524, 0, -65518, 65524, 0, -131057, 65525, 1, -131056, 65525, 1, -131055, 65525, 1, -131054, 65525, 1, -65521, 65525, 0, -65520, 65525, 0, -65519, 65525, 0, -65518, 65525, 0, -131057, 65526, 1, -131056, 65526, 1, -131055, 65526, 1, -131054, 65526, 1, -65521, 65526, 0, -65520, 65526, 0, -65519, 65526, 0, -65518, 65526, 0, -131057, 65527, 1, -131056, 65527, 1, -131055, 65527, 1, -131054, 65527, 1, -65521, 65527, 0, -65520, 65527, 0, -65519, 65527, 0, -65518, 65527, 0, -131057, 65528, 1, -131056, 65528, 1, -131055, 65528, 1, -131054, 65528, 1, -65521, 65528, 0, -65520, 65528, 0, -65519, 65528, 0, -65518, 65528, 0, -131057, 65529, 1, -131056, 65529, 1, -131055, 65529, 1, -131054, 65529, 1, -65521, 65529, 0, -65520, 65529, 0, -65519, 65529, 0, -65518, 65529, 0, -131057, 65530, 1, -131056, 65530, 1, -131055, 65530, 1, -131054, 65530, 1, -131057, 65531, 1, -131056, 65531, 1, -131055, 65531, 1, -131054, 65531, 1, -131057, 65532, 1, -131056, 65532, 1, -131055, 65532, 1, -131054, 65532, 1, -65521, 65532, 0, -65520, 65532, 0, -65519, 65532, 0, -65518, 65532, 0, -131072, 65533, 1, -131071, 65533, 1, -131057, 65533, 1, -131056, 65533, 1, -131055, 65533, 1, -131054, 65533, 1, -65538, 65533, 1, -65537, 65533, 1, -65536, 65533, 0, -65535, 65533, 0, -65521, 65533, 0, -65520, 65533, 0, -65519, 65533, 0, -65518, 65533, 0, -2, 65533, 0, -1, 65533, 0, -131072, 65534, 1, -131071, 65534, 1, -131070, 65534, 1, -131069, 65534, 1, -131068, 65534, 1, -131067, 65534, 1, -131066, 65534, 1, -131065, 65534, 1, -131064, 65534, 1, -131063, 65534, 1, -131062, 65534, 1, -131061, 65534, 1, -131060, 65534, 1, -131059, 65534, 1, -131058, 65534, 1, -131057, 65534, 1, -131056, 65534, 1, -131055, 65534, 1, -131054, 65534, 1, -131053, 65534, 1, -65539, 65534, 1, -65538, 65534, 1, -65537, 65534, 1, -65536, 65534, 0, -65535, 65534, 0, -65534, 65534, 0, -65533, 65534, 0, -65532, 65534, 0, -65531, 65534, 0, -65530, 65534, 0, -65529, 65534, 0, -65528, 65534, 0, -65527, 65534, 0, -65526, 65534, 0, -65525, 65534, 0, -65524, 65534, 0, -65523, 65534, 0, -65522, 65534, 0, -65521, 65534, 0, -65520, 65534, 0, -65519, 65534, 0, -65518, 65534, 0, -65517, 65534, 0, -3, 65534, 0, -2, 65534, 0, -1, 65534, 0, -131072, 65535, 1, -131071, 65535, 1, -131070, 65535, 1, -131069, 65535, 1, -131068, 65535, 1, -131067, 65535, 1, -131066, 65535, 1, -131065, 65535, 1, -131064, 65535, 1, -131063, 65535, 1, -131062, 65535, 1, -131061, 65535, 1, -131060, 65535, 1, -131059, 65535, 1, -131058, 65535, 1, -131057, 65535, 1, -131056, 65535, 1, -131055, 65535, 1, -131054, 65535, 1, -131053, 65535, 1, -65539, 65535, 1, -65538, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -65535, 65535, 0, -65534, 65535, 0, -65533, 65535, 0, -65532, 65535, 0, -65531, 65535, 0, -65530, 65535, 0, -65529, 65535, 0, -65528, 65535, 0, -65527, 65535, 0, -65526, 65535, 0, -65525, 65535, 0, -65524, 65535, 0, -65523, 65535, 0, -65522, 65535, 0, -65521, 65535, 0, -65520, 65535, 0, -65519, 65535, 0, -65518, 65535, 0, -65517, 65535, 0, -3, 65535, 0, -2, 65535, 0, -1, 65535, 0 )
+}
+
+[node name="GridMap Spikes" parent="Overworld" index="6"]
+data = {
+"cells": PoolIntArray( 18, 65497, 0, 15, 65501, 0, 18, 65505, 0, 15, 65509, 0, -65521, 65519, 0, -65520, 65519, 0, -65519, 65519, 0, -65518, 65519, 0, -65521, 65520, 0, -65520, 65520, 0, -65519, 65520, 0, -65518, 65520, 0, -65521, 65530, 0, -65520, 65530, 0, -65519, 65530, 0, -65518, 65530, 0, -65521, 65531, 0, -65520, 65531, 0, -65519, 65531, 0, -65518, 65531, 0 )
+}
+
+[node name="WalkTutorial" type="Spatial" parent="Overworld" index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Viewport" type="Viewport" parent="Overworld/WalkTutorial" index="0"]
+size = Vector2( 456, 116 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Overworld/WalkTutorial/Viewport" index="0"]
+margin_top = 1.0
+margin_right = 456.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="Label2" type="Label" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2" index="0"]
+margin_right = 456.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "Use these to walk around"
+align = 1
+autowrap = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2" index="1"]
+margin_top = 20.0
+margin_right = 456.0
+margin_bottom = 114.0
+
+[node name="TextureRect" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="0"]
+margin_right = 149.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = ExtResource( 5 )
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="1"]
+margin_left = 153.0
+margin_right = 302.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="2"]
+margin_left = 306.0
+margin_right = 456.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="Overworld/WalkTutorial" index="1"]
+offset = Vector2( 0, 58 )
+billboard = 2
+alpha_cut = 1
+texture = SubResource( 3 )
+
+[node name="JumpTutorial" type="Spatial" parent="Overworld" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, 0 )
+
+[node name="Viewport" type="Viewport" parent="Overworld/JumpTutorial" index="0"]
+size = Vector2( 300, 72 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overworld/JumpTutorial/Viewport" index="0"]
+margin_top = 1.0
+margin_right = 300.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 9
+
+[node name="Label3" type="Label" parent="Overworld/JumpTutorial/Viewport/VBoxContainer" index="0"]
+margin_right = 300.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 4 )
+text = "Use these to jump"
+align = 1
+autowrap = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Overworld/JumpTutorial/Viewport/VBoxContainer" index="1"]
+margin_top = 20.0
+margin_right = 300.0
+margin_bottom = 70.0
+size_flags_horizontal = 9
+size_flags_vertical = 10
+
+[node name="TextureRect2" type="TextureRect" parent="Overworld/JumpTutorial/Viewport/VBoxContainer/HBoxContainer3" index="0"]
+margin_right = 150.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="Overworld/JumpTutorial/Viewport/VBoxContainer/HBoxContainer3" index="1"]
+margin_left = 154.0
+margin_right = 300.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+texture = ExtResource( 10 )
+stretch_mode = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="Overworld/JumpTutorial" index="1"]
+offset = Vector2( 0, 36 )
+billboard = 2
+alpha_cut = 1
+texture = SubResource( 5 )
+
+[node name="CoinTutorial" type="Spatial" parent="Overworld" index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -5.75 )
+
+[node name="Viewport" type="Viewport" parent="Overworld/CoinTutorial" index="0"]
+size = Vector2( 450, 37 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="Label3" type="Label" parent="Overworld/CoinTutorial/Viewport" index="0"]
+margin_top = 1.0
+margin_right = 450.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 4 )
+text = "Grab smol coins to
+improve your score"
+align = 1
+autowrap = true
+
+[node name="Sprite3D" type="Sprite3D" parent="Overworld/CoinTutorial" index="1"]
+offset = Vector2( 0, 18.5 )
+billboard = 2
+alpha_cut = 1
+texture = SubResource( 9 )
+
+[node name="TalkTutorial" type="Spatial" parent="Overworld" index="10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -10.5 )
+
+[node name="Viewport" type="Viewport" parent="Overworld/TalkTutorial" index="0"]
+size = Vector2( 450, 91 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overworld/TalkTutorial/Viewport" index="0"]
+margin_top = 1.0
+margin_right = 300.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 450, 0 )
+size_flags_vertical = 9
+
+[node name="Label3" type="Label" parent="Overworld/TalkTutorial/Viewport/VBoxContainer" index="0"]
+margin_right = 450.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 4 )
+text = "Approach characters and
+press these buttons to speak"
+align = 1
+autowrap = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Overworld/TalkTutorial/Viewport/VBoxContainer" index="1"]
+margin_top = 39.0
+margin_right = 450.0
+margin_bottom = 89.0
+size_flags_horizontal = 9
+size_flags_vertical = 10
+
+[node name="TextureRect2" type="TextureRect" parent="Overworld/TalkTutorial/Viewport/VBoxContainer/HBoxContainer3" index="0"]
+margin_right = 223.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="Overworld/TalkTutorial/Viewport/VBoxContainer/HBoxContainer3" index="1"]
+margin_left = 227.0
+margin_right = 450.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+texture = ExtResource( 10 )
+stretch_mode = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="Overworld/TalkTutorial" index="1"]
+offset = Vector2( 0, 45.5 )
+billboard = 2
+alpha_cut = 1
+texture = SubResource( 6 )
+
+[node name="PauseTutorial" type="Spatial" parent="Overworld" index="11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -21 )
+
+[node name="Viewport" type="Viewport" parent="Overworld/PauseTutorial" index="0"]
+size = Vector2( 450, 91 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overworld/PauseTutorial/Viewport" index="0"]
+margin_top = 1.0
+margin_right = 300.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 450, 0 )
+size_flags_vertical = 9
+
+[node name="Label3" type="Label" parent="Overworld/PauseTutorial/Viewport/VBoxContainer" index="0"]
+margin_right = 450.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 4 )
+text = "Press these to open
+the pause menu"
+align = 1
+autowrap = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Overworld/PauseTutorial/Viewport/VBoxContainer" index="1"]
+margin_top = 39.0
+margin_right = 450.0
+margin_bottom = 89.0
+size_flags_horizontal = 9
+size_flags_vertical = 10
+
+[node name="TextureRect2" type="TextureRect" parent="Overworld/PauseTutorial/Viewport/VBoxContainer/HBoxContainer3" index="0"]
+margin_right = 147.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+texture = ExtResource( 15 )
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="Overworld/PauseTutorial/Viewport/VBoxContainer/HBoxContainer3" index="1"]
+margin_left = 151.0
+margin_right = 298.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+texture = ExtResource( 14 )
+stretch_mode = 6
+
+[node name="TextureRect4" type="TextureRect" parent="Overworld/PauseTutorial/Viewport/VBoxContainer/HBoxContainer3" index="2"]
+margin_left = 302.0
+margin_right = 450.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+texture = ExtResource( 13 )
+stretch_mode = 6
+
+[node name="Sprite3D" type="Sprite3D" parent="Overworld/PauseTutorial" index="1"]
+offset = Vector2( 0, 45.5 )
+billboard = 2
+alpha_cut = 1
+texture = SubResource( 7 )
+
+[node name="CookieTutorial" type="Spatial" parent="Overworld" index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -21 )
+
+[node name="Viewport" type="Viewport" parent="Overworld/CookieTutorial" index="0"]
+size = Vector2( 450, 37 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="Label3" type="Label" parent="Overworld/CookieTutorial/Viewport" index="0"]
+margin_top = 1.0
+margin_right = 450.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 4 )
+text = "Grab the smol cookie
+to end the level"
+align = 1
+autowrap = true
+
+[node name="Sprite3D" type="Sprite3D" parent="Overworld/CookieTutorial" index="1"]
+offset = Vector2( 0, 18.5 )
+billboard = 2
+alpha_cut = 1
+texture = SubResource( 8 )
+
+[node name="Battle" parent="." index="1"]
+visible = false
+
+[node name="GridMap" parent="Battle" index="3"]
+cell_center_y = true
+data = {
+"cells": PoolIntArray( 2, 0, 8, 7, 0, 7, 65527, 0, 9, 65533, 0, 6, -196608, 0, 1, -196607, 0, 1, -196606, 0, 1, -196605, 0, 1, -196604, 0, 1, -196603, 0, 1, -196602, 0, 1, -196601, 0, 1, -196600, 0, 1, -196599, 0, 1, -131082, 0, 1, -131081, 0, 1, -131080, 0, 1, -131079, 0, 1, -131078, 0, 1, -131077, 0, 1, -131076, 0, 1, -131075, 0, 1, -131074, 0, 1, -131073, 0, 1, -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 1, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -131063, 0, 1, -65546, 0, 1, -65545, 0, 1, -65544, 0, 1, -65543, 0, 1, -65542, 0, 1, -65541, 0, 1, -65540, 0, 1, -65539, 0, 1, -65538, 0, 1, -65537, 0, 1, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -10, 0, 0, -9, 0, 0, -8, 0, 0, -7, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, 2, 65535, 6, 4, 65535, 7, 65529, 65535, 9, -196608, 65535, 1, -196607, 65535, 1, -196606, 65535, 1, -196605, 65535, 1, -196604, 65535, 1, -196603, 65535, 1, -196602, 65535, 1, -196601, 65535, 1, -196600, 65535, 1, -196599, 65535, 1, -131082, 65535, 1, -131081, 65535, 1, -131080, 65535, 1, -131079, 65535, 1, -131078, 65535, 1, -131077, 65535, 1, -131076, 65535, 1, -131075, 65535, 1, -131074, 65535, 1, -131073, 65535, 1, -131072, 65535, 1, -131071, 65535, 1, -131070, 65535, 1, -131069, 65535, 1, -131068, 65535, 1, -131067, 65535, 1, -131066, 65535, 1, -131065, 65535, 1, -131064, 65535, 1, -131063, 65535, 1, -65546, 65535, 1, -65545, 65535, 1, -65544, 65535, 1, -65543, 65535, 1, -65542, 65535, 1, -65541, 65535, 1, -65540, 65535, 1, -65539, 65535, 1, -65538, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -65535, 65535, 0, -65534, 65535, 0, -65533, 65535, 0, -65532, 65535, 0, -65531, 65535, 0, -65530, 65535, 0, -65529, 65535, 0, -65528, 65535, 0, -65527, 65535, 0, -10, 65535, 0, -9, 65535, 0, -8, 65535, 0, -7, 65535, 0, -6, 65535, 0, -5, 65535, 0, -4, 65535, 0, -3, 65535, 0, -2, 65535, 0, -1, 65535, 0 )
+}

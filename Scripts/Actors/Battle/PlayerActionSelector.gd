@@ -49,8 +49,6 @@ func _pick_action() -> void:
 	
 	yield(self, "action_over");
 	
-	state = State.INACTIVE;
-	
 	emit_signal("turn_over");
 
 func _process(_delta) -> void:
@@ -115,9 +113,12 @@ func _process(_delta) -> void:
 				potential_targets[selected_target].selector_arrow.visible = true;
 			else:
 				if (Input.is_action_just_pressed("ui_accept")):
-					potential_targets[selected_target].selector_arrow.visible = false;
+					potential_targets[ selected_target].selector_arrow.visible = false;
 					
 					actions[selected_action]._execute_action(_player, potential_targets[selected_target]);
+					
+					state = State.INACTIVE;
+					
 					yield(actions[selected_action], "action_over");
 					emit_signal("action_over");
 				else:

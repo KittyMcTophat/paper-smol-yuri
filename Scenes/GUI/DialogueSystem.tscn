@@ -106,9 +106,6 @@ mouse_filter = 2
 size_flags_vertical = 0
 theme = ExtResource( 3 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_top = 1.0
@@ -127,7 +124,6 @@ __meta__ = {
 
 [node name="DialogueBox" type="NinePatchRect" parent="MarginContainer"]
 visible = false
-self_modulate = Color( 1, 1, 1, 0.941176 )
 margin_left = 100.0
 margin_right = 868.0
 margin_bottom = 192.0

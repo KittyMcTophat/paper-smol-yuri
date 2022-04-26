@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/4 Key.png-f64feac980e39ff1770284e65d6453d8.stex"
+path="res://.import/XButton.png-d6a1453c9f9142810c14637465f89b28.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Buttons/4 Key.png"
-dest_files=[ "res://.import/4 Key.png-f64feac980e39ff1770284e65d6453d8.stex" ]
+source_file="res://Sprites/Buttons/XButton.png"
+dest_files=[ "res://.import/XButton.png-d6a1453c9f9142810c14637465f89b28.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

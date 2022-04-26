@@ -5,6 +5,7 @@ class_name InteractableActor
 signal dialogue_ended;
 
 export var interact_on_ready: bool = false;
+export var only_on_first_load: bool = false;
 export(String, FILE, "*.json") var dialogue_file : String = "";
 
 onready var exclamation_mark: Sprite3D = $ExclamationMark;
@@ -18,7 +19,10 @@ func _ready():
 	file_read.open(dialogue_file, File.READ);
 	dialogue_json_parse = parse_json(file_read.get_as_text());
 	
-	if (interact_on_ready):		
+	if (interact_on_ready):
+		if (only_on_first_load && Global.first_load == false):
+				emit_signal("dialogue_ended");
+				return;
 		if (Global.get_node_or_null("AllGUI/SplashScreen")):
 		#warning-ignore:RETURN_VALUE_DISCARDED
 			Global.get_node("AllGUI/SplashScreen").connect("splash_screen_over", self, "_interact");

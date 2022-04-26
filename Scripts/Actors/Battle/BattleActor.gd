@@ -135,9 +135,10 @@ func _fire_projectile(projectile : PackedScene = default_projectile, direction :
 	new_projectile.collision_mask = target_collision_layers;
 
 func _jump(strength : float = jump_strength):
-	velocity.y = strength;
-	_squash(Vector3(0.9, 1.1, 0.9));
-	_make_dust_particles();
+	if (is_on_floor()):
+		velocity.y = strength;
+		_squash(Vector3(0.9, 1.1, 0.9));
+		_make_dust_particles();
 
 func _make_dust_particles() -> void:
 	if (dust_particles == null):

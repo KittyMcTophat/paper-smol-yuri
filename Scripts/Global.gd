@@ -14,6 +14,7 @@ var text_speed : float = 0.033;
 
 var allow_pause : bool = true;
 var allow_jump : bool = true;
+var first_load : bool = true;
 
 var current_level_controller : LevelController = null;
 
@@ -44,6 +45,7 @@ func load_scene(scene: String):
 	
 	emit_signal("scene_is_changing");
 	
+	first_load = false;
 	get_tree().change_scene_to(next_scene);
 	money = coin_counter.get_money();
 	
@@ -58,6 +60,7 @@ func reload_scene():
 	
 	emit_signal("scene_is_reloading");
 	
+	first_load = false;
 #warning-ignore:RETURN_VALUE_DISCARDED
 	get_tree().reload_current_scene();
 	coin_counter.set_money(money);

@@ -29,6 +29,7 @@ func _ready():
 	environment = preload("res://level_env.tres");
 	
 	yield(get_tree(), "idle_frame");
+	yield(get_tree(), "idle_frame");
 	
 	match default_active:
 		NONE:

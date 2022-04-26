@@ -16,6 +16,7 @@ func _do_your_turn() -> void:
 	
 	attack_anim_player.play(attack_animations[attack]);
 	attack_anim_player.advance(0);
+	print("Using attack: " + attack_animations[attack]);
 	
 	yield(attack_anim_player, "animation_finished");
 	yield(get_tree().create_timer(1.0), "timeout");

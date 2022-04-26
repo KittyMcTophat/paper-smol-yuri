@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriStill.png" type="Texture" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Sprites/Buttons/ArrowKeys.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Buttons/WASD.png" type="Texture" id=13]
 [ext_resource path="res://Sprites/Buttons/Leftstick.png" type="Texture" id=14]
+[ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Scenes/GUI/Credits.tscn" type="PackedScene" id=16]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends CanvasLayer
@@ -32,6 +34,11 @@ func _on_ExitButton_pressed():
 func _on_InteractableActor_dialogue_ended():
 	Global.allow_pause = false;
 "
+
+[sub_resource type="DynamicFont" id=3]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 15 )
 
 [node name="LevelController" instance=ExtResource( 1 )]
 background_texture = ExtResource( 5 )
@@ -61,11 +68,16 @@ script = ExtResource( 4 )
 [node name="InteractableActor" parent="Overworld" index="4" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
 interact_on_ready = true
+only_on_first_load = true
 dialogue_file = "res://Dialogues/Disclaimer.json"
 
-[node name="SmolCookie" parent="Overworld" index="5" instance=ExtResource( 8 )]
+[node name="StartCookie" parent="Overworld" index="5" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
-next_scene = "res://Scenes/TestScene.tscn"
+next_scene = "res://Scenes/Levels/Level_0.tscn"
+
+[node name="ReloadCookie" parent="Overworld" index="6" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
+next_scene = "res://Scenes/TitleScreen.tscn"
 
 [node name="Battle" parent="." index="1"]
 visible = false
@@ -75,7 +87,9 @@ data = {
 "cells": PoolIntArray( -196608, 0, 1, -196607, 0, 1, -196606, 0, 1, -196605, 0, 1, -196604, 0, 1, -196603, 0, 1, -196602, 0, 1, -196601, 0, 1, -196600, 0, 1, -196599, 0, 1, -131082, 0, 1, -131081, 0, 1, -131080, 0, 1, -131079, 0, 1, -131078, 0, 1, -131077, 0, 1, -131076, 0, 1, -131075, 0, 1, -131074, 0, 1, -131073, 0, 1, -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 1, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -131063, 0, 1, -65546, 0, 1, -65545, 0, 1, -65544, 0, 1, -65543, 0, 1, -65542, 0, 1, -65541, 0, 1, -65540, 0, 1, -65539, 0, 1, -65538, 0, 1, -65537, 0, 1, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -10, 0, 0, -9, 0, 0, -8, 0, 0, -7, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -196608, 65535, 1, -196607, 65535, 1, -196606, 65535, 1, -196605, 65535, 1, -196604, 65535, 1, -196603, 65535, 1, -196602, 65535, 1, -196601, 65535, 1, -196600, 65535, 1, -196599, 65535, 1, -131082, 65535, 1, -131081, 65535, 1, -131080, 65535, 1, -131079, 65535, 1, -131078, 65535, 1, -131077, 65535, 1, -131076, 65535, 1, -131075, 65535, 1, -131074, 65535, 1, -131073, 65535, 1, -131072, 65535, 1, -131071, 65535, 1, -131070, 65535, 1, -131069, 65535, 1, -131068, 65535, 1, -131067, 65535, 1, -131066, 65535, 1, -131065, 65535, 1, -131064, 65535, 1, -131063, 65535, 1, -65546, 65535, 1, -65545, 65535, 1, -65544, 65535, 1, -65543, 65535, 1, -65542, 65535, 1, -65541, 65535, 1, -65540, 65535, 1, -65539, 65535, 1, -65538, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -65535, 65535, 0, -65534, 65535, 0, -65533, 65535, 0, -65532, 65535, 0, -65531, 65535, 0, -65530, 65535, 0, -65529, 65535, 0, -65528, 65535, 0, -65527, 65535, 0, -10, 65535, 0, -9, 65535, 0, -8, 65535, 0, -7, 65535, 0, -6, 65535, 0, -5, 65535, 0, -4, 65535, 0, -3, 65535, 0, -2, 65535, 0, -1, 65535, 0 )
 }
 
-[node name="Menu" type="CanvasLayer" parent="." index="5"]
+[node name="Credits" parent="." index="3" instance=ExtResource( 16 )]
+
+[node name="Menu" type="CanvasLayer" parent="." index="6"]
 layer = -1
 script = SubResource( 2 )
 
@@ -97,10 +111,11 @@ margin_left = 30.0
 margin_top = 30.0
 margin_right = 930.0
 margin_bottom = 510.0
+custom_constants/separation = 20
 
 [node name="Control" type="Control" parent="Menu/Control/MarginContainer/VBoxContainer" index="0"]
 margin_right = 900.0
-margin_bottom = 362.0
+margin_bottom = 346.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -110,122 +125,147 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -200.0
 size_flags_vertical = 3
+custom_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer" index="0"]
 margin_right = 560.0
-margin_bottom = 258.0
+margin_bottom = 278.0
 size_flags_vertical = 3
 texture = ExtResource( 6 )
 stretch_mode = 6
 
-[node name="StartButton" type="Button" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer" index="1"]
-margin_left = 180.0
-margin_top = 262.0
-margin_right = 380.0
-margin_bottom = 310.0
-rect_min_size = Vector2( 200, 0 )
-focus_neighbour_top = NodePath("../ExitButton")
-focus_neighbour_bottom = NodePath("../ExitButton")
-size_flags_horizontal = 4
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer" index="1"]
+margin_top = 298.0
+margin_right = 560.0
+margin_bottom = 346.0
+
+[node name="StartButton" type="Button" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 192.0
+margin_bottom = 48.0
+focus_neighbour_left = NodePath("../ExitButton")
+focus_neighbour_right = NodePath("../CreditsButton")
+size_flags_horizontal = 3
 size_flags_vertical = 9
 text = "Start Game"
 
-[node name="ExitButton" type="Button" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer" index="2"]
-margin_left = 180.0
-margin_top = 314.0
-margin_right = 380.0
-margin_bottom = 362.0
-rect_min_size = Vector2( 200, 0 )
-focus_neighbour_top = NodePath("../StartButton")
-focus_neighbour_bottom = NodePath("../StartButton")
-size_flags_horizontal = 4
+[node name="CreditsButton" type="Button" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer" index="1"]
+margin_left = 196.0
+margin_right = 376.0
+margin_bottom = 48.0
+focus_neighbour_left = NodePath("../StartButton")
+focus_neighbour_right = NodePath("../ExitButton")
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer" index="2"]
+margin_left = 380.0
+margin_right = 560.0
+margin_bottom = 48.0
+focus_neighbour_left = NodePath("../CreditsButton")
+focus_neighbour_right = NodePath("../StartButton")
+size_flags_horizontal = 3
 size_flags_vertical = 8
 text = "Exit Game"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer" index="1"]
+[node name="MarginContainer" type="MarginContainer" parent="Menu/Control/MarginContainer/VBoxContainer" index="1"]
 margin_top = 366.0
 margin_right = 900.0
 margin_bottom = 480.0
+custom_constants/margin_right = 70
+custom_constants/margin_left = 70
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer" index="0"]
+margin_left = 70.0
+margin_right = 830.0
+margin_bottom = 114.0
 size_flags_vertical = 8
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-margin_right = 448.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="0"]
+margin_right = 456.0
 margin_bottom = 114.0
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
-[node name="Label2" type="Label" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" index="0"]
-margin_right = 448.0
+[node name="Label2" type="Label" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" index="0"]
+margin_right = 456.0
 margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
 text = "Use these to select a button"
 align = 1
+autowrap = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" index="1"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" index="1"]
 margin_top = 20.0
-margin_right = 448.0
+margin_right = 456.0
 margin_bottom = 114.0
 
-[node name="TextureRect" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="0"]
-margin_right = 148.0
+[node name="TextureRect" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="0"]
+margin_right = 149.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 texture = ExtResource( 12 )
 stretch_mode = 6
 
-[node name="TextureRect2" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="1"]
-margin_left = 152.0
-margin_right = 300.0
+[node name="TextureRect2" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="1"]
+margin_left = 153.0
+margin_right = 302.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 texture = ExtResource( 13 )
 stretch_mode = 6
 
-[node name="TextureRect3" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="2"]
-margin_left = 304.0
-margin_right = 448.0
+[node name="TextureRect3" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="2"]
+margin_left = 306.0
+margin_right = 456.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 texture = ExtResource( 14 )
 stretch_mode = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
-margin_left = 452.0
-margin_top = 44.0
-margin_right = 900.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="1"]
+margin_left = 460.0
+margin_right = 760.0
 margin_bottom = 114.0
-size_flags_horizontal = 3
-size_flags_vertical = 8
+rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 9
 
-[node name="Label3" type="Label" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="0"]
-margin_right = 448.0
-margin_bottom = 16.0
+[node name="Label3" type="Label" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" index="0"]
+margin_right = 300.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 3 )
 text = "And these to confirm it"
 align = 1
+autowrap = true
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="1"]
-margin_top = 20.0
-margin_right = 448.0
-margin_bottom = 70.0
+[node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" index="1"]
+margin_top = 64.0
+margin_right = 300.0
+margin_bottom = 114.0
 size_flags_horizontal = 9
+size_flags_vertical = 10
 
-[node name="TextureRect2" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="0"]
-margin_right = 222.0
+[node name="TextureRect2" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="0"]
+margin_right = 150.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 texture = ExtResource( 11 )
 stretch_mode = 6
 
-[node name="TextureRect3" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="1"]
-margin_left = 226.0
-margin_right = 448.0
+[node name="TextureRect3" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="1"]
+margin_left = 154.0
+margin_right = 300.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 texture = ExtResource( 10 )
 stretch_mode = 6
 
 [connection signal="dialogue_ended" from="Overworld/InteractableActor" to="Menu" method="_on_InteractableActor_dialogue_ended"]
-[connection signal="dialogue_ended" from="Overworld/InteractableActor" to="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/StartButton" method="grab_focus"]
-[connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/StartButton" to="Overworld/SmolCookie" method="collect"]
-[connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/ExitButton" to="Menu" method="_on_ExitButton_pressed"]
+[connection signal="dialogue_ended" from="Overworld/InteractableActor" to="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/StartButton" method="grab_focus"]
+[connection signal="credits_over" from="Credits" to="Overworld/ReloadCookie" method="collect"]
+[connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/StartButton" to="Overworld/StartCookie" method="collect"]
+[connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/CreditsButton" to="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/CreditsButton" method="release_focus"]
+[connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/CreditsButton" to="Credits" method="_roll_credits"]
+[connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/ExitButton" to="Menu" method="_on_ExitButton_pressed"]
