@@ -92,6 +92,7 @@ viewport_path = NodePath("Viewport")
 [node name="BaseEnemy" instance=ExtResource( 1 )]
 actor_name = "Purple Smol
 Bowling Ball"
+attack = 2
 attack_animations = [ "Attack1", "Attack2", "Attack3" ]
 
 [node name="CollisionShape" parent="." index="0"]

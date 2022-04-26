@@ -22,11 +22,11 @@ script/source = "extends CanvasLayer
 
 
 func _ready():
-	Global.coin_counter.visible = false;
+	Global.coin_counter.modulate = Color.transparent;
 
 func _notification(what : int):
 	if (what == NOTIFICATION_PREDELETE):
-		Global.coin_counter.visible = true;
+		Global.coin_counter.modulate = Color.white;
 
 func _on_ExitButton_pressed():
 	get_tree().quit();
@@ -266,6 +266,6 @@ stretch_mode = 6
 [connection signal="dialogue_ended" from="Overworld/InteractableActor" to="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/StartButton" method="grab_focus"]
 [connection signal="credits_over" from="Credits" to="Overworld/ReloadCookie" method="collect"]
 [connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/StartButton" to="Overworld/StartCookie" method="collect"]
-[connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/CreditsButton" to="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/CreditsButton" method="release_focus"]
 [connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/CreditsButton" to="Credits" method="_roll_credits"]
+[connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/CreditsButton" to="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/CreditsButton" method="release_focus"]
 [connection signal="pressed" from="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/ExitButton" to="Menu" method="_on_ExitButton_pressed"]

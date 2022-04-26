@@ -32,6 +32,7 @@ func start_battle(players : Array = [], enemies : Array = []):
 	_level_controller.fade_rect_anim_player.play("Fade_In");
 	yield(_level_controller.fade_rect_anim_player, "animation_finished");
 	
+	Global.coin_counter.modulate = Color.transparent;
 	_level_controller.enable_battle();
 	
 	for icon in $PlayerKeyHints.get_children():
@@ -127,6 +128,7 @@ func end_battle():
 	_level_controller.fade_rect_anim_player.play("Fade_In");
 	yield(_level_controller.fade_rect_anim_player, "animation_finished");
 	
+	Global.coin_counter.modulate = Color.white;
 	_level_controller.enable_overworld();
 	
 	for child in _players_container.get_children():

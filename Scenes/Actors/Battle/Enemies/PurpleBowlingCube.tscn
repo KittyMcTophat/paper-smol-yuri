@@ -21,8 +21,9 @@ viewport_path = NodePath("Viewport")
 [node name="BaseEnemy" instance=ExtResource( 2 )]
 actor_name = "Purple Smol
 Bowling Cube"
-max_health = 15
-current_health = 15
+max_health = 20
+current_health = 20
+attack = 3
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 3 )
