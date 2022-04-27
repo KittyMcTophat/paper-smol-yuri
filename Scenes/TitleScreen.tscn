@@ -115,29 +115,28 @@ custom_constants/separation = 20
 
 [node name="Control" type="Control" parent="Menu/Control/MarginContainer/VBoxContainer" index="0"]
 margin_right = 900.0
-margin_bottom = 346.0
+margin_bottom = 327.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/Control" index="0"]
-anchor_left = 0.6
+anchor_left = 0.4
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -200.0
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer" index="0"]
-margin_right = 560.0
-margin_bottom = 278.0
+margin_right = 540.0
+margin_bottom = 259.0
 size_flags_vertical = 3
 texture = ExtResource( 6 )
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer" index="1"]
-margin_top = 298.0
-margin_right = 560.0
-margin_bottom = 346.0
+margin_top = 279.0
+margin_right = 540.0
+margin_bottom = 327.0
 
 [node name="StartButton" type="Button" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer" index="0"]
 margin_right = 192.0
@@ -150,7 +149,7 @@ text = "Start Game"
 
 [node name="CreditsButton" type="Button" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer" index="1"]
 margin_left = 196.0
-margin_right = 376.0
+margin_right = 360.0
 margin_bottom = 48.0
 focus_neighbour_left = NodePath("../StartButton")
 focus_neighbour_right = NodePath("../ExitButton")
@@ -159,8 +158,8 @@ size_flags_vertical = 8
 text = "Credits"
 
 [node name="ExitButton" type="Button" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer" index="2"]
-margin_left = 380.0
-margin_right = 560.0
+margin_left = 364.0
+margin_right = 540.0
 margin_bottom = 48.0
 focus_neighbour_left = NodePath("../CreditsButton")
 focus_neighbour_right = NodePath("../StartButton")
@@ -169,39 +168,40 @@ size_flags_vertical = 8
 text = "Exit Game"
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu/Control/MarginContainer/VBoxContainer" index="1"]
-margin_top = 366.0
+margin_top = 347.0
 margin_right = 900.0
 margin_bottom = 480.0
-custom_constants/margin_right = 70
-custom_constants/margin_left = 70
+custom_constants/margin_right = 40
+custom_constants/margin_left = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer" index="0"]
-margin_left = 70.0
-margin_right = 830.0
-margin_bottom = 114.0
+margin_left = 40.0
+margin_right = 860.0
+margin_bottom = 133.0
 size_flags_vertical = 8
+custom_constants/separation = 0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="0"]
-margin_right = 456.0
-margin_bottom = 114.0
+margin_right = 360.0
+margin_bottom = 133.0
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
 [node name="Label2" type="Label" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" index="0"]
-margin_right = 456.0
-margin_bottom = 16.0
+margin_right = 360.0
+margin_bottom = 35.0
 custom_fonts/font = SubResource( 3 )
 text = "Use these to select a button"
 align = 1
 autowrap = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" index="1"]
-margin_top = 20.0
-margin_right = 456.0
-margin_bottom = 114.0
+margin_top = 39.0
+margin_right = 360.0
+margin_bottom = 133.0
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="0"]
-margin_right = 149.0
+margin_right = 148.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -209,8 +209,8 @@ texture = ExtResource( 12 )
 stretch_mode = 6
 
 [node name="TextureRect2" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="1"]
-margin_left = 153.0
-margin_right = 302.0
+margin_left = 152.0
+margin_right = 300.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -218,17 +218,17 @@ texture = ExtResource( 13 )
 stretch_mode = 6
 
 [node name="TextureRect3" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="2"]
-margin_left = 306.0
-margin_right = 456.0
+margin_left = 304.0
+margin_right = 360.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 texture = ExtResource( 14 )
 stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="1"]
-margin_left = 460.0
-margin_right = 760.0
-margin_bottom = 114.0
+margin_left = 360.0
+margin_right = 660.0
+margin_bottom = 133.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_vertical = 9
 
@@ -241,26 +241,52 @@ align = 1
 autowrap = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" index="1"]
-margin_top = 64.0
+margin_top = 83.0
 margin_right = 300.0
-margin_bottom = 114.0
+margin_bottom = 133.0
 size_flags_horizontal = 9
 size_flags_vertical = 10
+custom_constants/separation = 10
 
-[node name="TextureRect2" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="0"]
-margin_right = 150.0
+[node name="TextureRect4" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="0"]
+margin_right = 35.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="1"]
+margin_left = 45.0
+margin_right = 195.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 texture = ExtResource( 11 )
 stretch_mode = 6
 
-[node name="TextureRect3" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="1"]
-margin_left = 154.0
+[node name="TextureRect3" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="2"]
+margin_left = 205.0
+margin_right = 255.0
+margin_bottom = 50.0
+texture = ExtResource( 10 )
+stretch_mode = 6
+
+[node name="TextureRect5" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="3"]
+margin_left = 265.0
 margin_right = 300.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
-texture = ExtResource( 10 )
 stretch_mode = 6
+
+[node name="Label3" type="Label" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="2"]
+margin_left = 660.0
+margin_right = 820.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 3 )
+text = "Also you can press F4 to enter fullscreen"
+align = 1
+valign = 1
+autowrap = true
 
 [connection signal="dialogue_ended" from="Overworld/InteractableActor" to="Menu" method="_on_InteractableActor_dialogue_ended"]
 [connection signal="dialogue_ended" from="Overworld/InteractableActor" to="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer/StartButton" method="grab_focus"]
