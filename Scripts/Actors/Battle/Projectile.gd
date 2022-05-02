@@ -38,7 +38,7 @@ func set_direction(new_direction : Vector3):
 	direction = new_direction.normalized();
 	var vec2direction : Vector2 = Vector2(direction.x, direction.y).normalized();
 	
-	_sprite3d.transform.basis = Basis(Vector3(0.0, vec2direction.angle(), 0.0));
+	_sprite3d.rotation = Vector3(0.0, vec2direction.angle(), 0.0);
 
 func _on_BaseProjectile_body_entered(body):
 	body.hurt(damage);

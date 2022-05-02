@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Actors/Battle/BaseActors/BaseEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Meshes/Enemies/PurpleBowlingCube.png" type="Texture" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.25, 0.25, 0.25 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.025, 1, 0.025 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 0.05, 2, 0.05 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.517647, 0.392157, 0.243137, 1 )
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("Viewport")
+
+[node name="BaseEnemy" instance=ExtResource( 1 )]
+actor_name = "Bowling Cube
+With Stilts"
+max_health = 20
+current_health = 20
+attack = 3
+
+[node name="CollisionShape" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.65, 0 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.275 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.275 )
+shape = SubResource( 6 )
+
+[node name="Sprite3D" parent="." index="3"]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Sprite3D" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("")
+material/0 = SubResource( 3 )
+
+[node name="Left" type="MeshInstance" parent="Sprite3D/MeshInstance" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, -0.275 )
+mesh = SubResource( 4 )
+skeleton = NodePath("")
+material/0 = SubResource( 5 )
+
+[node name="Right" type="MeshInstance" parent="Sprite3D/MeshInstance" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0.275 )
+mesh = SubResource( 4 )
+skeleton = NodePath("")
+material/0 = SubResource( 5 )
+
+[node name="SelectorArrow" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0.001 )
+
+[node name="ProjectileTargetPoint" parent="." index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0 )
+
+[node name="ProjectileSpawnPoint" parent="." index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0 )
+
+[node name="HealthBar" parent="." index="10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0 )
+
+[node name="AttackBoosts" parent="." index="13"]
+texture = SubResource( 7 )

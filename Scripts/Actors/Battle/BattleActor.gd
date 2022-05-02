@@ -33,21 +33,14 @@ func _ready():
 	if (target_direction.x < 0.0):
 		_sprite_3d.rotation_degrees.y = 180.0;
 
-func _enter_tree():
-	update_name_display();
+func _enter_battle():
+	yield(get_tree(), "idle_frame");
+	$SelectorArrow/NameDisplay._set_name(actor_name);
 	
 	attack_boosts = 0;
 	$Viewport/Label.text = "+0";
 	$AttackBoosts.visible = false;
 	$AttackBoosts.modulate = Color.transparent;
-
-func update_name_display():
-	yield(get_tree(), "idle_frame");
-	$SelectorArrow/NameDisplay/Viewport/NinePatchRect/CenterContainer/MarginContainer/Label.text = actor_name;
-	yield($SelectorArrow/NameDisplay/Viewport/NinePatchRect/CenterContainer/MarginContainer, "resized");
-	$SelectorArrow/NameDisplay/Viewport.size =\
-	$SelectorArrow/NameDisplay/Viewport/NinePatchRect/CenterContainer/MarginContainer.rect_size;
-	$SelectorArrow/NameDisplay/Sprite3D.offset.y = $SelectorArrow/NameDisplay/Viewport.size.y / 2;
 
 func _physics_process(delta):
 	velocity += gravity * delta;

@@ -19,6 +19,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05 )
+alpha_cut = 1
 texture = ExtResource( 1 )
 
 [node name="Shadow" parent="." instance=ExtResource( 3 )]

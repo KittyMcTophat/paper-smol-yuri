@@ -43,6 +43,7 @@ func start_battle(players : Array = [], enemies : Array = []):
 		players[i].transform.origin = first_player_position;
 		players[i].transform.origin.x += player_separation * i;
 		$PlayerKeyHints.get_child(i).visible = true;
+		players[i]._enter_battle();
 	
 	enemies.invert();
 	
@@ -50,6 +51,7 @@ func start_battle(players : Array = [], enemies : Array = []):
 		_enemies_container.add_child(enemies[i]);
 		enemies[i].transform.origin = first_enemy_position;
 		enemies[i].transform.origin.x += enemy_separation * i;
+		enemies[i]._enter_battle();
 	
 	_players = players;
 	_enemies = enemies;

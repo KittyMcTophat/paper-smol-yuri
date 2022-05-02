@@ -37,8 +37,8 @@ func _ready():
 	
 	for i in range(party_scenes.size()):
 		party.push_back(party_scenes[i].instance());
-		add_child(party[i]);
-		remove_child(party[i]);
+		#add_child(party[i]);
+		#remove_child(party[i]);
 		party[i].personal_jump_input = "jump_" + str(i + 1);
 	
 	yield(get_tree(), "idle_frame");
