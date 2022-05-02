@@ -162,8 +162,9 @@ func _update_last_safe_spot():
 func _go_to_last_safe_spot():
 	hurt(hazard_damage);
 	
-	transform.origin = _last_safe_location;
-	_velocity = Vector3.ZERO;
+	if (cur_health > 0):
+		transform.origin = _last_safe_location;
+		_velocity = Vector3.ZERO;
 
 func hurt(damage : int = 1):
 	#TODO: add particle with damage number

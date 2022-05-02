@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sky with Sun.png-6c21ff4c97cee6dae6349de0bc0e7a95.stex"
+path="res://.import/crown.png-3552956eb4a574d9672b77ef4071b126.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Backgrounds/Sky with Sun.png"
-dest_files=[ "res://.import/Sky with Sun.png-6c21ff4c97cee6dae6349de0bc0e7a95.stex" ]
+source_file="res://Meshes/Enemies/KingBowlingCube/crown.png"
+dest_files=[ "res://.import/crown.png-3552956eb4a574d9672b77ef4071b126.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=0
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

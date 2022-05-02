@@ -124,3 +124,5 @@ transparent = false
 double_sided = false
 alpha_cut = 1
 texture = SubResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 80, 24 )

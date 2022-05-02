@@ -30,6 +30,7 @@ func _ready():
 	health_number_label.self_modulate = text_color;
 	
 	viewport.size = health_bar_size;
+	$Sprite3D.region_rect = Rect2(0, 0, health_bar_size.x, health_bar_size.y);
 	if (display_number):
 		_show_number();
 	else:
