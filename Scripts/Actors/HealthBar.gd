@@ -1,5 +1,7 @@
 extends Spatial
 
+class_name HealthBar
+
 onready var health_bar_over : TextureProgress = $Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver;
 onready var health_bar_under : TextureProgress = $Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver/HealthBarUnder;
 onready var health_number_label : Label = $Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver/Label;

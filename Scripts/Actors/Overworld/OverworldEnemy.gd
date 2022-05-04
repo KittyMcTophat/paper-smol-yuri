@@ -2,8 +2,10 @@ extends Actor
 
 class_name OverworldEnemy
 
-signal battle_end
 signal battle_start
+signal battle_start_early
+signal battle_end
+signal battle_end_early
 
 export var move_speed : float = 2.0;
 export var jump_strength : float = 5.0;
@@ -85,16 +87,27 @@ func _on_PlayerDetectorArea_body_entered(body):
 		Global.current_level_controller.battle.start_battle(body.party, enemies_instanced);
 	# warning-ignore:return_value_discarded
 		Global.current_level_controller.battle.connect("battle_start", self, "_battle_start");
+# warning-ignore:return_value_discarded
+		Global.current_level_controller.battle.connect("battle_start_early", self, "_battle_start_early");
 	# warning-ignore:return_value_discarded
 		Global.current_level_controller.battle.connect("battle_end", self, "_battle_end");
+# warning-ignore:return_value_discarded
+		Global.current_level_controller.battle.connect("battle_end_early", self, "_battle_end_early");
 
 func _battle_start():
 	emit_signal("battle_start");
 
+func _battle_start_early():
+	emit_signal("battle_start_early");
+
 func _battle_end():
 	emit_signal("battle_end");
-	Global.coin_counter.add_money(reward_money);
 	_kill();
+
+func _battle_end_early():
+	emit_signal("battle_end_early");
+	Global.coin_counter.add_money(reward_money);
+	hide();
 
 func _kill():
 	queue_free();

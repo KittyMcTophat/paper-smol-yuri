@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Actors/Battle/Enemy.gd"
 }, {
+"base": "Spatial",
+"class": "HealthBar",
+"language": "GDScript",
+"path": "res://Scripts/Actors/HealthBar.gd"
+}, {
 "base": "Actor",
 "class": "InteractableActor",
 "language": "GDScript",
@@ -123,6 +128,7 @@ _global_script_class_icons={
 "Credits": "",
 "DialogueBox": "",
 "Enemy": "",
+"HealthBar": "",
 "InteractableActor": "",
 "LevelController": "",
 "MovementParams": "",

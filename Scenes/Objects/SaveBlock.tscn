@@ -80,7 +80,13 @@ shape = SubResource( 4 )
 
 [node name="InteractableActor" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0.25, 0 )
-dialogue_file = "res://Dialogues/SaveBlockHit.json"
+use_export_dialogue_instead = true
+exported_dialogue = "[
+    {\"speaker\":\"\", \"text\":\"Smol Yuri found a save block!\"},
+    {\"text\":\"...\"},
+    {\"text\":\"Smol Yuri quickly realized she has no idea how to use it.\"},
+    {\"text\":\"She decided it's best to just ignore it.\"}
+]"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2

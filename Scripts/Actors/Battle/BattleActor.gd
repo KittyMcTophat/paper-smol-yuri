@@ -17,7 +17,7 @@ export var default_projectile : PackedScene = null;
 
 onready var _projectile_target_point : Position3D = $ProjectileTargetPoint;
 onready var _projectile_spawn_point : Position3D = $ProjectileSpawnPoint;
-onready var _healthbar : Spatial = $HealthBar;
+onready var _healthbar : HealthBar = $HealthBar;
 onready var selector_arrow : Sprite3D = $SelectorArrow;
 
 var velocity : Vector3 = Vector3.ZERO;
@@ -26,9 +26,11 @@ var attack_boosts : int = 0;
 
 func _ready():
 	_healthbar._update_max_health(max_health);
+# warning-ignore:return_value_discarded
 	_healthbar._update_health(current_health, false);
 	
 	selector_arrow.visible = false;
+	$SelectorArrow/NameDisplay._set_name(actor_name);
 	
 	if (target_direction.x < 0.0):
 		_sprite_3d.rotation_degrees.y = 180.0;

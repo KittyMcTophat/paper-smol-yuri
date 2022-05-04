@@ -45,7 +45,7 @@ func load_scene(scene: String):
 	
 	emit_signal("scene_is_changing");
 	
-	first_load = false;
+	first_load = true;
 	get_tree().change_scene_to(next_scene);
 	money = coin_counter.get_money();
 	

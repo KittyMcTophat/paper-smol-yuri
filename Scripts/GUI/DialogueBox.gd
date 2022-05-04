@@ -61,7 +61,8 @@ func advance_text():
 	if (current_line >= current_dialogue.size()):
 		end_dialogue();
 	else:
-		speaker_label.text = current_dialogue[current_line]["speaker"];
+		if (current_dialogue[current_line].has("speaker")):
+			speaker_label.text = current_dialogue[current_line]["speaker"];
 		if (current_dialogue[current_line].has("portrait")):
 			portrait_border.visible = true;
 			if (current_dialogue[current_line]["portrait"] != ""):

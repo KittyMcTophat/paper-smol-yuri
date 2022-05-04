@@ -27,18 +27,19 @@ var party : Array = [];
 onready var _ground_detector_area : Area = $GroundDetector;
 onready var _harm_detector_area : Area = $HarmDetector;
 onready var _safe_ground_raycast : RayCast = $SafeGroundRaycast;
-onready var _healthbar : Spatial = $HealthBar;
+onready var _healthbar : HealthBar = $HealthBar
 
 func _ready():
 	_healthbar._update_max_health(max_health);
+# warning-ignore:return_value_discarded
 	_healthbar._update_health(cur_health, false);
 	
 	_last_safe_location = transform.origin;
 	
 	for i in range(party_scenes.size()):
 		party.push_back(party_scenes[i].instance());
-		#add_child(party[i]);
-		#remove_child(party[i]);
+		add_child(party[i]);
+		remove_child(party[i]);
 		party[i].personal_jump_input = "jump_" + str(i + 1);
 	
 	yield(get_tree(), "idle_frame");
@@ -177,6 +178,7 @@ func hurt(damage : int = 1):
 
 func _after_battle():
 	cur_health = party[party_leader].current_health;
+# warning-ignore:return_value_discarded
 	_healthbar._update_health(cur_health, false);
 # warning-ignore:return_value_discarded
 	_tween_node.start();

@@ -7,18 +7,16 @@ signal dialogue_ended;
 export var interact_on_ready: bool = false;
 export var only_on_first_load: bool = false;
 export(String, FILE, "*.json") var dialogue_file : String = "";
+export var use_export_dialogue_instead : bool = false;
+export(String, MULTILINE) var exported_dialogue : String = """[
+	{"speaker":"lmao", "text":"i forgot to replace this text"}
+]""";
 
 onready var exclamation_mark: Sprite3D = $ExclamationMark;
 
-var dialogue_json_parse : Array = []
 var is_player_in_range : bool = false;
 
 func _ready():
-	var file_read : File = File.new();
-#warning-ignore:RETURN_VALUE_DISCARDED
-	file_read.open(dialogue_file, File.READ);
-	dialogue_json_parse = parse_json(file_read.get_as_text());
-	
 	if (interact_on_ready):
 		if (only_on_first_load && Global.first_load == false):
 				emit_signal("dialogue_ended");
@@ -34,7 +32,14 @@ func _process(_delta):
 		_interact();
 
 func _interact():
-	Global.dialogue_box.start_dialogue(dialogue_json_parse, self);
+	if (!use_export_dialogue_instead):
+		var file_read : File = File.new();
+#warning-ignore:RETURN_VALUE_DISCARDED
+		file_read.open(dialogue_file, File.READ);
+		Global.dialogue_box.start_dialogue(parse_json(file_read.get_as_text()), self);
+		file_read.close();
+	else:
+		Global.dialogue_box.start_dialogue(parse_json(exported_dialogue), self);
 
 func _dialogue_over():
 	emit_signal("dialogue_ended");

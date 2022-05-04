@@ -1,8 +1,0 @@
-[
-    {"speaker":"Smol Yuri", "text":"Hi, Smol Smol Yuri!", "portrait":"res://Sprites/DialoguePortraits/SmolYuri/Happy.png"},
-    {"speaker":"Smol Smol Yuri", "text":"Oh, hey Smol Yuri! What's up?", "portrait":"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png"},
-    {"speaker":"Smol Yuri", "text":"Not much, I just wanted to say hi.", "portrait":"res://Sprites/DialoguePortraits/SmolYuri/Happy.png"},
-    {"speaker":"Smol Smol Yuri", "text":"Oh, okay. Well, if you need any advice later, feel free to ask.", "portrait":"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png"},
-    {"speaker":"Smol Smol Yuri", "text":"I know many random facts, some of which are actually useful.", "portrait":""},
-    {"speaker":"Smol Yuri", "text":"I'll be sure to keep that in mind next time I see you!", "portrait":"res://Sprites/DialoguePortraits/SmolYuri/Happy.png"}
-]

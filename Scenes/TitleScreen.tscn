@@ -69,7 +69,13 @@ script = ExtResource( 4 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
 interact_on_ready = true
 only_on_first_load = true
-dialogue_file = "res://Dialogues/Disclaimer.json"
+use_export_dialogue_instead = true
+exported_dialogue = "[
+    {\"speaker\":\"\", \"text\":\"(Press space to advance the text)\\n(You can also press the A button if you're using a controller)\"},
+    {\"text\":\"Paper Smol Yuri is a Doki Doki Literature Club fan game that is not affiliated with Team Salvato.\"},
+    {\"text\":\"It is designed to be played only after the official game has been completed.\"},
+    {\"text\":\"You can download Doki Doki Literature Club at: http://ddlc.moe\"}
+]"
 
 [node name="StartCookie" parent="Overworld" index="5" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
