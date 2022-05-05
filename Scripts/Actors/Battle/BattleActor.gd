@@ -3,6 +3,7 @@ extends Actor
 class_name BattleActor
 
 signal turn_over;
+signal landed;
 
 export(String, MULTILINE) var actor_name : String = "BattleActor";
 export var max_health : int = 10;
@@ -52,6 +53,7 @@ func _physics_process(delta):
 	if (is_on_floor() && !was_on_floor_last_frame):
 		_squash(Vector3(1.1, 0.9, 1.1));
 		_make_dust_particles();
+		emit_signal("landed");
 	
 	was_on_floor_last_frame = is_on_floor();
 

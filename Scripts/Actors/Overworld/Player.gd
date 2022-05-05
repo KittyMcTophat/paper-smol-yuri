@@ -18,13 +18,12 @@ export var party_leader : int = 0;
 
 var _velocity : Vector3 = Vector3.ZERO;
 var _last_safe_location : Vector3 = Vector3.ZERO;
-var _grounded : bool = false;
-var _midair_jumps_left : int = 0;
 var _was_on_floor_last_frame : bool = true;
+var _jump_buffer : float = 0.0;
+var _coyote_time : float = 0.0;
 
 var party : Array = [];
 
-onready var _ground_detector_area : Area = $GroundDetector;
 onready var _harm_detector_area : Area = $HarmDetector;
 onready var _safe_ground_raycast : RayCast = $SafeGroundRaycast;
 onready var _healthbar : HealthBar = $HealthBar
@@ -45,10 +44,11 @@ func _ready():
 	yield(get_tree(), "idle_frame");
 # warning-ignore:return_value_discarded
 	Global.current_level_controller.battle.connect("battle_end_early", self, "_after_battle");
+	
+# warning-ignore:return_value_discarded
+	self.connect("landed", self, "_check_jump_buffer");
 
 func _physics_process(delta) -> void:
-	_update_grounded();
-	
 	var move_direction := _get_movement_vector();
 	
 	# rotates the sprite to match movement
@@ -64,7 +64,7 @@ func _physics_process(delta) -> void:
 		_facing_back = false;
 	
 	# applies the movement to velocity
-	if (_grounded):
+	if (is_on_floor()):
 		_velocity.x = lerp(_velocity.x, move_direction.x * movement_params.movement_speed,\
 		delta * movement_params.h_velocity_lerp_weight);
 		
@@ -84,11 +84,15 @@ func _physics_process(delta) -> void:
 	# jumping code
 	if Global.allow_jump:
 		if Input.is_action_just_pressed("jump"):
-			if (_grounded || movement_params.allow_moonjump):
+			if (movement_params.allow_moonjump):
 				_jump();
-			elif(_midair_jumps_left > 0):
-				_midair_jumps_left -= 1;
+			elif (_coyote_time > 0.0):
 				_jump();
+				_coyote_time = 0.0;
+			elif (is_on_floor()):
+				_jump();
+			else:
+				_jump_buffer = movement_params.jump_buffer_time;
 	
 	if (!Input.is_action_pressed("jump") && !is_on_floor()):
 		if (_velocity.y > 0):
@@ -102,7 +106,16 @@ func _physics_process(delta) -> void:
 		_make_dust_particles();
 		emit_signal("landed");
 	
+	if (!is_on_floor() && _was_on_floor_last_frame && _velocity.y < 0.0):
+		_coyote_time = movement_params.coyote_time;
+	
 	_was_on_floor_last_frame = is_on_floor();
+	
+	if (_coyote_time > 0.0):
+		_coyote_time -= delta;
+	
+	if (_jump_buffer > 0.0):
+		_jump_buffer -= delta;
 	
 	if (transform.origin.y < movement_params.kill_y):
 		_go_to_last_safe_spot();
@@ -116,18 +129,15 @@ func _physics_process(delta) -> void:
 	_update_animation();
 	_update_last_safe_spot();
 
+func _check_jump_buffer():
+	if (is_on_floor() && _jump_buffer > 0.0):
+		_jump();
+		_jump_buffer = 0.0;
+
 func _jump() -> void:
 	_velocity.y = movement_params.jump_strength;
 	_squash(Vector3(0.9, 1.1, 0.9));
 	_make_dust_particles();
-
-# updates the _grounded boolean
-func _update_grounded() -> void:
-	if (_ground_detector_area.get_overlapping_bodies().size() > 0):
-		_grounded = true;
-		_midair_jumps_left = movement_params.midair_jumps;
-	else:
-		_grounded = false;
 
 # creates a movement vector from user inputs
 func _get_movement_vector() -> Vector3:

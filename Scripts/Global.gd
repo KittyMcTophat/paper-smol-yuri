@@ -37,6 +37,10 @@ func load_scene(scene: String):
 #warning-ignore:RETURN_VALUE_DISCARDED
 	var next_scene : PackedScene = load(scene);
 	
+	if (get_tree().current_scene.filename == scene):
+		reload_scene();
+		return;
+	
 	_pause_the_stuff();
 	
 	current_level_controller.fade_rect_anim_player.play("Fade_In");
@@ -46,6 +50,7 @@ func load_scene(scene: String):
 	emit_signal("scene_is_changing");
 	
 	first_load = true;
+	
 	get_tree().change_scene_to(next_scene);
 	money = coin_counter.get_money();
 	
