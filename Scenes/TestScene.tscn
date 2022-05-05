@@ -32,7 +32,7 @@ background_texture = ExtResource( 16 )
 [node name="CollisionShape" parent="Overworld/SmolYuri_FullParty" index="0"]
 shape = SubResource( 1 )
 
-[node name="HealthBar" parent="Overworld/SmolYuri_FullParty" index="9"]
+[node name="HealthBar" parent="Overworld/SmolYuri_FullParty" index="8"]
 visible = false
 
 [node name="SmolCoin" parent="Overworld" index="1" instance=ExtResource( 6 )]

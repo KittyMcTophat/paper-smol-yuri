@@ -167,7 +167,7 @@ func _make_dust_particles() -> void:
 func _update_last_safe_spot():
 	_safe_ground_raycast.force_raycast_update();
 	
-	if (_safe_ground_raycast.is_colliding() && !(_harm_detector_area.get_overlapping_bodies().size() > 0)):
+	if (_safe_ground_raycast.is_colliding() && !(_harm_detector_area.get_overlapping_bodies().size() > 0) && is_on_floor()):
 		_last_safe_location = transform.origin;
 
 func _go_to_last_safe_spot():
@@ -176,6 +176,8 @@ func _go_to_last_safe_spot():
 	if (cur_health > 0):
 		transform.origin = _last_safe_location;
 		_velocity = Vector3.ZERO;
+		_was_on_floor_last_frame = true;
+		_squash(Vector3(1.0, 1.0, 1.0));
 
 func hurt(damage : int = 1):
 	#TODO: add particle with damage number

@@ -78,6 +78,8 @@ func _physics_process(delta):
 func _teleport_to_target():
 	global_transform.origin = follow_target.global_transform.origin;
 	velocity = Vector3.ZERO;
+	was_on_floor_last_frame = true;
+	_squash(Vector3(1.0, 1.0, 1.0));
 
 func _update_animation():
 	if (velocity.length() < 0.1):
