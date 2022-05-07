@@ -29,26 +29,39 @@ func _on_RestartLevelButton_pressed():
 func _on_ToggleFullscreenButton_pressed():
 	_toggle_fullscreen();
 
-func _on_RedButton_toggled(button_pressed):
+var is_grayscale : bool = false;
+
+func set_color(color : String, is_on : bool):
 	var value : float = 1.0;
-	if !button_pressed:
+	if !is_on:
 		value = 0.0
+		if (all_color_buttons_off()):
+			Global.color_filter.set_grayscale(true);
+			is_grayscale = true;
+	else:
+		if is_grayscale:
+			Global.color_filter.set_grayscale(false);
+			is_grayscale = false;
 	
-	Global.color_filter.set_color("red", value);
+	Global.color_filter.set_color(color, value);
+
+func all_color_buttons_off() -> bool:
+	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/RedButton.pressed:
+		return false;
+	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/GreenButton.pressed:
+		return false;
+	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/BlueButton.pressed:
+		return false;
+	return true;
+
+func _on_RedButton_toggled(button_pressed):
+	set_color("red", button_pressed);
 
 func _on_GreenButton_toggled(button_pressed):
-	var value : float = 1.0;
-	if !button_pressed:
-		value = 0.0
-	
-	Global.color_filter.set_color("green", value);
+	set_color("green", button_pressed);
 
 func _on_BlueButton_toggled(button_pressed):
-	var value : float = 1.0;
-	if !button_pressed:
-		value = 0.0
-	
-	Global.color_filter.set_color("blue", value);
+	set_color("blue", button_pressed);
 
 func _on_QuitButton_pressed():
 	get_tree().quit();
