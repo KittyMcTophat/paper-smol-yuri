@@ -28,7 +28,28 @@ func _on_RestartLevelButton_pressed():
 
 func _on_ToggleFullscreenButton_pressed():
 	_toggle_fullscreen();
+
+func _on_RedButton_toggled(button_pressed):
+	var value : float = 1.0;
+	if !button_pressed:
+		value = 0.0
 	
+	Global.color_filter.set_color("red", value);
+
+func _on_GreenButton_toggled(button_pressed):
+	var value : float = 1.0;
+	if !button_pressed:
+		value = 0.0
+	
+	Global.color_filter.set_color("green", value);
+
+func _on_BlueButton_toggled(button_pressed):
+	var value : float = 1.0;
+	if !button_pressed:
+		value = 0.0
+	
+	Global.color_filter.set_color("blue", value);
+
 func _on_QuitButton_pressed():
 	get_tree().quit();
 

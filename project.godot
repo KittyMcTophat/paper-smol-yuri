@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/GUI/CoinCounter.gd"
 }, {
 "base": "CanvasLayer",
+"class": "ColorFilterController",
+"language": "GDScript",
+"path": "res://Scripts/GUI/ColorFilterController.gd"
+}, {
+"base": "CanvasLayer",
 "class": "Credits",
 "language": "GDScript",
 "path": "res://Scripts/GUI/Credits.gd"
@@ -125,6 +130,7 @@ _global_script_class_icons={
 "BattleController": "",
 "BattlePlayer": "",
 "CoinCounter": "",
+"ColorFilterController": "",
 "Credits": "",
 "DialogueBox": "",
 "Enemy": "",

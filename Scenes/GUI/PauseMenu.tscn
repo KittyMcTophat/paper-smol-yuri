@@ -194,9 +194,6 @@ anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -219,10 +216,10 @@ __meta__ = {
 
 [node name="NinePatchRect" type="NinePatchRect" parent="ColorRect/CenterContainer"]
 margin_left = 260.0
-margin_top = 110.0
+margin_top = 80.0
 margin_right = 700.0
-margin_bottom = 430.0
-rect_min_size = Vector2( 440, 320 )
+margin_bottom = 460.0
+rect_min_size = Vector2( 440, 380 )
 texture = ExtResource( 4 )
 patch_margin_left = 32
 patch_margin_top = 32
@@ -247,7 +244,7 @@ __meta__ = {
 margin_left = 16.0
 margin_top = 8.0
 margin_right = 424.0
-margin_bottom = 304.0
+margin_bottom = 364.0
 mouse_filter = 2
 custom_constants/separation = 6
 
@@ -262,7 +259,7 @@ valign = 1
 [node name="ResumeButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
 margin_top = 30.0
 margin_right = 408.0
-margin_bottom = 78.0
+margin_bottom = 79.0
 focus_neighbour_top = NodePath("../MarginContainer/HBoxContainer/TextSpeedSlider")
 focus_neighbour_bottom = NodePath("../RestartLevelButton")
 mouse_filter = 2
@@ -271,9 +268,9 @@ shortcut = SubResource( 7 )
 text = "Resume"
 
 [node name="RestartLevelButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
-margin_top = 84.0
+margin_top = 85.0
 margin_right = 408.0
-margin_bottom = 133.0
+margin_bottom = 135.0
 focus_neighbour_top = NodePath("../ResumeButton")
 focus_neighbour_bottom = NodePath("../ToggleFullscreenButton")
 mouse_filter = 2
@@ -281,20 +278,64 @@ size_flags_vertical = 3
 text = "Restart Level"
 
 [node name="ToggleFullscreenButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
-margin_top = 139.0
+margin_top = 141.0
 margin_right = 408.0
-margin_bottom = 187.0
+margin_bottom = 190.0
 focus_neighbour_top = NodePath("../RestartLevelButton")
-focus_neighbour_bottom = NodePath("../QuitButton")
+focus_neighbour_bottom = NodePath("../HBoxContainer/GreenButton")
 mouse_filter = 2
 size_flags_vertical = 3
 text = "Toggle Fullscreen"
 
-[node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
-margin_top = 193.0
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 196.0
 margin_right = 408.0
-margin_bottom = 242.0
-focus_neighbour_top = NodePath("../ToggleFullscreenButton")
+margin_bottom = 246.0
+size_flags_vertical = 3
+
+[node name="RedButton" type="CheckBox" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 133.0
+margin_bottom = 50.0
+focus_neighbour_left = NodePath("../BlueButton")
+focus_neighbour_top = NodePath("../../ToggleFullscreenButton")
+focus_neighbour_right = NodePath("../GreenButton")
+focus_neighbour_bottom = NodePath("../../QuitButton")
+size_flags_horizontal = 3
+pressed = true
+text = "Red"
+align = 1
+
+[node name="GreenButton" type="CheckBox" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 137.0
+margin_right = 270.0
+margin_bottom = 50.0
+focus_neighbour_left = NodePath("../RedButton")
+focus_neighbour_top = NodePath("../../ToggleFullscreenButton")
+focus_neighbour_right = NodePath("../BlueButton")
+focus_neighbour_bottom = NodePath("../../QuitButton")
+size_flags_horizontal = 3
+pressed = true
+text = "Green"
+align = 1
+
+[node name="BlueButton" type="CheckBox" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 274.0
+margin_right = 408.0
+margin_bottom = 50.0
+focus_neighbour_left = NodePath("../GreenButton")
+focus_neighbour_top = NodePath("../../ToggleFullscreenButton")
+focus_neighbour_right = NodePath("../RedButton")
+focus_neighbour_bottom = NodePath("../../QuitButton")
+size_flags_horizontal = 3
+pressed = true
+text = "Blue"
+align = 1
+
+[node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 252.0
+margin_right = 408.0
+margin_bottom = 301.0
+focus_neighbour_top = NodePath("../HBoxContainer/GreenButton")
 focus_neighbour_bottom = NodePath("../MarginContainer/HBoxContainer/TextSpeedSlider")
 mouse_filter = 2
 size_flags_vertical = 3
@@ -302,26 +343,26 @@ text = "Quit Game"
 
 [node name="HSeparator" type="HSeparator" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 248.0
+margin_top = 307.0
 margin_right = 408.0
-margin_bottom = 252.0
+margin_bottom = 311.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextSpeed" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
-margin_top = 258.0
+margin_top = 317.0
 margin_right = 408.0
-margin_bottom = 274.0
+margin_bottom = 333.0
 text = "Text Speed"
 align = 1
 valign = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
-margin_top = 280.0
+margin_top = 339.0
 margin_right = 408.0
-margin_bottom = 296.0
+margin_bottom = 355.0
 mouse_filter = 2
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
@@ -364,5 +405,8 @@ anims/Unpause = SubResource( 3 )
 [connection signal="pressed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/RestartLevelButton" to="." method="_on_RestartLevelButton_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/ToggleFullscreenButton" to="." method="_on_ToggleFullscreenButton_pressed"]
+[connection signal="toggled" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/RedButton" to="." method="_on_RedButton_toggled"]
+[connection signal="toggled" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/GreenButton" to="." method="_on_GreenButton_toggled"]
+[connection signal="toggled" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/BlueButton" to="." method="_on_BlueButton_toggled"]
 [connection signal="pressed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="value_changed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/TextSpeedSlider" to="." method="_on_TextSpeedSlider_value_changed"]

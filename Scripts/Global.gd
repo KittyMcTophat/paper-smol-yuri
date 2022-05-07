@@ -22,14 +22,19 @@ var coin_counter : CoinCounter = null;
 var dialogue_box : DialogueBox = null;
 var pause_menu : PauseMenu = null;
 
+var color_filter : ColorFilterController = null;
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
 	
 	add_child(preload("res://Scenes/GUI/AllGUI.tscn").instance());
+	add_child(preload("res://Scenes/GUI/ColorFilter.tscn").instance());
 	
 	coin_counter = $AllGUI/CoinCounter;
 	dialogue_box = $AllGUI/DialogueSystem;
 	pause_menu = $AllGUI/PauseMenu;
+	
+	color_filter = $ColorFilter;
 	
 	randomize();
 
