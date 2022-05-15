@@ -94,5 +94,7 @@ func _unpause_the_stuff():
 	get_tree().paused = false;
 
 func _update_screen_size():
-	wobbler.get_node("ColorRect").material.set_shader_param("pixel_multiplier", OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width"));
-	
+	var scale : Vector2 = Vector2.ONE;
+	scale.x = OS.window_size.x / ProjectSettings.get_setting("display/window/size/width");
+	scale.y = OS.window_size.y / ProjectSettings.get_setting("display/window/size/height");
+	wobbler.get_node("ColorRect").material.set_shader_param("pixel_multiplier", scale);

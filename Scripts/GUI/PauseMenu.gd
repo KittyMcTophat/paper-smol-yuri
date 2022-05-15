@@ -79,6 +79,6 @@ func _toggle_fullscreen():
 
 func _on_WobbleButton_toggled(button_pressed):
 	if (button_pressed):
-		Global.wobbler.set_wobbling_intensity(50.0);
+		Global.wobbler.set_wobbling_intensity(50.0, 10.0);
 	else:
 		Global.wobbler.set_wobbling_intensity(0.0);
