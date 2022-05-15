@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Shaders/Wobbly.gdshader" type="Shader" id=1]
+[ext_resource path="res://Scripts/GUI/Wobbler.gd" type="Script" id=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 76876
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+seed = 567764657
+
+[sub_resource type="NoiseTexture" id=4]
+seamless = true
+noise = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 1 )
+shader_param/h_scroll_speed = Vector2( 0.1, 0.1 )
+shader_param/v_scroll_speed = Vector2( -0.1, -0.1 )
+shader_param/max_pixel_offset = 30.0
+shader_param/pixel_multiplier = 1.0
+shader_param/h_offset_texture = SubResource( 2 )
+shader_param/v_offset_texture = SubResource( 4 )
+
+[node name="Wobbler" type="CanvasLayer"]
+layer = 10
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Tween" type="Tween" parent="."]
+pause_mode = 2
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

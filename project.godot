@@ -123,6 +123,11 @@ _global_script_classes=[ {
 "class": "SplashScreen",
 "language": "GDScript",
 "path": "res://Scripts/GUI/SplashScreen.gd"
+}, {
+"base": "CanvasLayer",
+"class": "Wobbler",
+"language": "GDScript",
+"path": "res://Scripts/GUI/Wobbler.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -147,7 +152,8 @@ _global_script_class_icons={
 "Shadow": "",
 "SmolCoin": "",
 "SmolCookie": "",
-"SplashScreen": ""
+"SplashScreen": "",
+"Wobbler": ""
 }
 
 [application]

@@ -46,11 +46,11 @@ func set_color(color : String, is_on : bool):
 	Global.color_filter.set_color(color, value);
 
 func all_color_buttons_off() -> bool:
-	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/RedButton.pressed:
+	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/RedButton.pressed:
 		return false;
-	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/GreenButton.pressed:
+	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/GreenButton.pressed:
 		return false;
-	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/BlueButton.pressed:
+	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/BlueButton.pressed:
 		return false;
 	return true;
 
@@ -76,3 +76,9 @@ func _toggle_fullscreen():
 		OS.window_size = Vector2(ProjectSettings.get_setting("display/window/size/width"),\
 		ProjectSettings.get_setting("display/window/size/height"));
 		OS.center_window();
+
+func _on_WobbleButton_toggled(button_pressed):
+	if (button_pressed):
+		Global.wobbler.set_wobbling_intensity(50.0);
+	else:
+		Global.wobbler.set_wobbling_intensity(0.0);

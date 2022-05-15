@@ -23,18 +23,24 @@ var dialogue_box : DialogueBox = null;
 var pause_menu : PauseMenu = null;
 
 var color_filter : ColorFilterController = null;
+var wobbler : Wobbler = null;
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
 	
 	add_child(preload("res://Scenes/GUI/AllGUI.tscn").instance());
 	add_child(preload("res://Scenes/GUI/ColorFilter.tscn").instance());
+	add_child(preload("res://Scenes/GUI/Wobbler.tscn").instance());
 	
 	coin_counter = $AllGUI/CoinCounter;
 	dialogue_box = $AllGUI/DialogueSystem;
 	pause_menu = $AllGUI/PauseMenu;
 	
 	color_filter = $ColorFilter;
+	wobbler = $Wobbler;
+	
+# warning-ignore:return_value_discarded
+	get_viewport().connect("size_changed", self, "_update_screen_size");
 	
 	randomize();
 
@@ -86,3 +92,7 @@ func _unpause_the_stuff():
 	allow_pause = true;
 	allow_jump = true;
 	get_tree().paused = false;
+
+func _update_screen_size():
+	wobbler.get_node("ColorRect").material.set_shader_param("pixel_multiplier", OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width"));
+	
