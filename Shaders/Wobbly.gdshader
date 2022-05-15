@@ -10,9 +10,10 @@ uniform mediump vec2 pixel_multiplier = vec2(1.0, 1.0);
 void fragment(){
 	COLOR = vec4(1.0, 0.0, 0.0, 0.0);
 	
-	float h_offset = texture(h_offset_texture, UV + (TIME * h_scroll_speed)).r - 0.5;
+	mediump float h_offset = texture(h_offset_texture, UV + (TIME * h_scroll_speed)).r - 0.5;
 	h_offset = (h_offset * 2.0) * max_pixel_offset * pixel_multiplier.x * SCREEN_PIXEL_SIZE.x;
-	float v_offset = texture(v_offset_texture, UV + (TIME * h_scroll_speed)).r - 0.5;
+	
+	mediump float v_offset = texture(v_offset_texture, UV + (TIME * v_scroll_speed)).r - 0.5;
 	v_offset = (v_offset * 2.0) * max_pixel_offset * pixel_multiplier.y * SCREEN_PIXEL_SIZE.y;
 	
 	COLOR = texture(SCREEN_TEXTURE, vec2(UV.x + h_offset, 1.0 - (UV.y + v_offset)));
