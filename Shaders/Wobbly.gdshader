@@ -2,8 +2,8 @@ shader_type canvas_item;
 
 uniform sampler2D h_offset_texture;
 uniform sampler2D v_offset_texture;
-uniform mediump vec2 h_scroll_speed = vec2(0.1, 0.1);
-uniform mediump vec2 v_scroll_speed = vec2(-0.1, -0.1);
+uniform mediump vec2 h_scroll_speed = vec2(0.12, 0.06);
+uniform mediump vec2 v_scroll_speed = vec2(-0.05, -0.07);
 uniform mediump float max_pixel_offset : hint_range(0.0, 1000.0) = 30.0;
 uniform mediump vec2 pixel_multiplier = vec2(1.0, 1.0);
 

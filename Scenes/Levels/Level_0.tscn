@@ -86,6 +86,7 @@ exported_dialogue = "[
 
 [node name="SmolCookie" parent="Overworld" index="3" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -21 )
+next_scene = "res://Scenes/Levels/Level_1.tscn"
 
 [node name="SmolCoins" type="Spatial" parent="Overworld" index="4"]
 
