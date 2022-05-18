@@ -49,3 +49,6 @@ func _shoot():
 
 func _jump_shoot():
 	_jump_and_fire_projectile(jump_strength, default_projectile, target_direction, attack);
+
+func _kill():
+	Global.reload_scene();

@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Actors/Battle/BaseActors/BaseEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Actors/SmolNatsuki/SmolNatsuki.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Actors/Battle/Enemies/SmolNatsuki/CupcakeAttack.tscn" type="PackedScene" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Enemy
+
+export(float, 0.0, 1.0) var healing_projectile_chance : float = 0.05;
+
+func _fire_projectile(projectile : PackedScene = default_projectile, direction : Vector3 = target_direction, damage : int = attack, piereces_targets : bool = false):
+	if (randf() <= healing_projectile_chance):
+		damage *= -1;
+	._fire_projectile(projectile, direction, damage, piereces_targets);
+
+func _enter_battle():
+	#spawns a projectile at the start of the battle so that the fire shader gets loaded
+	var new_projectile : Spatial = default_projectile.instance();
+	
+	get_parent().add_child(new_projectile);
+	new_projectile.global_transform.origin = Vector3(0.0, -1000.0, 0.0);
+	
+	._enter_battle();
+"
+
+[sub_resource type="CapsuleShape" id=2]
+resource_local_to_scene = true
+margin = 0.001
+radius = 0.32
+height = 0.01
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("Viewport")
+
+[node name="BaseEnemy" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+actor_name = "Smol Natsuki"
+max_health = 50
+current_health = 50
+attack = 2
+default_projectile = ExtResource( 3 )
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource( 2 )
+
+[node name="Sprite3D" parent="." index="1"]
+offset = Vector2( 0, 40 )
+texture = ExtResource( 2 )
+
+[node name="AttackBoosts" parent="." index="11"]
+texture = SubResource( 3 )

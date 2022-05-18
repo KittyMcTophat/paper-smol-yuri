@@ -126,7 +126,7 @@ func _fire_projectile(projectile : PackedScene = default_projectile, direction :
 	new_projectile.global_transform.origin = _projectile_spawn_point.global_transform.origin;
 	
 	new_projectile.set_direction(direction);
-	new_projectile.damage = damage + attack_boosts;
+	new_projectile.set_damage(damage + attack_boosts);
 	new_projectile.pierces_targets = piereces_targets;
 	
 	new_projectile.collision_mask = target_collision_layers;

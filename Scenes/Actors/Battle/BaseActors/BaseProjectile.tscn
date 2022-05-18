@@ -28,6 +28,4 @@ transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0 )
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
 aabb = AABB( -0.25, -0.25, -0.25, 0.5, 0.5, 0.5 )
 
-[connection signal="area_entered" from="." to="." method="_on_BaseProjectile_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_BaseProjectile_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_BaseProjectile_body_entered"]
