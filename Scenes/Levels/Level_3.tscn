@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_WithSayori.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolSmolYuri.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolYurisSmolCat.tscn" type="PackedScene" id=5]
+
+[node name="LevelController" instance=ExtResource( 1 )]
+background_texture = ExtResource( 3 )
+
+[node name="SmolYuri_WithSayori" parent="Overworld" index="0" instance=ExtResource( 2 )]
+
+[node name="InteractableActors" type="Spatial" parent="Overworld" index="1"]
+
+[node name="SmolSmolYuri" parent="Overworld/InteractableActors" index="0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0 )
+use_export_dialogue_instead = true
+exported_dialogue = "[
+    {\"speaker\":\"Smol Smol Yuri\", \"text\":\"Hey, Smol Yuri!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+    {\"text\":\"I can see you're travelling with Smol Sayori now.\", \"portrait\":\"\"},
+	{\"text\":\"Do you want me to tell you about her abilities?\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"No! You can't share my secrets!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Surprised.png\"},
+    {\"speaker\":\"Smol Smol Yuri\", \"text\":\"Do you even know your \\\"secrets\\\"?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Sad.png\"},
+	{\"speaker\":\"Smol Smol Yuri\", \"text\":\"Okay, then I'll tell you, and Smol Yuri can cover her smol ears.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Yuri\", \"text\":\"Sounds good to me!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"\", \"text\":\"Smol Yuri puts her smol hands over her smol ears.\"},
+	{\"speaker\":\"Smol Smol Yuri\", \"text\":\"Okay, so the cool thing about you is that you can heal your friends using your \\\"Snack Time\\\" ability.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+	{\"text\":\"You can also use it to heal youself.\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Can I use it if I'm just hungry?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Smol Smol Yuri\", \"text\":\"I suppose you could, but it wouldn't heal you if you're not injured...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Hunger counts as an injury...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Sad.png\"},
+]"
+
+[node name="SmolYurisSmolCat" parent="Overworld/InteractableActors" index="1" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0 )
+
+[node name="Coins" type="Spatial" parent="Overworld" index="2"]
+
+[node name="Enemies" type="Spatial" parent="Overworld" index="3"]
+
+[node name="GridMap Ground" parent="Overworld" index="4"]
+data = {
+"cells": PoolIntArray( -131072, 0, 1, -65537, 0, 1, -65536, 0, 0, -1, 0, 0, 65468, 164, 1, -131072, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -1, 65535, 0 )
+}
+
+[node name="GridMap Spikes" parent="Overworld" index="5"]
+data = {
+"cells": PoolIntArray(  )
+}
+
+[node name="Battle" parent="." index="1"]
+visible = false
+
+[node name="GridMap" parent="Battle" index="3"]
+data = {
+"cells": PoolIntArray( 0, 0, 8, 2, 0, 9, 4, 0, 8, 6, 0, 9, 8, 0, 8, 65527, 0, 8, 65529, 0, 9, 65531, 0, 8, 65533, 0, 9, 65535, 0, 8, -196608, 0, 1, -196607, 0, 1, -196606, 0, 1, -196605, 0, 1, -196604, 0, 1, -196603, 0, 1, -196602, 0, 1, -196601, 0, 1, -196600, 0, 1, -196599, 0, 1, -131082, 0, 1, -131081, 0, 1, -131080, 0, 1, -131079, 0, 1, -131078, 0, 1, -131077, 0, 1, -131076, 0, 1, -131075, 0, 1, -131074, 0, 1, -131073, 0, 1, -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 1, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -131063, 0, 1, -65546, 0, 1, -65545, 0, 1, -65544, 0, 1, -65543, 0, 1, -65542, 0, 1, -65541, 0, 1, -65540, 0, 1, -65539, 0, 1, -65538, 0, 1, -65537, 0, 1, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -10, 0, 0, -9, 0, 0, -8, 0, 0, -7, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, 1, 65535, 6, 3, 65535, 7, 5, 65535, 6, 7, 65535, 7, 9, 65535, 6, 65526, 65535, 6, 65528, 65535, 7, 65530, 65535, 6, 65532, 65535, 7, 65534, 65535, 6, -196608, 65535, 1, -196607, 65535, 1, -196606, 65535, 1, -196605, 65535, 1, -196604, 65535, 1, -196603, 65535, 1, -196602, 65535, 1, -196601, 65535, 1, -196600, 65535, 1, -196599, 65535, 1, -131082, 65535, 1, -131081, 65535, 1, -131080, 65535, 1, -131079, 65535, 1, -131078, 65535, 1, -131077, 65535, 1, -131076, 65535, 1, -131075, 65535, 1, -131074, 65535, 1, -131073, 65535, 1, -131072, 65535, 1, -131071, 65535, 1, -131070, 65535, 1, -131069, 65535, 1, -131068, 65535, 1, -131067, 65535, 1, -131066, 65535, 1, -131065, 65535, 1, -131064, 65535, 1, -131063, 65535, 1, -65546, 65535, 1, -65545, 65535, 1, -65544, 65535, 1, -65543, 65535, 1, -65542, 65535, 1, -65541, 65535, 1, -65540, 65535, 1, -65539, 65535, 1, -65538, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -65535, 65535, 0, -65534, 65535, 0, -65533, 65535, 0, -65532, 65535, 0, -65531, 65535, 0, -65530, 65535, 0, -65529, 65535, 0, -65528, 65535, 0, -65527, 65535, 0, -10, 65535, 0, -9, 65535, 0, -8, 65535, 0, -7, 65535, 0, -6, 65535, 0, -5, 65535, 0, -4, 65535, 0, -3, 65535, 0, -2, 65535, 0, -1, 65535, 0 )
+}

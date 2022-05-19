@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
@@ -32,28 +32,112 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=11]
 viewport_path = NodePath("Overworld/WalkTutorial/Viewport")
+
+[sub_resource type="SpatialMaterial" id=12]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+params_billboard_mode = 2
+albedo_texture = SubResource( 11 )
+
+[sub_resource type="QuadMesh" id=13]
+resource_local_to_scene = true
+material = SubResource( 12 )
+size = Vector2( 4.56, 1.16 )
+center_offset = Vector3( 0, 0.58, 0 )
 
 [sub_resource type="DynamicFont" id=4]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="ViewportTexture" id=5]
+[sub_resource type="ViewportTexture" id=14]
 viewport_path = NodePath("Overworld/JumpTutorial/Viewport")
 
-[sub_resource type="ViewportTexture" id=9]
+[sub_resource type="SpatialMaterial" id=15]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+params_billboard_mode = 2
+albedo_texture = SubResource( 14 )
+
+[sub_resource type="QuadMesh" id=16]
+resource_local_to_scene = true
+material = SubResource( 15 )
+size = Vector2( 4.5, 1.11 )
+center_offset = Vector3( 0, 0.555, 0 )
+
+[sub_resource type="ViewportTexture" id=17]
 viewport_path = NodePath("Overworld/CoinTutorial/Viewport")
 
-[sub_resource type="ViewportTexture" id=6]
+[sub_resource type="SpatialMaterial" id=18]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+params_billboard_mode = 2
+albedo_texture = SubResource( 17 )
+
+[sub_resource type="QuadMesh" id=19]
+resource_local_to_scene = true
+material = SubResource( 18 )
+size = Vector2( 4.5, 0.37 )
+center_offset = Vector3( 0, 0.185, 0 )
+
+[sub_resource type="ViewportTexture" id=20]
 viewport_path = NodePath("Overworld/TalkTutorial/Viewport")
 
-[sub_resource type="ViewportTexture" id=7]
+[sub_resource type="SpatialMaterial" id=21]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+params_billboard_mode = 2
+albedo_texture = SubResource( 20 )
+
+[sub_resource type="QuadMesh" id=22]
+resource_local_to_scene = true
+material = SubResource( 21 )
+size = Vector2( 4.5, 0.91 )
+center_offset = Vector3( 0, 0.455, 0 )
+
+[sub_resource type="ViewportTexture" id=23]
 viewport_path = NodePath("Overworld/PauseTutorial/Viewport")
 
-[sub_resource type="ViewportTexture" id=8]
+[sub_resource type="SpatialMaterial" id=24]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+params_billboard_mode = 2
+albedo_texture = SubResource( 23 )
+
+[sub_resource type="QuadMesh" id=25]
+resource_local_to_scene = true
+material = SubResource( 24 )
+size = Vector2( 4.5, 0.91 )
+center_offset = Vector3( 0, 0.455, 0 )
+
+[sub_resource type="ViewportTexture" id=26]
 viewport_path = NodePath("Overworld/CookieTutorial/Viewport")
+
+[sub_resource type="SpatialMaterial" id=29]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+params_billboard_mode = 2
+albedo_texture = SubResource( 26 )
+
+[sub_resource type="QuadMesh" id=28]
+resource_local_to_scene = true
+material = SubResource( 29 )
+size = Vector2( 4.5, 0.37 )
+center_offset = Vector3( 0, 0.185, 0 )
 
 [node name="LevelController" instance=ExtResource( 6 )]
 background_texture = ExtResource( 8 )
@@ -162,11 +246,10 @@ size_flags_horizontal = 3
 texture = ExtResource( 3 )
 stretch_mode = 6
 
-[node name="Sprite3D" type="Sprite3D" parent="Overworld/WalkTutorial" index="1"]
-offset = Vector2( 0, 58 )
-billboard = 2
-alpha_cut = 1
-texture = SubResource( 3 )
+[node name="MeshInstance" type="MeshInstance" parent="Overworld/WalkTutorial" index="1"]
+mesh = SubResource( 13 )
+skeleton = NodePath("")
+material/0 = null
 
 [node name="JumpTutorial" type="Spatial" parent="Overworld" index="8"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, 0 )
@@ -241,11 +324,10 @@ holding the button longer"
 align = 1
 autowrap = true
 
-[node name="Sprite3D" type="Sprite3D" parent="Overworld/JumpTutorial" index="1"]
-offset = Vector2( 0, 55.5 )
-billboard = 2
-alpha_cut = 1
-texture = SubResource( 5 )
+[node name="MeshInstance" type="MeshInstance" parent="Overworld/JumpTutorial" index="1"]
+mesh = SubResource( 16 )
+skeleton = NodePath("")
+material/0 = null
 
 [node name="CoinTutorial" type="Spatial" parent="Overworld" index="9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -5.75 )
@@ -269,11 +351,10 @@ improve your score"
 align = 1
 autowrap = true
 
-[node name="Sprite3D" type="Sprite3D" parent="Overworld/CoinTutorial" index="1"]
-offset = Vector2( 0, 18.5 )
-billboard = 2
-alpha_cut = 1
-texture = SubResource( 9 )
+[node name="MeshInstance" type="MeshInstance" parent="Overworld/CoinTutorial" index="1"]
+mesh = SubResource( 19 )
+skeleton = NodePath("")
+material/0 = null
 
 [node name="TalkTutorial" type="Spatial" parent="Overworld" index="10"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -10.5 )
@@ -339,11 +420,10 @@ margin_bottom = 50.0
 size_flags_horizontal = 3
 stretch_mode = 6
 
-[node name="Sprite3D" type="Sprite3D" parent="Overworld/TalkTutorial" index="1"]
-offset = Vector2( 0, 45.5 )
-billboard = 2
-alpha_cut = 1
-texture = SubResource( 6 )
+[node name="MeshInstance" type="MeshInstance" parent="Overworld/TalkTutorial" index="1"]
+mesh = SubResource( 22 )
+skeleton = NodePath("")
+material/0 = null
 
 [node name="PauseTutorial" type="Spatial" parent="Overworld" index="11"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -21 )
@@ -416,11 +496,10 @@ margin_bottom = 50.0
 size_flags_horizontal = 3
 stretch_mode = 6
 
-[node name="Sprite3D" type="Sprite3D" parent="Overworld/PauseTutorial" index="1"]
-offset = Vector2( 0, 45.5 )
-billboard = 2
-alpha_cut = 1
-texture = SubResource( 7 )
+[node name="MeshInstance" type="MeshInstance" parent="Overworld/PauseTutorial" index="1"]
+mesh = SubResource( 25 )
+skeleton = NodePath("")
+material/0 = null
 
 [node name="CookieTutorial" type="Spatial" parent="Overworld" index="12"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -21 )
@@ -444,11 +523,10 @@ to end the level"
 align = 1
 autowrap = true
 
-[node name="Sprite3D" type="Sprite3D" parent="Overworld/CookieTutorial" index="1"]
-offset = Vector2( 0, 18.5 )
-billboard = 2
-alpha_cut = 1
-texture = SubResource( 8 )
+[node name="MeshInstance" type="MeshInstance" parent="Overworld/CookieTutorial" index="1"]
+mesh = SubResource( 28 )
+skeleton = NodePath("")
+material/0 = null
 
 [node name="Battle" parent="." index="1"]
 visible = false

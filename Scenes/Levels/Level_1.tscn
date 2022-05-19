@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=2]
@@ -39,6 +39,22 @@ font_data = SubResource( 7 )
 [sub_resource type="ViewportTexture" id=9]
 viewport_path = NodePath("Overworld/SquashTutorial/Viewport")
 
+[sub_resource type="ViewportTexture" id=12]
+viewport_path = NodePath("Overworld/SquashTutorial/Viewport")
+
+[sub_resource type="SpatialMaterial" id=13]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+params_billboard_mode = 2
+albedo_texture = SubResource( 12 )
+
+[sub_resource type="QuadMesh" id=14]
+resource_local_to_scene = true
+material = SubResource( 13 )
+size = Vector2( 5, 1 )
+
 [node name="LevelController" instance=ExtResource( 4 )]
 background_texture = ExtResource( 5 )
 
@@ -65,10 +81,12 @@ shape = null
 [node name="OverworldEnemy2" parent="Overworld/Enemies" index="1" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 5, -18.25 )
 enemies = [ ExtResource( 8 ), ExtResource( 8 ) ]
+reward_money = 50
 
 [node name="OverworldEnemy3" parent="Overworld/Enemies" index="2" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 5, -20.25 )
 enemies = [ ExtResource( 8 ), ExtResource( 8 ) ]
+reward_money = 50
 
 [node name="Coins" type="Spatial" parent="Overworld" index="2"]
 
@@ -167,6 +185,11 @@ billboard = 2
 double_sided = false
 alpha_cut = 1
 texture = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Overworld/SquashTutorial" index="2"]
+mesh = SubResource( 14 )
+skeleton = NodePath("")
+material/0 = null
 
 [node name="Battle" parent="." index="1"]
 visible = false
