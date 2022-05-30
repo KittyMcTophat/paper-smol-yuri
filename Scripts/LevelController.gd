@@ -53,12 +53,14 @@ func enable_overworld():
 		enable_none();
 		_enable(overworld);
 		active = OVERWORLD;
+		Global.coin_counter.modulate = Color.white;
 
 func enable_battle():
 	if (active != BATTLE):
 		enable_none();
 		_enable(battle);
 		active = BATTLE;
+		Global.coin_counter.modulate = Color.transparent;
 
 func _enable(node : Node):
 	if (is_a_parent_of(node)):

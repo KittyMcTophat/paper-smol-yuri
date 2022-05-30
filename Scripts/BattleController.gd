@@ -32,7 +32,6 @@ func start_battle(players : Array = [], enemies : Array = []):
 	_level_controller.fade_rect_anim_player.play("Fade_In");
 	yield(_level_controller.fade_rect_anim_player, "animation_finished");
 	
-	Global.coin_counter.modulate = Color.transparent;
 	_level_controller.enable_battle();
 	
 	for icon in $PlayerKeyHints.get_children():
@@ -73,6 +72,8 @@ func main_battle_loop():
 	var is_battle_over : bool = false;
 	
 	while (!is_battle_over):
+		Global.allow_pause = true;
+		
 		#player turns
 		for player in _players:
 			player.enable_jump = false;
@@ -86,6 +87,8 @@ func main_battle_loop():
 		
 		for player in _players:
 			player.enable_jump = true;
+		
+		Global.allow_pause = false;
 		
 		# enemy turns
 		for enemy in _enemies:
@@ -130,7 +133,6 @@ func end_battle():
 	_level_controller.fade_rect_anim_player.play("Fade_In");
 	yield(_level_controller.fade_rect_anim_player, "animation_finished");
 	
-	Global.coin_counter.modulate = Color.white;
 	_level_controller.enable_overworld();
 	
 	for child in _players_container.get_children():

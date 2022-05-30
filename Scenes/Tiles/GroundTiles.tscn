@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Meshes/GroundTiles/PinkFlowers.png" type="Texture" id=1]
 [ext_resource path="res://Meshes/GroundTiles/GreenFlowers.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Meshes/GroundTiles/KitchenFloor.png" type="Texture" id=8]
 [ext_resource path="res://Meshes/GroundTiles/RedBricks.png" type="Texture" id=9]
 [ext_resource path="res://Meshes/GroundTiles/PurpleBricks.png" type="Texture" id=10]
+[ext_resource path="res://Meshes/GroundTiles/GrayBricks.png" type="Texture" id=11]
 
 [sub_resource type="CubeMesh" id=7]
 size = Vector3( 0.5, 0.5, 0.5 )
@@ -74,6 +75,9 @@ albedo_texture = ExtResource( 1 )
 flags_transparent = true
 flags_unshaded = true
 albedo_texture = ExtResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_texture = ExtResource( 11 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -171,3 +175,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1 )
 mesh = SubResource( 9 )
 skeleton = NodePath("")
 material/0 = SubResource( 13 )
+
+[node name="Gray Bricks" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
+mesh = SubResource( 8 )
+skeleton = NodePath("")
+material/0 = SubResource( 18 )
+
+[node name="StaticBody" type="StaticBody" parent="Gray Bricks"]
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Gray Bricks/StaticBody"]
+shape = SubResource( 1 )

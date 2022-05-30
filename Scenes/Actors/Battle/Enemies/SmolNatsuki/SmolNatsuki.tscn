@@ -19,16 +19,20 @@ func _enter_battle():
 	var new_projectile : Spatial = default_projectile.instance();
 	
 	get_parent().add_child(new_projectile);
-	new_projectile.global_transform.origin = Vector3(0.0, -1000.0, 0.0);
+	#puts it in the ground so that the player doesn't see it
+	new_projectile.global_transform.origin = Vector3(0.0, -1.0, 0.0);
 	
 	._enter_battle();
+
+func _kill():
+	return;
 "
 
-[sub_resource type="CapsuleShape" id=2]
+[sub_resource type="CapsuleShape" id=4]
 resource_local_to_scene = true
 margin = 0.001
-radius = 0.32
-height = 0.01
+radius = 0.13
+height = 0.46
 
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport")
@@ -42,7 +46,8 @@ attack = 2
 default_projectile = ExtResource( 3 )
 
 [node name="CollisionShape" parent="." index="0"]
-shape = SubResource( 2 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.36, 0 )
+shape = SubResource( 4 )
 
 [node name="Sprite3D" parent="." index="1"]
 offset = Vector2( 0, 40 )
