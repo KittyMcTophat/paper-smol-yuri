@@ -1,23 +1,178 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_WithSayori.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Actors/SmolGreenPipe.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Objects/SaveBlock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Actors/Overworld/Enemies/OverworldPurpleSmolBowlingBall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Actors/Battle/Enemies/PurpleBowlingCube.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Actors/Battle/Enemies/PurpleSmolBowlingBall.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolYurisSmolCat.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Sprites/Actors/SmolMonika/SmolMonikaStill.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Actors/Overworld/Players/Followers/SmolMonikaFollower.tscn" type="PackedScene" id=14]
+
+[sub_resource type="CapsuleShape" id=6]
+resource_local_to_scene = true
+margin = 0.001
+radius = 0.3
+height = 0.22
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape" id=2]
+resource_local_to_scene = true
+
+[sub_resource type="CapsuleShape" id=4]
+resource_local_to_scene = true
+margin = 0.001
+radius = 0.32
+height = 0.01
+
+[sub_resource type="SphereShape" id=5]
+resource_local_to_scene = true
 
 [node name="LevelController" instance=ExtResource( 1 )]
+background_texture = ExtResource( 4 )
 
-[node name="Overworld" parent="." index="0"]
+[node name="SmolYuri_WithSayori" parent="Overworld" index="0" instance=ExtResource( 3 )]
+
+[node name="CollisionShape" parent="Overworld/SmolYuri_WithSayori" index="0"]
+shape = SubResource( 6 )
+
+[node name="SmolMonikaFollower" parent="Overworld/SmolYuri_WithSayori/SmolSayoriFollower" index="5" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
 visible = false
 
-[node name="GridMap Ground" parent="Overworld" index="0"]
+[node name="SmolCookie" parent="Overworld" index="1" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
+next_scene = "res://Scenes/Levels/Level_5.tscn"
+
+[node name="Enemies" type="Spatial" parent="Overworld" index="2"]
+
+[node name="OverworldEnemy" parent="Overworld/Enemies" index="0" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7 )
+enemies = [ ExtResource( 10 ), ExtResource( 9 ) ]
+reward_money = 75
+
+[node name="Coins" type="Spatial" parent="Overworld" index="3"]
+
+[node name="SmolCoin" parent="Overworld/Coins" index="0" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4.5 )
+
+[node name="SmolCoin2" parent="Overworld/Coins" index="1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1, -4.5 )
+
+[node name="SmolCoin3" parent="Overworld/Coins" index="2" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1, -4.5 )
+
+[node name="InteractableActors" type="Spatial" parent="Overworld" index="4"]
+
+[node name="SmolYurisSmolCat" parent="Overworld/InteractableActors" index="0" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -17.5 )
+
+[node name="InteractableActor" parent="Overworld/InteractableActors" index="1" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
+interact_on_ready = true
+only_on_first_load = true
+use_export_dialogue_instead = true
+exported_dialogue = "[
+    {\"speaker\":\"Smol Yuri\", \"text\":\"I guess we should start looking for the king bowling cube now.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Sayori\", \"text\":\"Do you know where he is?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Let's go ask Smol Monika, I bet she'll know!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Why would she know?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"She knows all kinds of things!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"text\":\"And maybe one of those things is the location of the king bowling cube!\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Your logic is flawed, but I don't have any better ideas.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"text\":\"I guess Smol Monika might at least have a better idea on what to do next.\", \"portrait\":\"\"}
+]"
+
+[node name="SmolGreenPipe" parent="Overworld/InteractableActors" index="2" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -3 )
+collision_mask = 3
+use_export_dialogue_instead = true
+exported_dialogue = "[
+	{\"speaker\":\"\", \"text\":\"It's a smol green pipe.\"},
+	{\"speaker\":\"\", \"text\":\"Smol Yuri feels a strong urge to say \\\"wahoo!\\\" and climb inside, but she wouldn't fit.\"},
+	{\"speaker\":\"\", \"text\":\"Smol Sayori feels the same urge, but she also would not fit.\"},
+]"
+
+[node name="CollisionShape" parent="Overworld/InteractableActors/SmolGreenPipe" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+shape = SubResource( 3 )
+
+[node name="Sprite3D" parent="Overworld/InteractableActors/SmolGreenPipe" index="1"]
+offset = Vector2( 0, 25 )
+billboard = 2
+texture = ExtResource( 5 )
+
+[node name="CollisionShape" parent="Overworld/InteractableActors/SmolGreenPipe/InteractableArea" index="0"]
+shape = SubResource( 2 )
+
+[node name="Shadow" parent="Overworld/InteractableActors/SmolGreenPipe" index="6"]
+transform = Transform( 0.782, 0, 0, 0, 0.782, 0, 0, 0, 0.782, 0, 0, 0 )
+
+[node name="SaveBlock" parent="Overworld/InteractableActors" index="3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -3 )
+
+[node name="SmolMonika" parent="Overworld/InteractableActors" index="4" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.5 )
+use_export_dialogue_instead = true
+exported_dialogue = "[
+    {\"speaker\":\"Smol Monika\", \"text\":\"Oh hey guys, what's up?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Do you know where the king bowling cube is?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Sayori\", \"text\":\"We're trying to stop him from beating everyone up!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Smol Monika\", \"text\":\"What's a bowling cube?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Imagine a bowling ball, but cube shaped.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Smol Monika\", \"text\":\"Okay, and you're looking for their king?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Yes.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"speaker\":\"Smol Monika\", \"text\":\"Have you tried asking the internet?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Monika\", \"text\":\"Okay let's start with that.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+	{\"speaker\":\"\", \"text\":\"Smol Monika pulls out her smol phone and searches \\\"where does the king bowling cube live?\\\"\"},
+	{\"speaker\":\"Smol Monika\", \"text\":\"The first result says he lives in someplace called \\\"The Bowling Cube Castle\\\"\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+	{\"text\":\"I'll summon a smol cookie to take us there.\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Yuri & Smol Sayori\", \"text\":\"Thanks!\"}
+]"
+
+[node name="CollisionShape" parent="Overworld/InteractableActors/SmolMonika" index="0"]
+shape = SubResource( 4 )
+
+[node name="Sprite3D" parent="Overworld/InteractableActors/SmolMonika" index="1"]
+offset = Vector2( 0, 44 )
+texture = ExtResource( 12 )
+
+[node name="CollisionShape" parent="Overworld/InteractableActors/SmolMonika/InteractableArea" index="0"]
+shape = SubResource( 5 )
+
+[node name="GridMap Ground" parent="Overworld" index="5"]
 data = {
-"cells": PoolIntArray( 65468, 164, 1, 0, 65529, 1, 1, 65529, 1, 2, 65529, 1, 3, 65529, 1, 4, 65529, 1, 5, 65529, 1, 6, 65529, 1, 7, 65529, 1, 8, 65529, 1, 9, 65529, 1, 65531, 65529, 1, 65532, 65529, 1, 65533, 65529, 1, 65534, 65529, 1, 65535, 65529, 1, 0, 65530, 1, 1, 65530, 1, 2, 65530, 1, 3, 65530, 1, 4, 65530, 1, 5, 65530, 1, 6, 65530, 1, 7, 65530, 1, 8, 65530, 1, 9, 65530, 1, 65531, 65530, 1, 65532, 65530, 1, 65533, 65530, 1, 65534, 65530, 1, 65535, 65530, 1, 0, 65531, 1, 1, 65531, 1, 2, 65531, 1, 3, 65531, 1, 4, 65531, 1, 5, 65531, 1, 6, 65531, 1, 7, 65531, 1, 8, 65531, 1, 9, 65531, 1, 65531, 65531, 1, 65532, 65531, 1, 65533, 65531, 1, 65534, 65531, 1, 65535, 65531, 1, 0, 65532, 1, 1, 65532, 1, 2, 65532, 1, 3, 65532, 1, 4, 65532, 1, 5, 65532, 1, 6, 65532, 1, 7, 65532, 1, 8, 65532, 1, 9, 65532, 1, 65531, 65532, 1, 65532, 65532, 1, 65533, 65532, 1, 65534, 65532, 1, 65535, 65532, 1, 0, 65533, 1, 1, 65533, 1, 2, 65533, 1, 3, 65533, 1, 4, 65533, 1, 5, 65533, 1, 6, 65533, 1, 7, 65533, 1, 8, 65533, 1, 9, 65533, 1, 65531, 65533, 1, 65532, 65533, 1, 65533, 65533, 1, 65534, 65533, 1, 65535, 65533, 1, 0, 65534, 1, 1, 65534, 1, 2, 65534, 1, 3, 65534, 1, 4, 65534, 1, 5, 65534, 1, 6, 65534, 1, 7, 65534, 1, 8, 65534, 1, 9, 65534, 1, 65531, 65534, 1, 65532, 65534, 1, 65533, 65534, 1, 65534, 65534, 1, 65535, 65534, 1, 0, 65535, 1, 1, 65535, 1, 2, 65535, 1, 3, 65535, 1, 4, 65535, 1, 5, 65535, 1, 6, 65535, 1, 7, 65535, 1, 8, 65535, 1, 9, 65535, 1, 65531, 65535, 1, 65532, 65535, 1, 65533, 65535, 1, 65534, 65535, 1, 65535, 65535, 1 )
+"cells": PoolIntArray( 65535, 0, 7, -131072, 0, 1, -131071, 0, 1, -65538, 0, 1, -65537, 0, 1, -65536, 0, 0, -65535, 0, 0, -2, 0, 0, -1, 0, 0, 1, 1, 8, 65534, 1, 6, -131072, 1, 1, -131071, 1, 1, -65538, 1, 1, -65537, 1, 1, -65536, 1, 0, -65535, 1, 0, -2, 1, 0, -1, 1, 0, 65468, 164, 1, 0, 65500, 6, 6, 65500, 9, 10, 65500, 8, -65536, 65500, 0, -65533, 65500, 0, -65530, 65500, 0, -65529, 65500, 0, -65528, 65500, 0, -65527, 65500, 0, -65526, 65500, 0, -65525, 65500, 0, -65524, 65500, 0, -1, 65500, 0, 3, 65501, 8, 8, 65501, 6, -65536, 65501, 0, -65533, 65501, 0, -65530, 65501, 0, -65529, 65501, 0, -65528, 65501, 0, -65527, 65501, 0, -65526, 65501, 0, -65525, 65501, 0, -65524, 65501, 0, -1, 65501, 0, 65535, 65504, 9, -65536, 65504, 0, -1, 65504, 0, -65536, 65507, 0, -1, 65507, 0, 1, 65510, 9, 3, 65510, 7, 65534, 65510, 8, -131072, 65510, 1, -131071, 65510, 1, -131070, 65510, 1, -131069, 65510, 1, -65540, 65510, 1, -65539, 65510, 1, -65538, 65510, 1, -65537, 65510, 1, -65536, 65510, 0, -65535, 65510, 0, -65534, 65510, 0, -65533, 65510, 0, -4, 65510, 0, -3, 65510, 0, -2, 65510, 0, -1, 65510, 0, 2, 65511, 6, 65533, 65511, 9, -131072, 65511, 1, -131071, 65511, 1, -131070, 65511, 1, -131069, 65511, 1, -65540, 65511, 1, -65539, 65511, 1, -65538, 65511, 1, -65537, 65511, 1, -65536, 65511, 0, -65535, 65511, 0, -65534, 65511, 0, -65533, 65511, 0, -4, 65511, 0, -3, 65511, 0, -2, 65511, 0, -1, 65511, 0, 1, 65512, 7, 65532, 65512, 7, 65535, 65512, 6, -131072, 65512, 1, -131071, 65512, 1, -131070, 65512, 1, -131069, 65512, 1, -65540, 65512, 1, -65539, 65512, 1, -65538, 65512, 1, -65537, 65512, 1, -65536, 65512, 0, -65535, 65512, 0, -65534, 65512, 0, -65533, 65512, 0, -4, 65512, 0, -3, 65512, 0, -2, 65512, 0, -1, 65512, 0, 1, 65513, 6, 3, 65513, 6, -131072, 65513, 1, -131071, 65513, 1, -131070, 65513, 1, -131069, 65513, 1, -65540, 65513, 1, -65539, 65513, 1, -65538, 65513, 1, -65537, 65513, 1, -65536, 65513, 0, -65535, 65513, 0, -65534, 65513, 0, -65533, 65513, 0, -4, 65513, 0, -3, 65513, 0, -2, 65513, 0, -1, 65513, 0, 0, 65514, 9, 2, 65514, 8, 65532, 65514, 6, 65534, 65514, 8, -131072, 65514, 1, -131071, 65514, 1, -131070, 65514, 1, -131069, 65514, 1, -65540, 65514, 1, -65539, 65514, 1, -65538, 65514, 1, -65537, 65514, 1, -65536, 65514, 0, -65535, 65514, 0, -65534, 65514, 0, -65533, 65514, 0, -4, 65514, 0, -3, 65514, 0, -2, 65514, 0, -1, 65514, 0, 0, 65515, 8, 65533, 65515, 7, 65534, 65515, 6, -131072, 65515, 1, -131071, 65515, 1, -131070, 65515, 1, -131069, 65515, 1, -65540, 65515, 1, -65539, 65515, 1, -65538, 65515, 1, -65537, 65515, 1, -65536, 65515, 0, -65535, 65515, 0, -65534, 65515, 0, -65533, 65515, 0, -4, 65515, 0, -3, 65515, 0, -2, 65515, 0, -1, 65515, 0, 1, 65516, 7, 65535, 65516, 9, -131072, 65516, 1, -131071, 65516, 1, -65538, 65516, 1, -65537, 65516, 1, -65536, 65516, 0, -65535, 65516, 0, -2, 65516, 0, -1, 65516, 0, 65535, 65521, 8, -131072, 65521, 1, -131071, 65521, 1, -65538, 65521, 1, -65537, 65521, 1, -65536, 65521, 0, -65535, 65521, 0, -2, 65521, 0, -1, 65521, 0, 1, 65522, 6, 65534, 65522, 7, -131072, 65522, 1, -131071, 65522, 1, -65538, 65522, 1, -65537, 65522, 1, -65536, 65522, 0, -65535, 65522, 0, -2, 65522, 0, -1, 65522, 0, 0, 65523, 7, -131072, 65523, 1, -131071, 65523, 1, -65538, 65523, 1, -65537, 65523, 1, -65536, 65523, 0, -65535, 65523, 0, -2, 65523, 0, -1, 65523, 0, 1, 65524, 8, 65534, 65524, 6, -131072, 65524, 1, -131071, 65524, 1, -65538, 65524, 1, -65537, 65524, 1, -65536, 65524, 0, -65535, 65524, 0, -2, 65524, 0, -1, 65524, 0, 1, 65525, 7, 65535, 65525, 8, -131072, 65525, 1, -131071, 65525, 1, -65538, 65525, 1, -65537, 65525, 1, -65536, 65525, 0, -65535, 65525, 0, -2, 65525, 0, -1, 65525, 0, -131072, 65526, 1, -131071, 65526, 1, -65538, 65526, 1, -65537, 65526, 1, -131072, 65527, 1, -131071, 65527, 1, -65538, 65527, 1, -65537, 65527, 1, 1, 65528, 7, -131072, 65528, 1, -131071, 65528, 1, -65538, 65528, 1, -65537, 65528, 1, -65536, 65528, 0, -65535, 65528, 0, -2, 65528, 0, -1, 65528, 0, 2, 65529, 9, 65533, 65529, 8, 65535, 65529, 6, -131072, 65529, 1, -131071, 65529, 1, -131070, 65529, 1, -131069, 65529, 1, -65540, 65529, 1, -65539, 65529, 1, -65538, 65529, 1, -65537, 65529, 1, -65536, 65529, 0, -65535, 65529, 0, -65534, 65529, 0, -65533, 65529, 0, -4, 65529, 0, -3, 65529, 0, -2, 65529, 0, -1, 65529, 0, 0, 65530, 7, 65534, 65530, 9, -131072, 65530, 1, -131071, 65530, 1, -131070, 65530, 1, -131069, 65530, 1, -65540, 65530, 1, -65539, 65530, 1, -65538, 65530, 1, -65537, 65530, 1, -65536, 65530, 0, -65535, 65530, 0, -65534, 65530, 0, -65533, 65530, 0, -4, 65530, 0, -3, 65530, 0, -2, 65530, 0, -1, 65530, 0, 1, 65534, 6, 65534, 65534, 7, -131072, 65534, 1, -131071, 65534, 1, -65538, 65534, 1, -65537, 65534, 1, -65536, 65534, 0, -65535, 65534, 0, -2, 65534, 0, -1, 65534, 0, 1, 65535, 9, -131072, 65535, 1, -131071, 65535, 1, -65538, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -65535, 65535, 0, -2, 65535, 0, -1, 65535, 0 )
 }
 
-[node name="GridMap Spikes" parent="Overworld" index="1"]
+[node name="GridMap Spikes" parent="Overworld" index="6"]
 data = {
-"cells": PoolIntArray(  )
+"cells": PoolIntArray( -65536, 65526, 0, -65535, 65526, 0, -2, 65526, 0, -1, 65526, 0, -65536, 65527, 0, -65535, 65527, 0, -2, 65527, 0, -1, 65527, 0 )
 }
+
+[node name="Battle" parent="." index="1"]
+visible = false
 
 [node name="GridMap" parent="Battle" index="3"]
 data = {
 "cells": PoolIntArray( 65527, 0, 7, 65528, 0, 7, 65529, 0, 6, 65530, 0, 6, 65531, 0, 9, 65532, 0, 9, -196608, 0, 1, -196607, 0, 1, -196606, 0, 1, -196605, 0, 1, -196604, 0, 1, -196603, 0, 1, -196602, 0, 1, -196601, 0, 1, -196600, 0, 1, -196599, 0, 1, -131082, 0, 1, -131081, 0, 1, -131080, 0, 1, -131079, 0, 1, -131078, 0, 1, -131077, 0, 1, -131076, 0, 1, -131075, 0, 1, -131074, 0, 1, -131073, 0, 1, -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 1, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -131063, 0, 1, -65546, 0, 1, -65545, 0, 1, -65544, 0, 1, -65543, 0, 1, -65542, 0, 1, -65541, 0, 1, -65540, 0, 1, -65539, 0, 1, -65538, 0, 1, -65537, 0, 1, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -10, 0, 0, -9, 0, 0, -8, 0, 0, -7, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, 65527, 65535, 7, 65528, 65535, 7, 65529, 65535, 6, 65530, 65535, 6, 65531, 65535, 9, 65532, 65535, 9, -196608, 65535, 1, -196607, 65535, 1, -196606, 65535, 1, -196605, 65535, 1, -196604, 65535, 1, -196603, 65535, 1, -196602, 65535, 1, -196601, 65535, 1, -196600, 65535, 1, -196599, 65535, 1, -131082, 65535, 1, -131081, 65535, 1, -131080, 65535, 1, -131079, 65535, 1, -131078, 65535, 1, -131077, 65535, 1, -131076, 65535, 1, -131075, 65535, 1, -131074, 65535, 1, -131073, 65535, 1, -131072, 65535, 1, -131071, 65535, 1, -131070, 65535, 1, -131069, 65535, 1, -131068, 65535, 1, -131067, 65535, 1, -131066, 65535, 1, -131065, 65535, 1, -131064, 65535, 1, -131063, 65535, 1, -65546, 65535, 1, -65545, 65535, 1, -65544, 65535, 1, -65543, 65535, 1, -65542, 65535, 1, -65541, 65535, 1, -65540, 65535, 1, -65539, 65535, 1, -65538, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -65535, 65535, 0, -65534, 65535, 0, -65533, 65535, 0, -65532, 65535, 0, -65531, 65535, 0, -65530, 65535, 0, -65529, 65535, 0, -65528, 65535, 0, -65527, 65535, 0, -10, 65535, 0, -9, 65535, 0, -8, 65535, 0, -7, 65535, 0, -6, 65535, 0, -5, 65535, 0, -4, 65535, 0, -3, 65535, 0, -2, 65535, 0, -1, 65535, 0 )
 }
+
+[connection signal="dialogue_ended" from="Overworld/InteractableActors/SmolMonika" to="Overworld/SmolYuri_WithSayori/SmolSayoriFollower/SmolMonikaFollower" method="show"]
+[connection signal="dialogue_ended" from="Overworld/InteractableActors/SmolMonika" to="Overworld/SmolCookie" method="set_translation" binds= [ Vector3( -1.5, 1.5, -11.5 ) ]]
+[connection signal="dialogue_ended" from="Overworld/InteractableActors/SmolMonika" to="Overworld/InteractableActors/SmolMonika" method="queue_free"]
+
+[editable path="Overworld/SmolYuri_WithSayori"]
+[editable path="Overworld/InteractableActors/SmolGreenPipe"]
+[editable path="Overworld/InteractableActors/SmolMonika"]
