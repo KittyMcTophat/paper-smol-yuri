@@ -1,20 +1,229 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_FullParty.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Actors/YurisFloatingHead/YurisFloatingHeadStill_Big.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Objects/Doors.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Actors/Enemies/PurpleSmolBowlingBall/PurpleSmolBowlingBall.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolYurisSmolCat.tscn" type="PackedScene" id=8]
 
-[node name="LevelController" instance=ExtResource( 1 )]
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.62, 0.72, 0.15 )
 
-[node name="GridMap Ground" parent="Overworld" index="0"]
-data = {
-"cells": PoolIntArray( 65468, 164, 1, 0, 65529, 1, 1, 65529, 1, 2, 65529, 1, 3, 65529, 1, 4, 65529, 1, 5, 65529, 1, 6, 65529, 1, 7, 65529, 1, 8, 65529, 1, 9, 65529, 1, 65531, 65529, 1, 65532, 65529, 1, 65533, 65529, 1, 65534, 65529, 1, 65535, 65529, 1, 0, 65530, 1, 1, 65530, 1, 2, 65530, 1, 3, 65530, 1, 4, 65530, 1, 5, 65530, 1, 6, 65530, 1, 7, 65530, 1, 8, 65530, 1, 9, 65530, 1, 65531, 65530, 1, 65532, 65530, 1, 65533, 65530, 1, 65534, 65530, 1, 65535, 65530, 1, 0, 65531, 1, 1, 65531, 1, 2, 65531, 1, 3, 65531, 1, 4, 65531, 1, 5, 65531, 1, 6, 65531, 1, 7, 65531, 1, 8, 65531, 1, 9, 65531, 1, 65531, 65531, 1, 65532, 65531, 1, 65533, 65531, 1, 65534, 65531, 1, 65535, 65531, 1, 0, 65532, 1, 1, 65532, 1, 2, 65532, 1, 3, 65532, 1, 4, 65532, 1, 5, 65532, 1, 6, 65532, 1, 7, 65532, 1, 8, 65532, 1, 9, 65532, 1, 65531, 65532, 1, 65532, 65532, 1, 65533, 65532, 1, 65534, 65532, 1, 65535, 65532, 1, 0, 65533, 1, 1, 65533, 1, 2, 65533, 1, 3, 65533, 1, 4, 65533, 1, 5, 65533, 1, 6, 65533, 1, 7, 65533, 1, 8, 65533, 1, 9, 65533, 1, 65531, 65533, 1, 65532, 65533, 1, 65533, 65533, 1, 65534, 65533, 1, 65535, 65533, 1, 0, 65534, 1, 1, 65534, 1, 2, 65534, 1, 3, 65534, 1, 4, 65534, 1, 5, 65534, 1, 6, 65534, 1, 7, 65534, 1, 8, 65534, 1, 9, 65534, 1, 65531, 65534, 1, 65532, 65534, 1, 65533, 65534, 1, 65534, 65534, 1, 65535, 65534, 1, 0, 65535, 1, 1, 65535, 1, 2, 65535, 1, 3, 65535, 1, 4, 65535, 1, 5, 65535, 1, 6, 65535, 1, 7, 65535, 1, 8, 65535, 1, 9, 65535, 1, 65531, 65535, 1, 65532, 65535, 1, 65533, 65535, 1, 65534, 65535, 1, 65535, 65535, 1 )
+[sub_resource type="Animation" id=4]
+resource_name = "Leave"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2, 0, -3 ), Vector3( -2, 0, -3 ), Vector3( -12, 10, -2 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite3D:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("InteractableArea/CollisionShape:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.001, 0.001, 0.001 ) ]
 }
 
-[node name="GridMap Spikes" parent="Overworld" index="1"]
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -2, 0, -3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("InteractableArea/CollisionShape:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="SphereShape" id=2]
+radius = 2.0
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 1, 1, 0.05 )
+
+[node name="LevelController" instance=ExtResource( 1 )]
+background_texture = ExtResource( 5 )
+
+[node name="SmolYuri_FullParty" parent="Overworld" index="0" instance=ExtResource( 2 )]
+
+[node name="InteractableActors" type="Spatial" parent="Overworld" index="1"]
+
+[node name="SmolYurisSmolCat" parent="Overworld/InteractableActors" index="0" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -2, -2 )
+
+[node name="YurisFloatingHead" parent="Overworld/InteractableActors" index="1" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3 )
+collision_mask = 67
+use_export_dialogue_instead = true
+exported_dialogue = "[
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh hey, Yuri's Floating Head!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"text\":\"What are you doing here?\", \"portrait\":\"\"},
+	{\"speaker\":\"Yuri's Floating Head\", \"text\":\"Smol Smol Yuri sensed that you would need help, but she was too far away to provide it.\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
+	{\"text\":\"So she sent me to help you out instead!\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"What kind of help have you come to provide?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"speaker\":\"Yuri's Floating Head\", \"text\":\"I'm here to explain Smol Monika's special ability!\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
+	{\"text\":\"And also to open that door for you...\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"So what kind of special ability does Smol Monika have?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Yuri's Floating Head\", \"text\":\"I'm glad you asked!\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
+	{\"text\":\"She can use her \\\"Charge\\\" ability to boost the power of her attacks by 1.\", \"portrait\":\"\"},
+	{\"text\":\"It may sound like a very smol boost, but in longer battles it can help her deal big damage if used properly.\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Monika\", \"text\":\"Why are you explaining this?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+	{\"text\":\"I already know how to use my own abilities!\", \"portrait\":\"\"},
+	{\"speaker\":\"Yuri's Floating Head\", \"text\":\"Good point.\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
+	{\"text\":\"I'll get that door now...\", \"portrait\":\"\"},
+]"
+
+[node name="CollisionShape" parent="Overworld/InteractableActors/YurisFloatingHead" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76, 0 )
+shape = SubResource( 3 )
+
+[node name="Sprite3D" parent="Overworld/InteractableActors/YurisFloatingHead" index="1"]
+offset = Vector2( 0, 76 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" parent="Overworld/InteractableActors/YurisFloatingHead" index="3"]
+autoplay = "RESET"
+playback_process_mode = 0
+anims/Leave = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="CollisionShape" parent="Overworld/InteractableActors/YurisFloatingHead/InteractableArea" index="0"]
+shape = SubResource( 2 )
+
+[node name="ExclamationMark" parent="Overworld/InteractableActors/YurisFloatingHead" index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
+
+[node name="Shadow" parent="Overworld/InteractableActors/YurisFloatingHead" index="6"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="DecorativeSmolBowlingBalls" type="Spatial" parent="Overworld/InteractableActors/YurisFloatingHead" index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Overworld/InteractableActors/YurisFloatingHead/DecorativeSmolBowlingBalls" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 3, -4.501 )
+offset = Vector2( 0, 32 )
+texture = ExtResource( 7 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="Overworld/InteractableActors/YurisFloatingHead/DecorativeSmolBowlingBalls" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 3, -4.501 )
+offset = Vector2( 0, 32 )
+flip_h = true
+texture = ExtResource( 7 )
+
+[node name="Sprite3D3" type="Sprite3D" parent="Overworld/InteractableActors/YurisFloatingHead/DecorativeSmolBowlingBalls" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 3, -4.501 )
+offset = Vector2( 0, 32 )
+flip_h = true
+texture = ExtResource( 7 )
+
+[node name="Sprite3D4" type="Sprite3D" parent="Overworld/InteractableActors/YurisFloatingHead/DecorativeSmolBowlingBalls" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 3, -4.501 )
+offset = Vector2( 0, 32 )
+texture = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="Overworld/InteractableActors/YurisFloatingHead" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -1.75 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Overworld/InteractableActors/YurisFloatingHead/StaticBody" index="0"]
+shape = SubResource( 6 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Overworld/InteractableActors/YurisFloatingHead/StaticBody" index="1"]
+transparent = false
+alpha_cut = 1
+texture = ExtResource( 6 )
+
+[node name="GridMap Ground" parent="Overworld" index="2"]
+data = {
+"cells": PoolIntArray( -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 1, -65542, 0, 1, -65541, 0, 1, -65540, 0, 1, -65539, 0, 1, -65538, 0, 1, -65537, 0, 1, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, 65468, 164, 1, 2, 65526, 10, 3, 65526, 10, 4, 65526, 10, 5, 65526, 10, 65530, 65526, 10, 65531, 65526, 10, 65532, 65526, 10, 65533, 65526, 10, 65538, 65526, 10, 65539, 65526, 10, 65540, 65526, 10, 65541, 65526, 10, 131066, 65526, 10, 131067, 65526, 10, 131068, 65526, 10, 131069, 65526, 10, 131074, 65526, 10, 131075, 65526, 10, 131076, 65526, 10, 131077, 65526, 10, 196602, 65526, 10, 196603, 65526, 10, 196604, 65526, 10, 196605, 65526, 10, 196610, 65526, 10, 196611, 65526, 10, 196612, 65526, 10, 196613, 65526, 10, 262138, 65526, 10, 262139, 65526, 10, 262140, 65526, 10, 262141, 65526, 10, 262144, 65526, 10, 262145, 65526, 10, 262146, 65526, 10, 262147, 65526, 10, 262148, 65526, 10, 262149, 65526, 10, 327674, 65526, 10, 327675, 65526, 10, 327676, 65526, 10, 327677, 65526, 10, 327678, 65526, 10, 327679, 65526, 10, -131072, 65526, 1, -131071, 65526, 1, -131070, 65526, 1, -131069, 65526, 1, -131068, 65526, 1, -131067, 65526, 1, -65542, 65526, 1, -65541, 65526, 1, -65540, 65526, 1, -65539, 65526, 1, -65538, 65526, 1, -65537, 65526, 1, -65536, 65526, 0, -65535, 65526, 0, -65534, 65526, 1, -65533, 65526, 1, -65532, 65526, 1, -65531, 65526, 1, -6, 65526, 1, -5, 65526, 1, -4, 65526, 1, -3, 65526, 1, -2, 65526, 0, -1, 65526, 0, 327680, 65527, 10, 327681, 65527, 10, 327682, 65527, 10, 327683, 65527, 10, 327684, 65527, 10, 327685, 65527, 10, 393210, 65527, 10, 393211, 65527, 10, 393212, 65527, 10, 393213, 65527, 10, 393214, 65527, 10, 393215, 65527, 10, 393216, 65527, 10, 393218, 65527, 10, 393219, 65527, 10, 393221, 65527, 10, 458746, 65527, 10, 458748, 65527, 10, 458749, 65527, 10, 458751, 65527, 10, -131072, 65527, 1, -131071, 65527, 1, -131070, 65527, 1, -131069, 65527, 1, -131068, 65527, 1, -131067, 65527, 1, -65542, 65527, 1, -65541, 65527, 1, -65540, 65527, 1, -65539, 65527, 1, -65538, 65527, 1, -65537, 65527, 1, -65536, 65527, 0, -65535, 65527, 0, -65534, 65527, 0, -65533, 65527, 0, -65532, 65527, 0, -65531, 65527, 0, -6, 65527, 0, -5, 65527, 0, -4, 65527, 0, -3, 65527, 0, -2, 65527, 0, -1, 65527, 0, -131072, 65528, 1, -131071, 65528, 1, -131070, 65528, 1, -131069, 65528, 1, -131068, 65528, 1, -131067, 65528, 1, -65542, 65528, 1, -65541, 65528, 1, -65540, 65528, 1, -65539, 65528, 1, -65538, 65528, 1, -65537, 65528, 1, -65536, 65528, 0, -65535, 65528, 0, -65534, 65528, 0, -65533, 65528, 0, -65532, 65528, 0, -65531, 65528, 0, -6, 65528, 0, -5, 65528, 0, -4, 65528, 0, -3, 65528, 0, -2, 65528, 0, -1, 65528, 0, -131072, 65529, 1, -131071, 65529, 1, -131070, 65529, 1, -131069, 65529, 1, -131068, 65529, 1, -131067, 65529, 1, -65542, 65529, 1, -65541, 65529, 1, -65540, 65529, 1, -65539, 65529, 1, -65538, 65529, 1, -65537, 65529, 1, -65536, 65529, 0, -65535, 65529, 0, -65534, 65529, 0, -65533, 65529, 0, -65532, 65529, 0, -65531, 65529, 0, -6, 65529, 0, -5, 65529, 0, -4, 65529, 0, -3, 65529, 0, -2, 65529, 0, -1, 65529, 0, -262169, 65530, 0, -262168, 65530, 0, -196633, 65530, 6, -196632, 65530, 6, -131072, 65530, 1, -131071, 65530, 1, -131070, 65530, 1, -131069, 65530, 1, -131068, 65530, 1, -131067, 65530, 1, -65542, 65530, 1, -65541, 65530, 1, -65540, 65530, 1, -65539, 65530, 1, -65538, 65530, 1, -65537, 65530, 1, -65536, 65530, 0, -65535, 65530, 0, -65534, 65530, 0, -65533, 65530, 0, -65532, 65530, 0, -65531, 65530, 0, -6, 65530, 0, -5, 65530, 0, -4, 65530, 0, -3, 65530, 0, -2, 65530, 0, -1, 65530, 0, -262170, 65531, 0, -262169, 65531, 0, -262168, 65531, 0, -262167, 65531, 0, -196634, 65531, 8, -196633, 65531, 8, -196632, 65531, 7, -196631, 65531, 6, -131072, 65531, 1, -131071, 65531, 1, -131070, 65531, 1, -131069, 65531, 1, -131068, 65531, 1, -131067, 65531, 1, -65542, 65531, 1, -65541, 65531, 1, -65540, 65531, 1, -65539, 65531, 1, -65538, 65531, 1, -65537, 65531, 1, -65536, 65531, 0, -65535, 65531, 0, -65534, 65531, 0, -65533, 65531, 0, -65532, 65531, 0, -65531, 65531, 0, -6, 65531, 0, -5, 65531, 0, -4, 65531, 0, -3, 65531, 0, -2, 65531, 0, -1, 65531, 0, -262170, 65532, 0, -262169, 65532, 0, -262168, 65532, 0, -262167, 65532, 0, -196634, 65532, 7, -196633, 65532, 7, -196632, 65532, 8, -196631, 65532, 9, -131072, 65532, 1, -131071, 65532, 1, -131070, 65532, 1, -131069, 65532, 1, -131068, 65532, 1, -131067, 65532, 1, -65542, 65532, 1, -65541, 65532, 1, -65540, 65532, 1, -65539, 65532, 1, -65538, 65532, 1, -65537, 65532, 1, -65536, 65532, 0, -65535, 65532, 0, -65534, 65532, 0, -65533, 65532, 0, -65532, 65532, 0, -65531, 65532, 0, -6, 65532, 0, -5, 65532, 0, -4, 65532, 0, -3, 65532, 0, -2, 65532, 0, -1, 65532, 0, -262169, 65533, 0, -262168, 65533, 0, -196633, 65533, 9, -196632, 65533, 9, -131072, 65533, 1, -131071, 65533, 1, -131070, 65533, 1, -131069, 65533, 1, -131068, 65533, 1, -131067, 65533, 1, -65542, 65533, 1, -65541, 65533, 1, -65540, 65533, 1, -65539, 65533, 1, -65538, 65533, 1, -65537, 65533, 1, -65536, 65533, 0, -65535, 65533, 0, -65534, 65533, 0, -65533, 65533, 0, -65532, 65533, 0, -65531, 65533, 0, -6, 65533, 0, -5, 65533, 0, -4, 65533, 0, -3, 65533, 0, -2, 65533, 0, -1, 65533, 0, -131072, 65534, 1, -131071, 65534, 1, -131070, 65534, 1, -131069, 65534, 1, -131068, 65534, 1, -131067, 65534, 1, -65542, 65534, 1, -65541, 65534, 1, -65540, 65534, 1, -65539, 65534, 1, -65538, 65534, 1, -65537, 65534, 1, -65536, 65534, 0, -65535, 65534, 0, -65534, 65534, 0, -65533, 65534, 0, -65532, 65534, 0, -65531, 65534, 0, -6, 65534, 0, -5, 65534, 0, -4, 65534, 0, -3, 65534, 0, -2, 65534, 0, -1, 65534, 0, -131072, 65535, 1, -131071, 65535, 1, -131070, 65535, 1, -131069, 65535, 1, -131068, 65535, 1, -131067, 65535, 1, -65542, 65535, 1, -65541, 65535, 1, -65540, 65535, 1, -65539, 65535, 1, -65538, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -65535, 65535, 0, -65534, 65535, 0, -65533, 65535, 0, -65532, 65535, 0, -65531, 65535, 0, -6, 65535, 0, -5, 65535, 0, -4, 65535, 0, -3, 65535, 0, -2, 65535, 0, -1, 65535, 0 )
+}
+
+[node name="GridMap Spikes" parent="Overworld" index="3"]
 data = {
 "cells": PoolIntArray(  )
 }
 
+[node name="Battle" parent="." index="1"]
+visible = false
+
+[node name="PlayerKeyHints" parent="Battle" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, -0.75, 1.001 )
+
 [node name="GridMap" parent="Battle" index="3"]
 data = {
-"cells": PoolIntArray( -196608, 0, 1, -196607, 0, 1, -196606, 0, 1, -196605, 0, 1, -196604, 0, 1, -196603, 0, 1, -196602, 0, 1, -196601, 0, 1, -196600, 0, 1, -196599, 0, 1, -131082, 0, 1, -131081, 0, 1, -131080, 0, 1, -131079, 0, 1, -131078, 0, 1, -131077, 0, 1, -131076, 0, 1, -131075, 0, 1, -131074, 0, 1, -131073, 0, 1, -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 1, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -131063, 0, 1, -65546, 0, 1, -65545, 0, 1, -65544, 0, 1, -65543, 0, 1, -65542, 0, 1, -65541, 0, 1, -65540, 0, 1, -65539, 0, 1, -65538, 0, 1, -65537, 0, 1, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -10, 0, 0, -9, 0, 0, -8, 0, 0, -7, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -196608, 65535, 1, -196607, 65535, 1, -196606, 65535, 1, -196605, 65535, 1, -196604, 65535, 1, -196603, 65535, 1, -196602, 65535, 1, -196601, 65535, 1, -196600, 65535, 1, -196599, 65535, 1, -131082, 65535, 1, -131081, 65535, 1, -131080, 65535, 1, -131079, 65535, 1, -131078, 65535, 1, -131077, 65535, 1, -131076, 65535, 1, -131075, 65535, 1, -131074, 65535, 1, -131073, 65535, 1, -131072, 65535, 1, -131071, 65535, 1, -131070, 65535, 1, -131069, 65535, 1, -131068, 65535, 1, -131067, 65535, 1, -131066, 65535, 1, -131065, 65535, 1, -131064, 65535, 1, -131063, 65535, 1, -65546, 65535, 1, -65545, 65535, 1, -65544, 65535, 1, -65543, 65535, 1, -65542, 65535, 1, -65541, 65535, 1, -65540, 65535, 1, -65539, 65535, 1, -65538, 65535, 1, -65537, 65535, 1, -65536, 65535, 0, -65535, 65535, 0, -65534, 65535, 0, -65533, 65535, 0, -65532, 65535, 0, -65531, 65535, 0, -65530, 65535, 0, -65529, 65535, 0, -65528, 65535, 0, -65527, 65535, 0, -10, 65535, 0, -9, 65535, 0, -8, 65535, 0, -7, 65535, 0, -6, 65535, 0, -5, 65535, 0, -4, 65535, 0, -3, 65535, 0, -2, 65535, 0, -1, 65535, 0 )
+"cells": PoolIntArray( -196608, 0, 10, -196607, 0, 10, -196606, 0, 10, -196605, 0, 10, -196604, 0, 10, -196603, 0, 10, -196602, 0, 10, -196601, 0, 10, -196600, 0, 10, -196599, 0, 10, -131082, 0, 10, -131081, 0, 10, -131080, 0, 10, -131079, 0, 10, -131078, 0, 10, -131077, 0, 10, -131076, 0, 10, -131075, 0, 10, -131074, 0, 10, -131073, 0, 10, -131072, 0, 10, -131071, 0, 10, -131070, 0, 10, -131069, 0, 10, -131068, 0, 10, -131067, 0, 10, -131066, 0, 10, -131065, 0, 10, -131064, 0, 10, -131063, 0, 10, -65546, 0, 10, -65545, 0, 10, -65544, 0, 10, -65543, 0, 10, -65542, 0, 10, -65541, 0, 10, -65540, 0, 10, -65539, 0, 10, -65538, 0, 10, -65537, 0, 10, -65536, 0, 10, -65535, 0, 10, -65534, 0, 10, -65533, 0, 10, -65532, 0, 10, -65531, 0, 10, -65530, 0, 10, -65529, 0, 10, -65528, 0, 10, -65527, 0, 10, -10, 0, 10, -9, 0, 10, -8, 0, 10, -7, 0, 10, -6, 0, 10, -5, 0, 10, -4, 0, 10, -3, 0, 10, -2, 0, 10, -1, 0, 10, 0, 1, 10, 2, 1, 10, 3, 1, 10, 5, 1, 10, 6, 1, 10, 8, 1, 10, 9, 1, 10, 65526, 1, 10, 65527, 1, 10, 65529, 1, 10, 65530, 1, 10, 65532, 1, 10, 65533, 1, 10, 65535, 1, 10, -196608, 1, 10, -196607, 1, 10, -196606, 1, 10, -196605, 1, 10, -196604, 1, 10, -196603, 1, 10, -196602, 1, 10, -196601, 1, 10, -196600, 1, 10, -196599, 1, 10, -131082, 1, 10, -131081, 1, 10, -131080, 1, 10, -131079, 1, 10, -131078, 1, 10, -131077, 1, 10, -131076, 1, 10, -131075, 1, 10, -131074, 1, 10, -131073, 1, 10, -131072, 1, 10, -131071, 1, 10, -131070, 1, 10, -131069, 1, 10, -131068, 1, 10, -131067, 1, 10, -131066, 1, 10, -131065, 1, 10, -131064, 1, 10, -131063, 1, 10, -65546, 1, 10, -65545, 1, 10, -65544, 1, 10, -65543, 1, 10, -65542, 1, 10, -65541, 1, 10, -65540, 1, 10, -65539, 1, 10, -65538, 1, 10, -65537, 1, 10, -65536, 1, 10, -65535, 1, 10, -65534, 1, 10, -65533, 1, 10, -65532, 1, 10, -65531, 1, 10, -65530, 1, 10, -65529, 1, 10, -65528, 1, 10, -65527, 1, 10, -10, 1, 10, -9, 1, 10, -8, 1, 10, -7, 1, 10, -6, 1, 10, -5, 1, 10, -4, 1, 10, -3, 1, 10, -2, 1, 10, -1, 1, 10, 0, 65534, 10, 2, 65534, 10, 3, 65534, 10, 5, 65534, 10, 6, 65534, 10, 8, 65534, 10, 9, 65534, 10, 65526, 65534, 10, 65527, 65534, 10, 65529, 65534, 10, 65530, 65534, 10, 65532, 65534, 10, 65533, 65534, 10, 65535, 65534, 10, -196608, 65534, 10, -196607, 65534, 10, -196606, 65534, 10, -196605, 65534, 10, -196604, 65534, 10, -196603, 65534, 10, -196602, 65534, 10, -196601, 65534, 10, -196600, 65534, 10, -196599, 65534, 10, -131082, 65534, 10, -131081, 65534, 10, -131080, 65534, 10, -131079, 65534, 10, -131078, 65534, 10, -131077, 65534, 10, -131076, 65534, 10, -131075, 65534, 10, -131074, 65534, 10, -131073, 65534, 10, -131072, 65534, 10, -131071, 65534, 10, -131070, 65534, 10, -131069, 65534, 10, -131068, 65534, 10, -131067, 65534, 10, -131066, 65534, 10, -131065, 65534, 10, -131064, 65534, 10, -131063, 65534, 10, -65546, 65534, 10, -65545, 65534, 10, -65544, 65534, 10, -65543, 65534, 10, -65542, 65534, 10, -65541, 65534, 10, -65540, 65534, 10, -65539, 65534, 10, -65538, 65534, 10, -65537, 65534, 10, -65536, 65534, 10, -65535, 65534, 10, -65534, 65534, 10, -65533, 65534, 10, -65532, 65534, 10, -65531, 65534, 10, -65530, 65534, 10, -65529, 65534, 10, -65528, 65534, 10, -65527, 65534, 10, -10, 65534, 10, -9, 65534, 10, -8, 65534, 10, -7, 65534, 10, -6, 65534, 10, -5, 65534, 10, -4, 65534, 10, -3, 65534, 10, -2, 65534, 10, -1, 65534, 10, -196608, 65535, 10, -196607, 65535, 10, -196606, 65535, 10, -196605, 65535, 10, -196604, 65535, 10, -196603, 65535, 10, -196602, 65535, 10, -196601, 65535, 10, -196600, 65535, 10, -196599, 65535, 10, -131082, 65535, 10, -131081, 65535, 10, -131080, 65535, 10, -131079, 65535, 10, -131078, 65535, 10, -131077, 65535, 10, -131076, 65535, 10, -131075, 65535, 10, -131074, 65535, 10, -131073, 65535, 10, -131072, 65535, 10, -131071, 65535, 10, -131070, 65535, 10, -131069, 65535, 10, -131068, 65535, 10, -131067, 65535, 10, -131066, 65535, 10, -131065, 65535, 10, -131064, 65535, 10, -131063, 65535, 10, -65546, 65535, 10, -65545, 65535, 10, -65544, 65535, 10, -65543, 65535, 10, -65542, 65535, 10, -65541, 65535, 10, -65540, 65535, 10, -65539, 65535, 10, -65538, 65535, 10, -65537, 65535, 10, -65536, 65535, 10, -65535, 65535, 10, -65534, 65535, 10, -65533, 65535, 10, -65532, 65535, 10, -65531, 65535, 10, -65530, 65535, 10, -65529, 65535, 10, -65528, 65535, 10, -65527, 65535, 10, -10, 65535, 10, -9, 65535, 10, -8, 65535, 10, -7, 65535, 10, -6, 65535, 10, -5, 65535, 10, -4, 65535, 10, -3, 65535, 10, -2, 65535, 10, -1, 65535, 10 )
 }
+
+[connection signal="dialogue_ended" from="Overworld/InteractableActors/SmolYurisSmolCat" to="Overworld/SmolYuri_FullParty" method="set_translation" binds= [ Vector3( 0, 0, 0 ) ]]
+[connection signal="dialogue_ended" from="Overworld/InteractableActors/YurisFloatingHead" to="Overworld/InteractableActors/YurisFloatingHead/AnimationPlayer" method="play" binds= [ "Leave" ]]
+
+[editable path="Overworld/InteractableActors/YurisFloatingHead"]
