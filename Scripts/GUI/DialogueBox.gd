@@ -44,12 +44,12 @@ func start_dialogue(dialogue_json : Array, actor : InteractableActor):
 	advance_text();
 
 func end_dialogue():
-	if (Global.current_level_controller.active != 2):
-		Global.allow_pause = true;
+	Global.allow_pause = true;
 	get_tree().paused = false;
 	is_active = false;
 	anim_player.play("Hide");
-	_actor._dialogue_over();
+	if (_actor != null):
+		_actor._dialogue_over();
 
 func advance_text():
 	current_line += 1;

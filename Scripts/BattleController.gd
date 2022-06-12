@@ -4,6 +4,7 @@ signal battle_start
 signal battle_start_early
 signal battle_end
 signal battle_end_early
+signal turn_ended(turn_number)
 
 class_name BattleController
 
@@ -21,6 +22,7 @@ onready var _enemies_container : Spatial = $EnemiesContainer;
 var _players : Array = [];
 var _enemies : Array = [];
 var _battle_is_active : bool = false;
+var _turn_number : int = 0;
 
 func start_battle(players : Array = [], enemies : Array = []):
 	Global.allow_pause = false;
@@ -28,6 +30,10 @@ func start_battle(players : Array = [], enemies : Array = []):
 	Global.get_tree().paused = true;
 	
 	_battle_is_active = true;
+	_turn_number = 0;
+	print("Starting battle with:");
+	for enemy in enemies:
+		print(enemy.actor_name.replace("\n"," "));
 	
 	_level_controller.fade_rect_anim_player.play("Fade_In");
 	yield(_level_controller.fade_rect_anim_player, "animation_finished");
@@ -101,7 +107,9 @@ func main_battle_loop():
 					continue;
 				enemy._do_your_turn();
 				yield(enemy, "turn_over");
-	
+		
+		emit_signal("turn_ended", _turn_number);
+		_turn_number += 1;
 	
 	end_battle();
 

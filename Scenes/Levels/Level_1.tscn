@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolYurisSmolCat.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/DialogueOnXTurn.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/Actors/Battle/Enemies/TutorialBowlingBall.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CapsuleShape" id=11]
 resource_local_to_scene = true
@@ -70,13 +72,22 @@ visible = false
 
 [node name="OverworldEnemy" parent="Overworld/Enemies" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2 )
-enemies = [ ExtResource( 8 ) ]
+enemies = [ ExtResource( 14 ) ]
 
 [node name="CollisionShape" parent="Overworld/Enemies/OverworldEnemy" index="0"]
 shape = SubResource( 4 )
 
 [node name="CollisionShape" parent="Overworld/Enemies/OverworldEnemy/AggroArea" index="0"]
 shape = null
+
+[node name="Node" type="Node" parent="Overworld/Enemies/OverworldEnemy" index="8"]
+script = ExtResource( 13 )
+dialogues = [ "[
+	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"And then we just repeat those steps until one of us is out of HP\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
+	{\"text\":\"Any questions?\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Nope!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Alright, I'll stop talking so we can focus on the battle then!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"}
+]" ]
 
 [node name="OverworldEnemy2" parent="Overworld/Enemies" index="1" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 5, -18.25 )
@@ -116,16 +127,9 @@ exported_dialogue = "[
 	{\"speaker\":\"Smol Yuri\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
 	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Oh, well in that case allow me to explain!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
 	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"You start by selecting your attack using the same buttons you usually use to navigate menus.\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Then you pick a target.
-	This step is pretty easy, since I'm the only one here.\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Then I'll take my turn.
-	You can try to jump over my attack using one of the buttons shown below you.\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Why can't I use my normal jump button?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Because this is a battle, and things work differently here.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh, okay!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Any more questions?\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"No, I think I get it.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Okay cool, let's just get into it then.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"}
+	{\"text\":\"Then you pick a target to aim your attack at.\", \"portrait\":\"\"},
+	{\"text\":\"If you pick the wrong attack you can go back by pressing the Backspace key.
+	(Or the B button if you're using a controller)\", \"portrait\":\"\"},
 ]"
 
 [node name="SmolYurisSmolCat" parent="Overworld" index="5" instance=ExtResource( 10 )]
@@ -202,6 +206,7 @@ data = {
 [connection signal="battle_end_early" from="Overworld/Enemies/OverworldEnemy" to="Overworld/SmolYuri_Alone/HealthBar" method="show"]
 [connection signal="battle_end_early" from="Overworld/Enemies/OverworldEnemy" to="Overworld/Wall" method="queue_free"]
 [connection signal="battle_start" from="Overworld/Enemies/OverworldEnemy" to="Overworld/InteractableActor" method="_interact"]
+[connection signal="turn_ended" from="Overworld/Enemies/OverworldEnemy" to="Overworld/Enemies/OverworldEnemy/Node" method="turn_ended"]
 
 [editable path="Overworld/SmolYuri_Alone"]
 [editable path="Overworld/Enemies/OverworldEnemy"]

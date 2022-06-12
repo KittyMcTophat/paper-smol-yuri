@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Actors/Battle/Enemies/PurpleSmolBowlingBall.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Enemy
+
+func _do_your_turn():
+	if (Global.current_level_controller.battle._turn_number == 0):
+		pass
+		Global.dialogue_box.start_dialogue(
+			parse_json(
+\"\"\"[
+	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Now I'll take my turn.
+	You can try to jump over my attack using one of the buttons shown below you.\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Why can't I use my normal jump button?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Because this is a battle, and things work differently here.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh, okay!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"}
+]\"\"\"), null);
+	
+	._do_your_turn()
+"
+
+[sub_resource type="CapsuleShape" id=2]
+resource_local_to_scene = true
+margin = 0.001
+radius = 0.32
+height = 0.01
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("Viewport")
+
+[node name="BaseEnemy" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+actor_name = "Purple Smol
+Bowling Ball"
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource( 2 )
+
+[node name="AttackBoosts" parent="." index="11"]
+texture = SubResource( 3 )

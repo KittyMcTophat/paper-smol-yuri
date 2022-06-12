@@ -6,6 +6,7 @@ signal battle_start
 signal battle_start_early
 signal battle_end
 signal battle_end_early
+signal turn_ended(turn_number)
 
 export var move_speed : float = 2.0;
 export var jump_strength : float = 5.0;
@@ -93,6 +94,9 @@ func _on_PlayerDetectorArea_body_entered(body):
 		Global.current_level_controller.battle.connect("battle_end", self, "_battle_end");
 # warning-ignore:return_value_discarded
 		Global.current_level_controller.battle.connect("battle_end_early", self, "_battle_end_early");
+# warning-ignore:return_value_discarded
+		Global.current_level_controller.battle.connect("turn_ended", self, "_turn_ended");
+		
 
 func _battle_start():
 	emit_signal("battle_start");
@@ -108,6 +112,10 @@ func _battle_end_early():
 	emit_signal("battle_end_early");
 	Global.coin_counter.add_money(reward_money);
 	hide();
+
+func _turn_ended(turn_number : int):
+	emit_signal("turn_ended", turn_number);
+	print("Turn " + str(turn_number) + " has ended");
 
 func _kill():
 	queue_free();
