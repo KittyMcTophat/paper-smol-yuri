@@ -5,6 +5,11 @@ class_name PauseMenu
 onready var _anim_player: AnimationPlayer = $AnimationPlayer;
 onready var _resume_button : Button = find_node("ResumeButton");
 
+func _ready():
+	if OS.has_feature("editor"):
+		Global.text_speed = 0.0;
+		$ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer/TextSpeedSlider.value = 0.0;
+
 func _unhandled_input(event):
 	if (event.is_action_pressed("pause") && !get_tree().paused && Global.allow_pause):
 		pause();

@@ -408,7 +408,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 max_value = 0.099
 step = 0.017
-value = 0.033
+value = 0.034
 
 [node name="Slow" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 margin_left = 572.0

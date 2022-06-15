@@ -1,5 +1,9 @@
 [
-    {"type":"Image", "path":"res://Sprites/GUI/Splash Screen.png", "scale":4},
+    {"type":"Image", "path":"res://Sprites/GUI/Logo.png", "scale":3},
+    
+    {"type":"Spacing", "amount":3},
+
+    {"type":"Image", "path":"res://Sprites/GUI/Splash Screen.png", "scale":3},
 
     {"type":"Spacing", "amount":3},
 
@@ -73,5 +77,5 @@
 
     {"type":"Spacing", "amount":3},
 
-    {"type":"Image", "path":"res://Sprites/GUI/Thanks4Playing.png", "scale":2}
+    {"type":"Image", "path":"res://Sprites/GUI/Thanks4Playing.png", "scale":3}
 ]
