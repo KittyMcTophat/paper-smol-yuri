@@ -12,7 +12,7 @@ size = Vector3( 0.5, 0.5, 0.5 )
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 1 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=10]
 resource_name = "Attack1"
 length = 2.5
 tracks/0/type = "method"
@@ -174,7 +174,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 
 [node name="Attacks" parent="." index="9"]
-anims/Attack1 = SubResource( 6 )
+anims/Attack1 = SubResource( 10 )
 anims/Attack2 = SubResource( 7 )
 anims/Attack3 = SubResource( 8 )
 anims/Attack4 = SubResource( 9 )

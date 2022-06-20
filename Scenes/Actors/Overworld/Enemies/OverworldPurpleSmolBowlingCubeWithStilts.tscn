@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Actors/Overworld/BaseActors/OverworldEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Meshes/Enemies/PurpleBowlingCube.png" type="Texture" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.25, 1, 0.25 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 0.05, 2, 0.05 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.517647, 0.392157, 0.243137, 1 )
+
+[node name="OverworldEnemy" instance=ExtResource( 1 )]
+move_speed = 0.0
+jump_strength = 0.0
+move_lerp = 0.0
+
+[node name="CollisionShape" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="1"]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 1.65, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("")
+material/0 = SubResource( 3 )
+
+[node name="Left" type="MeshInstance" parent="MeshInstance" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, -0.275 )
+mesh = SubResource( 4 )
+skeleton = NodePath("")
+material/0 = SubResource( 5 )
+
+[node name="Right" type="MeshInstance" parent="MeshInstance" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0.275 )
+mesh = SubResource( 4 )
+skeleton = NodePath("")
+material/0 = SubResource( 5 )
+
+[node name="Sprite3D" parent="." index="2"]
+modulate = Color( 1, 1, 1, 0 )
