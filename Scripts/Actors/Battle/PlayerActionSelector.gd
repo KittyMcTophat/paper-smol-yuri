@@ -73,7 +73,7 @@ func _process(_delta) -> void:
 				
 				actions[selected_action].selector_arrow.visible = true;
 			else:
-				if (Input.is_action_just_pressed("ui_accept")):
+				if (Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed(_player.personal_jump_input)):
 					potential_targets = [];
 					
 					match actions[selected_action].target_type:
@@ -112,7 +112,7 @@ func _process(_delta) -> void:
 				
 				potential_targets[selected_target].selector_arrow.visible = true;
 			else:
-				if (Input.is_action_just_pressed("ui_accept")):
+				if (Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed(_player.personal_jump_input)):
 					potential_targets[ selected_target].selector_arrow.visible = false;
 					
 					actions[selected_action]._execute_action(_player, potential_targets[selected_target]);

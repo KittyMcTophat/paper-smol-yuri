@@ -34,7 +34,30 @@ func _end_turn():
 	emit_signal("turn_over");
 
 func _kill() -> void:
-	yield(get_tree().create_timer(0.4), "timeout");
+	_healthbar.queue_free();
+	
+	var rigidbody : RigidBody = RigidBody.new();
+	get_parent().add_child(rigidbody);
+	rigidbody.global_transform.origin = self.global_transform.origin
+	
+	while get_child_count() > 0:
+		var child : Node = get_child(0);
+		remove_child(child);
+		rigidbody.add_child(child);
+	
+	var random_direction : Vector2 = Vector2(randf() - 0.5, randf() - 0.5);
+	random_direction = random_direction.normalized();
+	
+	rigidbody.angular_velocity.y = 0.0;
+	rigidbody.angular_velocity.x = random_direction.x * 7.5;
+	rigidbody.angular_velocity.z = random_direction.y * 7.5;
+	
+	rigidbody.linear_velocity.y = 6.0;
+	rigidbody.linear_velocity.x = random_direction.y * -1.5;
+	rigidbody.linear_velocity.z = random_direction.x * 1.5;
+	
+	yield(get_tree().create_timer(3.0), "timeout");
+	
 	queue_free();
 
 func _shoot():

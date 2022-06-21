@@ -20,7 +20,7 @@ extents = Vector3( 0.62, 0.68, 0.15 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "Leave"
-length = 6.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:translation")
 tracks/0/interp = 1
@@ -40,7 +40,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 6 ),
+"times": PoolRealArray( 3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -70,18 +70,6 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 0.001, 0.001, 0.001 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath(".:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 3, 6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 0.001, 0.001, 0.001 ) ]
 }
 
 [sub_resource type="Animation" id=5]
