@@ -66,3 +66,31 @@ func _squash(squash_size : Vector3 = Vector3(1.0, 1.0, 1.0), time : float = 0.3)
 	_tween_node.interpolate_property(_sprite_3d, "scale", squash_size, Vector3(1.0, 1.0, 1.0), time, Tween.TRANS_LINEAR, Tween.EASE_IN);
 # warning-ignore:return_value_discarded
 	_tween_node.start();
+
+func get_fuckin_launched(v_velocity : float = 6.0, h_velocity : float = 1.5, rot_velocity : float = 7.5, direction : Vector2 = Vector2.ZERO) -> RigidBody:
+	var rigidbody : RigidBody = RigidBody.new();
+	get_parent().add_child(rigidbody);
+	rigidbody.global_transform.origin = self.global_transform.origin
+	rigidbody.collision_layer = self.collision_layer;
+	rigidbody.collision_mask = self.collision_mask;
+	
+	while get_child_count() > 0:
+		var child : Node = get_child(0);
+		remove_child(child);
+		rigidbody.add_child(child);
+		if child is Shadow:
+			child.queue_free();
+	
+	if (direction == Vector2.ZERO):
+		direction = Vector2(randf() - 0.5, randf() - 0.5);
+		direction = direction.normalized();
+	
+	rigidbody.angular_velocity.y = 0.0;
+	rigidbody.angular_velocity.x = direction.x * rot_velocity;
+	rigidbody.angular_velocity.z = direction.y * rot_velocity;
+	
+	rigidbody.linear_velocity.y = v_velocity;
+	rigidbody.linear_velocity.x = direction.y * -h_velocity;
+	rigidbody.linear_velocity.z = direction.x * h_velocity;
+	
+	return rigidbody;

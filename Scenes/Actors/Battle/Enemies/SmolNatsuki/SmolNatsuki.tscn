@@ -23,9 +23,6 @@ func _enter_battle():
 	new_projectile.global_transform.origin = Vector3(0.0, -1.0, 0.0);
 	
 	._enter_battle();
-
-func _kill():
-	return;
 "
 
 [sub_resource type="CapsuleShape" id=4]

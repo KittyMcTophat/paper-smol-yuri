@@ -19,6 +19,7 @@ export var party_leader : int = 0;
 var _velocity : Vector3 = Vector3.ZERO;
 var _last_safe_location : Vector3 = Vector3.ZERO;
 var _was_on_floor_last_frame : bool = true;
+var allow_movement : bool = true;
 var _jump_buffer : float = 0.0;
 var _coyote_time : float = 0.0;
 
@@ -49,6 +50,9 @@ func _ready():
 	self.connect("landed", self, "_check_jump_buffer");
 
 func _physics_process(delta) -> void:
+	if (allow_movement == false):
+		return;
+	
 	var move_direction := _get_movement_vector();
 	
 	# rotates the sprite to match movement
@@ -196,6 +200,19 @@ func _after_battle():
 	_tween_node.start();
 
 func _kill():
+	if (get_tree() == null):
+		return;
+	
+	_healthbar.hide();
+	allow_movement = false;
+	
+	var rigidbody : RigidBody = get_fuckin_launched();
+	var camera_springarm : SpringArm = rigidbody.get_node("SpringArm");
+	rigidbody.remove_child(camera_springarm);
+	self.add_child(camera_springarm);
+	
+	yield(get_tree().create_timer(3.0), "timeout");
+	
 	if (reload_on_death):
 		Global.reload_scene();
 	else:
