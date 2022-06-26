@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriStill.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Sprites/Buttons/Leftstick.png" type="Texture" id=14]
 [ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://Scenes/GUI/Credits.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scripts/InputDisplay.gd" type="Script" id=17]
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends LevelController
@@ -130,7 +131,7 @@ custom_constants/separation = 20
 
 [node name="Control" type="Control" parent="Menu/Control/MarginContainer/VBoxContainer" index="0"]
 margin_right = 900.0
-margin_bottom = 327.0
+margin_bottom = 346.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -143,15 +144,15 @@ custom_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer" index="0"]
 margin_right = 540.0
-margin_bottom = 259.0
+margin_bottom = 278.0
 size_flags_vertical = 3
 texture = ExtResource( 6 )
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer" index="1"]
-margin_top = 279.0
+margin_top = 298.0
 margin_right = 540.0
-margin_bottom = 327.0
+margin_bottom = 346.0
 
 [node name="StartButton" type="Button" parent="Menu/Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer" index="0"]
 margin_right = 192.0
@@ -183,7 +184,7 @@ size_flags_vertical = 8
 text = "Exit Game"
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu/Control/MarginContainer/VBoxContainer" index="1"]
-margin_top = 347.0
+margin_top = 366.0
 margin_right = 900.0
 margin_bottom = 480.0
 custom_constants/margin_right = 40
@@ -192,28 +193,29 @@ custom_constants/margin_left = 40
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer" index="0"]
 margin_left = 40.0
 margin_right = 860.0
-margin_bottom = 133.0
+margin_bottom = 114.0
 size_flags_vertical = 8
 custom_constants/separation = 0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="0"]
 margin_right = 360.0
-margin_bottom = 133.0
+margin_bottom = 114.0
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
 [node name="Label2" type="Label" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" index="0"]
 margin_right = 360.0
-margin_bottom = 35.0
+margin_bottom = 16.0
+size_flags_vertical = 10
 custom_fonts/font = SubResource( 3 )
-text = "Use these to select a button"
+text = "Select with"
 align = 1
 autowrap = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" index="1"]
-margin_top = 39.0
+margin_top = 20.0
 margin_right = 360.0
-margin_bottom = 133.0
+margin_bottom = 114.0
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="0"]
 margin_right = 148.0
@@ -222,6 +224,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 texture = ExtResource( 12 )
 stretch_mode = 6
+script = ExtResource( 17 )
 
 [node name="TextureRect2" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="1"]
 margin_left = 152.0
@@ -231,6 +234,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 texture = ExtResource( 13 )
 stretch_mode = 6
+script = ExtResource( 17 )
 
 [node name="TextureRect3" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" index="2"]
 margin_left = 304.0
@@ -239,26 +243,30 @@ margin_bottom = 94.0
 size_flags_horizontal = 3
 texture = ExtResource( 14 )
 stretch_mode = 6
+script = ExtResource( 17 )
+is_keyboard = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="1"]
 margin_left = 360.0
 margin_right = 660.0
-margin_bottom = 133.0
+margin_bottom = 114.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_vertical = 9
 
 [node name="Label3" type="Label" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" index="0"]
+margin_top = 20.0
 margin_right = 300.0
-margin_bottom = 35.0
+margin_bottom = 55.0
+size_flags_vertical = 10
 custom_fonts/font = SubResource( 3 )
-text = "And these to confirm it"
+text = "Confirm Selection with"
 align = 1
 autowrap = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" index="1"]
-margin_top = 83.0
+margin_top = 64.0
 margin_right = 300.0
-margin_bottom = 133.0
+margin_bottom = 114.0
 size_flags_horizontal = 9
 size_flags_vertical = 10
 custom_constants/separation = 10
@@ -276,6 +284,7 @@ margin_bottom = 50.0
 size_flags_horizontal = 3
 texture = ExtResource( 11 )
 stretch_mode = 6
+script = ExtResource( 17 )
 
 [node name="TextureRect3" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="2"]
 margin_left = 205.0
@@ -283,6 +292,8 @@ margin_right = 255.0
 margin_bottom = 50.0
 texture = ExtResource( 10 )
 stretch_mode = 6
+script = ExtResource( 17 )
+is_keyboard = false
 
 [node name="TextureRect5" type="TextureRect" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3" index="3"]
 margin_left = 265.0
@@ -294,11 +305,11 @@ stretch_mode = 6
 [node name="Label3" type="Label" parent="Menu/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="2"]
 margin_left = 660.0
 margin_right = 820.0
-margin_bottom = 133.0
+margin_bottom = 114.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 3 )
-text = "Also you can press F4 to enter fullscreen"
+text = "Also you can press F4 to enter/exit fullscreen"
 align = 1
 valign = 1
 autowrap = true

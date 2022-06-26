@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Placeholder.png" type="Texture" id=2]
@@ -13,6 +13,62 @@
 [ext_resource path="res://Sprites/Buttons/3 Key.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/ReplaceTilesWithScene.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Objects/Spikes.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sprites/Buttons/4_R2 Key.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Buttons/3_R1 Key.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Buttons/2_L2 Key.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Buttons/1_L1 Key.png" type="Texture" id=17]
+[ext_resource path="res://Scripts/InputDisplay.gd" type="Script" id=18]
+
+[sub_resource type="QuadMesh" id=43]
+size = Vector2( 0.5, 0.5 )
+
+[sub_resource type="SpatialMaterial" id=45]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_texture = ExtResource( 10 )
+
+[sub_resource type="SpatialMaterial" id=46]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_texture = ExtResource( 9 )
+
+[sub_resource type="SpatialMaterial" id=47]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_texture = ExtResource( 11 )
+
+[sub_resource type="SpatialMaterial" id=48]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=49]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_texture = ExtResource( 17 )
+
+[sub_resource type="SpatialMaterial" id=50]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_texture = ExtResource( 16 )
+
+[sub_resource type="SpatialMaterial" id=51]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_texture = ExtResource( 15 )
+
+[sub_resource type="SpatialMaterial" id=44]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_texture = ExtResource( 14 )
 
 [sub_resource type="BoxShape" id=39]
 extents = Vector3( 5, 2, 0.5 )
@@ -109,34 +165,60 @@ script = ExtResource( 6 )
 [node name="EnemiesContainer" type="Spatial" parent="Battle"]
 
 [node name="PlayerKeyHints" type="Spatial" parent="Battle"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, -0.75, 0.501 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, 0 )
 
-[node name="1" type="Sprite3D" parent="Battle/PlayerKeyHints"]
-transparent = false
-double_sided = false
-alpha_cut = 1
-texture = ExtResource( 10 )
+[node name="Keyboard" type="Spatial" parent="Battle/PlayerKeyHints"]
+script = ExtResource( 18 )
 
-[node name="2" type="Sprite3D" parent="Battle/PlayerKeyHints"]
+[node name="1" type="MeshInstance" parent="Battle/PlayerKeyHints/Keyboard"]
+mesh = SubResource( 43 )
+skeleton = NodePath("")
+material/0 = SubResource( 45 )
+
+[node name="2" type="MeshInstance" parent="Battle/PlayerKeyHints/Keyboard"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
-transparent = false
-double_sided = false
-alpha_cut = 1
-texture = ExtResource( 9 )
+mesh = SubResource( 43 )
+skeleton = NodePath("")
+material/0 = SubResource( 46 )
 
-[node name="3" type="Sprite3D" parent="Battle/PlayerKeyHints"]
+[node name="3" type="MeshInstance" parent="Battle/PlayerKeyHints/Keyboard"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
-transparent = false
-double_sided = false
-alpha_cut = 1
-texture = ExtResource( 11 )
+mesh = SubResource( 43 )
+skeleton = NodePath("")
+material/0 = SubResource( 47 )
 
-[node name="4" type="Sprite3D" parent="Battle/PlayerKeyHints"]
+[node name="4" type="MeshInstance" parent="Battle/PlayerKeyHints/Keyboard"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0 )
-transparent = false
-double_sided = false
-alpha_cut = 1
-texture = ExtResource( 8 )
+mesh = SubResource( 43 )
+skeleton = NodePath("")
+material/0 = SubResource( 48 )
+
+[node name="Controller" type="Spatial" parent="Battle/PlayerKeyHints"]
+script = ExtResource( 18 )
+is_keyboard = false
+
+[node name="1" type="MeshInstance" parent="Battle/PlayerKeyHints/Controller"]
+mesh = SubResource( 43 )
+skeleton = NodePath("")
+material/0 = SubResource( 49 )
+
+[node name="2" type="MeshInstance" parent="Battle/PlayerKeyHints/Controller"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+mesh = SubResource( 43 )
+skeleton = NodePath("")
+material/0 = SubResource( 50 )
+
+[node name="3" type="MeshInstance" parent="Battle/PlayerKeyHints/Controller"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+mesh = SubResource( 43 )
+skeleton = NodePath("")
+material/0 = SubResource( 51 )
+
+[node name="4" type="MeshInstance" parent="Battle/PlayerKeyHints/Controller"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0 )
+mesh = SubResource( 43 )
+skeleton = NodePath("")
+material/0 = SubResource( 44 )
 
 [node name="GridMap" type="GridMap" parent="Battle"]
 mesh_library = ExtResource( 4 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Sprites/Buttons/EscapeKey.png" type="Texture" id=15]
 [ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scripts/InputDisplay.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape" id=10]
 resource_local_to_scene = true
@@ -213,7 +214,7 @@ size_flags_vertical = 8
 margin_right = 456.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
-text = "Use these to walk around"
+text = "Walk with"
 align = 1
 autowrap = true
 
@@ -223,27 +224,47 @@ margin_right = 456.0
 margin_bottom = 114.0
 custom_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="0"]
-margin_right = 148.0
+[node name="TextureRect5" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="0"]
+margin_right = 15.0
 margin_bottom = 94.0
+size_flags_horizontal = 3
+stretch_mode = 6
+
+[node name="TextureRect" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="1"]
+margin_left = 35.0
+margin_right = 183.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
 size_flags_vertical = 0
 texture = ExtResource( 5 )
 stretch_mode = 6
+script = ExtResource( 18 )
 
-[node name="TextureRect2" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="1"]
-margin_left = 168.0
-margin_right = 316.0
+[node name="TextureRect2" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="2"]
+margin_left = 203.0
+margin_right = 351.0
 margin_bottom = 94.0
+size_flags_horizontal = 3
 size_flags_vertical = 0
 texture = ExtResource( 4 )
 stretch_mode = 6
+script = ExtResource( 18 )
 
-[node name="TextureRect3" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="2"]
-margin_left = 336.0
-margin_right = 456.0
+[node name="TextureRect3" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="3"]
+margin_left = 371.0
+margin_right = 421.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 texture = ExtResource( 3 )
+stretch_mode = 6
+script = ExtResource( 18 )
+is_keyboard = false
+
+[node name="TextureRect6" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="4"]
+margin_left = 441.0
+margin_right = 456.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
 stretch_mode = 6
 
 [node name="MeshInstance" type="MeshInstance" parent="Overworld/WalkTutorial" index="1"]
@@ -274,7 +295,7 @@ size_flags_vertical = 9
 margin_right = 450.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 4 )
-text = "Use these to jump"
+text = "Jump with"
 align = 1
 autowrap = true
 
@@ -286,33 +307,23 @@ size_flags_horizontal = 9
 size_flags_vertical = 10
 custom_constants/separation = 20
 
-[node name="TextureRect4" type="TextureRect" parent="Overworld/JumpTutorial/Viewport/VBoxContainer/HBoxContainer3" index="0"]
-margin_right = 80.0
+[node name="TextureRect2" type="TextureRect" parent="Overworld/JumpTutorial/Viewport/VBoxContainer/HBoxContainer3" index="0"]
+margin_right = 215.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
-stretch_mode = 6
-
-[node name="TextureRect2" type="TextureRect" parent="Overworld/JumpTutorial/Viewport/VBoxContainer/HBoxContainer3" index="1"]
-margin_left = 100.0
-margin_right = 250.0
-margin_bottom = 50.0
 texture = ExtResource( 9 )
 stretch_mode = 6
+script = ExtResource( 18 )
 
-[node name="TextureRect3" type="TextureRect" parent="Overworld/JumpTutorial/Viewport/VBoxContainer/HBoxContainer3" index="2"]
-margin_left = 270.0
-margin_right = 350.0
+[node name="TextureRect3" type="TextureRect" parent="Overworld/JumpTutorial/Viewport/VBoxContainer/HBoxContainer3" index="1"]
+margin_left = 235.0
+margin_right = 450.0
 margin_bottom = 50.0
 size_flags_horizontal = 11
 texture = ExtResource( 10 )
 stretch_mode = 6
-
-[node name="TextureRect5" type="TextureRect" parent="Overworld/JumpTutorial/Viewport/VBoxContainer/HBoxContainer3" index="3"]
-margin_left = 370.0
-margin_right = 450.0
-margin_bottom = 50.0
-size_flags_horizontal = 3
-stretch_mode = 6
+script = ExtResource( 18 )
+is_keyboard = false
 
 [node name="Label4" type="Label" parent="Overworld/JumpTutorial/Viewport/VBoxContainer" index="2"]
 margin_top = 74.0
@@ -379,8 +390,8 @@ size_flags_vertical = 9
 margin_right = 450.0
 margin_bottom = 35.0
 custom_fonts/font = SubResource( 4 )
-text = "Approach characters and
-press these buttons to speak"
+text = "(While near friends)
+Speak with"
 align = 1
 autowrap = true
 
@@ -404,6 +415,7 @@ margin_right = 265.0
 margin_bottom = 50.0
 texture = ExtResource( 9 )
 stretch_mode = 6
+script = ExtResource( 18 )
 
 [node name="TextureRect3" type="TextureRect" parent="Overworld/TalkTutorial/Viewport/VBoxContainer/HBoxContainer3" index="2"]
 margin_left = 285.0
@@ -412,6 +424,8 @@ margin_bottom = 50.0
 size_flags_horizontal = 9
 texture = ExtResource( 10 )
 stretch_mode = 6
+script = ExtResource( 18 )
+is_keyboard = false
 
 [node name="TextureRect6" type="TextureRect" parent="Overworld/TalkTutorial/Viewport/VBoxContainer/HBoxContainer3" index="3"]
 margin_left = 355.0
@@ -446,17 +460,16 @@ size_flags_vertical = 9
 
 [node name="Label3" type="Label" parent="Overworld/PauseTutorial/Viewport/VBoxContainer" index="0"]
 margin_right = 450.0
-margin_bottom = 35.0
+margin_bottom = 16.0
 custom_fonts/font = SubResource( 4 )
-text = "Press these to open
-the pause menu"
+text = "Open pause menu with"
 align = 1
 autowrap = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Overworld/PauseTutorial/Viewport/VBoxContainer" index="1"]
-margin_top = 39.0
+margin_top = 20.0
 margin_right = 450.0
-margin_bottom = 89.0
+margin_bottom = 70.0
 size_flags_horizontal = 9
 size_flags_vertical = 10
 custom_constants/separation = 20
@@ -473,6 +486,7 @@ margin_right = 180.0
 margin_bottom = 50.0
 texture = ExtResource( 15 )
 stretch_mode = 6
+script = ExtResource( 18 )
 
 [node name="TextureRect3" type="TextureRect" parent="Overworld/PauseTutorial/Viewport/VBoxContainer/HBoxContainer3" index="2"]
 margin_left = 200.0
@@ -480,6 +494,8 @@ margin_right = 250.0
 margin_bottom = 50.0
 texture = ExtResource( 14 )
 stretch_mode = 6
+script = ExtResource( 18 )
+is_keyboard = false
 
 [node name="TextureRect4" type="TextureRect" parent="Overworld/PauseTutorial/Viewport/VBoxContainer/HBoxContainer3" index="3"]
 margin_left = 270.0
@@ -488,6 +504,8 @@ margin_bottom = 50.0
 size_flags_horizontal = 9
 texture = ExtResource( 13 )
 stretch_mode = 6
+script = ExtResource( 18 )
+is_keyboard = false
 
 [node name="TextureRect5" type="TextureRect" parent="Overworld/PauseTutorial/Viewport/VBoxContainer/HBoxContainer3" index="4"]
 margin_left = 340.0

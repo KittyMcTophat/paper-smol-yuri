@@ -40,14 +40,18 @@ func start_battle(players : Array = [], enemies : Array = []):
 	
 	_level_controller.enable_battle();
 	
-	for icon in $PlayerKeyHints.get_children():
+	for icon in $PlayerKeyHints/Keyboard.get_children():
+		icon.visible = false;
+	
+	for icon in $PlayerKeyHints/Controller.get_children():
 		icon.visible = false;
 	
 	for i in range(players.size()):
 		_players_container.add_child(players[i]);
 		players[i].transform.origin = first_player_position;
 		players[i].transform.origin.x += player_separation * i;
-		$PlayerKeyHints.get_child(i).visible = true;
+		$PlayerKeyHints/Keyboard.get_child(i).visible = true;
+		$PlayerKeyHints/Controller.get_child(i).visible = true;
 		players[i]._enter_battle();
 	
 	enemies.invert();

@@ -3,6 +3,8 @@ extends Node
 signal scene_is_changing;
 signal scene_is_reloading;
 
+signal controller_state_changed;
+
 onready var damage_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/DamageParticle.tscn");
 onready var heal_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/HealParticle.tscn");
 onready var charge_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/ChargeParticle.tscn");
@@ -15,6 +17,8 @@ var text_speed : float = 0.033;
 var allow_pause : bool = true;
 var allow_jump : bool = true;
 var first_load : bool = true;
+
+var controller_connected : bool = false;
 
 var current_level_controller : LevelController = null;
 
@@ -43,6 +47,18 @@ func _ready():
 	get_viewport().connect("size_changed", self, "_update_screen_size");
 	
 	randomize();
+	
+	while true:
+		if Input.get_connected_joypads().size() != 0:
+			if !controller_connected:
+				controller_connected = true;
+				emit_signal("controller_state_changed");
+		else:
+			if controller_connected:
+				controller_connected = false;
+				emit_signal("controller_state_changed");
+		
+		yield(get_tree().create_timer(2.0), "timeout");
 
 func load_scene(scene: String):
 #warning-ignore:RETURN_VALUE_DISCARDED

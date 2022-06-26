@@ -12,7 +12,7 @@ func _do_your_turn():
 			parse_json(
 \"\"\"[
 	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Now I'll take my turn.
-	You can try to jump over my attack using one of the buttons shown below you.\", \"portrait\":\"\"},
+	You can try to jump over my attack using the button shown below you.\", \"portrait\":\"\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"Why can't I use my normal jump button?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
 	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Because this is a battle, and things work differently here.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh, okay!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"}
