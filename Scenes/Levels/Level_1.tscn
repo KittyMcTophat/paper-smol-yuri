@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scripts/DialogueOnXTurn.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/Actors/Battle/Enemies/TutorialBowlingBall.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Music/Battle Theme - Paper Mario.WAV" type="AudioStream" id=15]
+[ext_resource path="res://Music/Dreams Of Love And Literature.WAV" type="AudioStream" id=16]
 
 [sub_resource type="CapsuleShape" id=11]
 resource_local_to_scene = true
@@ -59,11 +61,16 @@ size = Vector2( 5, 1 )
 
 [node name="LevelController" instance=ExtResource( 4 )]
 background_texture = ExtResource( 5 )
+overworld_music = ExtResource( 16 )
+battle_music = ExtResource( 15 )
 
 [node name="SmolYuri_Alone" parent="Overworld" index="0" instance=ExtResource( 3 )]
 
 [node name="CollisionShape" parent="Overworld/SmolYuri_Alone" index="0"]
 shape = SubResource( 11 )
+
+[node name="Sprite3D" parent="Overworld/SmolYuri_Alone" index="1"]
+pause_mode = 0
 
 [node name="HealthBar" parent="Overworld/SmolYuri_Alone" index="8"]
 visible = false

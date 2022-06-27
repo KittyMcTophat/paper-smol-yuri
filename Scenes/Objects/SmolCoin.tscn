@@ -4,7 +4,6 @@
 [ext_resource path="res://Scripts/Objects/SmolCoin.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Actors/Shadow.tscn" type="PackedScene" id=3]
 
-
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"

@@ -56,9 +56,12 @@ func _kill():
 	
 	_healthbar.hide();
 	
+	MusicManager.change_music(null);
+	$Death.play();
+
 # warning-ignore:return_value_discarded
 	get_fuckin_launched();
 	
-	yield(get_tree().create_timer(3.0), "timeout");
+	yield(get_tree().create_timer(3.0, false), "timeout");
 	
 	Global.reload_scene();

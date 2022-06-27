@@ -16,4 +16,5 @@ func collect():
 		print("No coin counter, gromit!!!")
 		return;
 	Global.coin_counter.add_money(_value);
+	Global.coin_counter.get_node("CoinPickup").play();
 	self.queue_free();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_WithSayori.tscn" type="PackedScene" id=2]
@@ -11,9 +11,11 @@
 [ext_resource path="res://Scenes/Actors/Battle/Enemies/PurpleSmolBowlingBall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Actors/Battle/Enemies/PurpleBowlingCube.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Music/Battle Theme - Paper Mario.WAV" type="AudioStream" id=12]
 
 [node name="LevelController" instance=ExtResource( 1 )]
 background_texture = ExtResource( 3 )
+battle_music = ExtResource( 12 )
 
 [node name="SmolCookie" parent="Overworld" index="0" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1000 )

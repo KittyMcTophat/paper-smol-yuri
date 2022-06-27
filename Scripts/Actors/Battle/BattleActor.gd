@@ -75,7 +75,11 @@ func hurt(damage : int = 1, do_tween : bool = true) -> void:
 	current_health = _healthbar._update_health(current_health, do_tween);
 	
 	if (current_health == 0):
+		$Death.play();
 		_kill();
+	else:
+		if get_tree() != null:
+			$Hurt.play();
 
 func heal(amount : int = 1, do_tween : bool = true) -> void:
 	if (get_parent() != null):
@@ -87,6 +91,7 @@ func heal(amount : int = 1, do_tween : bool = true) -> void:
 	
 	current_health += amount;
 	current_health = _healthbar._update_health(current_health, do_tween);
+	$Heal.play();
 
 func boost_attack(amount : int = 1):
 	var new_particle : Spatial = Global.charge_particle.instance();
@@ -104,6 +109,8 @@ func boost_attack(amount : int = 1):
 		_tween_node.interpolate_property(attack_boost_display, "modulate", Color.transparent, Color.white, 0.4, Tween.TRANS_LINEAR);
 # warning-ignore:return_value_discarded
 		_tween_node.start();
+	
+	$AttackBoosted.play();
 
 func _kill() -> void:
 	# https://www.youtube.com/watch?v=iVGVXPuO3xQ
@@ -130,12 +137,15 @@ func _fire_projectile(projectile : PackedScene = default_projectile, direction :
 	new_projectile.pierces_targets = piereces_targets;
 	
 	new_projectile.collision_mask = target_collision_layers;
+	
+	$Shoot.play();
 
 func _jump(strength : float = jump_strength):
 	if (is_on_floor()):
 		velocity.y = strength;
 		_squash(Vector3(0.9, 1.1, 0.9));
 		_make_dust_particles();
+		$Jump.play();
 
 func _make_dust_particles() -> void:
 	if (dust_particles == null):

@@ -7,6 +7,9 @@ enum {NONE, OVERWORLD, BATTLE}
 export(int, "None", "Overworld", "Battle") var default_active : int = OVERWORLD;
 export var background_texture : Texture = null;
 
+export var overworld_music : AudioStream = null;
+export var battle_music : AudioStream = null;
+
 var active : int = -1;
 
 onready var overworld : Spatial = $Overworld;
@@ -54,6 +57,7 @@ func enable_overworld():
 		_enable(overworld);
 		active = OVERWORLD;
 		Global.coin_counter.modulate = Color.white;
+		MusicManager.change_music(overworld_music);
 
 func enable_battle():
 	if (active != BATTLE):
@@ -61,6 +65,7 @@ func enable_battle():
 		_enable(battle);
 		active = BATTLE;
 		Global.coin_counter.modulate = Color.transparent;
+		MusicManager.change_music(battle_music);
 
 func _enable(node : Node):
 	if (is_a_parent_of(node)):

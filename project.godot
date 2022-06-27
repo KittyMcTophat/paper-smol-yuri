@@ -165,6 +165,7 @@ config/icon="res://Sprites/GUI/Logo.png"
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+MusicManager="*res://Scripts/MusicManager.gd"
 
 [display]
 

@@ -257,7 +257,7 @@ margin_bottom = 182.0
 columns = 2
 
 [node name="ResumeButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer"]
-margin_right = 308.0
+margin_right = 332.0
 margin_bottom = 48.0
 focus_neighbour_left = NodePath("../RestartLevelButton")
 focus_neighbour_top = NodePath("../../VBoxContainer/MarginContainer/HBoxContainer/TextSpeedSlider")
@@ -270,7 +270,7 @@ shortcut = SubResource( 7 )
 text = "Resume"
 
 [node name="RestartLevelButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 312.0
+margin_left = 336.0
 margin_right = 668.0
 margin_bottom = 48.0
 focus_neighbour_left = NodePath("../ResumeButton")
@@ -284,7 +284,7 @@ text = "Restart Level"
 
 [node name="ToggleFullscreenButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer"]
 margin_top = 52.0
-margin_right = 308.0
+margin_right = 332.0
 margin_bottom = 100.0
 focus_neighbour_left = NodePath("../HBoxContainer/BlueButton")
 focus_neighbour_top = NodePath("../ResumeButton")
@@ -293,10 +293,10 @@ focus_neighbour_bottom = NodePath("../WobbleButton")
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Toggle Fullscreen"
+text = "Fullscreen"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 312.0
+margin_left = 336.0
 margin_top = 52.0
 margin_right = 668.0
 margin_bottom = 100.0
@@ -304,7 +304,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="RedButton" type="CheckBox" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
-margin_right = 100.0
+margin_right = 108.0
 margin_bottom = 48.0
 focus_neighbour_left = NodePath("../../ToggleFullscreenButton")
 focus_neighbour_top = NodePath("../../RestartLevelButton")
@@ -312,12 +312,12 @@ focus_neighbour_right = NodePath("../GreenButton")
 focus_neighbour_bottom = NodePath("../../QuitButton")
 size_flags_horizontal = 3
 pressed = true
-text = "Red"
+text = "R"
 align = 1
 
 [node name="GreenButton" type="CheckBox" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
-margin_left = 104.0
-margin_right = 236.0
+margin_left = 112.0
+margin_right = 220.0
 margin_bottom = 48.0
 focus_neighbour_left = NodePath("../RedButton")
 focus_neighbour_top = NodePath("../../RestartLevelButton")
@@ -325,12 +325,12 @@ focus_neighbour_right = NodePath("../BlueButton")
 focus_neighbour_bottom = NodePath("../../QuitButton")
 size_flags_horizontal = 3
 pressed = true
-text = "Green"
+text = "G"
 align = 1
 
 [node name="BlueButton" type="CheckBox" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
-margin_left = 240.0
-margin_right = 356.0
+margin_left = 224.0
+margin_right = 332.0
 margin_bottom = 48.0
 focus_neighbour_left = NodePath("../GreenButton")
 focus_neighbour_top = NodePath("../../RestartLevelButton")
@@ -338,12 +338,12 @@ focus_neighbour_right = NodePath("../../ToggleFullscreenButton")
 focus_neighbour_bottom = NodePath("../../QuitButton")
 size_flags_horizontal = 3
 pressed = true
-text = "Blue"
+text = "B"
 align = 1
 
 [node name="WobbleButton" type="CheckBox" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer"]
 margin_top = 104.0
-margin_right = 308.0
+margin_right = 332.0
 margin_bottom = 152.0
 focus_neighbour_left = NodePath("../QuitButton")
 focus_neighbour_top = NodePath("../ToggleFullscreenButton")
@@ -354,7 +354,7 @@ text = "Wobble Mode"
 align = 1
 
 [node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer"]
-margin_left = 312.0
+margin_left = 336.0
 margin_top = 104.0
 margin_right = 668.0
 margin_bottom = 152.0

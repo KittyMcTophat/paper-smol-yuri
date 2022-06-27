@@ -3,7 +3,8 @@ extends Control
 class_name PauseMenu
 
 onready var _anim_player: AnimationPlayer = $AnimationPlayer;
-onready var _resume_button : Button = find_node("ResumeButton");
+
+var music_pos : float = 0.0;
 
 func _ready():
 	if OS.has_feature("editor"):
@@ -19,10 +20,13 @@ func _unhandled_input(event):
 func unpause() -> void:
 	_anim_player.play("Unpause");
 	get_tree().paused = false;
+	MusicManager.current_music_player.play(music_pos);
 
 func pause() -> void:
 	_anim_player.play("Pause");
 	get_tree().paused = true;
+	music_pos = MusicManager.current_music_player.get_playback_position();
+	MusicManager.current_music_player.playing = false;
 
 func _on_ResumeButton_pressed():
 	unpause();
@@ -77,7 +81,10 @@ func _on_TextSpeedSlider_value_changed(value):
 func _toggle_fullscreen():
 	OS.window_fullscreen = !OS.window_fullscreen;
 	OS.window_borderless = !OS.window_borderless;
-	if !OS.window_fullscreen:
+	if OS.window_fullscreen:
+		$ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/ToggleFullscreenButton.text = "Exit Fullscreen"
+	else:
+		$ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/ToggleFullscreenButton.text = "Fullscreen"
 		OS.window_size = Vector2(ProjectSettings.get_setting("display/window/size/width"),\
 		ProjectSettings.get_setting("display/window/size/height"));
 		OS.center_window();

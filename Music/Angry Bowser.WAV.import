@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Angry Bowser.WAV-9ede26c64fbb441a08fc6403de3a6cba.sample"
+
+[deps]
+
+source_file="res://Music/Angry Bowser.WAV"
+dest_files=[ "res://.import/Angry Bowser.WAV-9ede26c64fbb441a08fc6403de3a6cba.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

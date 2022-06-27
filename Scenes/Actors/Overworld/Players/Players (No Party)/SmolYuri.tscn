@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriStill_Back.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriStill.png" type="Texture" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://Scenes/Actors/DustParticles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/Players (No Party)/SmolYuri MovementParams.tres" type="Resource" id=7]
 [ext_resource path="res://Scenes/Actors/Battle/Players/BattleSmolYuri.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sound Effects/Jump.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sound Effects/Death.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sound Effects/Hurt.wav" type="AudioStream" id=11]
 
 [sub_resource type="CapsuleShape" id=6]
 resource_local_to_scene = true
@@ -240,3 +243,13 @@ anims/Walking_Back = SubResource( 11 )
 
 [node name="SafeGroundRaycast" parent="." index="4"]
 enabled = false
+
+[node name="Jump" parent="." index="9"]
+stream = ExtResource( 9 )
+volume_db = -10.0
+
+[node name="Death" parent="." index="10"]
+stream = ExtResource( 10 )
+
+[node name="Hurt" parent="." index="11"]
+stream = ExtResource( 11 )

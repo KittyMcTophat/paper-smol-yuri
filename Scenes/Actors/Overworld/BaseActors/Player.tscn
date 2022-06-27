@@ -46,3 +46,9 @@ script = ExtResource( 5 )
 
 [node name="HealthBar" parent="." index="8" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Jump" type="AudioStreamPlayer" parent="." index="9"]
+
+[node name="Death" type="AudioStreamPlayer" parent="." index="10"]
+
+[node name="Hurt" type="AudioStreamPlayer" parent="." index="11"]

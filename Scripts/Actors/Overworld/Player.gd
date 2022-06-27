@@ -142,6 +142,7 @@ func _jump() -> void:
 	_velocity.y = movement_params.jump_strength;
 	_squash(Vector3(0.9, 1.1, 0.9));
 	_make_dust_particles();
+	$Jump.play();
 
 # creates a movement vector from user inputs
 func _get_movement_vector() -> Vector3:
@@ -184,13 +185,15 @@ func _go_to_last_safe_spot():
 		_squash(Vector3(1.0, 1.0, 1.0));
 
 func hurt(damage : int = 1):
-	#TODO: add particle with damage number
 	cur_health -= damage;
 	cur_health = _healthbar._update_health(cur_health);
 	party[party_leader].hurt(damage, false);
 	
 	if (cur_health == 0):
 		_kill();
+	else:
+		if get_tree() != null:
+			$Hurt.play();
 
 func _after_battle():
 	cur_health = party[party_leader].current_health;
@@ -206,12 +209,15 @@ func _kill():
 	_healthbar.hide();
 	allow_movement = false;
 	
+	MusicManager.change_music(null);
+	$Death.play();
+	
 	var rigidbody : RigidBody = get_fuckin_launched();
 	var camera_springarm : SpringArm = rigidbody.get_node("SpringArm");
 	rigidbody.remove_child(camera_springarm);
 	self.add_child(camera_springarm);
 	
-	yield(get_tree().create_timer(3.0), "timeout");
+	yield(get_tree().create_timer(3.0, false), "timeout");
 	
 	if (reload_on_death):
 		Global.reload_scene();

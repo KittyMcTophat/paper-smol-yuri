@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scripts/InputDisplay.gd" type="Script" id=18]
+[ext_resource path="res://Music/Dreams Of Love And Literature.WAV" type="AudioStream" id=19]
 
 [sub_resource type="CapsuleShape" id=10]
 resource_local_to_scene = true
@@ -142,6 +143,7 @@ center_offset = Vector3( 0, 0.185, 0 )
 
 [node name="LevelController" instance=ExtResource( 6 )]
 background_texture = ExtResource( 8 )
+overworld_music = ExtResource( 19 )
 
 [node name="SmolYuri_Alone" parent="Overworld" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.001 )
@@ -151,8 +153,14 @@ cur_health = 1
 [node name="CollisionShape" parent="Overworld/SmolYuri_Alone" index="0"]
 shape = SubResource( 10 )
 
+[node name="Sprite3D" parent="Overworld/SmolYuri_Alone" index="1"]
+pause_mode = 0
+
 [node name="HealthBar" parent="Overworld/SmolYuri_Alone" index="8"]
 visible = false
+
+[node name="Jump" parent="Overworld/SmolYuri_Alone" index="9"]
+volume_db = -5.0
 
 [node name="SmolYurisSmolCat" parent="Overworld" index="1" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -10.5 )
