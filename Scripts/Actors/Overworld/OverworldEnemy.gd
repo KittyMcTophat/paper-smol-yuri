@@ -15,6 +15,8 @@ export var gravity : Vector3 = Vector3(0.0, -9.8, 0.0);
 export(Array, PackedScene) var enemies : Array = [];
 export var dust_particles : PackedScene = null;
 export var reward_money : int = 25;
+export var override_music : bool = false;
+export var music : AudioStream = null;
 
 var enemies_instanced : Array = []
 
@@ -85,6 +87,11 @@ func _on_AggroArea_body_entered(body):
 
 func _on_PlayerDetectorArea_body_entered(body):
 	if (body is Player && !Global.current_level_controller.battle._battle_is_active):
+		if (override_music):
+			MusicManager.change_music(music);
+		else:
+			MusicManager.change_music(Global.current_level_controller.battle_music);
+		
 		Global.current_level_controller.battle.start_battle(body.party, enemies_instanced);
 	# warning-ignore:return_value_discarded
 		Global.current_level_controller.battle.connect("battle_start", self, "_battle_start");

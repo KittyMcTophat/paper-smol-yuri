@@ -3,12 +3,17 @@
     
     {"type":"Spacing", "amount":3},
 
-    {"type":"Image", "path":"res://Sprites/GUI/Splash Screen.png", "scale":3},
-
-    {"type":"Spacing", "amount":3},
-
     {"type":"Title", "text":"Based on Characters By"},
     {"type":"Default", "text":"Team Salvato"},
+    
+    {"type":"Spacing", "amount":2},
+
+    {"type":"Title", "text":"Music Stolen From"},
+    {"type":"Default", "text":"Doki Doki Literature Club"},
+    {"type":"Default", "text":"(Dan Salvato)"},
+    {"type":"Spacing", "amount":1},
+    {"type":"Default", "text":"Paper Mario"},
+    {"type":"Default", "text":"(Yuka Tujiyoko)"},
     
     {"type":"Spacing", "amount":2},
 
@@ -77,5 +82,5 @@
 
     {"type":"Spacing", "amount":3},
 
-    {"type":"Image", "path":"res://Sprites/GUI/Thanks4Playing.png", "scale":3}
+    {"type":"Image", "path":"res://Sprites/GUI/Thanks4Playing.png", "scale":2}
 ]

@@ -213,10 +213,10 @@ __meta__ = {
 
 [node name="NinePatchRect" type="NinePatchRect" parent="ColorRect/CenterContainer"]
 margin_left = 130.0
-margin_top = 145.0
+margin_top = 125.0
 margin_right = 830.0
-margin_bottom = 395.0
-rect_min_size = Vector2( 700, 250 )
+margin_bottom = 415.0
+rect_min_size = Vector2( 700, 290 )
 texture = ExtResource( 4 )
 patch_margin_left = 32
 patch_margin_top = 32
@@ -238,7 +238,7 @@ custom_constants/margin_bottom = 16
 margin_left = 16.0
 margin_top = 8.0
 margin_right = 684.0
-margin_bottom = 234.0
+margin_bottom = 274.0
 mouse_filter = 2
 custom_constants/separation = 6
 
@@ -403,7 +403,7 @@ margin_left = 68.0
 margin_right = 568.0
 margin_bottom = 16.0
 focus_neighbour_top = NodePath("../../../../GridContainer/QuitButton")
-focus_neighbour_bottom = NodePath("../../../../GridContainer/ResumeButton")
+focus_neighbour_bottom = NodePath("../../../../VBoxContainer2/MarginContainer/HBoxContainer/VolumeSlider")
 size_flags_horizontal = 3
 size_flags_vertical = 5
 max_value = 0.099
@@ -415,6 +415,56 @@ margin_left = 572.0
 margin_right = 636.0
 margin_bottom = 16.0
 text = "Slow"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+margin_top = 230.0
+margin_right = 668.0
+margin_bottom = 266.0
+size_flags_horizontal = 3
+
+[node name="Volume" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_right = 668.0
+margin_bottom = 16.0
+text = "Volume"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 20.0
+margin_right = 668.0
+margin_bottom = 36.0
+mouse_filter = 2
+custom_constants/margin_right = 16
+custom_constants/margin_left = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer2/MarginContainer"]
+margin_left = 16.0
+margin_right = 652.0
+margin_bottom = 16.0
+
+[node name="High" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 16.0
+text = "High"
+
+[node name="VolumeSlider" type="HSlider" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+margin_left = 68.0
+margin_right = 568.0
+margin_bottom = 16.0
+focus_neighbour_top = NodePath("../../../../VBoxContainer/MarginContainer/HBoxContainer/TextSpeedSlider")
+focus_neighbour_bottom = NodePath("../../../../GridContainer/ResumeButton")
+size_flags_horizontal = 3
+size_flags_vertical = 5
+min_value = -1.0
+max_value = 0.0
+step = 0.1
+value = -0.3
+
+[node name="Low" type="Label" parent="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+margin_left = 572.0
+margin_right = 636.0
+margin_bottom = 16.0
+text = " Low"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ColorRect")
@@ -432,3 +482,4 @@ anims/Unpause = SubResource( 3 )
 [connection signal="toggled" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/WobbleButton" to="." method="_on_WobbleButton_toggled"]
 [connection signal="pressed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="value_changed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer/TextSpeedSlider" to="." method="_on_TextSpeedSlider_value_changed"]
+[connection signal="value_changed" from="ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer/VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]

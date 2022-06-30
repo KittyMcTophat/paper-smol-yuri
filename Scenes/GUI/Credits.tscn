@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://Music/Your Reality.WAV" type="AudioStream" id=1]
 [ext_resource path="res://Fonts/FontResources/PressStart2P_Size16.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Fonts/FontResources/PressStart2P_Size24.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scripts/GUI/Credits.gd" type="Script" id=4]
@@ -56,14 +57,13 @@ pause_mode = 2
 layer = 2
 script = ExtResource( 4 )
 credits_json = "res://Credits.json"
+music = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
 anims/FadeIn = SubResource( 1 )
 anims/FadeOut = SubResource( 3 )
 anims/RESET = SubResource( 2 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="Control" type="Control" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -136,5 +136,3 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

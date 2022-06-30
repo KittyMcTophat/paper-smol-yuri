@@ -12,7 +12,7 @@ onready var charge_particle : PackedScene = preload("res://Scenes/Actors/Battle/
 var money : int = 0;
 var cats_found : int = 0;
 
-var text_speed : float = 0.033;
+var text_speed : float = 0.0;
 
 var allow_pause : bool = true;
 var allow_jump : bool = true;
@@ -77,6 +77,10 @@ func load_scene(scene: String):
 	emit_signal("scene_is_changing");
 	
 	first_load = true;
+	if scene == "res://Scenes/TitleScreen.tscn":
+		first_load = false;
+		money = 0;
+		coin_counter.set_money(0);
 	
 	get_tree().change_scene_to(next_scene);
 	money = coin_counter.get_money();

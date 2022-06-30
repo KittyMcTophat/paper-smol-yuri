@@ -65,7 +65,7 @@ func enable_battle():
 		_enable(battle);
 		active = BATTLE;
 		Global.coin_counter.modulate = Color.transparent;
-		MusicManager.change_music(battle_music);
+		#MusicManager.change_music(battle_music);
 
 func _enable(node : Node):
 	if (is_a_parent_of(node)):

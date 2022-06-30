@@ -78,7 +78,7 @@ func hurt(damage : int = 1, do_tween : bool = true) -> void:
 		$Death.play();
 		_kill();
 	else:
-		if get_tree() != null:
+		if is_inside_tree():
 			$Hurt.play();
 
 func heal(amount : int = 1, do_tween : bool = true) -> void:

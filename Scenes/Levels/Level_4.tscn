@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/Followers/SmolMonikaFollower.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Music/Battle Theme - Paper Mario.WAV" type="AudioStream" id=15]
+[ext_resource path="res://Music/Daijoubu!.WAV" type="AudioStream" id=16]
 
 [sub_resource type="CapsuleShape" id=6]
 resource_local_to_scene = true
@@ -40,6 +41,7 @@ resource_local_to_scene = true
 
 [node name="LevelController" instance=ExtResource( 1 )]
 background_texture = ExtResource( 4 )
+overworld_music = ExtResource( 16 )
 battle_music = ExtResource( 15 )
 
 [node name="SmolYuri_WithSayori" parent="Overworld" index="0" instance=ExtResource( 3 )]
@@ -47,13 +49,9 @@ battle_music = ExtResource( 15 )
 [node name="CollisionShape" parent="Overworld/SmolYuri_WithSayori" index="0"]
 shape = SubResource( 6 )
 
-[node name="SmolSayoriFollower" parent="Overworld/SmolYuri_WithSayori" index="10"]
-collision_layer = 64
-
 [node name="SmolMonikaFollower" parent="Overworld/SmolYuri_WithSayori/SmolSayoriFollower" index="5" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
 visible = false
-collision_layer = 64
 
 [node name="SmolCookie" parent="Overworld" index="1" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )

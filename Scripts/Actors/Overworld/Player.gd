@@ -192,7 +192,7 @@ func hurt(damage : int = 1):
 	if (cur_health == 0):
 		_kill();
 	else:
-		if get_tree() != null:
+		if is_inside_tree():
 			$Hurt.play();
 
 func _after_battle():
@@ -203,7 +203,7 @@ func _after_battle():
 	_tween_node.start();
 
 func _kill():
-	if (get_tree() == null):
+	if (is_inside_tree() == false):
 		return;
 	
 	_healthbar.hide();

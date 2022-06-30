@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Actors/SmolRoboYuri/SmolRoboYuriStill.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Actors/DustParticles.tscn" type="PackedScene" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends InteractableActor
+
+export var gravity : Vector3 = Vector3(0.0, -9.8, 0.0);
+export var dust_particles : PackedScene = null;
+
+var velocity : Vector3 = Vector3.ZERO;
+var was_on_floor_last_frame : bool = true;
+
+func _physics_process(delta):
+	velocity += gravity * delta;
+	
+	velocity = move_and_slide(velocity, Vector3.UP);
+	
+	if is_on_floor() && !was_on_floor_last_frame:
+		_squash(Vector3(1.1, 0.9, 1.1));
+		
+		if dust_particles != null:
+			var particles : Spatial = dust_particles.instance();
+			get_parent().add_child(particles);
+			particles.global_transform.origin = self.global_transform.origin;
+	
+	was_on_floor_last_frame = is_on_floor();
+"
+
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.32
+height = 0.15
+
+[sub_resource type="SphereShape" id=3]
+resource_local_to_scene = true
+
+[node name="SmolRoboYuri" instance=ExtResource( 1 )]
+collision_mask = 129
+script = SubResource( 1 )
+dialogue_file = ""
+use_export_dialogue_instead = true
+dust_particles = ExtResource( 3 )
+
+[node name="CollisionShape" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.395, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite3D" parent="." index="1"]
+offset = Vector2( 0, 44 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape" parent="InteractableArea" index="0"]
+shape = SubResource( 3 )

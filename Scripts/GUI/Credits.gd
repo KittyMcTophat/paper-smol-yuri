@@ -5,21 +5,20 @@ class_name Credits
 signal credits_start;
 signal credits_over;
 
-export var scroll_speed : float = 30.0;
+export var scroll_speed : float = 20.0;
 export var speedup_multiplier : float = 8.0;
 export var start_delay : float = 2.0;
 export var end_delay : float = 2.0;
 export var speedup_input : String = "ui_accept";
 export(float, 0.0, 1.0) var screen_position : float = 0.5;
 export(String, FILE, "*.json") var credits_json = null;
-export(Color) var background_color : Color = Color.black;
-export(AudioStreamSample) var music : AudioStreamSample = null;
+export var background_color : Color = Color.black;
+export var music : AudioStreamSample = null;
 export var fade_out_when_done : bool = false;
 
 var _is_credits_running : bool = false;
 
 onready var _color_rect : ColorRect = $Control/ColorRect;
-onready var _audio_player : AudioStreamPlayer = $AudioStreamPlayer;
 onready var _vbox : VBoxContainer = $Control/VBoxContainer;
 
 # Called when the node enters the scene tree for the first time.
@@ -31,10 +30,6 @@ func _ready():
 	get_viewport().connect("size_changed", self, "_update_x");
 	
 	_color_rect.color = background_color;
-	
-	if (music != null):
-		_audio_player.stream = music;
-		_audio_player.play(0.0);
 	
 	var file_read : File = File.new();
 #warning-ignore:RETURN_VALUE_DISCARDED
@@ -107,10 +102,9 @@ func _roll_credits():
 	emit_signal("credits_start");
 	
 	$AnimationPlayer.play("FadeIn");
+	
+	MusicManager.change_music(music);
 
 func _update_x():
 	_vbox.anchor_left = screen_position;
 	_vbox.anchor_right = screen_position;
-
-func _on_AudioStreamPlayer_finished():
-	_audio_player.play(0.0);

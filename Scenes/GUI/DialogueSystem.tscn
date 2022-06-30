@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/GUI/DialogueBox.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/GUI/Textbox.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Fonts/FontResources/PressStart2P_Size8.tres" type="DynamicFont" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/GUI/DialoguePortraitBorder.png" type="Texture" id=7]
+[ext_resource path="res://Sound Effects/Blip.wav" type="AudioStream" id=8]
 
 [sub_resource type="InputEventAction" id=4]
 action = "ui_accept"
@@ -96,6 +97,9 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+
+[sub_resource type="AudioStreamRandomPitch" id=6]
+audio_stream = ExtResource( 8 )
 
 [node name="DialogueSystem" type="Control"]
 pause_mode = 2
@@ -239,5 +243,9 @@ autoplay = "RESET"
 anims/Hide = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 anims/Show = SubResource( 3 )
+
+[node name="Blip" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 6 )
+pitch_scale = 0.5
 
 [connection signal="pressed" from="MarginContainer/DialogueBox/MarginContainer/HBoxContainer/AdvanceTextButton" to="." method="_on_AdvanceTextButton_pressed"]

@@ -51,7 +51,7 @@ func _jump_shoot():
 	_jump_and_fire_projectile(jump_strength, default_projectile, target_direction, attack);
 
 func _kill():
-	if (get_tree() == null):
+	if (is_inside_tree() == false):
 		return;
 	
 	_healthbar.hide();
