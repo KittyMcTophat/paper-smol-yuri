@@ -182,6 +182,7 @@ actor_name = "King
 Bowling Cube"
 max_health = 100
 current_health = 100
+attack = 3
 attack_animations = [ "Attack1", "Attack2", "Attack3", "Attack4" ]
 
 [node name="CollisionShape" parent="." index="0"]

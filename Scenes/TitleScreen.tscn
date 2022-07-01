@@ -106,6 +106,7 @@ data = {
 }
 
 [node name="Credits" parent="." index="3" instance=ExtResource( 16 )]
+credits_json = "res://Credits_SmolYuriAlone.json"
 
 [node name="Menu" type="CanvasLayer" parent="." index="6"]
 layer = -1

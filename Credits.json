@@ -47,8 +47,10 @@
     
     {"type":"Spacing", "amount":2},
 
-    {"type":"Title", "text":"QA Tester"},
-    {"type":"Default", "text":"Kitty_McTophat"},
+    {"type":"Title", "text":"Beta Testers"},
+    {"type":"Default", "text":"My Brother (@Procymbopteryx)"},
+    {"type":"Default", "text":"My Mom"},
+    {"type":"Default", "text":"My Dad"},
     
     {"type":"Spacing", "amount":2},
     

@@ -42,33 +42,44 @@ func _update_health(new_health : int, do_tween : bool = true) -> int:
 	var old_health : int = current_health;
 	current_health = int(clamp(new_health, 0, max_health));
 	
-	if (old_health > new_health):
-		health_bar_under.tint_progress = easing_color_damage;
-		health_bar_over.value = current_health;
-		if (do_tween):
-		#warning-ignore:RETURN_VALUE_DISCARDED
-			tween.interpolate_property(health_bar_under, "value", null, current_health, 0.4, Tween.TRANS_LINEAR, Tween.EASE_OUT);
-		#warning-ignore:RETURN_VALUE_DISCARDED
-			tween.start();
-		else:
-			health_bar_under.value = current_health;
-	
-	elif (new_health > old_health):
-		health_bar_under.tint_progress = easing_color_heal
-		health_bar_under.value = current_health;
-		if (do_tween):
-		#warning-ignore:RETURN_VALUE_DISCARDED
-			tween.interpolate_property(health_bar_over, "value", null, current_health, 0.4, Tween.TRANS_LINEAR, Tween.EASE_OUT);
-		#warning-ignore:RETURN_VALUE_DISCARDED
-			tween.start();
-		else:
-			health_bar_over.value = current_health;
-	
-	_assign_color();
-	
-	_update_label();
+	_update_health_display(old_health, new_health, do_tween);
 	
 	return current_health;
+
+func _update_health_display(old_health : int, new_health : int, do_tween : bool) -> void:
+	# warning-ignore:return_value_discarded
+	tween.stop_all();
+	
+	_update_label();
+	_assign_color();
+	
+	if (!do_tween):
+		health_bar_over.value = current_health;
+		health_bar_under.value = current_health;
+		return;
+	
+	if (old_health > new_health):
+		health_bar_over.value = current_health;
+		health_bar_under.tint_progress = easing_color_damage;
+	#warning-ignore:RETURN_VALUE_DISCARDED
+		tween.interpolate_property(health_bar_under, "value", null, current_health, 0.4, Tween.TRANS_LINEAR, Tween.EASE_OUT);
+	#warning-ignore:RETURN_VALUE_DISCARDED
+		tween.start();
+	
+	elif (new_health > old_health):
+		health_bar_under.value = current_health;
+		health_bar_under.tint_progress = easing_color_heal;
+	#warning-ignore:RETURN_VALUE_DISCARDED
+		tween.interpolate_property(health_bar_over, "value", null, current_health, 0.4, Tween.TRANS_LINEAR, Tween.EASE_OUT);
+	#warning-ignore:RETURN_VALUE_DISCARDED
+		tween.start();
+	
+	yield(tween, "tween_completed");
+	
+	health_bar_over.value = current_health;
+	health_bar_under.value = current_health;
+	_update_label();
+	_assign_color();
 
 func _assign_color():
 	if (current_health <= max_health * danger_zone):

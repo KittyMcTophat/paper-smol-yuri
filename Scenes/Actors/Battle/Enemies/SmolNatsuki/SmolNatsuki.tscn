@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/SmolNatsuki/SmolNatsuki.png" type="Texture" id=2]
@@ -8,10 +8,11 @@
 script/source = "extends Enemy
 
 export(float, 0.0, 1.0) var healing_projectile_chance : float = 0.05;
+export(int, 0, 1000) var heal_amount : int = 2;
 
 func _fire_projectile(projectile : PackedScene = default_projectile, direction : Vector3 = target_direction, damage : int = attack, piereces_targets : bool = false):
 	if (randf() <= healing_projectile_chance):
-		damage *= -1;
+		damage = -heal_amount;
 	._fire_projectile(projectile, direction, damage, piereces_targets);
 
 func _enter_battle():
@@ -31,6 +32,312 @@ margin = 0.001
 radius = 0.13
 height = 0.46
 
+[sub_resource type="Animation" id=5]
+resource_name = "Attack1"
+length = 6.7
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1.6, 2.4, 3.2, 4, 4.8, 5.6, 6.4, 6.5, 6.6, 6.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Attack2"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1.2, 1.4, 1.6, 2.4, 2.6, 2.8, 3.6, 3.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Attack3"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.9, 1, 1.2, 1.3, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Attack4"
+length = 3.7
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8, 1.1, 1.3, 1.9, 2.1, 2.4, 2.6, 3.2, 3.4, 3.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Attack5"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 1.2, 1.3, 1.4, 2.5, 2.6, 2.7, 2.8, 3.9, 4, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Attack6"
+length = 7.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 1.2, 1.3, 2.1, 2.9, 3.7, 4.5, 5.6, 5.7, 6.8, 7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_jump_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_shoot"
+} ]
+}
+
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport")
 
@@ -39,8 +346,9 @@ script = SubResource( 1 )
 actor_name = "Smol Natsuki"
 max_health = 50
 current_health = 50
-attack = 2
+attack = 4
 default_projectile = ExtResource( 3 )
+attack_animations = [ "Attack1", "Attack2", "Attack3", "Attack4", "Attack5", "Attack6" ]
 
 [node name="CollisionShape" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.36, 0 )
@@ -49,6 +357,14 @@ shape = SubResource( 4 )
 [node name="Sprite3D" parent="." index="1"]
 offset = Vector2( 0, 40 )
 texture = ExtResource( 2 )
+
+[node name="Attacks" parent="." index="9"]
+anims/Attack1 = SubResource( 5 )
+anims/Attack2 = SubResource( 6 )
+anims/Attack3 = SubResource( 7 )
+anims/Attack4 = SubResource( 8 )
+anims/Attack5 = SubResource( 9 )
+anims/Attack6 = SubResource( 10 )
 
 [node name="AttackBoosts" parent="." index="11"]
 texture = SubResource( 3 )

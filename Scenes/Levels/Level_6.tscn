@@ -150,6 +150,7 @@ script = SubResource( 2 )
 current_level_cat = NodePath("../SmolYurisSmolCat")
 
 [node name="Credits" parent="Overworld" index="8" instance=ExtResource( 9 )]
+credits_json = "res://Credits_NoSmolNatsuki.json"
 
 [node name="SmolCookie" parent="Overworld" index="9" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
