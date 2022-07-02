@@ -8,6 +8,7 @@ resource_local_to_scene = true
 radius = 0.17
 
 [node name="SmolSunshine" instance=ExtResource( 2 )]
+speed = 5.0
 direction = Vector3( 1, 0, 0 )
 spin = true
 spin_velocity = 180.0

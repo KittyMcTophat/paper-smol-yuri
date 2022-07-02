@@ -48,9 +48,8 @@
     {"type":"Spacing", "amount":2},
 
     {"type":"Title", "text":"Beta Testers"},
-    {"type":"Default", "text":"My Brother (@Procymbopteryx)"},
-    {"type":"Default", "text":"My Mom"},
-    {"type":"Default", "text":"My Dad"},
+    {"type":"Default", "text":"My Siblings"},
+    {"type":"Default", "text":"My Parents"},
     
     {"type":"Spacing", "amount":2},
     

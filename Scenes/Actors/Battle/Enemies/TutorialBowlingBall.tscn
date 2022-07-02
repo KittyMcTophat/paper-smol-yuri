@@ -14,8 +14,9 @@ func _do_your_turn():
 	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Now I'll take my turn.
 	You can try to jump over my attack using the button shown below you.\", \"portrait\":\"\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"Why can't I use my normal jump button?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Because this is a battle, and things work differently here.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh, okay!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"}
+	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Well, you could, but if you had friends with you that would make you all jump at once.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh, okay!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"text\":\"I can see how that wouldn't always be useful.\", \"portrait\":\"\"},
 ]\"\"\"), null);
 	
 	._do_your_turn()

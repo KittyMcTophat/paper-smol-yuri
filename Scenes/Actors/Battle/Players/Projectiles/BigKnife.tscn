@@ -8,6 +8,7 @@ resource_local_to_scene = true
 radius = 0.15
 
 [node name="BaseProjectile" instance=ExtResource( 1 )]
+speed = 5.0
 spin = true
 spin_velocity = 360.0
 

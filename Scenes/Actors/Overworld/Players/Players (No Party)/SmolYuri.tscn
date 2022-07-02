@@ -244,12 +244,12 @@ anims/Walking_Back = SubResource( 11 )
 [node name="SafeGroundRaycast" parent="." index="4"]
 enabled = false
 
-[node name="Jump" parent="." index="9"]
+[node name="Jump" parent="." index="10"]
 stream = ExtResource( 9 )
 volume_db = -10.0
 
-[node name="Death" parent="." index="10"]
+[node name="Death" parent="." index="11"]
 stream = ExtResource( 10 )
 
-[node name="Hurt" parent="." index="11"]
+[node name="Hurt" parent="." index="12"]
 stream = ExtResource( 11 )

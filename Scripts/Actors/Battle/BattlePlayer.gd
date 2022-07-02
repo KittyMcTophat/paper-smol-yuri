@@ -16,14 +16,17 @@ func _ready():
 	self.connect("landed", self, "_check_jump_buffer");
 
 func _physics_process(delta : float):
-	if (Input.is_action_just_pressed(personal_jump_input) && enable_jump):
+	var do_a_jump : bool = Input.is_action_just_pressed(personal_jump_input) || Input.is_action_just_pressed("jump");
+	var holding_jump : bool = Input.is_action_pressed(personal_jump_input) || Input.is_action_pressed("jump");
+	
+	if (do_a_jump && enable_jump):
 		if (is_on_floor()):
 			_jump();
 		else:
 			_jump_buffer = jump_buffer_time;
 	
 	if (!is_on_floor()):
-		if (!Input.is_action_pressed(personal_jump_input)):
+		if (!holding_jump):
 			if (velocity.y > 0.0):
 				velocity.y = lerp(velocity.y, 0.0, delta * vertical_lerp_weight);
 	
