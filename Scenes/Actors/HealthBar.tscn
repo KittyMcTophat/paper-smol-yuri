@@ -119,7 +119,7 @@ patch_margin_bottom = 8
 [node name="Tween" type="Tween" parent="Viewport/HealthBar"]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-billboard = 2
+billboard = 1
 transparent = false
 double_sided = false
 alpha_cut = 1
