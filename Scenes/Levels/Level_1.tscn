@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=2]
@@ -40,9 +40,6 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 7 )
 
-[sub_resource type="ViewportTexture" id=9]
-viewport_path = NodePath("Overworld/SquashTutorial/Viewport")
-
 [sub_resource type="ViewportTexture" id=12]
 viewport_path = NodePath("Overworld/SquashTutorial/Viewport")
 
@@ -53,6 +50,9 @@ flags_unshaded = true
 flags_albedo_tex_force_srgb = true
 params_billboard_mode = 2
 albedo_texture = SubResource( 12 )
+distance_fade_mode = 2
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 1.0
 
 [sub_resource type="QuadMesh" id=14]
 resource_local_to_scene = true
@@ -189,13 +189,7 @@ Try it out on this one!"
 align = 1
 autowrap = true
 
-[node name="Sprite3D" type="Sprite3D" parent="Overworld/SquashTutorial" index="1"]
-billboard = 2
-double_sided = false
-alpha_cut = 1
-texture = SubResource( 9 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Overworld/SquashTutorial" index="2"]
+[node name="MeshInstance" type="MeshInstance" parent="Overworld/SquashTutorial" index="1"]
 mesh = SubResource( 14 )
 skeleton = NodePath("")
 material/0 = null

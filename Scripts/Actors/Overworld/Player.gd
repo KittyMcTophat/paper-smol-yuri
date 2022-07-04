@@ -27,7 +27,7 @@ var party : Array = [];
 
 onready var _harm_detector_area : Area = $HarmDetector;
 onready var _safe_ground_raycast : RayCast = $SafeGroundRaycast;
-onready var _healthbar : HealthBar = $HealthBar
+onready var _healthbar : HealthBar2D = $HealthBar
 
 func _ready():
 	_healthbar._update_max_health(max_health);

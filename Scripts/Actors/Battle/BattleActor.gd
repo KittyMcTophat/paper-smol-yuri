@@ -18,7 +18,7 @@ export var default_projectile : PackedScene = null;
 
 onready var _projectile_target_point : Position3D = $ProjectileTargetPoint;
 onready var _projectile_spawn_point : Position3D = $ProjectileSpawnPoint;
-onready var _healthbar : HealthBar = $HealthBar;
+onready var _healthbar : HealthBar3D = $HealthBar;
 onready var selector_arrow : Sprite3D = $SelectorArrow;
 
 var velocity : Vector3 = Vector3.ZERO;

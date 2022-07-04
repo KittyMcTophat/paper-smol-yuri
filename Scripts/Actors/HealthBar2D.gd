@@ -1,21 +1,19 @@
-extends Spatial
+extends Control
 
-class_name HealthBar
+class_name HealthBar2D
 
-onready var health_bar_over : TextureProgress = $Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver;
-onready var health_bar_under : TextureProgress = $Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver/HealthBarUnder;
-onready var health_number_label : Label = $Viewport/HealthBar/NinePatchRect/MarginContainer/HealthBarOver/Label;
-onready var viewport : Viewport = $Viewport;
-onready var tween : Tween = $Viewport/HealthBar/Tween;
+onready var health_bar_over : TextureProgress = $NinePatchRect/MarginContainer/HealthBarOver;
+onready var health_bar_under : TextureProgress = $NinePatchRect/MarginContainer/HealthBarOver/HealthBarUnder;
+onready var health_number_label : Label = $NinePatchRect/MarginContainer/HealthBarOver/Label;
+onready var tween : Tween = $Tween;
 
 export var max_health : int = 10;
 export var current_health : int = 10;
 export var display_number : bool = true;
-export var health_bar_size : Vector2 = Vector2(80, 24);
 
-export (Color) var healthy_color : Color = Color.darkgreen;
-export (Color) var caution_color : Color = Color.darkgoldenrod;
-export (Color) var danger_color : Color = Color.darkred;
+export (Color) var healthy_color : Color = Color.forestgreen;
+export (Color) var caution_color : Color = Color.gold;
+export (Color) var danger_color : Color = Color.crimson;
 export (Color) var easing_color_damage : Color = Color.red;
 export (Color) var easing_color_heal : Color = Color.green;
 export (Color) var text_color : Color = Color.black;
@@ -31,8 +29,6 @@ func _ready():
 	health_bar_under.tint_progress = easing_color_damage;
 	health_number_label.self_modulate = text_color;
 	
-	viewport.size = health_bar_size;
-	$Sprite3D.region_rect = Rect2(0, 0, health_bar_size.x, health_bar_size.y);
 	if (display_number):
 		_show_number();
 	else:

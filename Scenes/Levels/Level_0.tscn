@@ -44,6 +44,9 @@ flags_unshaded = true
 flags_albedo_tex_force_srgb = true
 params_billboard_mode = 2
 albedo_texture = SubResource( 11 )
+distance_fade_mode = 2
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 1.0
 
 [sub_resource type="QuadMesh" id=13]
 resource_local_to_scene = true
@@ -66,6 +69,9 @@ flags_unshaded = true
 flags_albedo_tex_force_srgb = true
 params_billboard_mode = 2
 albedo_texture = SubResource( 14 )
+distance_fade_mode = 2
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 1.0
 
 [sub_resource type="QuadMesh" id=16]
 resource_local_to_scene = true
@@ -83,6 +89,9 @@ flags_unshaded = true
 flags_albedo_tex_force_srgb = true
 params_billboard_mode = 2
 albedo_texture = SubResource( 17 )
+distance_fade_mode = 2
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 1.0
 
 [sub_resource type="QuadMesh" id=19]
 resource_local_to_scene = true
@@ -100,6 +109,9 @@ flags_unshaded = true
 flags_albedo_tex_force_srgb = true
 params_billboard_mode = 2
 albedo_texture = SubResource( 20 )
+distance_fade_mode = 2
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 1.0
 
 [sub_resource type="QuadMesh" id=22]
 resource_local_to_scene = true
@@ -116,7 +128,12 @@ flags_transparent = true
 flags_unshaded = true
 flags_albedo_tex_force_srgb = true
 params_billboard_mode = 2
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.98
 albedo_texture = SubResource( 23 )
+distance_fade_mode = 2
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 1.0
 
 [sub_resource type="QuadMesh" id=25]
 resource_local_to_scene = true
@@ -134,6 +151,9 @@ flags_unshaded = true
 flags_albedo_tex_force_srgb = true
 params_billboard_mode = 2
 albedo_texture = SubResource( 26 )
+distance_fade_mode = 2
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 1.0
 
 [sub_resource type="QuadMesh" id=28]
 resource_local_to_scene = true
