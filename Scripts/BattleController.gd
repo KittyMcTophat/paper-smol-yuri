@@ -92,12 +92,12 @@ func main_battle_loop():
 			is_battle_over = check_if_battle_over();
 			if (is_battle_over):
 				break;
-			if (check_if_player_dead()):
+			if (all_players_dead()):
 				is_battle_over = true;
 				break;
-			
-			player._do_your_turn();
-			yield(player, "turn_over");
+			if player.current_health > 0:
+				player._do_your_turn();
+				yield(player, "turn_over");
 		
 		for player in _players:
 			player.enable_jump = true;
@@ -109,7 +109,7 @@ func main_battle_loop():
 			is_battle_over = check_if_battle_over();
 			if (is_battle_over):
 				break;
-			if (check_if_player_dead()):
+			if (all_players_dead()):
 				is_battle_over = true;
 				break;
 			
@@ -122,7 +122,7 @@ func main_battle_loop():
 		emit_signal("turn_ended", _turn_number);
 		_turn_number += 1;
 	
-	if (check_if_player_dead()):
+	if (all_players_dead()):
 		return;
 	
 	# Waits for all enemies to finish their death animations
@@ -140,12 +140,12 @@ func main_battle_loop():
 	
 	end_battle();
 
-func check_if_player_dead() -> bool:
+func all_players_dead() -> bool:
 	for player in _players:
-		if (player.current_health <= 0):
-			return true
+		if (player.current_health > 0):
+			return false;
 	
-	return false;
+	return true;
 
 func check_if_battle_over() -> bool:
 	for enemy in _enemies:

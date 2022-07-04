@@ -35,12 +35,18 @@ func _end_turn():
 
 func _kill() -> void:
 	_healthbar.queue_free();
+	_healthbar.hide();
 	
 # warning-ignore:return_value_discarded
-	get_fuckin_launched();
+	var rigidbody : RigidBody = get_fuckin_launched();
+	
+	do_movement = false;
+	collision_layer = 0;
+	collision_mask = 0;
 	
 	yield(get_tree().create_timer(3.0), "timeout");
 	
+	rigidbody.queue_free();
 	queue_free();
 
 func _shoot():

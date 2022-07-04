@@ -196,6 +196,8 @@ func hurt(damage : int = 1):
 			$Hurt.play();
 
 func _after_battle():
+	yield(get_tree(), "idle_frame");
+	
 	cur_health = party[party_leader].current_health;
 # warning-ignore:return_value_discarded
 	_healthbar._update_health(cur_health, false);

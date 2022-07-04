@@ -23,6 +23,7 @@ onready var selector_arrow : Sprite3D = $SelectorArrow;
 
 var velocity : Vector3 = Vector3.ZERO;
 var was_on_floor_last_frame : bool = true;
+var do_movement : bool = true;
 var attack_boosts : int = 0;
 
 func _ready():
@@ -46,6 +47,9 @@ func _enter_battle():
 	$AttackBoosts.modulate = Color.transparent;
 
 func _physics_process(delta):
+	if (do_movement == false):
+		return;
+	
 	velocity += gravity * delta;
 	
 	velocity = move_and_slide(velocity, Vector3.UP);

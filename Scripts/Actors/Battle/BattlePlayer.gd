@@ -15,7 +15,16 @@ func _ready():
 # warning-ignore:return_value_discarded
 	self.connect("landed", self, "_check_jump_buffer");
 
+func _enter_battle():
+	show();
+	do_movement = true;
+	
+	._enter_battle();
+
 func _physics_process(delta : float):
+	if do_movement == false:
+		return;
+	
 	var do_a_jump : bool = Input.is_action_just_pressed(personal_jump_input) || Input.is_action_just_pressed("jump");
 	var holding_jump : bool = Input.is_action_pressed(personal_jump_input) || Input.is_action_pressed("jump");
 	
@@ -59,12 +68,30 @@ func _kill():
 	
 	_healthbar.hide();
 	
-	MusicManager.change_music(null);
-	$Death.play();
-
+	if Global.current_level_controller.battle.all_players_dead():
+		MusicManager.change_music(null);
+	
 # warning-ignore:return_value_discarded
-	get_fuckin_launched();
+	var rigidbody : RigidBody = get_fuckin_launched();
+	
+	_healthbar.show();
+	$Death.play();
+	
+	var store_collision_layer : int = collision_layer;
+	var store_collision_mask : int = collision_mask;
+	collision_layer = 0;
+	collision_mask = 0;
+	do_movement = false;
 	
 	yield(get_tree().create_timer(3.0, false), "timeout");
 	
-	Global.reload_scene();
+	rigidbody.queue_free();
+	
+	if Global.current_level_controller.battle.all_players_dead():
+		Global.reload_scene();
+	else:
+		yield(Global.current_level_controller.battle, "battle_end_early");
+		collision_layer = store_collision_layer;
+		collision_mask = store_collision_mask;
+		current_health = 1;
+		_healthbar._update_health(current_health, false);

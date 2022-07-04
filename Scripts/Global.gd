@@ -10,7 +10,7 @@ onready var heal_particle : PackedScene = preload("res://Scenes/Actors/Battle/Ba
 onready var charge_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/ChargeParticle.tscn");
 
 var money : int = 0;
-var cats_found : int = 0;
+var cats_found : Dictionary = {};
 
 var text_speed : float = 0.0;
 
@@ -79,6 +79,7 @@ func load_scene(scene: String):
 	first_load = true;
 	if scene == "res://Scenes/TitleScreen.tscn":
 		first_load = false;
+		cats_found = {};
 		money = 0;
 		coin_counter.set_money(0);
 	

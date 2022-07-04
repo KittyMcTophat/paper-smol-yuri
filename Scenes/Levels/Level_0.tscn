@@ -153,13 +153,10 @@ cur_health = 1
 [node name="CollisionShape" parent="Overworld/SmolYuri_Alone" index="0"]
 shape = SubResource( 10 )
 
-[node name="Sprite3D" parent="Overworld/SmolYuri_Alone" index="1"]
-pause_mode = 0
-
 [node name="HealthBar" parent="Overworld/SmolYuri_Alone" index="8"]
 visible = false
 
-[node name="Jump" parent="Overworld/SmolYuri_Alone" index="9"]
+[node name="Jump" parent="Overworld/SmolYuri_Alone" index="10"]
 volume_db = -5.0
 
 [node name="SmolYurisSmolCat" parent="Overworld" index="1" instance=ExtResource( 11 )]

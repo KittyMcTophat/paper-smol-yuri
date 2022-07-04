@@ -44,12 +44,13 @@ func _on_BaseProjectile_body_entered(body):
 	if (damage >= 0):
 		if (body.has_method("hurt")):
 			body.hurt(damage);
+			if (!pierces_targets):
+				queue_free();
 	else:
 		if (body.has_method("heal")):
 			body.heal(-damage);
-	
-	if (!pierces_targets):
-		queue_free();
+			if (!pierces_targets):
+				queue_free();
 
 func set_damage(amount : int):
 	damage = amount;

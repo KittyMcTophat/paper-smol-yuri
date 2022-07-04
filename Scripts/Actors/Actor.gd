@@ -74,12 +74,14 @@ func get_fuckin_launched(v_velocity : float = 6.0, h_velocity : float = 1.5, rot
 	rigidbody.collision_layer = self.collision_layer;
 	rigidbody.collision_mask = self.collision_mask;
 	
-	while get_child_count() > 0:
-		var child : Node = get_child(0);
-		remove_child(child);
-		rigidbody.add_child(child);
-		if child is Shadow:
-			child.queue_free();
+	for i in get_child_count():
+		var child : Node = get_child(i);
+		var new_child : Node = child.duplicate();
+		rigidbody.add_child(new_child);
+		if new_child is Shadow:
+			new_child.queue_free();
+	
+	hide();
 	
 	if (direction == Vector2.ZERO):
 		direction = Vector2(randf() - 0.5, randf() - 0.5);
