@@ -79,7 +79,6 @@ func hurt(damage : int = 1, do_tween : bool = true) -> void:
 	current_health = _healthbar._update_health(current_health, do_tween);
 	
 	if (current_health == 0):
-		$Death.play();
 		_kill();
 	else:
 		if is_inside_tree():

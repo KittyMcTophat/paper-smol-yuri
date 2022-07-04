@@ -40,6 +40,8 @@ func _kill() -> void:
 # warning-ignore:return_value_discarded
 	var rigidbody : RigidBody = get_fuckin_launched();
 	
+	$Death.play();
+	
 	do_movement = false;
 	collision_layer = 0;
 	collision_mask = 0;
