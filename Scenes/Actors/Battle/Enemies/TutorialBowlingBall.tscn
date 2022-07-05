@@ -34,10 +34,14 @@ viewport_path = NodePath("Viewport")
 [node name="BaseEnemy" instance=ExtResource( 1 )]
 script = SubResource( 1 )
 actor_name = "Purple Smol
-Bowling Ball"
+Bowling Ball
+(Smowling Ball)"
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 2 )
+
+[node name="NameDisplay" parent="SelectorArrow" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0 )
 
 [node name="AttackBoosts" parent="." index="11"]
 texture = SubResource( 3 )
