@@ -21,6 +21,7 @@ var camera_rotation : float = 0.0;
 var allow_pause : bool = true;
 var allow_jump : bool = true;
 var first_load : bool = true;
+var tree_planted : bool = false;
 
 var controller_connected : bool = false;
 
