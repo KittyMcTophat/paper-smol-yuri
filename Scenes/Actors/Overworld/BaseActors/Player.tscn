@@ -43,6 +43,7 @@ margin = 0.2
 [node name="Camera" type="Camera" parent="SpringArm" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
 current = true
+far = 200.0
 script = ExtResource( 5 )
 
 [node name="HealthBar" parent="." index="8" instance=ExtResource( 3 )]
