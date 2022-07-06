@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriStill.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Actors/Shadow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Actors/CameraController.gd" type="Script" id=4]
-[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/GUI/Logo.png" type="Texture" id=6]
 [ext_resource path="res://ui_theme.tres" type="Theme" id=7]
 [ext_resource path="res://Scenes/Objects/SmolCookie.tscn" type="PackedScene" id=8]
@@ -52,7 +51,6 @@ font_data = ExtResource( 15 )
 
 [node name="LevelController" instance=ExtResource( 1 )]
 script = SubResource( 4 )
-background_texture = ExtResource( 5 )
 overworld_music = ExtResource( 18 )
 
 [node name="SmolYuri" type="Sprite3D" parent="Overworld" index="0"]
@@ -97,7 +95,7 @@ next_scene = "res://Scenes/Levels/Level_0.tscn"
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
 next_scene = "res://Scenes/TitleScreen.tscn"
 
-[node name="Battle" parent="." index="1"]
+[node name="Battle" parent="." index="2"]
 visible = false
 
 [node name="GridMap" parent="Battle" index="3"]

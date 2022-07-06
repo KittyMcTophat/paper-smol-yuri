@@ -15,6 +15,10 @@ export var cur_health : int = 10;
 export var reload_on_death : bool = true;
 export(Array, PackedScene) var party_scenes : Array = [];
 export var party_leader : int = 0;
+export var v_camera_speed : float = PI / 4.0;
+export var h_camera_speed : float = PI / 2.0;
+export var max_camera_angle : float = PI / 6.0;
+export var min_camera_angle : float = -PI / 4.0;
 
 var _velocity : Vector3 = Vector3.ZERO;
 var _last_safe_location : Vector3 = Vector3.ZERO;
@@ -28,6 +32,7 @@ var party : Array = [];
 onready var _harm_detector_area : Area = $HarmDetector;
 onready var _safe_ground_raycast : RayCast = $SafeGroundRaycast;
 onready var _healthbar : HealthBar2D = $HealthBar
+onready var camera_springarm : SpringArm = $SpringArm;
 
 func _ready():
 	_healthbar._update_max_health(max_health);
@@ -48,6 +53,8 @@ func _ready():
 	
 # warning-ignore:return_value_discarded
 	self.connect("landed", self, "_check_jump_buffer");
+	
+	Global.set_camera_rotation(camera_springarm.rotation.y);
 
 func _physics_process(delta) -> void:
 	if (allow_movement == false):
@@ -55,16 +62,19 @@ func _physics_process(delta) -> void:
 	
 	var move_direction := _get_movement_vector();
 	
+	var h_input : float = Input.get_axis("move_left", "move_right");
+	var v_input : float = Input.get_axis("move_up", "move_down");
+	
 	# rotates the sprite to match movement
-	if (move_direction.x > 0.1):
+	if (h_input > 0.1):
 		_turn(0);
-	elif (move_direction.x < -0.1):
+	elif (h_input < -0.1):
 		_turn(180);
 	
 	# changes the sprite to match movement
-	if (move_direction.z < -0.1):
+	if (v_input < -0.1):
 		_facing_back = true;
-	elif (move_direction.z > 0.1):
+	elif (v_input > 0.1):
 		_facing_back = false;
 	
 	# applies the movement to velocity
@@ -132,6 +142,20 @@ func _physics_process(delta) -> void:
 	
 	_update_animation();
 	_update_last_safe_spot();
+	
+	var h_camera_input : float = Input.get_axis("camera_left", "camera_right");
+	var v_camera_input : float = Input.get_axis("camera_up", "camera_down");
+	
+	if h_camera_input != 0.0:
+		camera_springarm.rotation.y += h_camera_speed * Input.get_axis("camera_left", "camera_right") * delta;
+		Global.set_camera_rotation(camera_springarm.rotation.y);
+	
+	if v_camera_input != 0.0:
+		camera_springarm.rotation.x += v_camera_speed * Input.get_axis("camera_up", "camera_down") * delta;
+		if camera_springarm.rotation.x > max_camera_angle:
+			camera_springarm.rotation.x = max_camera_angle;
+		elif camera_springarm.rotation.x < min_camera_angle:
+			camera_springarm.rotation.x = min_camera_angle;
 
 func _check_jump_buffer():
 	if (is_on_floor() && _jump_buffer > 0.0):
@@ -149,6 +173,8 @@ func _get_movement_vector() -> Vector3:
 	var move_direction := Vector2.ZERO;
 	
 	move_direction = Input.get_vector("move_left","move_right","move_up","move_down");
+	
+	move_direction = move_direction.rotated(-camera_springarm.rotation.y);
 	
 	return Vector3(move_direction.x, 0, move_direction.y);
 
@@ -214,9 +240,11 @@ func _kill():
 	MusicManager.change_music(null);
 	$Death.play();
 	
-	var rigidbody : RigidBody = get_fuckin_launched();
-	var camera_springarm : SpringArm = rigidbody.get_node("SpringArm");
-	rigidbody.remove_child(camera_springarm);
+	self.remove_child(camera_springarm);
+	
+# warning-ignore:return_value_discarded
+	get_fuckin_launched();
+	
 	self.add_child(camera_springarm);
 	
 	yield(get_tree().create_timer(3.0, false), "timeout");

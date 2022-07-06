@@ -83,11 +83,13 @@ func _kill():
 	collision_mask = 0;
 	do_movement = false;
 	
+	var all_players_dead : bool = Global.current_level_controller.battle.all_players_dead();
+	
 	yield(get_tree().create_timer(3.0, false), "timeout");
 	
 	rigidbody.queue_free();
 	
-	if Global.current_level_controller.battle.all_players_dead():
+	if all_players_dead:
 		Global.reload_scene();
 	else:
 		yield(Global.current_level_controller.battle, "battle_end_early");

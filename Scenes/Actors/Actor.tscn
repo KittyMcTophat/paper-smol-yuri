@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/Placeholder.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Actors/Shadow.tscn" type="PackedScene" id=2]
@@ -9,6 +9,27 @@ resource_local_to_scene = true
 margin = 0.001
 radius = 0.32
 height = 0.01
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Spatial
+
+export var use_camera_rotation : bool = true;
+var personal_rotation : float = 0.0 setget set_personal_rotation;
+
+func _ready():
+# warning-ignore:return_value_discarded
+	Global.connect(\"camera_rotated\", self, \"update_rotation\");
+
+func set_personal_rotation(amount : float):
+	personal_rotation = amount;
+	update_rotation();
+
+func update_rotation():
+	if use_camera_rotation:
+		rotation_degrees.y = personal_rotation + rad2deg(Global.camera_rotation);
+	else:
+		rotation_degrees.y = personal_rotation;
+"
 
 [node name="Actor" type="KinematicBody"]
 collision_layer = 64
@@ -24,6 +45,7 @@ offset = Vector2( 0, 32 )
 transparent = false
 alpha_cut = 1
 texture = ExtResource( 1 )
+script = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
 pause_mode = 2

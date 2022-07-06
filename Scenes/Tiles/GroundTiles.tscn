@@ -59,21 +59,25 @@ center_offset = Vector3( 0, -0.125, 0 )
 [sub_resource type="SpatialMaterial" id=11]
 flags_transparent = true
 flags_unshaded = true
+params_billboard_mode = 2
 albedo_texture = ExtResource( 6 )
 
 [sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
 flags_unshaded = true
+params_billboard_mode = 2
 albedo_texture = ExtResource( 2 )
 
 [sub_resource type="SpatialMaterial" id=10]
 flags_transparent = true
 flags_unshaded = true
+params_billboard_mode = 2
 albedo_texture = ExtResource( 1 )
 
 [sub_resource type="SpatialMaterial" id=13]
 flags_transparent = true
 flags_unshaded = true
+params_billboard_mode = 2
 albedo_texture = ExtResource( 5 )
 
 [sub_resource type="SpatialMaterial" id=18]

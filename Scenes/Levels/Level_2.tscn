@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_Alone.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Objects/MovingPlatform.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolYurisSmolCat.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=6]
@@ -25,7 +24,6 @@ height = 0.01
 resource_local_to_scene = true
 
 [node name="LevelController" instance=ExtResource( 1 )]
-background_texture = ExtResource( 3 )
 overworld_music = ExtResource( 13 )
 battle_music = ExtResource( 14 )
 
@@ -51,7 +49,7 @@ exported_dialogue = "[
 ]"
 
 [node name="SmolSmolYuri" parent="Overworld/Interactable Actors" index="2" instance=ExtResource( 10 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 0 )
 use_export_dialogue_instead = true
 exported_dialogue = "[
     {\"speaker\":\"Smol Yuri\", \"text\":\"Hey, Smol Smol Yuri, do you want to join my team?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
@@ -125,7 +123,7 @@ data = {
 "cells": PoolIntArray( -65536, 65520, 0, -5, 65520, 0, -4, 65520, 0, -3, 65520, 0, -2, 65520, 0, -1, 65520, 0, -65536, 65521, 0, -5, 65521, 0, -4, 65521, 0, -3, 65521, 0, -2, 65521, 0, -1, 65521, 0, -65536, 65522, 0, -5, 65522, 0, -4, 65522, 0, -3, 65522, 0, -2, 65522, 0, -1, 65522, 0, -65536, 65523, 0, -5, 65523, 0, -4, 65523, 0, -3, 65523, 0, -2, 65523, 0, -1, 65523, 0, -65536, 65524, 0, -5, 65524, 0, -4, 65524, 0, -3, 65524, 0, -2, 65524, 0, -1, 65524, 0, -65536, 65525, 0, -5, 65525, 0, -4, 65525, 0, -3, 65525, 0, -2, 65525, 0, -1, 65525, 0, -65536, 65526, 0, -5, 65526, 0, -4, 65526, 0, -3, 65526, 0, -2, 65526, 0, -1, 65526, 0 )
 }
 
-[node name="Battle" parent="." index="1"]
+[node name="Battle" parent="." index="2"]
 visible = false
 
 [node name="GridMap" parent="Battle" index="3"]

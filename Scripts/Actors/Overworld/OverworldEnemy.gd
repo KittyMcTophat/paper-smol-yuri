@@ -44,14 +44,15 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, vector_to_target.x, delta * move_lerp);
 		velocity.z = lerp(velocity.z, vector_to_target.z, delta * move_lerp);
 		
-		if (vector_to_target.x > 0.1):
+		var local_movement : Vector2 = Vector2(vector_to_target.x, vector_to_target.z).rotated(Global.camera_rotation);
+		if (local_movement.x > 0.1):
 			_turn(0);
-		elif (vector_to_target.x < -0.1):
+		elif (local_movement.x < -0.1):
 			_turn(180);
 		
-		if (vector_to_target.z < -0.1):
+		if (local_movement.y < -0.1):
 			_facing_back = true;
-		elif (vector_to_target.z > 0.1):
+		elif (local_movement.y > 0.1):
 			_facing_back = false;
 	
 	velocity = move_and_slide(velocity, Vector3.UP);

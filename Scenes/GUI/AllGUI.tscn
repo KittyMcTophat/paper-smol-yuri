@@ -6,7 +6,6 @@
 [ext_resource path="res://Scenes/GUI/CoinCounter.tscn" type="PackedScene" id=4]
 
 [node name="AllGUI" type="CanvasLayer"]
-layer = 0
 
 [node name="CoinCounter" parent="." instance=ExtResource( 4 )]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/Buttons/ArrowKeys.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_Alone.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Buttons/Rightstick.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Buttons/Space.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Buttons/AButton.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolYurisSmolCat.tscn" type="PackedScene" id=11]
@@ -26,10 +26,30 @@ margin = 0.001
 radius = 0.3
 height = 0.22
 
+[sub_resource type="GDScript" id=2]
+script/source = "extends Spatial
+
+export var use_camera_rotation : bool = true;
+var personal_rotation : float = 0.0 setget set_personal_rotation;
+
+func _ready():
+	Global.connect(\"camera_rotated\", self, \"update_rotation\");
+
+func set_personal_rotation(amount : float):
+	personal_rotation = amount;
+	update_rotation();
+
+func update_rotation():
+	if use_camera_rotation:
+		rotation_degrees.y = personal_rotation + rad2deg(Global.camera_rotation);
+	else:
+		rotation_degrees.y = personal_rotation;
+"
+
 [sub_resource type="World" id=1]
 environment = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=33]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
@@ -51,6 +71,26 @@ distance_fade_max_distance = 2.0
 [sub_resource type="QuadMesh" id=13]
 resource_local_to_scene = true
 material = SubResource( 12 )
+size = Vector2( 4.56, 1.16 )
+center_offset = Vector3( 0, 0.58, 0 )
+
+[sub_resource type="ViewportTexture" id=30]
+viewport_path = NodePath("Overworld/CameraTutorial/Viewport")
+
+[sub_resource type="SpatialMaterial" id=31]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+params_billboard_mode = 2
+albedo_texture = SubResource( 30 )
+distance_fade_mode = 2
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 2.0
+
+[sub_resource type="QuadMesh" id=32]
+resource_local_to_scene = true
+material = SubResource( 31 )
 size = Vector2( 4.56, 1.16 )
 center_offset = Vector3( 0, 0.58, 0 )
 
@@ -160,7 +200,6 @@ size = Vector2( 4.5, 0.37 )
 center_offset = Vector3( 0, 0.185, 0 )
 
 [node name="LevelController" instance=ExtResource( 6 )]
-background_texture = ExtResource( 8 )
 overworld_music = ExtResource( 19 )
 
 [node name="SmolYuri_Alone" parent="Overworld" index="0" instance=ExtResource( 7 )]
@@ -170,6 +209,9 @@ cur_health = 1
 
 [node name="CollisionShape" parent="Overworld/SmolYuri_Alone" index="0"]
 shape = SubResource( 10 )
+
+[node name="Sprite3D" parent="Overworld/SmolYuri_Alone" index="1"]
+script = SubResource( 2 )
 
 [node name="HealthBar" parent="Overworld/SmolYuri_Alone" index="8"]
 visible = false
@@ -236,7 +278,7 @@ size_flags_vertical = 8
 [node name="Label2" type="Label" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2" index="0"]
 margin_right = 456.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 33 )
 text = "Walk with"
 align = 1
 autowrap = true
@@ -248,24 +290,14 @@ margin_bottom = 114.0
 custom_constants/separation = 20
 
 [node name="TextureRect5" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="0"]
-margin_right = 15.0
+margin_right = 82.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 stretch_mode = 6
 
-[node name="TextureRect" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="1"]
-margin_left = 35.0
-margin_right = 183.0
-margin_bottom = 94.0
-size_flags_horizontal = 3
-size_flags_vertical = 0
-texture = ExtResource( 5 )
-stretch_mode = 6
-script = ExtResource( 18 )
-
-[node name="TextureRect2" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="2"]
-margin_left = 203.0
-margin_right = 351.0
+[node name="TextureRect2" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="1"]
+margin_left = 102.0
+margin_right = 250.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -273,9 +305,9 @@ texture = ExtResource( 4 )
 stretch_mode = 6
 script = ExtResource( 18 )
 
-[node name="TextureRect3" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="3"]
-margin_left = 371.0
-margin_right = 421.0
+[node name="TextureRect3" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="2"]
+margin_left = 270.0
+margin_right = 353.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 texture = ExtResource( 3 )
@@ -283,8 +315,8 @@ stretch_mode = 6
 script = ExtResource( 18 )
 is_keyboard = false
 
-[node name="TextureRect6" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="4"]
-margin_left = 441.0
+[node name="TextureRect6" type="TextureRect" parent="Overworld/WalkTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="3"]
+margin_left = 373.0
 margin_right = 456.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
@@ -295,7 +327,78 @@ mesh = SubResource( 13 )
 skeleton = NodePath("")
 material/0 = null
 
-[node name="JumpTutorial" type="Spatial" parent="Overworld" index="8"]
+[node name="CameraTutorial" type="Spatial" parent="Overworld" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 1, 0 )
+
+[node name="Viewport" type="Viewport" parent="Overworld/CameraTutorial" index="0"]
+size = Vector2( 456, 116 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+hdr = false
+usage = 1
+render_target_v_flip = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Overworld/CameraTutorial/Viewport" index="0"]
+margin_top = 1.0
+margin_right = 456.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="Label2" type="Label" parent="Overworld/CameraTutorial/Viewport/VBoxContainer2" index="0"]
+margin_right = 456.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 33 )
+text = "Rotate camera with"
+align = 1
+autowrap = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Overworld/CameraTutorial/Viewport/VBoxContainer2" index="1"]
+margin_top = 20.0
+margin_right = 456.0
+margin_bottom = 114.0
+custom_constants/separation = 20
+
+[node name="TextureRect5" type="TextureRect" parent="Overworld/CameraTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="0"]
+margin_right = 82.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="Overworld/CameraTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="1"]
+margin_left = 102.0
+margin_right = 250.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = ExtResource( 5 )
+stretch_mode = 6
+script = ExtResource( 18 )
+
+[node name="TextureRect3" type="TextureRect" parent="Overworld/CameraTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="2"]
+margin_left = 270.0
+margin_right = 353.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+texture = ExtResource( 8 )
+stretch_mode = 6
+script = ExtResource( 18 )
+is_keyboard = false
+
+[node name="TextureRect6" type="TextureRect" parent="Overworld/CameraTutorial/Viewport/VBoxContainer2/HBoxContainer2" index="3"]
+margin_left = 373.0
+margin_right = 456.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+stretch_mode = 6
+
+[node name="MeshInstance" type="MeshInstance" parent="Overworld/CameraTutorial" index="1"]
+mesh = SubResource( 32 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="JumpTutorial" type="Spatial" parent="Overworld" index="9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, 0 )
 
 [node name="Viewport" type="Viewport" parent="Overworld/JumpTutorial" index="0"]
@@ -363,7 +466,7 @@ mesh = SubResource( 16 )
 skeleton = NodePath("")
 material/0 = null
 
-[node name="CoinTutorial" type="Spatial" parent="Overworld" index="9"]
+[node name="CoinTutorial" type="Spatial" parent="Overworld" index="10"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -5.75 )
 
 [node name="Viewport" type="Viewport" parent="Overworld/CoinTutorial" index="0"]
@@ -390,7 +493,7 @@ mesh = SubResource( 19 )
 skeleton = NodePath("")
 material/0 = null
 
-[node name="TalkTutorial" type="Spatial" parent="Overworld" index="10"]
+[node name="TalkTutorial" type="Spatial" parent="Overworld" index="11"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -10.5 )
 
 [node name="Viewport" type="Viewport" parent="Overworld/TalkTutorial" index="0"]
@@ -462,7 +565,7 @@ mesh = SubResource( 22 )
 skeleton = NodePath("")
 material/0 = null
 
-[node name="PauseTutorial" type="Spatial" parent="Overworld" index="11"]
+[node name="PauseTutorial" type="Spatial" parent="Overworld" index="12"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -21 )
 
 [node name="Viewport" type="Viewport" parent="Overworld/PauseTutorial" index="0"]
@@ -542,7 +645,7 @@ mesh = SubResource( 25 )
 skeleton = NodePath("")
 material/0 = null
 
-[node name="CookieTutorial" type="Spatial" parent="Overworld" index="12"]
+[node name="CookieTutorial" type="Spatial" parent="Overworld" index="13"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -21 )
 
 [node name="Viewport" type="Viewport" parent="Overworld/CookieTutorial" index="0"]
@@ -569,7 +672,7 @@ mesh = SubResource( 28 )
 skeleton = NodePath("")
 material/0 = null
 
-[node name="Battle" parent="." index="1"]
+[node name="Battle" parent="." index="2"]
 visible = false
 
 [node name="GridMap" parent="Battle" index="3"]

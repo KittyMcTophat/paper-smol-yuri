@@ -41,14 +41,15 @@ func _physics_process(delta):
 	vector_to_target.y = 0.0;
 	vector_to_target = vector_to_target.normalized();
 	
-	if (vector_to_target.x > 0.3):
+	var local_movement : Vector2 = Vector2(vector_to_target.x, vector_to_target.z).rotated(Global.camera_rotation);
+	if (local_movement.x > 0.3):
 		_turn(0);
-	elif (vector_to_target.x < -0.3):
+	elif (local_movement.x < -0.3):
 		_turn(180);
 	
-	if (vector_to_target.z < -0.3):
+	if (local_movement.y < -0.3):
 		_facing_back = true;
-	elif (vector_to_target.z > 0.3):
+	elif (local_movement.y > 0.3):
 		_facing_back = false;
 	
 	vector_to_target *= move_speed;

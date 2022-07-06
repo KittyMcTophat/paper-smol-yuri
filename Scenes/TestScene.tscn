@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_FullParty.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolNatsuki.tscn" type="PackedScene" id=2]
@@ -15,11 +15,9 @@
 [ext_resource path="res://Scenes/Objects/SaveBlock.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Actors/Overworld/Enemies/OverworldPurpleSmolBowlingBall.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolRoboYuri.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=16]
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=17]
 
 [node name="LevelController" instance=ExtResource( 10 )]
-background_texture = ExtResource( 16 )
 
 [node name="SmolYuri_FullParty" parent="Overworld" index="0" instance=ExtResource( 1 )]
 
@@ -83,7 +81,7 @@ data = {
 "cells": PoolIntArray( 327678, 65516, 0, 327679, 65516, 0, 2, 65520, 0, 3, 65520, 0, 4, 65520, 0, 5, 65520, 0, 6, 65520, 0, 7, 65520, 0, 8, 65520, 0, 9, 65520, 0, 10, 65520, 0, 196609, 65520, 0, 2, 65521, 0, 3, 65521, 0, 4, 65521, 0, 5, 65521, 0, 6, 65521, 0, 7, 65521, 0, 8, 65521, 0, 9, 65521, 0, 10, 65521, 0, 2, 65522, 0, 3, 65522, 0, 4, 65522, 0, 5, 65522, 0, 6, 65522, 0, 7, 65522, 0, 8, 65522, 0, 9, 65522, 0, 10, 65522, 0, 196606, 65522, 0, 2, 65523, 0, 3, 65523, 0, 4, 65523, 0, 5, 65523, 0, 6, 65523, 0, 7, 65523, 0, 8, 65523, 0, 9, 65523, 0, 10, 65523, 0, 65537, 65524, 0 )
 }
 
-[node name="Battle" parent="." index="1"]
+[node name="Battle" parent="." index="2"]
 visible = false
 
 [node name="GridMap" parent="Battle" index="3"]

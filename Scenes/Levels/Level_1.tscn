@@ -4,7 +4,6 @@
 [ext_resource path="res://Scenes/Actors/Overworld/BaseActors/InteractableActor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_Alone.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Tiles/GroundTiles.tres" type="MeshLibrary" id=6]
 [ext_resource path="res://Scenes/Actors/Overworld/Enemies/OverworldPurpleSmolBowlingBall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Actors/Battle/Enemies/PurpleSmolBowlingBall.tscn" type="PackedScene" id=8]
@@ -22,6 +21,26 @@ resource_local_to_scene = true
 margin = 0.001
 radius = 0.3
 height = 0.22
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Spatial
+
+export var use_camera_rotation : bool = true;
+var personal_rotation : float = 0.0 setget set_personal_rotation;
+
+func _ready():
+	Global.connect(\"camera_rotated\", self, \"update_rotation\");
+
+func set_personal_rotation(amount : float):
+	personal_rotation = amount;
+	update_rotation();
+
+func update_rotation():
+	if use_camera_rotation:
+		rotation_degrees.y = personal_rotation + rad2deg(Global.camera_rotation);
+	else:
+		rotation_degrees.y = personal_rotation;
+"
 
 [sub_resource type="CapsuleShape" id=4]
 resource_local_to_scene = true
@@ -60,7 +79,6 @@ material = SubResource( 13 )
 size = Vector2( 5, 1 )
 
 [node name="LevelController" instance=ExtResource( 4 )]
-background_texture = ExtResource( 5 )
 overworld_music = ExtResource( 16 )
 battle_music = ExtResource( 15 )
 
@@ -68,6 +86,9 @@ battle_music = ExtResource( 15 )
 
 [node name="CollisionShape" parent="Overworld/SmolYuri_Alone" index="0"]
 shape = SubResource( 11 )
+
+[node name="Sprite3D" parent="Overworld/SmolYuri_Alone" index="1"]
+script = SubResource( 2 )
 
 [node name="HealthBar" parent="Overworld/SmolYuri_Alone" index="8"]
 visible = false
@@ -152,6 +173,8 @@ data = {
 [node name="Wall" type="GridMap" parent="Overworld" index="8"]
 mesh_library = ExtResource( 6 )
 cell_size = Vector3( 0.5, 0.5, 0.5 )
+collision_layer = 33
+collision_mask = 33
 data = {
 "cells": PoolIntArray( 0, 65528, 2, 1, 65528, 2, 2, 65528, 2, 3, 65528, 2, 4, 65528, 2, 5, 65528, 2, 6, 65528, 2, 65529, 65528, 2, 65530, 65528, 2, 65531, 65528, 2, 65532, 65528, 2, 65533, 65528, 2, 65534, 65528, 2, 65535, 65528, 2, 65536, 65528, 2, 65537, 65528, 2, 65538, 65528, 2, 65539, 65528, 2, 65540, 65528, 2, 65541, 65528, 2, 65542, 65528, 2, 131065, 65528, 2, 131066, 65528, 2, 131067, 65528, 2, 131068, 65528, 2, 131069, 65528, 2, 131070, 65528, 2, 131071, 65528, 2, 131072, 65528, 2, 131073, 65528, 2, 131074, 65528, 2, 131075, 65528, 2, 131076, 65528, 2, 131077, 65528, 2, 131078, 65528, 2, 196601, 65528, 2, 196602, 65528, 2, 196603, 65528, 2, 196604, 65528, 2, 196605, 65528, 2, 196606, 65528, 2, 196607, 65528, 2, 196608, 65528, 2, 196609, 65528, 2, 196610, 65528, 2, 196611, 65528, 2, 196612, 65528, 2, 196613, 65528, 2, 196614, 65528, 2, 262137, 65528, 2, 262138, 65528, 2, 262139, 65528, 2, 262140, 65528, 2, 262141, 65528, 2, 262142, 65528, 2, 262143, 65528, 2 )
 }
@@ -194,7 +217,7 @@ mesh = SubResource( 14 )
 skeleton = NodePath("")
 material/0 = null
 
-[node name="Battle" parent="." index="1"]
+[node name="Battle" parent="." index="2"]
 visible = false
 
 [node name="GridMap" parent="Battle" index="3"]

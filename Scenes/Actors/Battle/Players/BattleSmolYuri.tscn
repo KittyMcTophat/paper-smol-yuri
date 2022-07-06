@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Actors/Battle/BaseActors/BattlePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/SmolYuri/SmolYuriStill.png" type="Texture" id=2]
@@ -12,6 +12,9 @@ resource_local_to_scene = true
 margin = 0.001
 radius = 0.3
 height = 0.22
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Viewport")
 
 [node name="BattleSmolYuri" instance=ExtResource( 1 )]
 actor_name = "Smol Yuri"
@@ -32,3 +35,6 @@ pause_mode = 0
 
 [node name="PlayerActionSelector" parent="." index="9"]
 action_scenes = [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 3 ) ]
+
+[node name="AttackBoosts" parent="." index="11"]
+texture = SubResource( 2 )

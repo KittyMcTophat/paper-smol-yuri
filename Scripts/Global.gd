@@ -5,6 +5,8 @@ signal scene_is_reloading;
 
 signal controller_state_changed;
 
+signal camera_rotated;
+
 onready var damage_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/DamageParticle.tscn");
 onready var heal_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/HealParticle.tscn");
 onready var charge_particle : PackedScene = preload("res://Scenes/Actors/Battle/BaseActors/ChargeParticle.tscn");
@@ -13,6 +15,8 @@ var money : int = 0;
 var cats_found : Dictionary = {};
 
 var text_speed : float = 0.0;
+
+var camera_rotation : float = 0.0;
 
 var allow_pause : bool = true;
 var allow_jump : bool = true;
@@ -119,3 +123,7 @@ func _update_screen_size():
 	scale.x = OS.window_size.x / ProjectSettings.get_setting("display/window/size/width");
 	scale.y = OS.window_size.y / ProjectSettings.get_setting("display/window/size/height");
 	wobbler.get_node("ColorRect").material.set_shader_param("pixel_multiplier", scale);
+
+func set_camera_rotation(angle):
+	camera_rotation = angle;
+	emit_signal("camera_rotated");
