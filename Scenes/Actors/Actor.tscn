@@ -14,7 +14,7 @@ height = 0.01
 script/source = "extends Spatial
 
 export var use_camera_rotation : bool = true;
-var personal_rotation : float = 0.0 setget set_personal_rotation;
+export var personal_rotation : float = 0.0 setget set_personal_rotation;
 
 func _ready():
 # warning-ignore:return_value_discarded

@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Overworld/Players/Players (With Party)/SmolYuri_WithSayori.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sprites/Backgrounds/Sky with Sun.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolSmolYuri.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Actors/Overworld/InteractableActor/SmolYurisSmolCat.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Objects/SmolCoin.tscn" type="PackedScene" id=6]
@@ -15,7 +14,6 @@
 [ext_resource path="res://Music/Ohayou Sayori!.WAV" type="AudioStream" id=13]
 
 [node name="LevelController" instance=ExtResource( 1 )]
-background_texture = ExtResource( 3 )
 overworld_music = ExtResource( 13 )
 battle_music = ExtResource( 12 )
 
@@ -121,7 +119,7 @@ data = {
 "cells": PoolIntArray( 0, 65500, 0, 65535, 65500, 0, 0, 65505, 0, 65535, 65505, 0, 0, 65510, 0, 65535, 65510, 0 )
 }
 
-[node name="Battle" parent="." index="1"]
+[node name="Battle" parent="." index="2"]
 visible = false
 
 [node name="GridMap" parent="Battle" index="3"]

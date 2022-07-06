@@ -50,28 +50,28 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite3D:rotation_degrees")
+tracks/2/path = NodePath("InteractableArea/CollisionShape:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ) ]
+"values": [ Vector3( 0.001, 0.001, 0.001 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("InteractableArea/CollisionShape:scale")
+tracks/3/path = NodePath("Sprite3D:personal_rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0.001, 0.001, 0.001 ) ]
+"values": [ 0.0, 0.0, 180.0 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -89,7 +89,7 @@ tracks/0/keys = {
 "values": [ Vector3( -2, 0, -3 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite3D:rotation_degrees")
+tracks/1/path = NodePath("InteractableArea/CollisionShape:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -98,10 +98,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("InteractableArea/CollisionShape:scale")
+tracks/2/path = NodePath(".:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -113,7 +113,7 @@ tracks/2/keys = {
 "values": [ Vector3( 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:scale")
+tracks/3/path = NodePath("Sprite3D:personal_rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -122,7 +122,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 1, 1, 1 ) ]
+"values": [ 0.0 ]
 }
 
 [sub_resource type="SphereShape" id=2]
@@ -220,6 +220,8 @@ texture = ExtResource( 7 )
 
 [node name="StaticBody" type="StaticBody" parent="Overworld/InteractableActors/YurisFloatingHead" index="8"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -1.75 )
+collision_layer = 33
+collision_mask = 33
 
 [node name="CollisionShape" type="CollisionShape" parent="Overworld/InteractableActors/YurisFloatingHead/StaticBody" index="0"]
 shape = SubResource( 6 )

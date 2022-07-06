@@ -85,6 +85,19 @@ func _kill():
 	
 	var all_players_dead : bool = Global.current_level_controller.battle.all_players_dead();
 	
+	var player_index : int = 0;
+		
+	for i in range(Global.current_level_controller.battle._players.size()):
+		if Global.current_level_controller.battle._players[i] == self:
+			player_index = i;
+			break;
+	
+	var player_key_hints_kb : Node = Global.current_level_controller.battle.get_node("PlayerKeyHints/Keyboard");
+	var player_key_hints_controller : Node = Global.current_level_controller.battle.get_node("PlayerKeyHints/Controller");
+	
+	player_key_hints_kb.get_child(player_index).visible = false;
+	player_key_hints_controller.get_child(player_index).visible = false;
+	
 	yield(get_tree().create_timer(3.0, false), "timeout");
 	
 	rigidbody.queue_free();
