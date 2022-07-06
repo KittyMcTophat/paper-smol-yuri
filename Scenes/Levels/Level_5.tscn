@@ -232,7 +232,7 @@ texture = ExtResource( 6 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
 use_export_dialogue_instead = true
 exported_dialogue = "[
-	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Fools, You made a mistake encountering me!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCube.png\"},
+	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Fools, You made a mistake encountering me!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 	{\"text\":\"Behold, my stilts!\", \"portrait\":\"\"},
 	{\"text\":\"They make me eight times more powerful than a typical bowling cube!\", \"portrait\":\"\"},
 	{\"text\":\"You'll never reach the king with me guarding this door!\", \"portrait\":\"\"},
@@ -240,18 +240,18 @@ exported_dialogue = "[
 	{\"speaker\":\"Smol Sayori\", \"text\":\"Oh no, this guy seems really powerful!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Sad.png\"},
 	{\"speaker\":\"Smol Monika\", \"text\":\"We're gonna have to give it our all!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
 	
-	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Enough talking, now is the time to fight!!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCube.png\"},
+	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Enough talking, now is the time to fight!!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 ]"
 
 [node name="InteractableActor2" parent="Overworld/InteractableActors" index="3" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
 use_export_dialogue_instead = true
 exported_dialogue = "[
-	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"I knew I should've made my stilts taller...\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCube.png\"},
+	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"I knew I should've made my stilts taller...\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 	
 	{\"speaker\":\"Smol Monika\", \"text\":\"How would that have helped you?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
 	
-	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"You wouldn't get it, you're not tall enough.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCube.png\"},
+	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"You wouldn't get it, you're not tall enough.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 	
 	{\"speaker\":\"Smol Monika\", \"text\":\"Oh, okay...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
 ]"
@@ -272,12 +272,12 @@ reward_money = 75
 script = ExtResource( 12 )
 dialogues = [ "[
     {\"speaker\":\"Smol Yuri\", \"text\":\"I don't want to sound rude, but that seemed pretty easy to dodge...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Nonsense, I'm way taller, and therefore more powerful, than all of you!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCube.png\"},
+	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Nonsense, I'm way taller, and therefore more powerful, than all of you!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 	{\"text\":\"You must just be bluffing!\", \"portrait\":\"\"}
 ]", "[
     {\"speaker\":\"Smol Monika\", \"text\":\"You know, I think I agree with Smol Yuri here.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
 	{\"text\":\"Some of those attacks were too high to hit us even if we jumped.\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Your mind games won't work on me, I know I can beat you if I keep attacking!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCube.png\"},
+	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Your mind games won't work on me, I know I can beat you if I keep attacking!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 	{\"speaker\":\"Smol Monika\", \"text\":\"Okay, suit yourself...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"}
 ]" ]
 
