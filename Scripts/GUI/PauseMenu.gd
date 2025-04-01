@@ -58,11 +58,11 @@ func set_color(color : String, is_on : bool):
 	Global.color_filter.set_color(color, value);
 
 func all_color_buttons_off() -> bool:
-	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/RedButton.pressed:
+	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer/RedButton.pressed:
 		return false;
-	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/GreenButton.pressed:
+	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer/GreenButton.pressed:
 		return false;
-	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/BlueButton.pressed:
+	if $ColorRect/CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer/BlueButton.pressed:
 		return false;
 	return true;
 

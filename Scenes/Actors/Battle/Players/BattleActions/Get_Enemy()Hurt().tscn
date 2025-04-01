@@ -4,12 +4,13 @@
 [ext_resource path="res://Sprites/Actors/SmolMonika/hurtIcon.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Actors/Battle/Players/Projectiles/Hurt.tscn" type="PackedScene" id=3]
 
-
 [node name="BasePlayerAction" instance=ExtResource( 1 )]
 projectile = ExtResource( 3 )
+damage = 1
+pierces_targets = false
 
 [node name="Icon" parent="HBoxContainer" index="1"]
 texture = ExtResource( 2 )
 
 [node name="Name" parent="HBoxContainer" index="2"]
-text = "get_enemy() .hurt()"
+text = "get_enemy() .hurt() (Silly)"

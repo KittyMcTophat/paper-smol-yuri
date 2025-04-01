@@ -17,8 +17,8 @@
 [ext_resource path="res://Music/Battle Theme - Paper Mario.WAV" type="AudioStream" id=16]
 
 [sub_resource type="CylinderShape" id=7]
-radius = 0.55
 height = 1.3
+radius = 0.55
 
 [sub_resource type="Animation" id=4]
 resource_name = "Leave"
@@ -136,6 +136,12 @@ overworld_music = ExtResource( 15 )
 battle_music = ExtResource( 16 )
 
 [node name="SmolYuri_FullParty" parent="Overworld" index="0" instance=ExtResource( 2 )]
+hazard_damage = 1
+reload_on_death = true
+v_camera_speed = 0.785398
+h_camera_speed = 1.5708
+max_camera_angle = 0.523599
+min_camera_angle = -0.785398
 
 [node name="SmolCookie" parent="Overworld" index="1" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -32 )
@@ -145,28 +151,36 @@ next_scene = "res://Scenes/Levels/Level_6.tscn"
 
 [node name="SmolYurisSmolCat" parent="Overworld/InteractableActors" index="0" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -2, -2 )
+interact_on_ready = false
+only_on_first_load = false
+use_export_dialogue_instead = false
+exported_dialogue = "[
+	{\"speaker\":\"lmao\", \"text\":\"i forgot to replace this text\"}
+]"
 cat_index = 5
 
 [node name="YurisFloatingHead" parent="Overworld/InteractableActors" index="1" instance=ExtResource( 4 )]
 process_priority = -1
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3 )
 collision_mask = 66
+interact_on_ready = false
+only_on_first_load = false
 use_export_dialogue_instead = true
 exported_dialogue = "[
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh hey, Yuri's Floating Head!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Oh hey, Silly Yuri's Floating Head!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
 	{\"text\":\"What are you doing here?\", \"portrait\":\"\"},
-	{\"speaker\":\"Yuri's Floating Head\", \"text\":\"Smol Smol Yuri sensed that you would need help, but she was too far away to provide it.\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
+	{\"speaker\":\"Silly Yuri's Floating Head\", \"text\":\"Smol Smol Silly Yuri sensed that you would need silly help, but she was too far away to provide it.\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
 	{\"text\":\"So she sent me to help you out instead!\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"What kind of help have you come to provide?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-	{\"speaker\":\"Yuri's Floating Head\", \"text\":\"I'm here to explain Smol Monika's special ability!\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"What kind of silly help have you come to provide?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"speaker\":\"Silly Yuri's Floating Head\", \"text\":\"I'm here to explain Smol Silly Monika's special asillyty!\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
 	{\"text\":\"And also to open that smol door for you...\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Sayori\", \"text\":\"So what kind of special ability does Smol Monika have?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
-	{\"speaker\":\"Yuri's Floating Head\", \"text\":\"I'm glad you asked!\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
-	{\"text\":\"She can use her \\\"Charge\\\" ability to boost the power of her attacks by 1.\", \"portrait\":\"\"},
-	{\"text\":\"It may sound like a very smol boost, but in longer battles it can help her deal big damage if used properly.\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Monika\", \"text\":\"Why are you explaining this?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
-	{\"text\":\"I already know how to use my own abilities!\", \"portrait\":\"\"},
-	{\"speaker\":\"Yuri's Floating Head\", \"text\":\"Good point.\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
+	{\"speaker\":\"Smol Silly Sayori\", \"text\":\"So what kind of special asillyty does Smol Silly Monika have?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Silly Yuri's Floating Head\", \"text\":\"I'm glad you asked!\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
+	{\"text\":\"She can use her \\\"Silly Charge\\\" ability to boost the power of her silly attacks by 1.\", \"portrait\":\"\"},
+	{\"text\":\"It may sound like a very smol silly boost, but in longer battles it can help her deal big silly damage if used properly.\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Silly Monika\", \"text\":\"Why are you explaining this?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+	{\"text\":\"I already know how to use my own asillyties!\", \"portrait\":\"\"},
+	{\"speaker\":\"Silly Yuri's Floating Head\", \"text\":\"Good point.\", \"portrait\":\"res://Sprites/DialoguePortraits/YurisFloatingHead/Happy.png\"},
 	{\"text\":\"I'll get that smol door now...\", \"portrait\":\"\"},
 ]"
 
@@ -233,55 +247,69 @@ texture = ExtResource( 6 )
 
 [node name="InteractableActor" parent="Overworld/InteractableActors" index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
+interact_on_ready = false
+only_on_first_load = false
 use_export_dialogue_instead = true
 exported_dialogue = "[
 	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Fools, You made a mistake encountering me!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 	{\"text\":\"Behold, my stilts!\", \"portrait\":\"\"},
 	{\"text\":\"They make me eight times more powerful than a typical bowling cube!\", \"portrait\":\"\"},
 	{\"text\":\"You'll never reach the king with me guarding this door!\", \"portrait\":\"\"},
+	{\"text\":\"I'll stop you right here and end silliness once and for all!\", \"portrait\":\"\"},
 	
-	{\"speaker\":\"Smol Sayori\", \"text\":\"Oh no, this guy seems really powerful!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Sad.png\"},
-	{\"speaker\":\"Smol Monika\", \"text\":\"We're gonna have to give it our all!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+	{\"speaker\":\"Smol Silly Sayori\", \"text\":\"Oh no, this guy seems really powerful!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Sad.png\"},
+	{\"speaker\":\"Smol Silly Monika\", \"text\":\"We're gonna have to give it our all!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
 	
 	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Enough talking, now is the time to fight!!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 ]"
 
 [node name="InteractableActor2" parent="Overworld/InteractableActors" index="3" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
+interact_on_ready = false
+only_on_first_load = false
 use_export_dialogue_instead = true
 exported_dialogue = "[
 	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"I knew I should've made my stilts taller...\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 	
-	{\"speaker\":\"Smol Monika\", \"text\":\"How would that have helped you?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
+	{\"speaker\":\"Smol Silly Monika\", \"text\":\"How would that have helped you?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
 	
-	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"You wouldn't get it, you're not tall enough.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
+	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"You wouldn't get it, you're too silly.\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 	
-	{\"speaker\":\"Smol Monika\", \"text\":\"Oh, okay...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
+	{\"speaker\":\"Smol Silly Monika\", \"text\":\"Oh, okay...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
 ]"
 
 [node name="Enemies" type="Spatial" parent="Overworld" index="3"]
 
 [node name="OverworldEnemy2" parent="Overworld/Enemies" index="0" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+move_speed = 2.0
+jump_strength = 5.0
+move_lerp = 5.0
+gravity = Vector3( 0, -9.8, 0 )
 enemies = [ ExtResource( 11 ) ]
 reward_money = 50
+override_music = false
+music = null
 
 [node name="OverworldEnemy" parent="Overworld/Enemies" index="1" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30 )
+gravity = Vector3( 0, -9.8, 0 )
 enemies = [ ExtResource( 13 ) ]
 reward_money = 75
+override_music = false
+music = null
 
 [node name="Node" type="Node" parent="Overworld/Enemies/OverworldEnemy" index="9"]
 script = ExtResource( 12 )
 dialogues = [ "[
-    {\"speaker\":\"Smol Yuri\", \"text\":\"I don't want to sound rude, but that seemed pretty easy to dodge...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+    {\"speaker\":\"Smol Silly Yuri\", \"text\":\"I don't want to sound serious, but that seemed pretty easy to dodge...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
 	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Nonsense, I'm way taller, and therefore more powerful, than all of you!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
 	{\"text\":\"You must just be bluffing!\", \"portrait\":\"\"}
 ]", "[
-    {\"speaker\":\"Smol Monika\", \"text\":\"You know, I think I agree with Smol Yuri here.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+    {\"speaker\":\"Smol Silly Monika\", \"text\":\"You know, I think I agree with Smol Silly Yuri here.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
 	{\"text\":\"Some of those attacks were too high to hit us even if we jumped.\", \"portrait\":\"\"},
 	{\"speaker\":\"Smol Bowling Cube\", \"text\":\"Your mind games won't work on me, I know I can beat you if I keep attacking!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingCubeStilts.png\"},
-	{\"speaker\":\"Smol Monika\", \"text\":\"Okay, suit yourself...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"}
+	{\"speaker\":\"Smol Silly Monika\", \"text\":\"Okay, suit yourself...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"}
 ]" ]
 
 [node name="GridMap Ground" parent="Overworld" index="4"]

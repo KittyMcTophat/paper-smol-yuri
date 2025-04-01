@@ -28,11 +28,24 @@ overworld_music = ExtResource( 13 )
 battle_music = ExtResource( 14 )
 
 [node name="SmolYuri_Alone" parent="Overworld" index="0" instance=ExtResource( 2 )]
+hazard_damage = 1
+reload_on_death = true
+party_leader = 0
+v_camera_speed = 0.785398
+h_camera_speed = 1.5708
+max_camera_angle = 0.523599
+min_camera_angle = -0.785398
 
 [node name="Interactable Actors" type="Spatial" parent="Overworld" index="1"]
 
 [node name="SmolYurisSmolCat" parent="Overworld/Interactable Actors" index="0" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+interact_on_ready = false
+only_on_first_load = false
+use_export_dialogue_instead = false
+exported_dialogue = "[
+	{\"speaker\":\"lmao\", \"text\":\"i forgot to replace this text\"}
+]"
 cat_index = 2
 
 [node name="InteractableActor" parent="Overworld/Interactable Actors" index="1" instance=ExtResource( 6 )]
@@ -41,38 +54,42 @@ interact_on_ready = true
 only_on_first_load = true
 use_export_dialogue_instead = true
 exported_dialogue = "[
-	{\"speaker\":\"Smol Yuri\", \"text\":\"It seems like the Smol Bowling Balls are back...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"That's not good...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"I better find some of my smol friends to help me figure out what's going on.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Since there's so many smol cookies here, Smol Sayori must be nearby!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"I should start by looking for her!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"}
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"It seems like the Smol Bowling Balls are back, and they hate silliness!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"That's not good...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"I better find some of my smol silly friends to help me figure out what's going on.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Since there's so many smol silly cookies here, Smol Silly Sayori must be nearby!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"I should start by looking for her!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"}
 ]"
 
 [node name="SmolSmolYuri" parent="Overworld/Interactable Actors" index="2" instance=ExtResource( 10 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 0 )
+interact_on_ready = false
+only_on_first_load = false
 use_export_dialogue_instead = true
 exported_dialogue = "[
-    {\"speaker\":\"Smol Yuri\", \"text\":\"Hey, Smol Smol Yuri, do you want to join my team?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-    {\"speaker\":\"Smol Smol Yuri\", \"text\":\"No thanks, I'm very tiny and fragile.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
-    {\"speaker\":\"Smol Smol Yuri\", \"text\":\"I wouldn't be able to help much in battle..\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh, okay...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-    {\"speaker\":\"Smol Smol Yuri\", \"text\":\"I do have this piece of advice for you though!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
-    {\"text\":\"If you're fighting two or more enemies, you can hit multiple at once using your \\\"Smol Knife\\\" ability.\", \"portrait\":\"\"},
-    {\"speaker\":\"Smol Yuri\", \"text\":\"Thank you for sharing your wisdom, Smol Smol Yuri!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-	{\"speaker\":\"Smol Smol Yuri\", \"text\":\"No problem, I'm always happy to help out a friend!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Silly Yuri\", \"text\":\"Hey, Smol Smol Yuri, do you want to join my silly squad?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Smol Silly Yuri\", \"text\":\"No thanks. I may be silly, but I'm very tiny and fragile.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Smol Silly Yuri\", \"text\":\"I wouldn't be able to help much in battle..\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Oh, okay...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+    {\"speaker\":\"Smol Smol Silly Yuri\", \"text\":\"I do have this piece of silly advice for you though!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+    {\"text\":\"If you're fighting two or more enemies, you can hit multiple at once using your \\\"Smol Silly Knife\\\" ability.\", \"portrait\":\"\"},
+    {\"speaker\":\"Smol Silly Yuri\", \"text\":\"Thank you for sharing your wisdom, Smol Smol Silly Yuri!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"speaker\":\"Smol Smol Silly Yuri\", \"text\":\"No problem, I'm always happy to help out a silly friend!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
 ]"
 
 [node name="InteractableActor2" parent="Overworld/Interactable Actors" index="3" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -10.75 )
+interact_on_ready = false
+only_on_first_load = false
 use_export_dialogue_instead = true
 exported_dialogue = "[
-    {\"speaker\":\"Smol Sayori\", \"text\":\"Woah, Smol Yuri, how did you get here?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Surprised.png\"},
-    {\"speaker\":\"Smol Yuri\", \"text\":\"Mostly by jumping and throwing smol knives at smol bowling balls.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-    {\"speaker\":\"Smol Sayori\", \"text\":\"Sounds fun, can I join you?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Yeah, that'd be great!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Silly Sayori\", \"text\":\"Woah, Smol Silly Yuri, how did you get here?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Surprised.png\"},
+    {\"speaker\":\"Smol Silly Yuri\", \"text\":\"Mostly by silly jumping and throwing smol silly knives at smol bowling balls.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Silly Sayori\", \"text\":\"Sounds fun, can I join you?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Yeah, that'd be great!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
     {\"text\":\"I was actually looking for you so I could ask you to join me.\", \"portrait\":\"\"},
-    {\"speaker\":\"\", \"text\":\"Smol Sayori joined your party!\"},
-	{\"speaker\":\"\", \"text\":\"Also she grabbed a cookie while you weren't looking, so you're going to the next level now.\"}
+    {\"speaker\":\"\", \"text\":\"Smol Silly Sayori joined your silly squad!\"},
+	{\"speaker\":\"\", \"text\":\"Also she grabbed a silly cookie while you weren't looking, so you're going to the next silly level now.\"}
 ]"
 
 [node name="CollisionShape" parent="Overworld/Interactable Actors/InteractableActor2" index="0"]
@@ -89,8 +106,14 @@ shape = SubResource( 2 )
 
 [node name="OverworldEnemy" parent="Overworld/Enemies" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6.25 )
+move_speed = 2.0
+jump_strength = 5.0
+move_lerp = 5.0
+gravity = Vector3( 0, -9.8, 0 )
 enemies = [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ) ]
 reward_money = 75
+override_music = false
+music = null
 
 [node name="Coins" type="Spatial" parent="Overworld" index="3"]
 

@@ -40,5 +40,5 @@ margin_right = 960.0
 margin_bottom = 274.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
-text = "Do Nothing"
+text = "Goof Off"
 autowrap = true

@@ -204,8 +204,15 @@ overworld_music = ExtResource( 19 )
 
 [node name="SmolYuri_Alone" parent="Overworld" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.001 )
+hazard_damage = 1
 max_health = 1
 cur_health = 1
+reload_on_death = true
+party_leader = 0
+v_camera_speed = 0.785398
+h_camera_speed = 1.5708
+max_camera_angle = 0.523599
+min_camera_angle = -0.785398
 
 [node name="CollisionShape" parent="Overworld/SmolYuri_Alone" index="0"]
 shape = SubResource( 10 )
@@ -221,17 +228,27 @@ volume_db = -5.0
 
 [node name="SmolYurisSmolCat" parent="Overworld" index="1" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -10.5 )
+interact_on_ready = false
+only_on_first_load = false
+use_export_dialogue_instead = false
+exported_dialogue = "[
+	{\"speaker\":\"lmao\", \"text\":\"i forgot to replace this text\"}
+]"
+cat_index = 0
 
 [node name="SmolSmolYuri" parent="Overworld" index="2" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, -10.5 )
+interact_on_ready = false
+only_on_first_load = false
 use_export_dialogue_instead = true
 exported_dialogue = "[
-    {\"speaker\":\"Smol Yuri\", \"text\":\"Hi, Smol Smol Yuri!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-    {\"speaker\":\"Smol Smol Yuri\", \"text\":\"Oh, hey Smol Yuri! What's up?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
-    {\"speaker\":\"Smol Yuri\", \"text\":\"Not much, I just wanted to say hi.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-    {\"speaker\":\"Smol Smol Yuri\", \"text\":\"Oh, okay. Well, if you need any advice later, feel free to ask.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
-    {\"text\":\"I know many random facts, some of which are actually useful.\", \"portrait\":\"\"},
-    {\"speaker\":\"Smol Yuri\", \"text\":\"I'll be sure to keep that in mind next time I see you!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"}
+    {\"speaker\":\"Smol Silly Yuri\", \"text\":\"Hi, Smol Smol Silly Yuri!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Smol Silly Yuri\", \"text\":\"Oh, hey Smol Silly Yuri! What's up?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Silly Yuri\", \"text\":\"Not much, I just wanted to say a silly hello.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Smol Silly Yuri\", \"text\":\"Oh, okay. Well, if you need any silly advice later, feel free to ask.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSmolYuri/Happy.png\"},
+    {\"text\":\"I know many silly facts, some of which are actually useful.\", \"portrait\":\"\"},
+    {\"speaker\":\"Smol Silly Yuri\", \"text\":\"I'll be sure to keep that in mind next time I see you!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Man, I sure am glad we get to be silly and nobody wants to stop our silliness!\", \"portrait\":\"\"}
 ]"
 
 [node name="SmolCookie" parent="Overworld" index="3" instance=ExtResource( 17 )]
@@ -279,7 +296,7 @@ size_flags_vertical = 8
 margin_right = 456.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 33 )
-text = "Walk with"
+text = "Walk sillily with"
 align = 1
 autowrap = true
 
@@ -325,7 +342,6 @@ stretch_mode = 6
 [node name="MeshInstance" type="MeshInstance" parent="Overworld/WalkTutorial" index="1"]
 mesh = SubResource( 13 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="CameraTutorial" type="Spatial" parent="Overworld" index="8"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 1, 0 )
@@ -350,7 +366,7 @@ size_flags_vertical = 8
 margin_right = 456.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 33 )
-text = "Rotate camera with"
+text = "Sillytate camera with"
 align = 1
 autowrap = true
 
@@ -396,7 +412,6 @@ stretch_mode = 6
 [node name="MeshInstance" type="MeshInstance" parent="Overworld/CameraTutorial" index="1"]
 mesh = SubResource( 32 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="JumpTutorial" type="Spatial" parent="Overworld" index="9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, 0 )
@@ -421,7 +436,7 @@ size_flags_vertical = 9
 margin_right = 450.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 4 )
-text = "Jump with"
+text = "Silly jump with"
 align = 1
 autowrap = true
 
@@ -457,14 +472,13 @@ margin_right = 450.0
 margin_bottom = 109.0
 custom_fonts/font = SubResource( 4 )
 text = "You can jump higher by
-holding the button longer"
+holding the silly button"
 align = 1
 autowrap = true
 
 [node name="MeshInstance" type="MeshInstance" parent="Overworld/JumpTutorial" index="1"]
 mesh = SubResource( 16 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="CoinTutorial" type="Spatial" parent="Overworld" index="10"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -5.75 )
@@ -483,7 +497,7 @@ margin_top = 1.0
 margin_right = 450.0
 margin_bottom = 36.0
 custom_fonts/font = SubResource( 4 )
-text = "Grab smol coins to
+text = "Grab smol silly coins to
 improve your score"
 align = 1
 autowrap = true
@@ -491,7 +505,6 @@ autowrap = true
 [node name="MeshInstance" type="MeshInstance" parent="Overworld/CoinTutorial" index="1"]
 mesh = SubResource( 19 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="TalkTutorial" type="Spatial" parent="Overworld" index="11"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -10.5 )
@@ -516,7 +529,7 @@ size_flags_vertical = 9
 margin_right = 450.0
 margin_bottom = 35.0
 custom_fonts/font = SubResource( 4 )
-text = "(While near friends)
+text = "(While near silly friends)
 Speak with"
 align = 1
 autowrap = true
@@ -563,7 +576,6 @@ stretch_mode = 6
 [node name="MeshInstance" type="MeshInstance" parent="Overworld/TalkTutorial" index="1"]
 mesh = SubResource( 22 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="PauseTutorial" type="Spatial" parent="Overworld" index="12"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -21 )
@@ -588,7 +600,7 @@ size_flags_vertical = 9
 margin_right = 450.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 4 )
-text = "Open pause menu with"
+text = "Open silly pause menu with"
 align = 1
 autowrap = true
 
@@ -643,7 +655,6 @@ stretch_mode = 6
 [node name="MeshInstance" type="MeshInstance" parent="Overworld/PauseTutorial" index="1"]
 mesh = SubResource( 25 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="CookieTutorial" type="Spatial" parent="Overworld" index="13"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -21 )
@@ -662,15 +673,14 @@ margin_top = 1.0
 margin_right = 450.0
 margin_bottom = 36.0
 custom_fonts/font = SubResource( 4 )
-text = "Grab the smol cookie
-to end the level"
+text = "Grab the smol silly cookie
+to end the silly level"
 align = 1
 autowrap = true
 
 [node name="MeshInstance" type="MeshInstance" parent="Overworld/CookieTutorial" index="1"]
 mesh = SubResource( 28 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="Battle" parent="." index="2"]
 visible = false

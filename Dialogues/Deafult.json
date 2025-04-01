@@ -1,6 +1,6 @@
 [
-    {"speaker":"Smol Yuri", "text":"Oh no! This NPC wasn't assigned any dialogue!", "portrait":"res://Sprites/DialoguePortraits/SmolYuri/Surprise.png"},
-    {"text":"That must mean something's wrong with the game!", "portrait":"res://Sprites/DialoguePortraits/SmolYuri/Sad.png"},
-    {"text":"Don't worry though, you can help by reporting this to Kitty_McTophat!", "portrait":"res://Sprites/DialoguePortraits/SmolYuri/Happy.png"},
-    {"text":"Hopefully you can still enjoy the rest of the game!", "portrait":""}
+    {"speaker":"Smol Yuri", "text":"Oh no! This Silly NPC wasn't assigned any dialogue!", "portrait":"res://Sprites/DialoguePortraits/SmolYuri/Surprise.png"},
+    {"text":"That must mean something's wrong with the silly game!", "portrait":"res://Sprites/DialoguePortraits/SmolYuri/Sad.png"},
+    {"text":"Don't worry though, you can help by making a silly report to Kitty_McTophat!", "portrait":"res://Sprites/DialoguePortraits/SmolYuri/Happy.png"},
+    {"text":"Hopefully you can still enjoy the rest of the silly game!", "portrait":""}
 ]

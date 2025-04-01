@@ -25,10 +25,10 @@ func _update_label() -> void:
 	
 	if (money % 100 >= 10):
 #warning-ignore:INTEGER_DIVISION
-		money_as_string = "$" + str(money / 100) + "." + str(money % 100);
+		money_as_string = "$illy " + str(money / 100) + "." + str(money % 100);
 	else:
 #warning-ignore:INTEGER_DIVISION
-		money_as_string = "$" + str(money / 100) + ".0" + str(money % 100);
+		money_as_string = "$illy " + str(money / 100) + ".0" + str(money % 100);
 	
 	_label.text = money_as_string;
 	pass;

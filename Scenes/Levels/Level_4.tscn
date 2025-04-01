@@ -23,8 +23,8 @@ radius = 0.3
 height = 0.22
 
 [sub_resource type="CylinderShape" id=3]
-radius = 0.25
 height = 0.5
+radius = 0.25
 
 [sub_resource type="SphereShape" id=2]
 resource_local_to_scene = true
@@ -43,13 +43,33 @@ overworld_music = ExtResource( 16 )
 battle_music = ExtResource( 15 )
 
 [node name="SmolYuri_WithSayori" parent="Overworld" index="0" instance=ExtResource( 3 )]
+hazard_damage = 1
+reload_on_death = true
+v_camera_speed = 0.785398
+h_camera_speed = 1.5708
+max_camera_angle = 0.523599
+min_camera_angle = -0.785398
 
 [node name="CollisionShape" parent="Overworld/SmolYuri_WithSayori" index="0"]
 shape = SubResource( 6 )
 
+[node name="SmolSayoriFollower" parent="Overworld/SmolYuri_WithSayori" index="10"]
+move_speed = 4.0
+jump_strength = 5.0
+move_lerp = 5.0
+gravity = Vector3( 0, -9.8, 0 )
+follow_distance = 0.75
+teleport_distance = 6.0
+
 [node name="SmolMonikaFollower" parent="Overworld/SmolYuri_WithSayori/SmolSayoriFollower" index="5" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
 visible = false
+move_speed = 4.0
+jump_strength = 5.0
+move_lerp = 5.0
+gravity = Vector3( 0, -9.8, 0 )
+follow_distance = 0.75
+teleport_distance = 6.0
 
 [node name="SmolCookie" parent="Overworld" index="1" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
@@ -59,8 +79,14 @@ next_scene = "res://Scenes/Levels/Level_5.tscn"
 
 [node name="OverworldEnemy" parent="Overworld/Enemies" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7 )
+move_speed = 2.0
+jump_strength = 5.0
+move_lerp = 5.0
+gravity = Vector3( 0, -9.8, 0 )
 enemies = [ ExtResource( 10 ), ExtResource( 9 ) ]
 reward_money = 75
+override_music = false
+music = null
 
 [node name="Coins" type="Spatial" parent="Overworld" index="3"]
 
@@ -77,6 +103,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1, -4.5 )
 
 [node name="SmolYurisSmolCat" parent="Overworld/InteractableActors" index="0" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -17.5 )
+interact_on_ready = false
+only_on_first_load = false
+use_export_dialogue_instead = false
+exported_dialogue = "[
+	{\"speaker\":\"lmao\", \"text\":\"i forgot to replace this text\"}
+]"
 cat_index = 4
 
 [node name="InteractableActor" parent="Overworld/InteractableActors" index="1" instance=ExtResource( 2 )]
@@ -85,25 +117,27 @@ interact_on_ready = true
 only_on_first_load = true
 use_export_dialogue_instead = true
 exported_dialogue = "[
-    {\"speaker\":\"Smol Yuri\", \"text\":\"I guess we should start looking for the king bowling cube now.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-    {\"speaker\":\"Smol Sayori\", \"text\":\"Do you know where he is?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"speaker\":\"Smol Sayori\", \"text\":\"Let's go ask Smol Monika, I bet she'll know!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Why would she know?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"speaker\":\"Smol Sayori\", \"text\":\"She knows all kinds of things!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+    {\"speaker\":\"Smol Silly Yuri\", \"text\":\"I guess we should start looking for the king bowling cube now.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Silly Sayori\", \"text\":\"Do you know where he is?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Silly Sayori\", \"text\":\"Let's go ask Smol Silly Monika, I bet she'll know!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Why would she know?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Silly Sayori\", \"text\":\"She knows all kinds of silly things!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
 	{\"text\":\"And maybe one of those things is the location of the king bowling cube!\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Your logic is flawed, but I don't have any better ideas.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"text\":\"I guess Smol Monika might at least have a better idea on what to do next.\", \"portrait\":\"\"}
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Your silly logic is flawed, but I don't have any better silly ideas.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"text\":\"I guess Smol Silly Monika might at least have a better silly idea on what to do next.\", \"portrait\":\"\"}
 ]"
 
 [node name="SmolGreenPipe" parent="Overworld/InteractableActors" index="2" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, -3.25 )
 collision_mask = 3
+interact_on_ready = false
+only_on_first_load = false
 use_export_dialogue_instead = true
 exported_dialogue = "[
-	{\"speaker\":\"\", \"text\":\"It's a smol green pipe.\"},
-	{\"speaker\":\"\", \"text\":\"Smol Yuri feels a strong urge to say \\\"wahoo!\\\" and climb inside, but she wouldn't fit.\"},
-	{\"speaker\":\"\", \"text\":\"Smol Sayori feels the same urge, but she also would not fit.\"},
+	{\"speaker\":\"\", \"text\":\"It's a smol green silly pipe.\"},
+	{\"speaker\":\"\", \"text\":\"Smol Silly Yuri feels a strong urge to say \\\"wahoo!\\\" and climb inside sillily, but she wouldn't fit.\"},
+	{\"speaker\":\"\", \"text\":\"Smol Silly Sayori feels the same urge, but she also would not fit.\"},
 ]"
 
 [node name="CollisionShape" parent="Overworld/InteractableActors/SmolGreenPipe" index="0"]
@@ -126,22 +160,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.5, -3.25 )
 
 [node name="SmolMonika" parent="Overworld/InteractableActors" index="4" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.5 )
+interact_on_ready = false
+only_on_first_load = false
 use_export_dialogue_instead = true
 exported_dialogue = "[
-    {\"speaker\":\"Smol Monika\", \"text\":\"Oh hey guys, what's up?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Do you know where the king bowling cube is?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-    {\"speaker\":\"Smol Sayori\", \"text\":\"We're trying to stop him from beating everyone up!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
-	{\"speaker\":\"Smol Monika\", \"text\":\"What's a bowling cube?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
-	{\"speaker\":\"Smol Sayori\", \"text\":\"Imagine a bowling ball, but cube shaped.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
-	{\"speaker\":\"Smol Monika\", \"text\":\"Okay, and you're looking for their king?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Yes.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-	{\"speaker\":\"Smol Monika\", \"text\":\"Have you tried asking the internet?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
-	{\"speaker\":\"Smol Monika\", \"text\":\"Okay let's start with that.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
-	{\"speaker\":\"\", \"text\":\"Smol Monika pulls out her smol phone and searches \\\"where does the king bowling cube live?\\\"\"},
-	{\"speaker\":\"Smol Monika\", \"text\":\"The first result says he lives in someplace called \\\"The Bowling Cube Castle\\\"\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
-	{\"text\":\"I'll summon a smol cookie to take us there.\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Yuri & Smol Sayori\", \"text\":\"Thanks!\"}
+    {\"speaker\":\"Smol Silly Monika\", \"text\":\"Oh hey guys, what's up?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Do you know where the king bowling cube is?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+    {\"speaker\":\"Smol Silly Sayori\", \"text\":\"We're trying to stop him from destroying silliness!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolSayori/Happy.png\"},
+	{\"speaker\":\"Smol Silly Monika\", \"text\":\"Wait, they want to destroy silliness?! We gotta stop these guys!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Sad.png\"},
+	{\"text\":\"Have you tried asking the sillynet?\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Silly Monika\", \"text\":\"Okay let's start with that.\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+	{\"speaker\":\"\", \"text\":\"Smol Silly Monika pulls out her smol silly phone and searches \\\"where does the king bowling cube live?\\\"\"},
+	{\"speaker\":\"Smol Silly Monika\", \"text\":\"The first result says he lives in someplace called \\\"The Bowling Cube Castle\\\"\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolMonika/Happy.png\"},
+	{\"text\":\"I'll summon a smol silly cookie to take us there.\", \"portrait\":\"\"},
+	{\"speaker\":\"Smol Silly Yuri & Smol Silly Sayori\", \"text\":\"Thanks!\"}
 ]"
 
 [node name="CollisionShape" parent="Overworld/InteractableActors/SmolMonika" index="0"]

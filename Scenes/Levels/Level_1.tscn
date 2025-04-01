@@ -83,6 +83,13 @@ overworld_music = ExtResource( 16 )
 battle_music = ExtResource( 15 )
 
 [node name="SmolYuri_Alone" parent="Overworld" index="0" instance=ExtResource( 3 )]
+hazard_damage = 1
+reload_on_death = true
+party_leader = 0
+v_camera_speed = 0.785398
+h_camera_speed = 1.5708
+max_camera_angle = 0.523599
+min_camera_angle = -0.785398
 
 [node name="CollisionShape" parent="Overworld/SmolYuri_Alone" index="0"]
 shape = SubResource( 11 )
@@ -97,7 +104,14 @@ visible = false
 
 [node name="OverworldEnemy" parent="Overworld/Enemies" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2 )
+move_speed = 2.0
+jump_strength = 5.0
+move_lerp = 5.0
+gravity = Vector3( 0, -9.8, 0 )
 enemies = [ ExtResource( 14 ) ]
+reward_money = 25
+override_music = false
+music = null
 
 [node name="CollisionShape" parent="Overworld/Enemies/OverworldEnemy" index="0"]
 shape = SubResource( 4 )
@@ -110,19 +124,32 @@ script = ExtResource( 13 )
 dialogues = [ "[
 	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"And then we just repeat those steps until one of us is out of HP\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
 	{\"text\":\"Any questions?\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Nope!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
-	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Alright, I'll stop talking so we can focus on the battle then!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"}
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Nope!\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Happy.png\"},
+	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Alright, then perish!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
+	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"I hate silliness! There is no room for tomfoolery in bowling!\", \"portrait\":\"\"}
 ]" ]
 
 [node name="OverworldEnemy2" parent="Overworld/Enemies" index="1" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 5, -18.25 )
+move_speed = 2.0
+jump_strength = 5.0
+move_lerp = 5.0
+gravity = Vector3( 0, -9.8, 0 )
 enemies = [ ExtResource( 8 ), ExtResource( 8 ) ]
 reward_money = 50
+override_music = false
+music = null
 
 [node name="OverworldEnemy3" parent="Overworld/Enemies" index="2" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 5, -20.25 )
+move_speed = 2.0
+jump_strength = 5.0
+move_lerp = 5.0
+gravity = Vector3( 0, -9.8, 0 )
 enemies = [ ExtResource( 8 ), ExtResource( 8 ) ]
 reward_money = 50
+override_music = false
+music = null
 
 [node name="Coins" type="Spatial" parent="Overworld" index="2"]
 
@@ -144,12 +171,14 @@ next_scene = "res://Scenes/Levels/Level_2.tscn"
 
 [node name="InteractableActor" parent="Overworld" index="4" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0 )
+interact_on_ready = false
+only_on_first_load = false
 use_export_dialogue_instead = true
 exported_dialogue = "[
-	{\"speaker\":\"Smol Yuri\", \"text\":\"Woah, what's all this?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Surprise.png\"},
-	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"It's a battle...\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"Woah, what's all this new silliness?\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Surprise.png\"},
+	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"It's a battle, and they're not silly!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
 	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Have you never been in a battle before?\", \"portrait\":\"\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
+	{\"speaker\":\"Smol Silly Yuri\", \"text\":\"No...\", \"portrait\":\"res://Sprites/DialoguePortraits/SmolYuri/Sad.png\"},
 	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"Oh, well in that case allow me to explain!\", \"portrait\":\"res://Sprites/DialoguePortraits/PurpleSmolBowlingBall.png\"},
 	{\"speaker\":\"Smol Bowling Ball\", \"text\":\"You start by selecting your attack using the same buttons you usually use to navigate menus.\", \"portrait\":\"\"},
 	{\"text\":\"Then you pick a target to aim your attack at.\", \"portrait\":\"\"},
@@ -159,6 +188,12 @@ exported_dialogue = "[
 
 [node name="SmolYurisSmolCat" parent="Overworld" index="5" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -12.5 )
+interact_on_ready = false
+only_on_first_load = false
+use_export_dialogue_instead = false
+exported_dialogue = "[
+	{\"speaker\":\"lmao\", \"text\":\"i forgot to replace this text\"}
+]"
 cat_index = 1
 
 [node name="MovingPlatform" parent="Overworld" index="6" instance=ExtResource( 9 )]
@@ -206,7 +241,7 @@ margin_top = 1.0
 margin_right = 500.0
 margin_bottom = 73.0
 custom_fonts/font = SubResource( 8 )
-text = "Smol Yuri can squash her enemies by jumping on them.
+text = "Smol Silly Yuri can squash her enemies by jumping on them.
 
 Try it out on this one!"
 align = 1
@@ -215,7 +250,6 @@ autowrap = true
 [node name="MeshInstance" type="MeshInstance" parent="Overworld/SquashTutorial" index="1"]
 mesh = SubResource( 14 )
 skeleton = NodePath("")
-material/0 = null
 
 [node name="Battle" parent="." index="2"]
 visible = false
